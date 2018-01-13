@@ -156,32 +156,10 @@ public class RobotMap {
 	public static final int SPINNER_COUNT_AVERAGE = 20;
 	
 	
-	/** PanTilt Settings ******************************************************/
-	public static final boolean HAS_PAN_TILT = IS_PBOT;
-	//PWM bounds are for the HS-5685MH servo
-	public static final double SERVO_PWM_MAX = 2.25;
-	public static final double SERVO_PWM_MIN = 0.76;
-	public static final double PAN_MIN = 0.25;
-	public static final double PAN_CENTER = 0.430;
-	public static final double PAN_MAX = 0.7;
-	public static final double TILT_MIN = 0.0;
-	public static final double TILT_CENTER 	= 0.515;
-	public static final double TILT_MAX = 0.7;
-	//The change in servo position per second when driven with the POV buttons
-	public static final double SERVO_SPEED = 0.25;
-	//Reverse the direction of the servos if they don't match the controls
-	public static final boolean REVERSE_PAN = false;
-	public static final boolean REVERSE_TILT = false;
-	
-	
 	/** Gyroscope Settings ****************************************************/
 	public static final boolean HAS_GYROSCOPE = true;
 	public static final double GYROSCOPE_SCALE = 0.25;
 	
-	
-	/** LEDRing Settings ******************************************************/
-	public static final boolean HAS_LIGHT_RING = true;
-
 	
 	/** Logger Settings *******************************************************/
 	public static final String 		LOG_FILE_FORMAT = "yyyy-MM-dd-hhmmss";

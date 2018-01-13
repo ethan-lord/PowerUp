@@ -24,9 +24,7 @@ public class Robot extends IterativeRobot {
 	/** Configuration Constants ***********************************************/
 	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_ROBOT;
 	private static final boolean HAS_DRIVETRAIN = RobotMap.HAS_DRIVETRAIN;
-	private static final boolean HAS_PAN_TILT = RobotMap.HAS_PAN_TILT;
 	private static final boolean HAS_GYROSCOPE = RobotMap.HAS_GYROSCOPE;
-	private static final boolean HAS_LIGHT_RING = RobotMap.HAS_LIGHT_RING;
 	private static final boolean HAS_SPINNER = RobotMap.HAS_SPINNER;
 	
 	
