@@ -50,7 +50,9 @@ public class RobotMap {
 	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_SPINNER 	= 		IS_PBOT		? 10 :
 													IS_PRIMARY 	? 0 : 0;
-	
+	public static final int CAN_WINCH_MOTOR =       IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_CLAW_RIGHT_MOTOR =  IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_CLAW_LEFT_MOTOR =   IS_PRIMARY  ? 0 : 0;
 	
 	/** PCM channels **********************************************************/
 	public static final int LIGHT_RING_CHANNEL = 1;
@@ -79,6 +81,14 @@ public class RobotMap {
 	public static final int TRAJPERIOD = 10;
 	public static final int PIDIDX = 0; //pidIdx - 0 for Primary closed-loop. 1 for cascaded closed-loop. See Phoenix-Documentation for how to interpret.
 	public static final int SLOTIDX_1 = 0;
+	
+	/** Winch Settings ********************************************************/
+	public static final boolean HAS_WINCH = !IS_PBOT;
+	public static final double WINCH_POWER = 0.5;
+	
+	/** Claw Settings *********************************************************/
+	public static final boolean HAS_CLAW =!IS_PBOT;
+	public static final double CLAW_INTAKE_POWER = 0.5;
 	
 	
 	/** Drivetrain Encoder Settings *******************************************/
@@ -184,4 +194,5 @@ public class RobotMap {
 	public static final Logger.Level 	LOG_PAN_TILT 				= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_GYROSCOPE				= Logger.Level.DEBUG;
 	public static final Logger.Level	LOG_LIGHT_RING				= Logger.Level.TRACE;
+	public static final Logger.Level	LOG_WINCH					= Logger.Level.TRACE;
 }
