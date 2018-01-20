@@ -89,6 +89,14 @@ public class RobotMap {
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
 	public static final double CLAW_INTAKE_POWER = 0.5;
+	public static final int CLAMP_SOLENOID_LEFT = 0;
+	public static final int CLAMP_SOLENOID_RIGHT = 0;
+	public static final boolean STARTS_ACTIVE = true;
+	
+	/** Compressor Settings ***************************************************/
+	public static final int COMPRESSOR_PORT = 0;
+	public static final boolean HAS_COMPRESSOR = !IS_PBOT;
+	
 	
 	
 	/** Drivetrain Encoder Settings *******************************************/

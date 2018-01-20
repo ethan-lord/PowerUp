@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team3042.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -31,6 +32,7 @@ public class Robot extends IterativeRobot {
 	private static final boolean HAS_SPINNER = RobotMap.HAS_SPINNER;
 	private static final boolean HAS_WINCH = RobotMap.HAS_WINCH;
 	private static final boolean HAS_CLAW = RobotMap.HAS_CLAW;
+	private static final boolean HAS_COMPRESSOR = RobotMap.HAS_COMPRESSOR;
 	
 	/** Create Subsystems *****************************************************/
 	private Logger log = new Logger(LOG_LEVEL, "Robot");
@@ -39,6 +41,7 @@ public class Robot extends IterativeRobot {
 	public static final Claw claw = (HAS_CLAW) ? new Claw() : null;
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
+	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<Command>();
