@@ -124,7 +124,6 @@ public class RobotMap {
 	public static final boolean HAS_COMPRESSOR = !IS_PBOT;
 	
 	
-	
 	/** Drivetrain Encoder Settings *******************************************/
 	public static final boolean HAS_ENCODERS = true;
 	//Encoder counts per revolution
