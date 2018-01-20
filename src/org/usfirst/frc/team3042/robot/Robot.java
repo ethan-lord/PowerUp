@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
 	
-	public static String gameData = null;
+	private static String gameData = "";
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<Command>();
@@ -139,8 +139,18 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void searchForGameData(){
-		if(gameData == null){
+		SmartDashboard.putString("Game Data", gameData);
+		SmartDashboard.putBoolean("Game Data Exists", gameDataPresent());
+		if(!gameDataPresent()){
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
 		}
+	}
+	
+	public boolean gameDataPresent(){
+		return gameData.length() == 3;
+	}
+	
+	public String getGameData(){
+		return gameData;
 	}
 }
