@@ -88,7 +88,23 @@ public class RobotMap {
 	
 	/** Winch Settings ********************************************************/
 	public static final boolean HAS_WINCH = !IS_PBOT;
-	public static final double WINCH_POWER = 0.5;
+	public static final double WINCH_VERTICAL_BASE_SPEED = 6;// inches per second
+	
+	public static final double KP_WINCH_FRONT_LEFT = 0.0;
+	public static final double KI_WINCH_FRONT_LEFT = 0.0;
+	public static final double KD_WINCH_FRONT_LEFT = 0.0;
+	
+	public static final double KP_WINCH_FRONT_RIGHT = 0.0;
+	public static final double KI_WINCH_FRONT_RIGHT = 0.0;
+	public static final double KD_WINCH_FRONT_RIGHT = 0.0;
+	
+	public static final double KP_WINCH_REAR_LEFT = 0.0;
+	public static final double KI_WINCH_REAR_LEFT = 0.0;
+	public static final double KD_WINCH_REAR_LEFT = 0.0;
+	
+	public static final double KP_WINCH_REAR_RIGHT = 0.0;
+	public static final double KI_WINCH_REAR_RIGHT = 0.0;
+	public static final double KD_WINCH_REAR_RIGHT = 0.0;
 	
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
