@@ -51,8 +51,8 @@ public class RobotMap {
 	public static final int CAN_SPINNER 	= 		IS_PBOT		? 10 :
 													IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_WINCH_MOTOR =       IS_PRIMARY  ? 0 : 0;
-	public static final int CAN_CLAW_RIGHT_MOTOR =  IS_PRIMARY  ? 0 : 0;
-	public static final int CAN_CLAW_LEFT_MOTOR =   IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_CLAW_RIGHT_TALON =  IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_CLAW_LEFT_TALON =   IS_PRIMARY  ? 0 : 0;
 	
 	/** PCM channels **********************************************************/
 	public static final int LIGHT_RING_CHANNEL = 1;
@@ -89,6 +89,7 @@ public class RobotMap {
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
 	public static final double CLAW_INTAKE_POWER = 0.5;
+	public static final double CLAW_RELEASE_POWER = -0.5;
 	public static final int CLAMP_SOLENOID_LEFT = 0;
 	public static final int CLAMP_SOLENOID_RIGHT = 0;
 	public static final boolean STARTS_ACTIVE = true;
@@ -196,11 +197,7 @@ public class RobotMap {
 	public static final Logger.Level	LOG_DRIVETRAIN_FOLLOWERS	= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_DRIVETRAIN_ENCODERS 	= Logger.Level.DEBUG;
 	public static final Logger.Level	LOG_DRIVETRAIN_AUTON		= Logger.Level.DEBUG;
-	public static final Logger.Level	LOG_SPINNER					= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_SPINNER_ENCODER			= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_SPINNER_CLOSED_LOOP		= Logger.Level.DEBUG;
-	public static final Logger.Level 	LOG_PAN_TILT 				= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_GYROSCOPE				= Logger.Level.DEBUG;
-	public static final Logger.Level	LOG_LIGHT_RING				= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_WINCH					= Logger.Level.TRACE;
-}
+	public static final Logger.Level	LOG_CLAW					= Logger.Level.TRACE;
+	}

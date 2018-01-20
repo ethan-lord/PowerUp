@@ -14,10 +14,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Winch extends Subsystem {
 
 	private static final int CAN_WINCH_MOTOR = RobotMap.CAN_WINCH_MOTOR;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 
-	private TalonSRX winchMotor = new TalonSRX(CAN_WINCH_MOTOR);
+	private TalonSRX winchMotorLeft = new TalonSRX(CAN_WINCH_MOTOR);
+	private TalonSRX winchMotorRight = new TalonSRX(CAN_WINCH_MOTOR);
 	
 	private double climbPower = RobotMap.WINCH_POWER;
 	
@@ -27,15 +26,16 @@ public class Winch extends Subsystem {
     	setDefaultCommand(new Winch_Stop());
     }
     
-    public void setPower(double winchPower) {
+    public void setPower(TalonSRX motor, double winchPower) {
 		winchPower = safetyCheck(winchPower);
     
 				
-		winchMotor.set(ControlMode.PercentOutput, winchPower);		
+		motor.set(ControlMode.PercentOutput, winchPower);		
 	}
     
     public void climb(){
-    	setPower(climbPower);
+    	setPower(winchMotorLeft, climbPower);
+    	setPower(winchMotorRight, climbPower);
     }
     
     private double safetyCheck(double power) {
@@ -45,7 +45,8 @@ public class Winch extends Subsystem {
 	}
     
 	public void stop() {
-		setPower(0.0);
+		setPower(winchMotorLeft, 0.0);
+		setPower(winchMotorRight, 0.0);
 	}
 }
 
