@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3042.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -43,6 +44,8 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
 	
+	public static String gameData = null;
+	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<Command>();
 
@@ -75,6 +78,8 @@ public class Robot extends IterativeRobot {
 	 * Called repeatedly while the robot is is disabled mode.
 	 */
 	public void disabledPeriodic() {
+		searchForGameData();
+		
 		Scheduler.getInstance().run();
 	}
 
@@ -97,6 +102,8 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
+		searchForGameData();
+		
 		Scheduler.getInstance().run();
 	}
 
@@ -129,5 +136,11 @@ public class Robot extends IterativeRobot {
 	 */
 	public void testPeriodic() {
 		LiveWindow.run();
+	}
+	
+	public void searchForGameData(){
+		if(gameData == null){
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
+		}
 	}
 }

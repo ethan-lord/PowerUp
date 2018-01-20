@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Claw_Unclamp extends Command {
+public class Claw_Toggle extends Command {
 	/** Configuration Constants ***********************************************/
 	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_CLAW;
 	
 	/** Instance Variables ****************************************************/
 	Logger log = new Logger(LOG_LEVEL, getName());
-    public Claw_Unclamp() {
+    public Claw_Toggle() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.claw);
@@ -23,7 +23,7 @@ public class Claw_Unclamp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.claw.unclamp();
+    	Robot.claw.clampToggle();
     	
     	log.add("Initialize", Logger.Level.TRACE);
     }

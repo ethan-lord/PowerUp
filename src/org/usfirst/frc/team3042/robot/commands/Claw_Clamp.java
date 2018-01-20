@@ -2,6 +2,7 @@ package org.usfirst.frc.team3042.robot.commands;
 
 import org.usfirst.frc.team3042.lib.Logger;
 import org.usfirst.frc.team3042.robot.Robot;
+import org.usfirst.frc.team3042.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,6 +10,11 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class Claw_Clamp extends Command {
+	/** Configuration Constants ***********************************************/
+	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_CLAW;
+	
+	/** Instance Variables ****************************************************/
+	Logger log = new Logger(LOG_LEVEL, getName());
 
     public Claw_Clamp() {
         // Use requires() here to declare subsystem dependencies
