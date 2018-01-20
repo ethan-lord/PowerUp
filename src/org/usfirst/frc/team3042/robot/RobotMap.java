@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3042.robot;
 
 import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.robot.subsystems.Elevator;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
@@ -48,8 +49,6 @@ public class RobotMap {
 													IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_LEFT_FOLLOWER = 	IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 0 : 0;
-	public static final int CAN_SPINNER 	= 		IS_PBOT		? 10 :
-													IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_WINCH_MOTOR_FRONT_LEFT = IS_PRIMARY  ? 0 : 0;
 	public static final int CAN_WINCH_MOTOR_FRONT_RIGHT = IS_PRIMARY  ? 0 : 0;
 	public static final int CAN_WINCH_MOTOR_REAR_LEFT = IS_PRIMARY  ? 0 : 0;
@@ -57,6 +56,8 @@ public class RobotMap {
 	
 	public static final int CAN_CLAW_RIGHT_TALON =  IS_PRIMARY  ? 0 : 0;
 	public static final int CAN_CLAW_LEFT_TALON =   IS_PRIMARY  ? 0 : 0;
+	
+	public static final int CAN_ELEVATOR_TALON = IS_PRIMARY ? 0 : 0;
 	
 	/** PCM channels **********************************************************/
 	public static final int LIGHT_RING_CHANNEL = 1;
@@ -97,6 +98,10 @@ public class RobotMap {
 	public static final int CLAMP_SOLENOID_LEFT = 0;
 	public static final int CLAMP_SOLENOID_RIGHT = 0;
 	public static final boolean STARTS_ACTIVE = true;
+	
+	/** Elevator Settings *****************************************************/
+	public static final boolean HAS_ELEVATOR = !IS_PBOT;
+	public static final double ELEVATOR_POWER = 0;
 	
 	/** Compressor Settings ***************************************************/
 	public static final int COMPRESSOR_PORT = 0;
@@ -204,4 +209,6 @@ public class RobotMap {
 	public static final Logger.Level	LOG_GYROSCOPE				= Logger.Level.DEBUG;
 	public static final Logger.Level	LOG_WINCH					= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_CLAW					= Logger.Level.TRACE;
+	public static final Logger.Level	LOG_ELEVATOR				= Logger.Level.TRACE;
+
 	}

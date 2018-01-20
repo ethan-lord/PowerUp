@@ -45,10 +45,10 @@ public class DrivetrainAuton extends Subsystem {
     	
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, getName());
-	TalonSRX leftMotor, rightMotor;
-	DrivetrainEncoders encoders;
-	Notifier notifier;
+	private Logger log = new Logger(LOG_LEVEL, getName());
+	private TalonSRX leftMotor, rightMotor;
+	private DrivetrainEncoders encoders;
+	private Notifier notifier;
 	
 
 	/** DrivetrainAuton *******************************************************/
