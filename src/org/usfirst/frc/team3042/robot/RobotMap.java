@@ -50,7 +50,11 @@ public class RobotMap {
 	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_SPINNER 	= 		IS_PBOT		? 10 :
 													IS_PRIMARY 	? 0 : 0;
-	public static final int CAN_WINCH_MOTOR =       IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_WINCH_MOTOR_FRONT_LEFT = IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_WINCH_MOTOR_FRONT_RIGHT = IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_WINCH_MOTOR_REAR_LEFT = IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_WINCH_MOTOR_REAR_RIGHT = IS_PRIMARY  ? 0 : 0;
+	
 	public static final int CAN_CLAW_RIGHT_TALON =  IS_PRIMARY  ? 0 : 0;
 	public static final int CAN_CLAW_LEFT_TALON =   IS_PRIMARY  ? 0 : 0;
 	

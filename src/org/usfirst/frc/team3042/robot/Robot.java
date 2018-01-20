@@ -139,7 +139,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void searchForGameData(){
-		SmartDashboard.putString("Game Data", gameData);
+		log.add("Game Data: " + gameData, Logger.Level.DEBUG);
 		SmartDashboard.putBoolean("Game Data Exists", gameDataPresent());
 		if(!gameDataPresent()){
 			gameData = DriverStation.getInstance().getGameSpecificMessage();

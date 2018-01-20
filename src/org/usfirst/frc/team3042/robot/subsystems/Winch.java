@@ -13,10 +13,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Winch extends Subsystem {
 
-	private static final int CAN_WINCH_MOTOR = RobotMap.CAN_WINCH_MOTOR;
+	private static final int CAN_WINCH_MOTOR_FRONT_LEFT = RobotMap.CAN_WINCH_MOTOR_FRONT_LEFT;
+	private static final int CAN_WINCH_MOTOR_FRONT_RIGHT = RobotMap.CAN_WINCH_MOTOR_FRONT_RIGHT;
+	private static final int CAN_WINCH_MOTOR_REAR_LEFT = RobotMap.CAN_WINCH_MOTOR_REAR_LEFT;
+	private static final int CAN_WINCH_MOTOR_REAR_RIGHT = RobotMap.CAN_WINCH_MOTOR_REAR_RIGHT;
 
-	private TalonSRX winchMotorLeft = new TalonSRX(CAN_WINCH_MOTOR);
-	private TalonSRX winchMotorRight = new TalonSRX(CAN_WINCH_MOTOR);
+	private TalonSRX winchMotorFrontLeft = new TalonSRX(CAN_WINCH_MOTOR_FRONT_LEFT);
+	private TalonSRX winchMotorFrontRight = new TalonSRX(CAN_WINCH_MOTOR_FRONT_RIGHT);
+	private TalonSRX winchMotorRearLeft = new TalonSRX(CAN_WINCH_MOTOR_FRONT_LEFT);
+	private TalonSRX winchMotorRearRight = new TalonSRX(CAN_WINCH_MOTOR_FRONT_RIGHT);
 	
 	private double climbPower = RobotMap.WINCH_POWER;
 	
@@ -34,9 +39,10 @@ public class Winch extends Subsystem {
 	}
     
     public void climb(){
-    	setPower(winchMotorLeft, climbPower);
-    	setPower(winchMotorRight, climbPower);
+    	
     }
+    
+    private void 
     
     private double safetyCheck(double power) {
 		power = Math.min(1.0, power);
@@ -45,8 +51,10 @@ public class Winch extends Subsystem {
 	}
     
 	public void stop() {
-		setPower(winchMotorLeft, 0.0);
-		setPower(winchMotorRight, 0.0);
+		setPower(winchMotorFrontLeft, 0.0);
+		setPower(winchMotorFrontRight, 0.0);
+		setPower(winchMotorRearLeft, 0.0);
+		setPower(winchMotorRearRight, 0.0);
 	}
 }
 
