@@ -15,20 +15,21 @@ public class Elevator_setPosition extends Command {
 	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, getName());
+	private Logger log = new Logger(LOG_LEVEL, getName());
+	private Elevator.Position position;
 
-    public Elevator_setPosition() {
+    public Elevator_setPosition(Elevator.Position position) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
+    	this.position = position;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Logger.Level.TRACE);
     	
-    	Robot.elevator.setPosition(arg0);
-    	
+    	Robot.elevator.setPosition(position);
     }
 
     // Called repeatedly when this Command is scheduled to run

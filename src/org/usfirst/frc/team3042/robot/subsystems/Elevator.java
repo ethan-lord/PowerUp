@@ -38,12 +38,31 @@ public class Elevator extends Subsystem {
 		setPower(elevatorTalon, 0);
 	}
 	
-	public void setPosition(Position arg0) {
-		
+	public void setPosition(Position position) {
+		switch (position) {
+			case BOTTOM:
+				elevatorTalon.set(ControlMode.Position, );
+                break;
+			case INTAKE:
+				
+				break;
+			case SWITCH:
+				
+				break;
+			case LOW_SCALE:
+				
+				break;
+			case HIGH_SCALE:
+				
+				break;
+			default:
+				stop();
+				break;
+		}
 	}
 	
-	static class Position {
-		
+	public static enum Position {
+		BOTTOM, INTAKE, SWITCH, LOW_SCALE, HIGH_SCALE;
 	}
 }
 

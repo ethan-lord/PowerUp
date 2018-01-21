@@ -89,7 +89,10 @@ public class RobotMap {
 	
 	/** Winch Settings ********************************************************/
 	public static final boolean HAS_WINCH = !IS_PBOT;
-	public static final double WINCH_VERTICAL_BASE_SPEED = 6;// inches per second
+	
+	public static final double WINCH_HAS_LOAD_THRESHHOLD = 0;//test to determine what this should be.
+	
+	public static final double WINCH_VERTICAL_BASE_POWER = 6;// inches per second
 	
 	public static final double KP_WINCH_FRONT_LEFT = 0.0;
 	public static final double KI_WINCH_FRONT_LEFT = 0.0;
