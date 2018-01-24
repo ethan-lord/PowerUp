@@ -1,8 +1,10 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
 import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Elevator_Stop;
+import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -16,10 +18,16 @@ public class Elevator extends Subsystem {
 	/** Configuration Constants ***********************************************/
 	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
 	private TalonSRX elevatorTalon = new TalonSRX(RobotMap.CAN_ELEVATOR_TALON);
-
+	private final int BOT_POS = RobotMap.ELEVATOR_BOTTOM_POSITION;
+	private final int INT_POS = RobotMap.ELEVATOR_INTAKE_POSITION;
+	private final int SWITCH_POS = RobotMap.ELEVATOR_SWITCH_POSITION;
+	private final int LOW_SCALE_POS = RobotMap.ELEVATOR_LOW_SCALE_POSITION;
+	private final int HIGH_SCALE_POS = RobotMap.ELEVATOR_HIGH_SCALE_POSITION;
+	private final int MANUAL_SPEED = RobotMap.ELEVATOR_MANUAL_SPEED;
 	
 	/** Instance Variables ****************************************************/
 	private Logger log = new Logger(LOG_LEVEL, getName());
+	private int currentPos = 0;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -41,24 +49,42 @@ public class Elevator extends Subsystem {
 	public void setPosition(Position position) {
 		switch (position) {
 			case BOTTOM:
-				elevatorTalon.set(ControlMode.Position, );
+				elevatorTalon.set(ControlMode.Position, BOT_POS);
+				currentPos = BOT_POS;
                 break;
 			case INTAKE:
-				
+				elevatorTalon.set(ControlMode.Position, INT_POS);
+				currentPos = INT_POS;
 				break;
 			case SWITCH:
-				
+				elevatorTalon.set(ControlMode.Position, SWITCH_POS);
+				currentPos = SWITCH_POS;
 				break;
 			case LOW_SCALE:
-				
+				elevatorTalon.set(ControlMode.Position, LOW_SCALE_POS);
+				currentPos = LOW_SCALE_POS;
 				break;
 			case HIGH_SCALE:
-				
+				elevatorTalon.set(ControlMode.Position, HIGH_SCALE_POS);
+				currentPos = HIGH_SCALE_POS;
 				break;
 			default:
 				stop();
 				break;
 		}
+	}
+	
+	public void manual(int direction){
+		if(direction == POVButton.UP){
+			elevatorTalon.set(ControlMode.Position, currentPos += MANUAL_SPEED);
+		}
+		if(direction == POVButton.DOWN){
+			elevatorTalon.set(ControlMode.Position, currentPos -= MANUAL_SPEED);
+		}
+	}
+	
+	public int getPosition(){
+		return currentPos;
 	}
 	
 	public static enum Position {

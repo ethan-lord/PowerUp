@@ -49,10 +49,8 @@ public class RobotMap {
 													IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_LEFT_FOLLOWER = 	IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 0 : 0;
-	public static final int CAN_WINCH_MOTOR_FRONT_LEFT = IS_PRIMARY  ? 0 : 0;
-	public static final int CAN_WINCH_MOTOR_FRONT_RIGHT = IS_PRIMARY  ? 0 : 0;
-	public static final int CAN_WINCH_MOTOR_REAR_LEFT = IS_PRIMARY  ? 0 : 0;
-	public static final int CAN_WINCH_MOTOR_REAR_RIGHT = IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_WINCH_MOTOR_LEFT = IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_WINCH_MOTOR_RIGHT = IS_PRIMARY  ? 0 : 0;
 	
 	public static final int CAN_CLAW_RIGHT_TALON =  IS_PRIMARY  ? 0 : 0;
 	public static final int CAN_CLAW_LEFT_TALON =   IS_PRIMARY  ? 0 : 0;
@@ -92,23 +90,15 @@ public class RobotMap {
 	
 	public static final double WINCH_HAS_LOAD_THRESHHOLD = 0;//test to determine what this should be.
 	
-	public static final double WINCH_VERTICAL_BASE_POWER = 6;// inches per second
+	public static final double WINCH_BASE_POWER = 6;// inches per second
 	
-	public static final double KP_WINCH_FRONT_LEFT = 0.0;
-	public static final double KI_WINCH_FRONT_LEFT = 0.0;
-	public static final double KD_WINCH_FRONT_LEFT = 0.0;
+	public static final double KP_WINCH_LEFT = 0.0;
+	public static final double KI_WINCH_LEFT = 0.0;
+	public static final double KD_WINCH_LEFT = 0.0;
 	
-	public static final double KP_WINCH_FRONT_RIGHT = 0.0;
-	public static final double KI_WINCH_FRONT_RIGHT = 0.0;
-	public static final double KD_WINCH_FRONT_RIGHT = 0.0;
-	
-	public static final double KP_WINCH_REAR_LEFT = 0.0;
-	public static final double KI_WINCH_REAR_LEFT = 0.0;
-	public static final double KD_WINCH_REAR_LEFT = 0.0;
-	
-	public static final double KP_WINCH_REAR_RIGHT = 0.0;
-	public static final double KI_WINCH_REAR_RIGHT = 0.0;
-	public static final double KD_WINCH_REAR_RIGHT = 0.0;
+	public static final double KP_WINCH_RIGHT = 0.0;
+	public static final double KI_WINCH_RIGHT = 0.0;
+	public static final double KD_WINCH_RIGHT = 0.0;
 	
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
@@ -120,7 +110,12 @@ public class RobotMap {
 	
 	/** Elevator Settings *****************************************************/
 	public static final boolean HAS_ELEVATOR = !IS_PBOT;
-	public static final double ELEVATOR_POWER = 0;
+	public static final int ELEVATOR_BOTTOM_POSITION = 0;
+	public static final int ELEVATOR_INTAKE_POSITION = 0;
+	public static final int ELEVATOR_SWITCH_POSITION = 0;
+	public static final int ELEVATOR_LOW_SCALE_POSITION = 0;
+	public static final int ELEVATOR_HIGH_SCALE_POSITION = 0;
+	public static final int ELEVATOR_MANUAL_SPEED = 5;
 	
 	/** Compressor Settings ***************************************************/
 	public static final int COMPRESSOR_PORT = 0;
