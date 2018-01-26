@@ -24,6 +24,9 @@ public class Elevator extends Subsystem {
 	private final int LOW_SCALE_POS = RobotMap.ELEVATOR_LOW_SCALE_POSITION;
 	private final int HIGH_SCALE_POS = RobotMap.ELEVATOR_HIGH_SCALE_POSITION;
 	private final int MANUAL_SPEED = RobotMap.ELEVATOR_MANUAL_SPEED;
+	private static final int SLOTIDX_1 = RobotMap.SLOTIDX_1;
+	private static final int TIMEOUT = RobotMap.TALON_ERROR_TIMEOUT;
+	private static final int FRAME_RATE = RobotMap.AUTON_FRAME_RATE;
 	
 	/** Instance Variables ****************************************************/
 	private Logger log = new Logger(LOG_LEVEL, getName());
@@ -37,6 +40,15 @@ public class Elevator extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new Elevator_Stop());
     }
+    
+    private void initMotor(TalonSRX motor, double kF) {
+		motor.changeMotionControlFramePeriod(FRAME_RATE);
+		motor.config_kP(SLOTIDX_1, kP, TIMEOUT);
+		motor.config_kI(SLOTIDX_1, kI, TIMEOUT);
+		motor.config_kD(SLOTIDX_1, kD, TIMEOUT);
+		motor.config_kF(SLOTIDX_1, kF, TIMEOUT);
+		motor.config_IntegralZone(SLOTIDX_1, I_ZONE, TIMEOUT);
+	}
     
     public void setPower(TalonSRX talon, double power){
     	talon.set(ControlMode.PercentOutput, power);
