@@ -1,8 +1,15 @@
 package org.usfirst.frc.team3042.lib;
 
+import org.usfirst.frc.team3042.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.I2C;
 
 public class I2CRangeSensor {
+	
+	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_ROBOT;
+
+	
+	private Logger log = new Logger(LOG_LEVEL, "Robot");
 
 	public static final int DEFAULT_I2C_ADDR = 0x14;
 	public static final int ULTRASONIC_ADDR = 0x04;
@@ -23,7 +30,7 @@ public class I2CRangeSensor {
 		
 		//Read 1 byte from the I2C bus and return it
 		i2c.read(ULTRASONIC_ADDR, 1, data);
-		
+		log.add("this will hopefully work and print", Logger.Level.DEBUG);
 		return data[0];
 	}
 	
@@ -35,6 +42,4 @@ public class I2CRangeSensor {
 		
 		return data[0];
 	}
-	
-	
 }
