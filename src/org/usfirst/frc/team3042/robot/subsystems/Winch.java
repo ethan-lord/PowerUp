@@ -21,6 +21,8 @@ public class Winch extends Subsystem {
 	private TalonSRX winchMotorLeft = new TalonSRX(CAN_WINCH_MOTOR_LEFT);
 	private TalonSRX winchMotorRight = new TalonSRX(CAN_WINCH_MOTOR_RIGHT);
 	
+	private TalonSRX winchMotorOneSide = null;
+	
 	private double hasLoadThreshhold = RobotMap.WINCH_HAS_LOAD_THRESHHOLD;
 	
 	ADIS16448_IMU gyro = new ADIS16448_IMU();
@@ -44,6 +46,14 @@ public class Winch extends Subsystem {
 	
 	private double oldErrorLeftRight = 0;
 	private double accumErrorLeftRight = 0;
+	
+	public Winch(){
+		
+	}
+	public Winch(Side side){
+		winchMotorOneSide = (side == Side.LEFT)? winchMotorLeft : winchMotorRight;
+		//If we choose to control each side independantly, create two subsystems with this constructor.
+	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -79,6 +89,14 @@ public class Winch extends Subsystem {
     	setPower(winchMotorLeft, motorPower[0]);
 		setPower(winchMotorRight, motorPower[1]);
     }
+    
+    public void climbOneSide(){
+    	if(winchMotorOneSide != null){
+    		setPower(winchMotorOneSide, climbPower);
+    	}
+    	//Used only if we control manually both sides of the winch indepentantly
+    	//Does nothing if set up for automatic leveling
+    }
     /**
      * uses a PID loop to correct the winch powers so the robot remains level.
      */
@@ -113,6 +131,10 @@ public class Winch extends Subsystem {
 	public void stop() {
 		setPower(winchMotorLeft, 0.0);
 		setPower(winchMotorRight, 0.0);
+	}
+	
+	public enum Side {
+		LEFT, RIGHT;
 	}
 }
 

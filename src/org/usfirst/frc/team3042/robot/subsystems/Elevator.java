@@ -35,6 +35,7 @@ public class Elevator extends Subsystem {
 	/** Instance Variables ****************************************************/
 	private Logger log = new Logger(LOG_LEVEL, getName());
 	private int currentPos = 0;
+	private int currentPreset = 0;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -71,22 +72,27 @@ public class Elevator extends Subsystem {
 			case BOTTOM:
 				elevatorTalon.set(ControlMode.Position, BOT_POS);
 				currentPos = BOT_POS;
+				currentPreset = 0;
                 break;
 			case INTAKE:
 				elevatorTalon.set(ControlMode.Position, INT_POS);
 				currentPos = INT_POS;
+				currentPreset = 1;
 				break;
 			case SWITCH:
 				elevatorTalon.set(ControlMode.Position, SWITCH_POS);
 				currentPos = SWITCH_POS;
+				currentPreset = 2;
 				break;
 			case LOW_SCALE:
 				elevatorTalon.set(ControlMode.Position, LOW_SCALE_POS);
 				currentPos = LOW_SCALE_POS;
+				currentPreset = 3;
 				break;
 			case HIGH_SCALE:
 				elevatorTalon.set(ControlMode.Position, HIGH_SCALE_POS);
 				currentPos = HIGH_SCALE_POS;
+				currentPreset = 4;
 				break;
 			default:
 				stop();
@@ -98,13 +104,26 @@ public class Elevator extends Subsystem {
 		if(direction == POVButton.UP){
 			elevatorTalon.set(ControlMode.Position, currentPos += MANUAL_SPEED);
 		}
-		if(direction == POVButton.DOWN){
+		else if(direction == POVButton.DOWN){
 			elevatorTalon.set(ControlMode.Position, currentPos -= MANUAL_SPEED);
+		}
+	}
+	
+	public void cyclePreset(int direction){
+		if(direction == POVButton.UP){
+			currentPreset = (currentPreset + 1) % 5; // modulus to keep the value in the range of 0-4
+		}
+		else if(direction == POVButton.DOWN){
+			currentPreset = (currentPreset - 1) % 5; // modulus to keep the value in the range of 0-4
 		}
 	}
 	
 	public int getPosition(){
 		return currentPos;
+	}
+	
+	public int getCurrentPreset(){
+		return currentPreset;
 	}
 	
 	public static enum Position {
