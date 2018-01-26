@@ -27,6 +27,10 @@ public class Elevator extends Subsystem {
 	private static final int SLOTIDX_1 = RobotMap.SLOTIDX_1;
 	private static final int TIMEOUT = RobotMap.TALON_ERROR_TIMEOUT;
 	private static final int FRAME_RATE = RobotMap.AUTON_FRAME_RATE;
+	private static final int kP = RobotMap.ELEVATOR_KP;
+	private static final int kI = RobotMap.ELEVATOR_KI;
+	private static final int kD = RobotMap.ELEVATOR_KD;
+	private static final int kF = RobotMap.ELEVATOR_KF;
 	
 	/** Instance Variables ****************************************************/
 	private Logger log = new Logger(LOG_LEVEL, getName());
@@ -41,11 +45,15 @@ public class Elevator extends Subsystem {
     	setDefaultCommand(new Elevator_Stop());
     }
     
-    private void initMotor(TalonSRX motor, double kF) {
+    public Elevator(){
+    	initMotor(elevatorTalon);
+    }
+    
+    private void initMotor(TalonSRX motor) {
 		motor.changeMotionControlFramePeriod(FRAME_RATE);
-		motor.config_kP(SLOTIDX_1, RobotMap.ELEVATOR_KP, TIMEOUT);
-		motor.config_kI(SLOTIDX_1, RobotMap.ELEVATOR_KI, TIMEOUT);
-		motor.config_kD(SLOTIDX_1, RobotMap.ELEVATOR_KD, TIMEOUT);
+		motor.config_kP(SLOTIDX_1, kP, TIMEOUT);
+		motor.config_kI(SLOTIDX_1, kI, TIMEOUT);
+		motor.config_kD(SLOTIDX_1, kD, TIMEOUT);
 		motor.config_kF(SLOTIDX_1, kF, TIMEOUT);
 		motor.config_IntegralZone(SLOTIDX_1, RobotMap.I_ZONE, TIMEOUT);
 	}
