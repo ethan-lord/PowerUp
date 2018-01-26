@@ -116,6 +116,10 @@ public class RobotMap {
 	public static final int ELEVATOR_LOW_SCALE_POSITION = 0;
 	public static final int ELEVATOR_HIGH_SCALE_POSITION = 0;
 	public static final int ELEVATOR_MANUAL_SPEED = 5;
+	public static final int ELEVATOR_KP = 0;
+	public static final int ELEVATOR_KI = 0;
+	public static final int ELEVATOR_KD = 0;
+	public static final int I_ZONE = 0;
 	
 	/** Compressor Settings ***************************************************/
 	public static final int COMPRESSOR_PORT = 0;

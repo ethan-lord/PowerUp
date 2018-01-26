@@ -43,11 +43,11 @@ public class Elevator extends Subsystem {
     
     private void initMotor(TalonSRX motor, double kF) {
 		motor.changeMotionControlFramePeriod(FRAME_RATE);
-		motor.config_kP(SLOTIDX_1, kP, TIMEOUT);
-		motor.config_kI(SLOTIDX_1, kI, TIMEOUT);
-		motor.config_kD(SLOTIDX_1, kD, TIMEOUT);
+		motor.config_kP(SLOTIDX_1, RobotMap.ELEVATOR_KP, TIMEOUT);
+		motor.config_kI(SLOTIDX_1, RobotMap.ELEVATOR_KI, TIMEOUT);
+		motor.config_kD(SLOTIDX_1, RobotMap.ELEVATOR_KD, TIMEOUT);
 		motor.config_kF(SLOTIDX_1, kF, TIMEOUT);
-		motor.config_IntegralZone(SLOTIDX_1, I_ZONE, TIMEOUT);
+		motor.config_IntegralZone(SLOTIDX_1, RobotMap.I_ZONE, TIMEOUT);
 	}
     
     public void setPower(TalonSRX talon, double power){
