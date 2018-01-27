@@ -1,18 +1,15 @@
-
 package org.usfirst.frc.team3042.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team3042.robot.Robot;
-
 /**
  *
  */
-public class ExampleCommand extends Command {
+public class Elevator_holdPosition extends Command {
 
-    public ExampleCommand() {
+    public Elevator_holdPosition() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.exampleSubsystem);
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time

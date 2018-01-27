@@ -228,5 +228,6 @@ public class RobotMap {
 	public static final Logger.Level	LOG_WINCH					= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_CLAW					= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_ELEVATOR				= Logger.Level.TRACE;
+	public static final Logger.Level    LOG_COMPRESSOR              = Logger.Level.TRACE;
 
 	}

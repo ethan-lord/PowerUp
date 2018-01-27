@@ -11,11 +11,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team3042.lib.I2CRangeSensor;
 import org.usfirst.frc.team3042.lib.Logger;
-import org.usfirst.frc.team3042.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3042.robot.subsystems.Claw;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3042.robot.subsystems.Elevator;
-import org.usfirst.frc.team3042.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team3042.robot.subsystems.Winch;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -45,7 +43,6 @@ public class Robot extends IterativeRobot {
 	public static final Winch winch = (HAS_WINCH) ? new Winch() : null;
 	public static final Claw claw = (HAS_CLAW) ? new Claw() : null;
 	public static final Elevator elevator = (HAS_ELEVATOR) ? new Elevator() : null;
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
 	public I2CRangeSensor range = new I2CRangeSensor(I2C.Port.kOnboard);
@@ -64,8 +61,6 @@ public class Robot extends IterativeRobot {
 		log.add("Robot Init", Logger.Level.TRACE);
 		
 		oi = new OI();
-		chooser.addDefault("Default Auto", new ExampleCommand());
-		chooser.addObject("My Auto", new ExampleCommand());
 		SmartDashboard.putData("Auto Mode", chooser);
 	}
 
@@ -148,7 +143,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void searchForGameData(){
-		log.add("Game Data: " + gameData, Logger.Level.DEBUG);
+		log.add("Game Data: " + gameData, Logger.Level.ALL);
 		SmartDashboard.putBoolean("Game Data Exists", gameDataPresent());
 		if(!gameDataPresent()){
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
