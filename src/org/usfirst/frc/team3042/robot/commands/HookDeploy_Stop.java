@@ -7,29 +7,26 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *Stop Hooking Around
  */
-public class Elevator_Cycle_Positions extends Command {
+public class HookDeploy_Stop extends Command {
 	/** Configuration Constants ***********************************************/
-	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
+	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_HOOK;
 	
 	/** Instance Variables ****************************************************/
 	Logger log = new Logger(LOG_LEVEL, getName());
-	private int direction;
-	
-    public Elevator_Cycle_Positions(int direction) {
+
+
+    public HookDeploy_Stop() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
-    	
-    	this.direction = direction;
+    	requires(Robot.hookDeploy);
+    	Robot.hookDeploy.stop();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Logger.Level.TRACE);
-    	
-    	Robot.elevator.cyclePreset(direction);
     }
 
     // Called repeatedly when this Command is scheduled to run

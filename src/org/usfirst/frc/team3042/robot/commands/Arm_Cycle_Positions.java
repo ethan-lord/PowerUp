@@ -9,18 +9,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Elevator_Cycle_Positions extends Command {
+public class Arm_Cycle_Positions extends Command {
 	/** Configuration Constants ***********************************************/
 	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, getName());
+	private Logger log = new Logger(LOG_LEVEL, getName());
 	private int direction;
 	
-    public Elevator_Cycle_Positions(int direction) {
+    public Arm_Cycle_Positions(int direction) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
+    	requires(Robot.arm);
     	
     	this.direction = direction;
     }
@@ -41,7 +41,7 @@ public class Elevator_Cycle_Positions extends Command {
         return false;
     }
 
-    // Called once after isFinished returns true
+ // Called once after isFinished returns true
     protected void end() {
     	log.add("End", Logger.Level.TRACE);
     }

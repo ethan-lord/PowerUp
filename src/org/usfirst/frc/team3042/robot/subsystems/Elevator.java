@@ -31,15 +31,14 @@ public class Elevator extends Subsystem {
 	private static final int kI = RobotMap.ELEVATOR_KI;
 	private static final int kD = RobotMap.ELEVATOR_KD;
 	private static final int kF = RobotMap.ELEVATOR_KF;
+	private static final int I_ZONE = RobotMap.ELEVATOR_I_ZONE;
 	
 	/** Instance Variables ****************************************************/
 	private Logger log = new Logger(LOG_LEVEL, getName());
 	private int currentPos = 0;
 	private int currentPreset = 0;
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-
+	Position[] positionFromInt = new Position[]{Position.BOTTOM, Position.INTAKE, Position.SWITCH, Position.LOW_SCALE, Position.MID_SCALE, Position.HIGH_SCALE};
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -56,10 +55,10 @@ public class Elevator extends Subsystem {
 		motor.config_kI(SLOTIDX_1, kI, TIMEOUT);
 		motor.config_kD(SLOTIDX_1, kD, TIMEOUT);
 		motor.config_kF(SLOTIDX_1, kF, TIMEOUT);
-		motor.config_IntegralZone(SLOTIDX_1, RobotMap.I_ZONE, TIMEOUT);
+		motor.config_IntegralZone(SLOTIDX_1, I_ZONE, TIMEOUT);
 	}
     
-    public void setPower(TalonSRX talon, double power){
+    private void setPower(TalonSRX talon, double power){
     	talon.set(ControlMode.PercentOutput, power);
     }
     
@@ -111,10 +110,12 @@ public class Elevator extends Subsystem {
 	
 	public void cyclePreset(int direction){
 		if(direction == POVButton.UP){
-			currentPreset = (currentPreset + 1) % 5; // modulus to keep the value in the range of 0-4
+			currentPreset = (currentPreset + 1) % positionFromInt.length; // modulus to keep the value in the range of 0-4
+			setPosition(positionFromInt[currentPreset]);
 		}
 		else if(direction == POVButton.DOWN){
-			currentPreset = (currentPreset - 1) % 5; // modulus to keep the value in the range of 0-4
+			currentPreset = (currentPreset - 1) % positionFromInt.length; // modulus to keep the value in the range of 0-4
+			setPosition(positionFromInt[currentPreset]);
 		}
 	}
 	
@@ -127,7 +128,7 @@ public class Elevator extends Subsystem {
 	}
 	
 	public static enum Position {
-		BOTTOM, INTAKE, SWITCH, LOW_SCALE, HIGH_SCALE;
+		BOTTOM, INTAKE, SWITCH, LOW_SCALE, MID_SCALE, HIGH_SCALE;
 	}
 }
 

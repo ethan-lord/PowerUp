@@ -12,10 +12,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team3042.lib.I2CRangeSensor;
 import org.usfirst.frc.team3042.lib.Logger;
 import org.usfirst.frc.team3042.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3042.robot.subsystems.Arm;
 import org.usfirst.frc.team3042.robot.subsystems.Claw;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3042.robot.subsystems.Elevator;
 import org.usfirst.frc.team3042.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team3042.robot.subsystems.HookDeploy;
 import org.usfirst.frc.team3042.robot.subsystems.Winch;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -33,11 +35,12 @@ public class Robot extends IterativeRobot {
 	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_ROBOT;
 	private static final boolean HAS_DRIVETRAIN = RobotMap.HAS_DRIVETRAIN;
 	private static final boolean HAS_GYROSCOPE = RobotMap.HAS_GYROSCOPE;
-	private static final boolean HAS_SPINNER = RobotMap.HAS_SPINNER;
 	private static final boolean HAS_WINCH = RobotMap.HAS_WINCH;
 	private static final boolean HAS_CLAW = RobotMap.HAS_CLAW;
 	private static final boolean HAS_ELEVATOR = RobotMap.HAS_ELEVATOR;
 	private static final boolean HAS_COMPRESSOR = RobotMap.HAS_COMPRESSOR;
+	private static final boolean HAS_ARM = RobotMap.HAS_ARM;
+	private static final boolean HAS_HOOKDEPLOY = RobotMap.HAS_HOOKDEPLOY;
 	
 	/** Create Subsystems *****************************************************/
 	private Logger log = new Logger(LOG_LEVEL, "Robot");
@@ -45,6 +48,8 @@ public class Robot extends IterativeRobot {
 	public static final Winch winch = (HAS_WINCH) ? new Winch() : null;
 	public static final Claw claw = (HAS_CLAW) ? new Claw() : null;
 	public static final Elevator elevator = (HAS_ELEVATOR) ? new Elevator() : null;
+	public static final Arm arm = (HAS_ARM) ? new Arm() : null;
+	public static final HookDeploy hookDeploy = (HAS_HOOKDEPLOY) ? new HookDeploy() : null; 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
