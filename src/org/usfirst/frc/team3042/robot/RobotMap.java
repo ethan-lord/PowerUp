@@ -223,7 +223,11 @@ public class RobotMap {
 	public static final Logger.Level	LOG_WINCH					= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_CLAW					= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_ELEVATOR				= Logger.Level.TRACE;
+<<<<<<< HEAD
 	public static final Logger.Level 	LOG_ARM						= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_HOOK					= Logger.Level.TRACE;
+=======
+	public static final Logger.Level    LOG_COMPRESSOR              = Logger.Level.TRACE;
+>>>>>>> branch 'master' of https://github.com/team3042/PowerUp.git
 
 	}

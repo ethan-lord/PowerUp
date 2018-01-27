@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
+import org.usfirst.frc.team3042.lib.Logger;
 import org.usfirst.frc.team3042.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -9,6 +10,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class CompressorSubsystem extends Subsystem {
+	/** Configuration Constants ***********************************************/
+	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_COMPRESSOR;
+	
+	/** Instance Variables ****************************************************/
+	Logger log = new Logger(LOG_LEVEL, getName());
 
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -20,12 +26,12 @@ public class CompressorSubsystem extends Subsystem {
     }
     
     public CompressorSubsystem() {
-    	System.out.println("Instantiating compressor");
+    	log.add("Instantiating compressor", Logger.Level.TRACE);
         compressor.start();
         
         compressor.setClosedLoopControl(true);
         
-        System.out.println("Finished instantiating compressor");
+        log.add("Finished instantiating compressor", Logger.Level.TRACE);
     }
 }
 

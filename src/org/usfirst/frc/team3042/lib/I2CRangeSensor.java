@@ -29,8 +29,8 @@ public class I2CRangeSensor {
 		byte[] data = new byte[1];
 		
 		//Read 1 byte from the I2C bus and return it
-		i2c.read(ULTRASONIC_ADDR, 1, data);
-		log.add("this will hopefully work and print", Logger.Level.DEBUG);
+//		log.add(""+i2c.read(ULTRASONIC_ADDR, 1, data), Logger.Level.DEBUG);
+//		log.add("This will hopefully work and print: " + data[0], Logger.Level.DEBUG);
 		return data[0];
 	}
 	
@@ -38,7 +38,8 @@ public class I2CRangeSensor {
 		byte[] data = new byte[1];
 		
 		//Read 1 byte from the I2C bus and return it
-		i2c.read(OPTICAL_ADDR, 1, data);
+		log.add(""+i2c.read(OPTICAL_ADDR, 1, data), Logger.Level.DEBUG);
+		log.add("This will hopefully work and print: " + data[0], Logger.Level.DEBUG);
 		
 		return data[0];
 	}
