@@ -28,7 +28,7 @@ public class RobotMap {
 	 * in inches, position will be in inches and speed in inches per second.
 	 */
 	public static final double WHEEL_DIAMETER = 4.0;
-	public static final double ROBOT_WIDTH = (IS_PBOT) ? 20.2 : 0.0;
+	public static final double ROBOT_WIDTH = (IS_PBOT) ? 20.2 : 23.795;
 	
 	
 	/** USB ports *************************************************************/					
