@@ -118,7 +118,7 @@ public class Elevator extends Subsystem {
 			setPosition(positionFromInt[currentPreset]);
 		}
 	}
-	
+	 
 	public int getPosition(){
 		return currentPos;
 	}
