@@ -1,9 +1,8 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
 import org.usfirst.frc.team3042.lib.Logger;
-import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
-import org.usfirst.frc.team3042.robot.commands.Elevator_Stop;
+import org.usfirst.frc.team3042.robot.commands.Elevator_holdPosition;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -37,12 +36,12 @@ public class Elevator extends Subsystem {
 	private Logger log = new Logger(LOG_LEVEL, getName());
 	private int currentPos = 0;
 	private int currentPreset = 0;
-	Position[] positionFromInt = new Position[]{Position.BOTTOM, Position.INTAKE, Position.SWITCH, Position.LOW_SCALE, Position.MID_SCALE, Position.HIGH_SCALE};
+	public Position[] positionFromInt = new Position[]{Position.BOTTOM, Position.INTAKE, Position.SWITCH, Position.LOW_SCALE, Position.MID_SCALE, Position.HIGH_SCALE};
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new Elevator_Stop());
+    	setDefaultCommand(new Elevator_holdPosition());
     }
     
     public Elevator(){

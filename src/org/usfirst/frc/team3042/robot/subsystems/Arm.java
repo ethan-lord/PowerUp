@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
 import org.usfirst.frc.team3042.robot.RobotMap;
-import org.usfirst.frc.team3042.robot.commands.Arm_Stop;
+import org.usfirst.frc.team3042.robot.commands.Arm_HoldPosition;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -31,7 +31,7 @@ public class Arm extends Subsystem {
 	private TalonSRX armTalon = new TalonSRX(CAN_ARM_MOTOR);
 	private int currentPreset = 0;
 	private int currentPos = 0;
-	private Position[] positionFromInt = new Position[]{Position.BOTTOM, Position.MIDDLE, Position.TOP};
+	public Position[] positionFromInt = new Position[]{Position.BOTTOM, Position.MIDDLE, Position.TOP};
 
 	public Arm(){
 		initMotor(armTalon);
@@ -40,7 +40,7 @@ public class Arm extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new Arm_Stop());
+    	setDefaultCommand(new Arm_HoldPosition());
     }
     
     public void manual(int direction){
