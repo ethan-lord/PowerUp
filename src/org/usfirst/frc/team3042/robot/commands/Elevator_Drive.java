@@ -14,18 +14,20 @@ public class Elevator_Drive extends Command {
 	
 	/** Instance Variables ****************************************************/
 	Logger log = new Logger(LOG_LEVEL, getName());
+	private int direction;
 
-    public Elevator_Drive() {
+    public Elevator_Drive(int direction) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
+    	this.direction = direction;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Logger.Level.TRACE);
     	
-    	Robot.elevator.manual(Robot.oi.getPOV());
+    	Robot.elevator.manual(direction);
     	
     	log.add("Position = " + Robot.elevator.getPosition(), Logger.Level.DEBUG);
     }

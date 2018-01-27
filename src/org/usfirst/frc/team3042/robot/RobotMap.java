@@ -49,16 +49,22 @@ public class RobotMap {
 													IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_LEFT_FOLLOWER = 	IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 0 : 0;
-	public static final int CAN_WINCH_MOTOR_LEFT = IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_WINCH_MOTOR_LEFT = 	IS_PRIMARY  ? 0 : 0;
 	public static final int CAN_WINCH_MOTOR_RIGHT = IS_PRIMARY  ? 0 : 0;
 	
 	public static final int CAN_CLAW_RIGHT_TALON =  IS_PRIMARY  ? 0 : 0;
 	public static final int CAN_CLAW_LEFT_TALON =   IS_PRIMARY  ? 0 : 0;
 	
-	public static final int CAN_ELEVATOR_TALON = IS_PRIMARY ? 0 : 0;
+	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 0 : 0;
+	
+	public static final int CAN_ARM_MOTOR = 		IS_PRIMARY ? 0 : 0;
+
+	public static final int CAN_HOOK_MOTOR =		IS_PRIMARY ? 0 : 0;
 	
 	/** PCM channels **********************************************************/
 	public static final int LIGHT_RING_CHANNEL = 1;
+	public static final int CLAMP_SOLENOID_LEFT = 0;
+	public static final int CLAMP_SOLENOID_RIGHT = 0;
 	
 	
 	/** OI Settings ***********************************************************/
@@ -92,35 +98,52 @@ public class RobotMap {
 	
 	public static final double WINCH_BASE_POWER = 6;// inches per second
 	
-	public static final double KP_WINCH_LEFT = 0.0;
-	public static final double KI_WINCH_LEFT = 0.0;
-	public static final double KD_WINCH_LEFT = 0.0;
+	public static final double KP_WINCH_LEFT = IS_PRIMARY 	? 0 : 0;
+	public static final double KI_WINCH_LEFT = IS_PRIMARY 	? 0 : 0;
+	public static final double KD_WINCH_LEFT = IS_PRIMARY 	? 0 : 0;
 	
-	public static final double KP_WINCH_RIGHT = 0.0;
-	public static final double KI_WINCH_RIGHT = 0.0;
-	public static final double KD_WINCH_RIGHT = 0.0;
+	public static final double KP_WINCH_RIGHT = IS_PRIMARY 	? 0 : 0;
+	public static final double KI_WINCH_RIGHT = IS_PRIMARY 	? 0 : 0;
+	public static final double KD_WINCH_RIGHT = IS_PRIMARY 	? 0 : 0;
 	
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
-	public static final double CLAW_INTAKE_POWER = 0.5;
-	public static final double CLAW_RELEASE_POWER = -0.5;
-	public static final int CLAMP_SOLENOID_LEFT = 0;
-	public static final int CLAMP_SOLENOID_RIGHT = 0;
+	public static final double CLAW_INTAKE_POWER = IS_PRIMARY 	? 0 : 0;
+	public static final double CLAW_RELEASE_POWER = IS_PRIMARY 	? 0 : 0;
 	public static final boolean STARTS_ACTIVE = true;
 	
 	/** Elevator Settings *****************************************************/
 	public static final boolean HAS_ELEVATOR = !IS_PBOT;
-	public static final int ELEVATOR_BOTTOM_POSITION = 0;
-	public static final int ELEVATOR_INTAKE_POSITION = 0;
-	public static final int ELEVATOR_SWITCH_POSITION = 0;
-	public static final int ELEVATOR_LOW_SCALE_POSITION = 0;
-	public static final int ELEVATOR_HIGH_SCALE_POSITION = 0;
-	public static final int ELEVATOR_MANUAL_SPEED = 5;
-	public static final int ELEVATOR_KP = 0;
-	public static final int ELEVATOR_KI = 0;
-	public static final int ELEVATOR_KD = 0;
-	public static final int ELEVATOR_KF = 0;
-	public static final int I_ZONE = 0;
+	public static final int ELEVATOR_BOTTOM_POSITION = IS_PRIMARY 	? 0 : 0;
+	public static final int ELEVATOR_INTAKE_POSITION = IS_PRIMARY 	? 0 : 0;
+	public static final int ELEVATOR_SWITCH_POSITION = IS_PRIMARY 	? 0 : 0;
+	public static final int ELEVATOR_LOW_SCALE_POSITION = IS_PRIMARY 	? 0 : 0;
+	public static final int ELEVATOR_HIGH_SCALE_POSITION = IS_PRIMARY 	? 0 : 0;
+	public static final int ELEVATOR_MANUAL_SPEED = IS_PRIMARY 	? 5 : 5;
+	public static final int ELEVATOR_KP = IS_PRIMARY 	? 0 : 0;
+	public static final int ELEVATOR_KI = IS_PRIMARY 	? 0 : 0;
+	public static final int ELEVATOR_KD = IS_PRIMARY 	? 0 : 0;
+	public static final int ELEVATOR_KF = IS_PRIMARY 	? 0 : 0;
+	public static final int ELEVATOR_I_ZONE = IS_PRIMARY 	? 0 : 0;
+	
+	/** Arm Settings **********************************************************/
+	public static final boolean HAS_ARM = !IS_PBOT;
+	public static final int ARM_KP = IS_PRIMARY 	? 0 : 0;
+	public static final int ARM_KI = IS_PRIMARY 	? 0 : 0;
+	public static final int ARM_KD = IS_PRIMARY 	? 0 : 0;
+	public static final int ARM_KF = IS_PRIMARY 	? 0 : 0;
+	public static final int ARM_I_ZONE = IS_PRIMARY 	? 0 : 0;
+	public static final int ARM_MANUAL_SPEED = IS_PRIMARY	? 0 : 0;
+	public static final int ARM_BOTTOM_POS = IS_PRIMARY	? 0 : 0;
+	public static final int ARM_MIDDLE_POS = IS_PRIMARY	? 0 : 0;
+	public static final int ARM_TOP_POS = IS_PRIMARY	? 0 : 0;
+	
+	/** HookDeploy Settings **********************************************/
+	public static final boolean HAS_HOOKDEPLOY = !IS_PBOT;
+	public static final int HOOK_STOWED_POS = IS_PRIMARY	? 0 : 0;
+	public static final int HOOK_READY_POS = IS_PRIMARY		? 0 : 0;
+	public static final int HOOK_DELIVERY_POS = IS_PRIMARY 	? 0 : 0;
+
 	
 	/** Compressor Settings ***************************************************/
 	public static final int COMPRESSOR_PORT = 0;
@@ -164,42 +187,14 @@ public class RobotMap {
 	
 	
 	/** Drivetrain Gyro Drive Settings ****************************************/
-	public static final double kP_GYRO = 0.055;
-	public static final double kI_GYRO = 0.0;
-	public static final double kD_GYRO = 0.11;
+	public static final double kP_GYRO = IS_PBOT 	? 0.055 :
+										 IS_PRIMARY ? 0 : 0;
+	public static final double kI_GYRO = IS_PBOT 	? 0 :
+										 IS_PRIMARY ? 0 : 0;
+	public static final double kD_GYRO = IS_PBOT 	? 0.11 :
+										 IS_PRIMARY ? 0 : 0;
 	public static final double ANGLE_TOLERANCE = 2.0;
 	public static final double MAX_SPEED_GYRO = 0.4;
-	
-	
-	/** Spinner Settings ******************************************************/
-	public static final boolean HAS_SPINNER = IS_PBOT;
-	public static final boolean SPINNER_BRAKE_MODE = true;
-	public static final boolean REVERSE_SPINNER = false;
-	
-	
-	/** Spinner Encoder Settings **********************************************/
-	public static final boolean HAS_SPINNER_ENCODER = HAS_SPINNER;
-	public static final int SPINNER_ENCODER_FRAME_RATE = 10;
-	public static final int SPINNER_ENCODER_COUNTS_PER_REV = 1024;
-	public static final boolean REVERSE_SPINNER_ENCODER = false;
-	
-	
-	/** Spinner Closed-Loop Settings ******************************************/
-	public static boolean HAS_SPINNER_CLOSED_LOOP = HAS_SPINNER;
-	public static int SPINNER_POSITION_PROFILE = 0;
-	public static final double kP_SPINNER_POSITION = 0.51;
-	public static final double kI_SPINNER_POSITION = 0.0;
-	public static final double kD_SPINNER_POSITION = 5.1;
-	public static int SPINNER_SPEED_PROFILE = 1;
-	public static final double kP_SPINNER_SPEED = 0.02;
-	public static final double kI_SPINNER_SPEED = 0.0;
-	public static final double kD_SPINNER_SPEED = 0.2;
-	public static final double kF_SPINNER_SPEED = 0.0245;
-	public static final double SPINNER_DEFAULT_POSITION = 1.0; //revolutions
-	public static final double SPINNER_DEFAULT_SPEED = 500; //RPM
-	public static final double SPINNER_CALIBRATE_POWER = 0.1;
-	public static final double SPINNER_CALIBRATE_TIME = 10.0; //seconds
-	public static final int SPINNER_COUNT_AVERAGE = 20;
 	
 	
 	/** Gyroscope Settings ****************************************************/
@@ -228,5 +223,11 @@ public class RobotMap {
 	public static final Logger.Level	LOG_WINCH					= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_CLAW					= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_ELEVATOR				= Logger.Level.TRACE;
+<<<<<<< HEAD
+	public static final Logger.Level 	LOG_ARM						= Logger.Level.TRACE;
+	public static final Logger.Level	LOG_HOOK					= Logger.Level.TRACE;
+=======
+	public static final Logger.Level    LOG_COMPRESSOR              = Logger.Level.TRACE;
+>>>>>>> branch 'master' of https://github.com/team3042/PowerUp.git
 
 	}
