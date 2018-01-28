@@ -34,7 +34,7 @@ public class RobotMap {
 	/** USB ports *************************************************************/					
 	public static final int USB_JOYSTICK_LEFT 	= 0;
 	public static final int USB_JOYSTICK_RIGHT 	= 1;
-	public static final int USB_GAMEPAD 		= IS_PBOT ? 0 : 2;
+	public static final int USB_GAMEPAD 			= IS_PBOT ? 0 : 2;
 
 
 	/** PWM ports *************************************************************/
@@ -47,19 +47,19 @@ public class RobotMap {
 													IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_RIGHT_MOTOR = 		IS_PBOT 	? 9 :
 													IS_PRIMARY 	? 0 : 0;
-	public static final int CAN_LEFT_FOLLOWER = 	IS_PRIMARY 	? 0 : 0;
+	public static final int CAN_LEFT_FOLLOWER = 		IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 0 : 0;
 	public static final int CAN_WINCH_MOTOR_LEFT = 	IS_PRIMARY  ? 0 : 0;
-	public static final int CAN_WINCH_MOTOR_RIGHT = IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_WINCH_MOTOR_RIGHT = 	IS_PRIMARY  ? 0 : 0;
 	
-	public static final int CAN_CLAW_RIGHT_TALON =  IS_PRIMARY  ? 0 : 0;
-	public static final int CAN_CLAW_LEFT_TALON =   IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_CLAW_RIGHT_TALON =  	IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_CLAW_LEFT_TALON =   	IS_PRIMARY  ? 0 : 0;
 	
 	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 0 : 0;
 	
-	public static final int CAN_ARM_MOTOR = 		IS_PRIMARY ? 0 : 0;
+	public static final int CAN_ARM_MOTOR = 			IS_PRIMARY ? 0 : 0;
 
-	public static final int CAN_HOOK_MOTOR =		IS_PRIMARY ? 0 : 0;
+	public static final int CAN_HOOK_MOTOR =			IS_PRIMARY ? 0 : 0;
 	
 	/** PCM channels **********************************************************/
 	public static final int LIGHT_RING_CHANNEL = 1;
@@ -207,24 +207,24 @@ public class RobotMap {
 	public static final String 		LOG_TIME_FORMAT = "hh:mm:ss:SSS";
 	public static final String 		LOG_DIRECTORY_PATH = "/home/lvuser/logs/";
 	public static final String 		LOG_TIME_ZONE = "America/Chicago";
-	public static final boolean 	LOG_TO_CONSOLE 				= true;
-	public static final boolean 	LOG_TO_FILE 				= false;
-	public static final Logger.Level 	LOG_GLOBAL 					= Logger.Level.DEBUG;
-	public static final Logger.Level 	LOG_ROBOT 					= Logger.Level.DEBUG;
+	public static final boolean 		LOG_TO_CONSOLE 				= true;
+	public static final boolean 		LOG_TO_FILE 					= false;
+	public static final Logger.Level LOG_GLOBAL 					= Logger.Level.DEBUG;
+	public static final Logger.Level LOG_ROBOT 					= Logger.Level.DEBUG;
 	public static final Logger.Level	LOG_OI 						= Logger.Level.TRACE;
 	public static final Logger.Level	LOG_AXIS_TRIGGER 			= Logger.Level.ERROR;
 	public static final Logger.Level	LOG_POV_BUTTON				= Logger.Level.ERROR;
 	/** Subsystems **/                                                   
 	public static final Logger.Level	LOG_DRIVETRAIN				= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_DRIVETRAIN_FOLLOWERS	= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_DRIVETRAIN_ENCODERS 	= Logger.Level.DEBUG;
-	public static final Logger.Level	LOG_DRIVETRAIN_AUTON		= Logger.Level.DEBUG;
+	public static final Logger.Level	LOG_DRIVETRAIN_FOLLOWERS		= Logger.Level.TRACE;
+	public static final Logger.Level	LOG_DRIVETRAIN_ENCODERS 		= Logger.Level.DEBUG;
+	public static final Logger.Level	LOG_DRIVETRAIN_AUTON			= Logger.Level.DEBUG;
 	public static final Logger.Level	LOG_GYROSCOPE				= Logger.Level.DEBUG;
 	public static final Logger.Level	LOG_WINCH					= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_CLAW					= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_ELEVATOR				= Logger.Level.TRACE;
-	public static final Logger.Level 	LOG_ARM						= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_HOOK					= Logger.Level.TRACE;
-	public static final Logger.Level    LOG_COMPRESSOR              = Logger.Level.TRACE;
+	public static final Logger.Level	LOG_CLAW						= Logger.Level.TRACE;
+	public static final Logger.Level	LOG_ELEVATOR					= Logger.Level.TRACE;
+	public static final Logger.Level LOG_ARM						= Logger.Level.TRACE;
+	public static final Logger.Level	LOG_HOOK						= Logger.Level.TRACE;
+	public static final Logger.Level LOG_COMPRESSOR              = Logger.Level.TRACE;
 
-	}
+}

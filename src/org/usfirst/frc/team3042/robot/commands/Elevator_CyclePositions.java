@@ -1,33 +1,35 @@
 package org.usfirst.frc.team3042.robot.commands;
 
 import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
-import org.usfirst.frc.team3042.robot.subsystems.Winch;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Winch_Climb_Manual_Leveling extends Command {
+public class Elevator_CyclePositions extends Command {
 	/** Configuration Constants ***********************************************/
-	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_WINCH;
+	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
 	
 	/** Instance Variables ****************************************************/
 	Logger log = new Logger(LOG_LEVEL, getName());
-	Winch winchSide;
+	private int direction;
 	
-    public Winch_Climb_Manual_Leveling(Winch winchSide) {
+    public Elevator_CyclePositions(int direction) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	this.winchSide = winchSide;
-    	requires(winchSide);//winchSide must be the side of the winch this command should require and control.
+    	requires(Robot.elevator);
+    	
+    	this.direction = direction;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Logger.Level.TRACE);
-    	winchSide.climbOneSide();
+    	
+    	Robot.elevator.cyclePreset(direction);
     }
 
     // Called repeatedly when this Command is scheduled to run
