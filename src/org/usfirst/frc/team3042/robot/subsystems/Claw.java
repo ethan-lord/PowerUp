@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -16,6 +17,8 @@ public class Claw extends Subsystem {
 	// configuration constants
 	private TalonSRX clawRightTalon = new TalonSRX(RobotMap.CAN_CLAW_RIGHT_TALON);
 	private TalonSRX clawLeftTalon = new TalonSRX(RobotMap.CAN_CLAW_LEFT_TALON);
+
+	private Ultrasonic ultra = new Ultrasonic(RobotMap.DIO_CLAW_ULTRA_PING, RobotMap.DIO_CLAW_ULTRA_ECHO);
 	
 	// instance variables
 	private Solenoid clampLeft = new Solenoid(RobotMap.CLAMP_SOLENOID_LEFT);
@@ -25,6 +28,10 @@ public class Claw extends Subsystem {
 	private boolean isActive = RobotMap.STARTS_ACTIVE;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+	
+	public Claw() {
+		ultra.setAutomaticMode(true);
+	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -67,6 +74,14 @@ public class Claw extends Subsystem {
     	else {
     		clamp();
     	}
+    }
+    
+    public double getDistance() {
+    	return ultra.getRangeInches();
+    }
+    
+    public boolean isCubeIn() {
+    	return ultra.getRangeInches() < RobotMap.CLAW_GRAB_DISTANCE;
     }
 }
 

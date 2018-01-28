@@ -34,7 +34,7 @@ public class RobotMap {
 	/** USB ports *************************************************************/					
 	public static final int USB_JOYSTICK_LEFT 	= 0;
 	public static final int USB_JOYSTICK_RIGHT 	= 1;
-	public static final int USB_GAMEPAD 			= IS_PBOT ? 0 : 2;
+	public static final int USB_GAMEPAD 		= IS_PBOT ? 0 : 2;
 
 
 	/** PWM ports *************************************************************/
@@ -60,6 +60,10 @@ public class RobotMap {
 	public static final int CAN_ARM_MOTOR = 			IS_PRIMARY ? 0 : 0;
 
 	public static final int CAN_HOOK_MOTOR =			IS_PRIMARY ? 0 : 0;
+	
+	/** DIO channels **********************************************************/
+	public static final int DIO_CLAW_ULTRA_PING = 1;
+	public static final int DIO_CLAW_ULTRA_ECHO = 0;
 	
 	/** PCM channels **********************************************************/
 	public static final int LIGHT_RING_CHANNEL = 1;
@@ -110,6 +114,7 @@ public class RobotMap {
 	public static final boolean HAS_CLAW =!IS_PBOT;
 	public static final double CLAW_INTAKE_POWER = IS_PRIMARY 	? 0 : 0;
 	public static final double CLAW_RELEASE_POWER = IS_PRIMARY 	? 0 : 0;
+	public static final double CLAW_GRAB_DISTANCE = 4;
 	public static final boolean STARTS_ACTIVE = true;
 	
 	/** Elevator Settings *****************************************************/
