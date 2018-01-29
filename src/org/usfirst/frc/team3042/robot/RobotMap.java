@@ -92,6 +92,7 @@ public class RobotMap {
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final int TALON_ERROR_TIMEOUT = 0;// measured in Ms
 	public static final int TRAJPERIOD = 10;
+	public static final int BASE_TRAJPERIOD = 0;
 	public static final int PIDIDX = 0; //pidIdx - 0 for Primary closed-loop. 1 for cascaded closed-loop. See Phoenix-Documentation for how to interpret.
 	public static final int SLOTIDX_1 = 0;
 	
