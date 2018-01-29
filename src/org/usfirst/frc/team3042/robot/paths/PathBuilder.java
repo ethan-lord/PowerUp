@@ -112,14 +112,14 @@ public class PathBuilder {
         double speed;
 
         public Arc(Waypoint a, Waypoint b, Waypoint c) {
-            this(new Line(a, b), new Line(b, c));
+            this(new Line(a, b), new Line(b, c), b.position);
         }
 
-        public Arc(Line a, Line b) {
+        public Arc(Line a, Line b, Translation2d center) {
             this.a = a;
             this.b = b;
             this.speed = (a.speed + b.speed) / 2;
-            this.center = intersect(a, b);
+            this.center = center;
             this.radius = new Translation2d(center, a.end).norm();
         }
 
@@ -129,10 +129,10 @@ public class PathBuilder {
                 double direction = Translation2d.cross(a.slope, b.slope);
                 double angle = Translation2d.getAngle(a.slope, b.slope).getDegrees();
                 
-                if(direction > 0) {
+                if(direction < 0) {
                 		p.addRightTurn(angle, radius, speed);
                 }
-                else if(direction < 0) {
+                else if(direction > 0) {
                 		p.addLeftTurn(angle, radius, speed);
                 }
             }

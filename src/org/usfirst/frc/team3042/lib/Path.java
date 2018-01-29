@@ -28,6 +28,7 @@ public class Path {
 	 * Direction is determined by the sign of speed.
 	 */
 	public void addStraight(double distance, double speed) {
+		log.add("Adding straight with distance: " + distance + ", speed: " + speed, Logger.Level.DEBUG);
 		distance = convertDistance(distance);
 		speed = convertSpeed(speed);
 		
@@ -58,6 +59,7 @@ public class Path {
 	 * Direction is determined by the sign of speed.
 	 */
 	public void addLeftTurn(double angle, double radius, double speed) {
+		log.add("Adding left turn with angle: " + angle + ", radius: " + radius + ", speed: " + speed, Logger.Level.DEBUG);
 		radius = convertRadius(radius);
 		double distance = convertDistance(angle, radius);
 		speed = convertSpeed(speed);
@@ -70,6 +72,7 @@ public class Path {
 		rightSpeed.add(speed);
 	}
 	public void addRightTurn(double angle, double radius, double speed) {
+		log.add("Adding right turn with angle: " + angle + ", radius: " + radius + ", speed: " + speed, Logger.Level.DEBUG);
 		radius = convertRadius(radius);
 		double distance = convertDistance(angle, radius);
 		speed = convertSpeed(speed);
