@@ -48,6 +48,7 @@ public class Elevator extends Subsystem {
     
     public Elevator(){
     	initMotor(elevatorTalon);
+    	initMotionMagic(elevatorTalon);
     }
     
     private void initMotor(TalonSRX motor) {
@@ -59,9 +60,9 @@ public class Elevator extends Subsystem {
 		motor.config_IntegralZone(SLOTIDX_1, I_ZONE, TIMEOUT);
 	}
     
-    public void initMotionMagic(){
-		elevatorTalon.configMotionAcceleration(MAGIC_ACCEL, TIMEOUT);
-		elevatorTalon.configMotionCruiseVelocity(MAGIC_CRUISE, TIMEOUT);
+    public void initMotionMagic(TalonSRX motor){
+		motor.configMotionAcceleration(MAGIC_ACCEL, TIMEOUT);
+		motor.configMotionCruiseVelocity(MAGIC_CRUISE, TIMEOUT);
 	}
     
     private void setPower(TalonSRX talon, double power){

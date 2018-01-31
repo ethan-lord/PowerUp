@@ -145,6 +145,8 @@ public class RobotMap {
 	public static final int ARM_BOTTOM_POS = IS_PRIMARY	? 0 : 0;
 	public static final int ARM_MIDDLE_POS = IS_PRIMARY	? 0 : 0;
 	public static final int ARM_TOP_POS = IS_PRIMARY	? 0 : 0;
+	public static final int ARM_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 0;
+	public static final int ARM_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 0;
 	
 	/** HookDeploy Settings **********************************************/
 	public static final boolean HAS_HOOKDEPLOY = !IS_PBOT;

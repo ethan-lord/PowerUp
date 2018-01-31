@@ -27,6 +27,9 @@ public class Arm extends Subsystem {
 	private static final int BOT_POS = RobotMap.ARM_BOTTOM_POS;
 	private static final int MID_POS = RobotMap.ARM_MIDDLE_POS;
 	private static final int TOP_POS = RobotMap.ARM_TOP_POS;
+	private static final int MAGIC_ACCEL = RobotMap.ARM_MOTION_MAGIC_ACCELERATION;
+	private static final int MAGIC_CRUISE = RobotMap.ARM_MOTION_MAGIC_CRUISE_VELOCITY;
+	
 	/** Instance Variables ****************************************************/
 	private TalonSRX armTalon = new TalonSRX(CAN_ARM_MOTOR);
 	private int currentPreset = 0;
@@ -83,20 +86,26 @@ public class Arm extends Subsystem {
 		motor.config_kF(SLOTIDX_1, kF, TIMEOUT);
 		motor.config_IntegralZone(SLOTIDX_1, I_ZONE, TIMEOUT);
 	}
+    
+    public void initMotionMagic(TalonSRX motor){
+		motor.configMotionAcceleration(MAGIC_ACCEL, TIMEOUT);
+		motor.configMotionCruiseVelocity(MAGIC_CRUISE, TIMEOUT);
+	}
+    
     public void setPosition(Position position) {
 		switch (position) {
 			case BOTTOM:
-				armTalon.set(ControlMode.Position, BOT_POS);
+				armTalon.set(ControlMode.MotionMagic, BOT_POS);
 				currentPos = BOT_POS;
 				currentPreset = 0;
                 break;
 			case MIDDLE:
-				armTalon.set(ControlMode.Position, MID_POS);
+				armTalon.set(ControlMode.MotionMagic, MID_POS);
 				currentPos = MID_POS;
 				currentPreset = 1;
 				break;
 			case TOP:
-				armTalon.set(ControlMode.Position, TOP_POS);
+				armTalon.set(ControlMode.MotionMagic, TOP_POS);
 				currentPos = TOP_POS;
 				currentPreset = 2;
 				break;
