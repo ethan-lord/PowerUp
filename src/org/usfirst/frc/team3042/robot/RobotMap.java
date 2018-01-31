@@ -131,6 +131,8 @@ public class RobotMap {
 	public static final int ELEVATOR_KD = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_KF = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_I_ZONE = IS_PRIMARY 	? 0 : 0;
+	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 0;
+	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 0;
 	
 	/** Arm Settings **********************************************************/
 	public static final boolean HAS_ARM = !IS_PBOT;
