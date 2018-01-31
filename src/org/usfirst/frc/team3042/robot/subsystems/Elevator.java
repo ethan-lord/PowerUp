@@ -31,6 +31,8 @@ public class Elevator extends Subsystem {
 	private static final int kD = RobotMap.ELEVATOR_KD;
 	private static final int kF = RobotMap.ELEVATOR_KF;
 	private static final int I_ZONE = RobotMap.ELEVATOR_I_ZONE;
+	private static final int MAGIC_ACCEL = RobotMap.ELEVATOR_MOTION_MAGIC_ACCELERATION;
+	private static final int MAGIC_CRUISE = RobotMap.ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY;
 	
 	/** Instance Variables ****************************************************/
 	private Logger log = new Logger(LOG_LEVEL, getName());
@@ -57,6 +59,11 @@ public class Elevator extends Subsystem {
 		motor.config_IntegralZone(SLOTIDX_1, I_ZONE, TIMEOUT);
 	}
     
+    public void initMotionMagic(){
+		elevatorTalon.configMotionAcceleration(MAGIC_ACCEL, TIMEOUT);
+		elevatorTalon.configMotionCruiseVelocity(MAGIC_CRUISE, TIMEOUT);
+	}
+    
     private void setPower(TalonSRX talon, double power){
     	talon.set(ControlMode.PercentOutput, power);
     }
@@ -68,27 +75,27 @@ public class Elevator extends Subsystem {
 	public void setPosition(Position position) {
 		switch (position) {
 			case BOTTOM:
-				elevatorTalon.set(ControlMode.Position, BOT_POS);
+				elevatorTalon.set(ControlMode.MotionMagic, BOT_POS);
 				currentPos = BOT_POS;
 				currentPreset = 0;
                 break;
 			case INTAKE:
-				elevatorTalon.set(ControlMode.Position, INT_POS);
+				elevatorTalon.set(ControlMode.MotionMagic, INT_POS);
 				currentPos = INT_POS;
 				currentPreset = 1;
 				break;
 			case SWITCH:
-				elevatorTalon.set(ControlMode.Position, SWITCH_POS);
+				elevatorTalon.set(ControlMode.MotionMagic, SWITCH_POS);
 				currentPos = SWITCH_POS;
 				currentPreset = 2;
 				break;
 			case LOW_SCALE:
-				elevatorTalon.set(ControlMode.Position, LOW_SCALE_POS);
+				elevatorTalon.set(ControlMode.MotionMagic, LOW_SCALE_POS);
 				currentPos = LOW_SCALE_POS;
 				currentPreset = 3;
 				break;
 			case HIGH_SCALE:
-				elevatorTalon.set(ControlMode.Position, HIGH_SCALE_POS);
+				elevatorTalon.set(ControlMode.MotionMagic, HIGH_SCALE_POS);
 				currentPos = HIGH_SCALE_POS;
 				currentPreset = 4;
 				break;
@@ -117,7 +124,7 @@ public class Elevator extends Subsystem {
 			setPosition(positionFromInt[currentPreset]);
 		}
 	}
-	 
+	
 	public int getPosition(){
 		return currentPos;
 	}
