@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainEncoders_Dashboard;
 
@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DrivetrainEncoders extends Subsystem {
 	/** Configuration Constants ***********************************************/
-	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_ENCODERS;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_ENCODERS;
 	private static final int COUNTS_PER_REVOLUTION = RobotMap.COUNTS_PER_REVOLUTION;
 	private static final int FRAME_RATE = RobotMap.ENCODER_FRAME_RATE;
 	private static final boolean REVERSE_LEFT = RobotMap.REVERSE_LEFT_ENCODER;
@@ -26,7 +26,7 @@ public class DrivetrainEncoders extends Subsystem {
 
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, getName());
+	Log log = new Log(LOG_LEVEL, getName());
 	TalonSRX leftEncoder, rightEncoder;
 	double leftPositionZero, rightPositionZero;
 	int leftCountsZero, rightCountsZero;

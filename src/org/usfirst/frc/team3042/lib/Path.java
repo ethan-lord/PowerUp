@@ -7,13 +7,13 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 /** Path **********************************************************************/
 public class Path {
 	/** Configurations Constants **********************************************/
-	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
 	private static final double ROBOT_WIDTH = RobotMap.ROBOT_WIDTH;
 	private static final double CIRCUMFRENCE = Math.PI * RobotMap.WHEEL_DIAMETER;
 
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, "Path");
+	Log log = new Log(LOG_LEVEL, "Path");
 	ArrayList<Double> leftDistance = new ArrayList<Double>();
 	ArrayList<Double> rightDistance = new ArrayList<Double>();
 	ArrayList<Double> leftSpeed = new ArrayList<Double>();
@@ -28,7 +28,6 @@ public class Path {
 	 * Direction is determined by the sign of speed.
 	 */
 	public void addStraight(double distance, double speed) {
-		log.add("Adding straight with distance: " + distance + ", speed: " + speed, Logger.Level.DEBUG);
 		distance = convertDistance(distance);
 		speed = convertSpeed(speed);
 		
@@ -37,10 +36,20 @@ public class Path {
 		leftSpeed.add(speed);
 		rightSpeed.add(speed);
 	}
+	/**
+	 * 
+	 * @param distance
+	 * @return revolutions
+	 */
 	private double convertDistance(double distance) {
 		distance = Math.abs(distance);
 		return distance / CIRCUMFRENCE;
 	}
+	/**
+	 * 
+	 * @param speed
+	 * @return revolutions per second
+	 */
 	private double convertSpeed(double speed) {
 		return speed / CIRCUMFRENCE;
 	}
@@ -48,10 +57,10 @@ public class Path {
 	
 	/** Add Turn **************************************************************
 	 * angle: degrees
-	 * radius: number of robot widths for turn radius of the outer wheel
-	 * 			0.5 would mean turn in place
-	 * 			1.0 would mean turn around one side
-	 * speed: physical unit of distance per second
+	 * radius: inches
+	 * 		If You want to turn in place, use a radius that is 0.5 times the 
+	 * 		robot width. If you want to turn around one side of the robot, use
+	 * 		a radius that is 1.0 times the width of the robot.
 	 * 
 	 * The speed is the speed of the outer wheel.
 	 * 
@@ -59,8 +68,6 @@ public class Path {
 	 * Direction is determined by the sign of speed.
 	 */
 	public void addLeftTurn(double angle, double radius, double speed) {
-		log.add("Adding left turn with angle: " + angle + ", radius: " + radius + ", speed: " + speed, Logger.Level.DEBUG);
-		radius = convertRadius(radius);
 		double distance = convertDistance(angle, radius);
 		speed = convertSpeed(speed);
 		
@@ -72,8 +79,6 @@ public class Path {
 		rightSpeed.add(speed);
 	}
 	public void addRightTurn(double angle, double radius, double speed) {
-		log.add("Adding right turn with angle: " + angle + ", radius: " + radius + ", speed: " + speed, Logger.Level.DEBUG);
-		radius = convertRadius(radius);
 		double distance = convertDistance(angle, radius);
 		speed = convertSpeed(speed);
 		
@@ -83,10 +88,6 @@ public class Path {
 		leftSpeed.add(speed);
 		rightDistance.add(distance * Math.abs(innerScale));
 		rightSpeed.add(speed * innerScale);
-	}
-	private double convertRadius(double radius) {
-		radius *= ROBOT_WIDTH;
-		return radius;
 	}
 	private double convertDistance(double angle, double radius) {
 		angle *= Math.PI / 180.0; //convert to radians

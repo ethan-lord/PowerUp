@@ -11,7 +11,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
  * level, as well as less than or equal to the global level, will be 
  * entered.
  */
-public class Logger {
+public class Log {
 	/** Configuration Constants ***********************************************/
 	private static final boolean USE_CONSOLE = RobotMap.LOG_TO_CONSOLE;
 	private static final boolean USE_FILE = RobotMap.LOG_TO_FILE;
@@ -53,7 +53,7 @@ public class Logger {
 	 * Level 	level		the local logging level
 	 * String	caller		the class name for the local instance
 	*/
-	public Logger(Level level, String caller) {
+	public Log(Level level, String caller) {
 		this.level = level;
 		this.caller = caller;
 	}

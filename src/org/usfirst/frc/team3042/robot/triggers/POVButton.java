@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3042.robot.triggers;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
  */
 public class POVButton extends Trigger {
 	/** Configuration Constants ***********************************************/
-	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_POV_BUTTON;
+	public static final Log.Level LOG_LEVEL = RobotMap.LOG_POV_BUTTON;
 	
 	
 	/** POV Direction Angles **************************************************/
@@ -27,7 +27,7 @@ public class POVButton extends Trigger {
 
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, "POV Button");
+	Log log = new Log(LOG_LEVEL, "POV Button");
 	int direction;
 	Joystick gamepad;
 	
@@ -38,7 +38,7 @@ public class POVButton extends Trigger {
 	 * 						triggers action
 	 */
 	public POVButton (Joystick gamepad, int direction) {
-		log.add("Constructor "+direction, Logger.Level.TRACE);
+		log.add("Constructor "+direction, Log.Level.TRACE);
 		
 		this.gamepad = gamepad;
 		this.direction = direction;

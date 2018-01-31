@@ -1,8 +1,8 @@
-package org.usfirst.frc.team3042.robot.commands;
+ package org.usfirst.frc.team3042.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.MotionProfile;
 import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.robot.Robot;
@@ -18,12 +18,12 @@ import com.ctre.phoenix.motion.MotionProfileStatus;
  */
 public class DrivetrainAuton_Drive extends Command {
 	/** Configuration Constants ***********************************************/
-	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
 	private static final int BUFFER_TRIGGER = RobotMap.AUTON_BUFFER_TRIGGER;
 		
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, getName());
+	Log log = new Log(LOG_LEVEL, getName());
 	Drivetrain drivetrain = Robot.drivetrain;
 	DrivetrainAuton auton = Robot.drivetrain.getAuton();
 	MotionProfile leftMotionProfile, rightMotionProfile;
@@ -32,7 +32,7 @@ public class DrivetrainAuton_Drive extends Command {
 	
 	/** Drivetrain_Auton ******************************************************/
 	public DrivetrainAuton_Drive(Path path) {
-		log.add("Constructor", Logger.Level.TRACE);
+		log.add("Constructor", Log.Level.TRACE);
 		requires(drivetrain);
 		
 		leftMotionProfile = path.generateLeftPath();
@@ -43,7 +43,7 @@ public class DrivetrainAuton_Drive extends Command {
 	 * Called just before this Command runs the first time
 	 */
 	protected void initialize() {
-		log.add("Initialize", Logger.Level.TRACE);
+		log.add("Initialize", Log.Level.TRACE);
 		
 		auton.initMotionProfile();
 		
@@ -66,11 +66,11 @@ public class DrivetrainAuton_Drive extends Command {
 			auton.enableMotionProfile();
 		}
 		if (leftStatus.hasUnderrun) {
-			log.add("Left motion underrun", Logger.Level.WARNING);
+			log.add("Left motion underrun", Log.Level.WARNING);
 			auton.removeLeftUnderrun();
 		}
 		if (rightStatus.hasUnderrun) {
-			log.add("Right motion underrun", Logger.Level.WARNING);
+			log.add("Right motion underrun", Log.Level.WARNING);
 			auton.removeRightUnderrun();
 		}
 		
@@ -90,7 +90,7 @@ public class DrivetrainAuton_Drive extends Command {
 	 * Called once after isFinished returns true
 	 */
 	protected void end() {
-		log.add("End", Logger.Level.TRACE);
+		log.add("End", Log.Level.TRACE);
 		terminate();
 	}
 
@@ -100,7 +100,7 @@ public class DrivetrainAuton_Drive extends Command {
 	 * subsystems is scheduled to run
 	 */
 	protected void interrupted() {
-		log.add("Interrupted", Logger.Level.TRACE);
+		log.add("Interrupted", Log.Level.TRACE);
 		terminate();
 	}
 	

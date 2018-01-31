@@ -12,7 +12,7 @@ import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
  */
 public class MotionProfile {
 	/** Configuration Constants ***********************************************/
-	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
 	private static final int PROFILE = RobotMap.AUTON_PROFILE;
 	private static final double DT_SEC = RobotMap.AUTON_DT_SEC;
 	private static final double ACCEL_TIME = RobotMap.AUTON_ACCEL_TIME;
@@ -23,7 +23,7 @@ public class MotionProfile {
 	
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, "MotionProfile");
+	Log log = new Log(LOG_LEVEL, "MotionProfile");
 	TrajectoryPoint[] trajectory;
 
 	
@@ -56,7 +56,7 @@ public class MotionProfile {
 		double accel = deltaSpeed / ACCEL_TIME;
 		if (accel > MAX_ACCEL) {
 			log.add("Warning: Maximum Acceleration Exceeded from "
-					+speed0+" to "+speed1, Logger.Level.WARNING);
+					+speed0+" to "+speed1, Log.Level.WARNING);
 		}
 	}
 	
@@ -161,7 +161,7 @@ public class MotionProfile {
 			point = trajectory[n];
 		}
 		else {
-			log.add("Array out of bounds: getPoint()", Logger.Level.ERROR);
+			log.add("Array out of bounds: getPoint()", Log.Level.ERROR);
 		}
 		return point;
 	}

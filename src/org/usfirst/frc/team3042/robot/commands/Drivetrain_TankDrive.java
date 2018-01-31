@@ -3,7 +3,7 @@ package org.usfirst.frc.team3042.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.OI;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
@@ -15,12 +15,12 @@ import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
  */
 public class Drivetrain_TankDrive extends Command {
 	/** Configuration Constants ***********************************************/
-	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN;
 	private static final double ACCELERATION_MAX = RobotMap.ACCELERATION_MAX;
 	
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, getName());
+	Log log = new Log(LOG_LEVEL, getName());
 	Drivetrain drivetrain = Robot.drivetrain;
 	OI oi = Robot.oi;
 	double leftPowerOld, rightPowerOld;
@@ -31,7 +31,7 @@ public class Drivetrain_TankDrive extends Command {
 	 * Required subsystems will cancel commands when this command is run.
 	 */
 	public Drivetrain_TankDrive() {
-		log.add("Constructor", Logger.Level.TRACE);
+		log.add("Constructor", Log.Level.TRACE);
 		
 		requires(drivetrain);
 	}
@@ -41,7 +41,7 @@ public class Drivetrain_TankDrive extends Command {
 	 * Called just before this Command runs the first time
 	 */
 	protected void initialize() {
-		log.add("Initialize", Logger.Level.TRACE);
+		log.add("Initialize", Log.Level.TRACE);
 				
 		drivetrain.stop();
 		leftPowerOld = 0.0;
@@ -97,7 +97,7 @@ public class Drivetrain_TankDrive extends Command {
 	 * Called once after isFinished returns true
 	 */
 	protected void end() {
-		log.add("End", Logger.Level.TRACE);
+		log.add("End", Log.Level.TRACE);
 		terminate();
 	}
 
@@ -107,7 +107,7 @@ public class Drivetrain_TankDrive extends Command {
 	 * subsystems is scheduled to run
 	 */
 	protected void interrupted() {
-		log.add("Interrupted", Logger.Level.TRACE);
+		log.add("Interrupted", Log.Level.TRACE);
 		terminate();
 	}
 	

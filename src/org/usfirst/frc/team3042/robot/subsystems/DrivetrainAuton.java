@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
 
 import com.ctre.phoenix.motion.MotionProfileStatus;
@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DrivetrainAuton extends Subsystem {
 	/** Configuration Constants ***********************************************/
-	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
 	private static final int PID_PROFILE = RobotMap.AUTON_PROFILE;
 	private static final double kP = RobotMap.kP_AUTON;
 	private static final double kI = RobotMap.kI_AUTON;
@@ -27,9 +27,11 @@ public class DrivetrainAuton extends Subsystem {
 	private static final double kF_LEFT = RobotMap.kF_DRIVE_LEFT;
 	private static final double kF_RIGHT = RobotMap.kF_DRIVE_RIGHT;
 	private static final int I_ZONE = RobotMap.I_ZONE_AUTON;
+	private static final int DT_MS = RobotMap.AUTON_DT_MS;
 	//The Frame Rate is given in ms
 	private static final int FRAME_RATE = RobotMap.AUTON_FRAME_RATE;
 	private static final int TIMEOUT = RobotMap.TALON_ERROR_TIMEOUT;
+	private static final int PIDIDX = RobotMap.AUTON_PIDIDX;
 	private static final int SLOTIDX_1 = RobotMap.SLOTIDX_1;
 	private static final int TRAJPERIOD = RobotMap.TRAJPERIOD;
 	private static final int BASE_TRAJPERIOD = RobotMap.BASE_TRAJPERIOD;
@@ -47,7 +49,7 @@ public class DrivetrainAuton extends Subsystem {
     	
 	
 	/** Instance Variables ****************************************************/
-	private Logger log = new Logger(LOG_LEVEL, getName());
+	private Log log = new Log(LOG_LEVEL, getName());
 	private TalonSRX leftMotor, rightMotor;
 	private DrivetrainEncoders encoders;
 	private Notifier notifier;
@@ -73,6 +75,10 @@ public class DrivetrainAuton extends Subsystem {
 	}
 	private void initMotor(TalonSRX motor, double kF) {
 		motor.changeMotionControlFramePeriod(FRAME_RATE);
+		motor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 
+				FRAME_RATE, TIMEOUT);
+		motor.configMotionProfileTrajectoryPeriod(DT_MS, TIMEOUT);
+		
 		motor.config_kP(SLOTIDX_1, kP, TIMEOUT);
 		motor.config_kI(SLOTIDX_1, kI, TIMEOUT);
 		motor.config_kD(SLOTIDX_1, kD, TIMEOUT);
@@ -101,9 +107,7 @@ public class DrivetrainAuton extends Subsystem {
 	}
 	private void initMotor(TalonSRX motor) {
 		motor.clearMotionProfileTrajectories();
-		
-		motor.configMotionProfileTrajectoryPeriod(BASE_TRAJPERIOD, TIMEOUT);
-		motor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, TRAJPERIOD, TIMEOUT);
+		motor.selectProfileSlot(PID_PROFILE, PIDIDX);
 	}
 	
 	

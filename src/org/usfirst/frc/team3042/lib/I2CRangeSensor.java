@@ -6,10 +6,10 @@ import edu.wpi.first.wpilibj.I2C;
 
 public class I2CRangeSensor {
 	
-	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_ROBOT;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_ROBOT;
 
 	
-	private Logger log = new Logger(LOG_LEVEL, "Robot");
+	private Log log = new Log(LOG_LEVEL, "Robot");
 
 	public static final int DEFAULT_I2C_ADDR = 0x14;
 	public static final int ULTRASONIC_ADDR = 0x04;
@@ -38,8 +38,8 @@ public class I2CRangeSensor {
 		byte[] data = new byte[1];
 		
 		//Read 1 byte from the I2C bus and return it
-		log.add(""+i2c.read(OPTICAL_ADDR, 1, data), Logger.Level.DEBUG);
-		log.add("This will hopefully work and print: " + data[0], Logger.Level.DEBUG);
+		log.add(""+i2c.read(OPTICAL_ADDR, 1, data), Log.Level.DEBUG);
+		log.add("This will hopefully work and print: " + data[0], Log.Level.DEBUG);
 		
 		return data[0];
 	}

@@ -3,7 +3,7 @@ package org.usfirst.frc.team3042.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.subsystems.DrivetrainEncoders;
@@ -14,12 +14,12 @@ import org.usfirst.frc.team3042.robot.subsystems.DrivetrainEncoders;
  */
 public class DrivetrainEncoders_Dashboard extends Command {
 	/** Configuration Constants ***********************************************/
-	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_ENCODERS;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_ENCODERS;
 	private static final double CIRCUMFRENCE = Math.PI * RobotMap.WHEEL_DIAMETER;
 
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, getName());
+	Log log = new Log(LOG_LEVEL, getName());
 	DrivetrainEncoders encoders = Robot.drivetrain.getEncoders();
 	
 	
@@ -27,7 +27,7 @@ public class DrivetrainEncoders_Dashboard extends Command {
 	 * Required subsystems will cancel commands when this command is run.
 	 */
 	public DrivetrainEncoders_Dashboard() {
-		log.add("Constructor", Logger.Level.TRACE);
+		log.add("Constructor", Log.Level.TRACE);
 		
 		requires(encoders);
 	}
@@ -37,7 +37,7 @@ public class DrivetrainEncoders_Dashboard extends Command {
 	 * Called just before this Command runs the first time
 	 */
 	protected void initialize() {
-		log.add("Initialize", Logger.Level.TRACE);
+		log.add("Initialize", Log.Level.TRACE);
 		
 		encoders.reset();
 	}
@@ -82,7 +82,7 @@ public class DrivetrainEncoders_Dashboard extends Command {
 	 * Called once after isFinished returns true
 	 */
 	protected void end() {
-		log.add("End", Logger.Level.TRACE);
+		log.add("End", Log.Level.TRACE);
 	}
 
 	
@@ -91,6 +91,6 @@ public class DrivetrainEncoders_Dashboard extends Command {
 	 * subsystems is scheduled to run
 	 */
 	protected void interrupted() {
-		log.add("Interrupted", Logger.Level.TRACE);
+		log.add("Interrupted", Log.Level.TRACE);
 	}
 }
