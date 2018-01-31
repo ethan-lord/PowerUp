@@ -7,6 +7,7 @@ import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
 import com.ctre.phoenix.motion.TrajectoryPoint;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Notifier;
@@ -31,6 +32,7 @@ public class DrivetrainAuton extends Subsystem {
 	private static final int TIMEOUT = RobotMap.TALON_ERROR_TIMEOUT;
 	private static final int SLOTIDX_1 = RobotMap.SLOTIDX_1;
 	private static final int TRAJPERIOD = RobotMap.TRAJPERIOD;
+	private static final int BASE_TRAJPERIOD = RobotMap.BASE_TRAJPERIOD;
 
 	
 	/** Periodic Runnable *****************************************************
@@ -100,7 +102,8 @@ public class DrivetrainAuton extends Subsystem {
 	private void initMotor(TalonSRX motor) {
 		motor.clearMotionProfileTrajectories();
 		
-		motor.configMotionProfileTrajectoryPeriod(TRAJPERIOD, TIMEOUT);
+		motor.configMotionProfileTrajectoryPeriod(BASE_TRAJPERIOD, TIMEOUT);
+		motor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, TRAJPERIOD, TIMEOUT);
 	}
 	
 	
@@ -121,10 +124,10 @@ public class DrivetrainAuton extends Subsystem {
 		return status;
 	}
 	public void removeLeftUnderrun() {
-		//leftMotor.clearMotionProfileHasUnderrun();
+		leftMotor.clearMotionProfileHasUnderrun(TIMEOUT);
 	}
 	public void removeRightUnderrun() {
-		//rightMotor.clearMotionProfileHasUnderrun();
+		rightMotor.clearMotionProfileHasUnderrun(TIMEOUT);
 	}
 	private void removeUnderrun() {
 		removeLeftUnderrun();

@@ -3,30 +3,34 @@ package org.usfirst.frc.team3042.robot.commands;
 import org.usfirst.frc.team3042.lib.Logger;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
+import org.usfirst.frc.team3042.robot.subsystems.Arm.Position;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Elevator_holdPosition extends Command {
+public class Arm_SetPosition extends Command {
 	/** Configuration Constants ***********************************************/
-	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
+	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_ARM;
 	
 	/** Instance Variables ****************************************************/
 	Logger log = new Logger(LOG_LEVEL, getName());
-	
-    public Elevator_holdPosition() {
+	private Position position; 
+
+    public Arm_SetPosition(Position position) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
+    	requires(Robot.arm);
+    	
+    	this.position = position;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Logger.Level.TRACE);
     	
-    	Robot.elevator.setPosition(Robot.elevator.positionFromInt[Robot.elevator.getCurrentPreset()]);
+    	Robot.arm.setPosition(position);
     }
 
     // Called repeatedly when this Command is scheduled to run

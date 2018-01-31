@@ -1,35 +1,33 @@
 package org.usfirst.frc.team3042.robot.commands;
 
 import org.usfirst.frc.team3042.lib.Logger;
-import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
-import org.usfirst.frc.team3042.robot.subsystems.Elevator;
+import org.usfirst.frc.team3042.robot.subsystems.Winch;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Elevator_setPosition extends Command {
+public class Winch_ClimbManual extends Command {
 	/** Configuration Constants ***********************************************/
-	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
+	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_WINCH;
 	
 	/** Instance Variables ****************************************************/
-	private Logger log = new Logger(LOG_LEVEL, getName());
-	private Elevator.Position position;
-
-    public Elevator_setPosition(Elevator.Position position) {
+	Logger log = new Logger(LOG_LEVEL, getName());
+	Winch winchSide;
+	
+    public Winch_ClimbManual(Winch winchSide) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
-    	this.position = position;
+    	this.winchSide = winchSide;
+    	requires(winchSide);//winchSide must be the side of the winch this command should require and control.
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Logger.Level.TRACE);
-    	
-    	Robot.elevator.setPosition(position);
+    	winchSide.climbOneSide();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -44,13 +42,11 @@ public class Elevator_setPosition extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	log.add("End", Logger.Level.TRACE);
-
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	log.add("Interrupted", Logger.Level.TRACE);
-
     }
 }

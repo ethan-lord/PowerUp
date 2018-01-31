@@ -3,13 +3,11 @@ package org.usfirst.frc.team3042.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team3042.lib.I2CRangeSensor;
 import org.usfirst.frc.team3042.lib.Logger;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
 import org.usfirst.frc.team3042.robot.subsystems.Claw;
@@ -50,7 +48,6 @@ public class Robot extends IterativeRobot {
 	public static final HookDeploy hookDeploy = (HAS_HOOKDEPLOY) ? new HookDeploy() : null; 
 	public static OI oi;
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
-	public I2CRangeSensor range = new I2CRangeSensor(I2C.Port.kOnboard);
 	
 	private static String gameData = "";
 	
@@ -134,9 +131,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
-		SmartDashboard.putNumber("I2C ValueOptical", range.readOptical());
-		SmartDashboard.putNumber("I2C ValueUltralsonic", range.readUltrasonic());
 	}
 
 	

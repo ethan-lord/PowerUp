@@ -3,34 +3,33 @@ package org.usfirst.frc.team3042.robot.commands;
 import org.usfirst.frc.team3042.lib.Logger;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
-import org.usfirst.frc.team3042.robot.subsystems.Arm.Position;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Arm_Set_Position extends Command {
+public class Arm_CyclePositions extends Command {
 	/** Configuration Constants ***********************************************/
-	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_ARM;
+	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, getName());
-	private Position position; 
-
-    public Arm_Set_Position(Position position) {
+	private Logger log = new Logger(LOG_LEVEL, getName());
+	private int direction;
+	
+    public Arm_CyclePositions(int direction) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.arm);
     	
-    	this.position = position;
+    	this.direction = direction;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Logger.Level.TRACE);
     	
-    	Robot.arm.setPosition(position);
+    	Robot.elevator.cyclePreset(direction);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -42,7 +41,7 @@ public class Arm_Set_Position extends Command {
         return false;
     }
 
-    // Called once after isFinished returns true
+ // Called once after isFinished returns true
     protected void end() {
     	log.add("End", Logger.Level.TRACE);
     }

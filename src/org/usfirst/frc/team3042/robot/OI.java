@@ -2,6 +2,8 @@ package org.usfirst.frc.team3042.robot;
 
 import org.usfirst.frc.team3042.lib.Logger;
 import org.usfirst.frc.team3042.lib.Path;
+import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
+import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -65,6 +67,7 @@ public class OI {
 		/** PBOT Controls *****************************************************/
 		if (IS_PBOT) {
 			
+			gamepad.A.whenPressed(new DrivetrainAuton_Drive((new CenterToLeftSwitch()).buildPath()));
 		}
 		
 		/** Artemis Controls **************************************************/

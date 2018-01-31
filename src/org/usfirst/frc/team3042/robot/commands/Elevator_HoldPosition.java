@@ -9,27 +9,24 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Arm_Cycle_Positions extends Command {
+public class Elevator_HoldPosition extends Command {
 	/** Configuration Constants ***********************************************/
 	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
 	
 	/** Instance Variables ****************************************************/
-	private Logger log = new Logger(LOG_LEVEL, getName());
-	private int direction;
+	Logger log = new Logger(LOG_LEVEL, getName());
 	
-    public Arm_Cycle_Positions(int direction) {
+    public Elevator_HoldPosition() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.arm);
-    	
-    	this.direction = direction;
+    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Logger.Level.TRACE);
     	
-    	Robot.elevator.cyclePreset(direction);
+    	Robot.elevator.setPosition(Robot.elevator.positionFromInt[Robot.elevator.getCurrentPreset()]);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -41,7 +38,7 @@ public class Arm_Cycle_Positions extends Command {
         return false;
     }
 
- // Called once after isFinished returns true
+    // Called once after isFinished returns true
     protected void end() {
     	log.add("End", Logger.Level.TRACE);
     }
