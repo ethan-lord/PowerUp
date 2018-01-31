@@ -25,6 +25,7 @@ public class OI {
 	private static final int JOYSTICK_Y_AXIS = Gamepad.JOY_Y_AXIS;
 	private static final int GAMEPAD_LEFT_TRIGGER = Gamepad.LEFT_TRIGGER;
 	private static final int GAMEPAD_RIGHT_TRIGGER = Gamepad.RIGHT_TRIGGER;
+	private static final double ROBOT_WIDTH = RobotMap.ROBOT_WIDTH;
 	
 	
 	/** Instance Variables ****************************************************/
@@ -68,6 +69,16 @@ public class OI {
 		if (IS_PBOT) {
 			
 			gamepad.A.whenPressed(new DrivetrainAuton_Drive((new CenterToLeftSwitch()).buildPath()));
+			
+			double turnRadius = 1.5 * ROBOT_WIDTH;
+			Path testPath = new Path();
+			testPath.addStraight(36.0, 18.0);
+			testPath.addRightTurn(90.0, turnRadius, 21.0);
+			testPath.addLeftTurn(120, turnRadius, 21.0);
+			testPath.addLeftTurn(120, turnRadius, -21.0);
+			testPath.addRightTurn(90.0, turnRadius, -21.0);
+			testPath.addStraight(36.0, -18.0);
+			gamepad.B.whenPressed(new DrivetrainAuton_Drive(testPath));
 		}
 		
 		/** Artemis Controls **************************************************/

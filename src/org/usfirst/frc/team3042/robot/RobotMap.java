@@ -160,7 +160,7 @@ public class RobotMap {
 	public static final boolean HAS_ENCODERS = true;
 	//Encoder counts per revolution
 	//In quadrature mode, actual counts will be 4x this; e.g., 360 -> 1440
-	public static final int COUNTS_PER_REVOLUTION = 360;
+	public static final int COUNTS_PER_REVOLUTION = 1440;
 	//How often the encoders update on the CAN, in milliseconds
 	public static final int ENCODER_FRAME_RATE = 10;
 	public static final boolean REVERSE_LEFT_ENCODER = true;
