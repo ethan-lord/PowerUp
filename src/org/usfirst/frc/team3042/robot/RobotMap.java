@@ -135,7 +135,7 @@ public class RobotMap {
 	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 0;
 	
 	/** Arm Settings **********************************************************/
-	public static final boolean HAS_ARM = !IS_PBOT;
+	public static final boolean HAS_ARM = true;//!IS_PBOT; TEMPRORARILY BROKEN INTENTIONALLY TO TEST THE POT
 	public static final int ARM_KP = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_KI = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_KD = IS_PRIMARY 	? 0 : 0;
@@ -237,8 +237,8 @@ public class RobotMap {
 	public static final Log.Level	LOG_WINCH					= Log.Level.TRACE;
 	public static final Log.Level	LOG_CLAW						= Log.Level.TRACE;
 	public static final Log.Level	LOG_ELEVATOR					= Log.Level.TRACE;
-	public static final Log.Level LOG_ARM						= Log.Level.TRACE;
+	public static final Log.Level 	LOG_ARM						= Log.Level.DEBUG_PERIODIC;
 	public static final Log.Level	LOG_HOOK						= Log.Level.TRACE;
-	public static final Log.Level LOG_COMPRESSOR              = Log.Level.TRACE;
+	public static final Log.Level 	LOG_COMPRESSOR              = Log.Level.TRACE;
 
 }

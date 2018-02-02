@@ -1,10 +1,12 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_HoldPosition;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,6 +20,7 @@ public class Arm extends Subsystem {
 	private static final int SLOTIDX_1 = RobotMap.SLOTIDX_1;
 	private static final int TIMEOUT = RobotMap.TALON_ERROR_TIMEOUT;
 	private static final int FRAME_RATE = RobotMap.AUTON_FRAME_RATE;
+	private static final int PIDIDX = RobotMap.PIDIDX;
 	private static final int kP = RobotMap.ARM_KP;
 	private static final int kI = RobotMap.ARM_KI;
 	private static final int kD = RobotMap.ARM_KD;
@@ -29,13 +32,15 @@ public class Arm extends Subsystem {
 	private static final int TOP_POS = RobotMap.ARM_TOP_POS;
 	private static final int MAGIC_ACCEL = RobotMap.ARM_MOTION_MAGIC_ACCELERATION;
 	private static final int MAGIC_CRUISE = RobotMap.ARM_MOTION_MAGIC_CRUISE_VELOCITY;
+	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ARM;
 	
 	/** Instance Variables ****************************************************/
 	private TalonSRX armTalon = new TalonSRX(CAN_ARM_MOTOR);
 	private int currentPreset = 0;
 	private int currentPos = 0;
 	public Position[] positionFromInt = new Position[]{Position.BOTTOM, Position.MIDDLE, Position.TOP};
-
+	Log log = new Log(LOG_LEVEL, getName());
+	
 	public Arm(){
 		initMotor(armTalon);
 	}
@@ -67,6 +72,7 @@ public class Arm extends Subsystem {
 	}
 	
 	public int getPosition(){
+		log.add("Position Value: " + currentPos, Log.Level.DEBUG_PERIODIC);
 		return currentPos;
 	}
 	
@@ -79,6 +85,7 @@ public class Arm extends Subsystem {
 	}
     
     private void initMotor(TalonSRX motor) {
+    	motor.configSelectedFeedbackSensor(FeedbackDevice.Analog, PIDIDX, TIMEOUT);
 		motor.changeMotionControlFramePeriod(FRAME_RATE);
 		motor.config_kP(SLOTIDX_1, kP, TIMEOUT);
 		motor.config_kI(SLOTIDX_1, kI, TIMEOUT);
