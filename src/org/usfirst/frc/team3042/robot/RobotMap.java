@@ -57,7 +57,7 @@ public class RobotMap {
 	
 	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 0 : 0;
 	
-	public static final int CAN_ARM_MOTOR = 			IS_PRIMARY ? 0 : 0;
+	public static final int CAN_ARM_MOTOR = 10;//Broken to test the pot			IS_PRIMARY ? 0 : 0;
 
 	public static final int CAN_HOOK_MOTOR =			IS_PRIMARY ? 0 : 0;
 	
@@ -135,7 +135,7 @@ public class RobotMap {
 	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 0;
 	
 	/** Arm Settings **********************************************************/
-	public static final boolean HAS_ARM = !IS_PBOT;
+	public static final boolean HAS_ARM = true;//!IS_PBOT; TEMPRORARILY BROKEN INTENTIONALLY TO TEST THE POT
 	public static final int ARM_KP = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_KI = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_KD = IS_PRIMARY 	? 0 : 0;
@@ -145,6 +145,8 @@ public class RobotMap {
 	public static final int ARM_BOTTOM_POS = IS_PRIMARY	? 0 : 0;
 	public static final int ARM_MIDDLE_POS = IS_PRIMARY	? 0 : 0;
 	public static final int ARM_TOP_POS = IS_PRIMARY	? 0 : 0;
+	public static final int ARM_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 0;
+	public static final int ARM_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 0;
 	
 	/** HookDeploy Settings **********************************************/
 	public static final boolean HAS_HOOKDEPLOY = !IS_PBOT;
@@ -221,7 +223,7 @@ public class RobotMap {
 	public static final String 		LOG_TIME_ZONE = "America/Chicago";
 	public static final boolean 		LOG_TO_CONSOLE 				= true;
 	public static final boolean 		LOG_TO_FILE 					= false;
-	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG;
+	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG_PERIODIC;
 	public static final Log.Level LOG_ROBOT 					= Log.Level.DEBUG;
 	public static final Log.Level	LOG_OI 						= Log.Level.TRACE;
 	public static final Log.Level	LOG_AXIS_TRIGGER 			= Log.Level.ERROR;
@@ -235,8 +237,8 @@ public class RobotMap {
 	public static final Log.Level	LOG_WINCH					= Log.Level.TRACE;
 	public static final Log.Level	LOG_CLAW						= Log.Level.TRACE;
 	public static final Log.Level	LOG_ELEVATOR					= Log.Level.TRACE;
-	public static final Log.Level LOG_ARM						= Log.Level.TRACE;
+	public static final Log.Level 	LOG_ARM						= Log.Level.DEBUG_PERIODIC;
 	public static final Log.Level	LOG_HOOK						= Log.Level.TRACE;
-	public static final Log.Level LOG_COMPRESSOR              = Log.Level.TRACE;
+	public static final Log.Level 	LOG_COMPRESSOR              = Log.Level.TRACE;
 
 }
