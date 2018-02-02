@@ -72,12 +72,11 @@ public class OI {
 			
 			double turnRadius = 1.5 * ROBOT_WIDTH;
 			Path testPath = new Path();
-			testPath.addStraight(36.0, 18.0);
-			testPath.addRightTurn(90.0, turnRadius, 21.0);
-			testPath.addLeftTurn(120, turnRadius, 21.0);
-			testPath.addLeftTurn(120, turnRadius, -21.0);
-			testPath.addRightTurn(90.0, turnRadius, -21.0);
-			testPath.addStraight(36.0, -18.0);
+			testPath.addStraight(5.0, 60);
+			testPath.addLeftTurn(46.4, 15, 60);
+			//testPath.addStraight(57, 24);
+			//testPath.addRightTurn(46.4, 15, 24);
+			//testPath.addStraight(6, 24);
 			gamepad.B.whenPressed(new DrivetrainAuton_Drive(testPath));
 		}
 		

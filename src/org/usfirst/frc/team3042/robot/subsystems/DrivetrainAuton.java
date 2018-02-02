@@ -147,6 +147,6 @@ public class DrivetrainAuton extends Subsystem {
 	}
 	public void disableMotionProfile() {
 		leftMotor.set(ControlMode.MotionProfile, SetValueMotionProfile.Disable.value);
-		leftMotor.set(ControlMode.MotionProfile, SetValueMotionProfile.Disable.value);
+		rightMotor.set(ControlMode.MotionProfile, SetValueMotionProfile.Disable.value);
 	}
 }

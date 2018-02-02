@@ -56,7 +56,7 @@ public class Drivetrain extends Subsystem {
 	private void initMotor(TalonSRX motor, boolean reverse) {
 		motor.setNeutralMode(BRAKE_MODE);
 		motor.setInverted(reverse); 	// affects percent Vbus mode
-		motor.setSensorPhase(reverse); 	// affects closed-loop mode
+		//motor.setSensorPhase(reverse); 	// affects closed-loop mode
 	}
 	
 	

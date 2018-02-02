@@ -165,8 +165,8 @@ public class RobotMap {
 	public static final int COUNTS_PER_REVOLUTION = 1440;
 	//How often the encoders update on the CAN, in milliseconds
 	public static final int ENCODER_FRAME_RATE = 10;
-	public static final boolean REVERSE_LEFT_ENCODER = true;
-	public static final boolean REVERSE_RIGHT_ENCODER = false;
+	public static final boolean SENSOR_PHASE_LEFT = 	(IS_PBOT) ? false: false;
+	public static final boolean SENSOR_PHASE_RIGHT = 	(IS_PBOT) ? false: false;
 	
 	
 	/** Drivetrain Autonomous Settings ****************************************/

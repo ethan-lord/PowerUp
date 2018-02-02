@@ -19,10 +19,10 @@ public class DrivetrainEncoders extends Subsystem {
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_ENCODERS;
 	private static final int COUNTS_PER_REVOLUTION = RobotMap.COUNTS_PER_REVOLUTION;
 	private static final int FRAME_RATE = RobotMap.ENCODER_FRAME_RATE;
-	private static final boolean REVERSE_LEFT = RobotMap.REVERSE_LEFT_ENCODER;
-	private static final boolean REVERSE_RIGHT = RobotMap.REVERSE_RIGHT_ENCODER;
 	private static final int PIDIDX = RobotMap.PIDIDX;
 	private static final int TIMEOUT = RobotMap.TALON_ERROR_TIMEOUT;
+	private static final boolean SENSOR_PHASE_LEFT = RobotMap.SENSOR_PHASE_LEFT;
+	private static final boolean SENSOR_PHASE_RIGHT = RobotMap.SENSOR_PHASE_RIGHT;
 
 	
 	/** Instance Variables ****************************************************/
@@ -38,16 +38,16 @@ public class DrivetrainEncoders extends Subsystem {
 		
 		leftEncoder = leftMotor;
 		rightEncoder = rightMotor;
-				
-		initEncoder(leftEncoder, REVERSE_LEFT);
-		initEncoder(rightEncoder, REVERSE_RIGHT);
+		
+		initEncoder(leftEncoder, SENSOR_PHASE_LEFT);
+		initEncoder(rightEncoder, SENSOR_PHASE_RIGHT);
 													
 		reset();
 	}
-	private void initEncoder(TalonSRX encoder, boolean reverse) {
+	private void initEncoder(TalonSRX encoder, boolean sensorPhase) {
 		encoder.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PIDIDX, TIMEOUT);
 		encoder.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, FRAME_RATE, TIMEOUT);
-		encoder.setSensorPhase(reverse);
+		encoder.setSensorPhase(sensorPhase);
 	}
 	
 	
