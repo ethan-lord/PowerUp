@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
 import org.usfirst.frc.team3042.robot.subsystems.Claw;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot { 
 	/** Configuration Constants ***********************************************/
-	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_ROBOT;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_ROBOT;
 	private static final boolean HAS_DRIVETRAIN = RobotMap.HAS_DRIVETRAIN;
 	private static final boolean HAS_GYROSCOPE = RobotMap.HAS_GYROSCOPE;
 	private static final boolean HAS_WINCH = RobotMap.HAS_WINCH;
@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
 	private static final boolean HAS_HOOKDEPLOY = RobotMap.HAS_HOOKDEPLOY;
 	
 	/** Create Subsystems *****************************************************/
-	private Logger log = new Logger(LOG_LEVEL, "Robot");
+	private Log log = new Log(LOG_LEVEL, "Robot");
 	public static final Drivetrain 	drivetrain 	= (HAS_DRIVETRAIN) 	? new Drivetrain() : null;
 	public static final Winch winch = (HAS_WINCH) ? new Winch() : null;
 	public static final Claw claw = (HAS_CLAW) ? new Claw() : null;
@@ -60,7 +60,7 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		log.add("Robot Init", Logger.Level.TRACE);
+		log.add("Robot Init", Log.Level.TRACE);
 		
 		oi = new OI();
 		SmartDashboard.putData("Auto Mode", chooser);
@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	public void disabledInit() {
-		log.add("Disabled Init", Logger.Level.TRACE);
+		log.add("Disabled Init", Log.Level.TRACE);
 	}
 
 	
@@ -91,7 +91,7 @@ public class Robot extends IterativeRobot {
 	 * Run once at the start of autonomous mode.
 	 */
 	public void autonomousInit() {
-		log.add("Autonomous Init", Logger.Level.TRACE);
+		log.add("Autonomous Init", Log.Level.TRACE);
 		
 		autonomousCommand = chooser.getSelected();
 
@@ -115,7 +115,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called when first entering teleop mode.
 	 */
 	public void teleopInit() {
-		log.add("Teleop Init", Logger.Level.TRACE);
+		log.add("Teleop Init", Log.Level.TRACE);
 		
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
@@ -142,7 +142,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void searchForGameData(){
-		log.add("Game Data: " + gameData, Logger.Level.ALL);
+		log.add("Game Data: " + gameData, Log.Level.ALL);
 		SmartDashboard.putBoolean("Game Data Exists", gameDataPresent());
 		if(!gameDataPresent()){
 			gameData = DriverStation.getInstance().getGameSpecificMessage();

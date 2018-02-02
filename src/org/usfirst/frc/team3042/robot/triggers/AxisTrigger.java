@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3042.robot.triggers;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 
 import org.usfirst.frc.team3042.robot.RobotMap;
 
@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
  */
 public class AxisTrigger extends Trigger {
 	/** Configuration Constants ***********************************************/
-	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_AXIS_TRIGGER;
+	public static final Log.Level LOG_LEVEL = RobotMap.LOG_AXIS_TRIGGER;
 
 	public static enum Direction{UP, DOWN, LEFT, RIGHT;}
 
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, "Axis Trigger");
+	Log log = new Log(LOG_LEVEL, "Axis Trigger");
 	Joystick gamepad;
 	int axis;
 	Direction direction;
@@ -36,7 +36,7 @@ public class AxisTrigger extends Trigger {
 		this(joystick, axis, Direction.DOWN);
 	}
 	public AxisTrigger(Joystick gamepad, int axis, Direction direction) {
-		log.add("Constructor "+axis+" "+direction, Logger.Level.TRACE);
+		log.add("Constructor "+axis+" "+direction, Log.Level.TRACE);
 		this.gamepad = gamepad;
 		this.axis = axis;
 		this.direction = direction;

@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3042.robot;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.subsystems.Elevator;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -86,7 +86,7 @@ public class RobotMap {
 	public static final boolean REVERSE_RIGHT_MOTOR = 	(IS_PBOT) ? false: false;
 	// Maximum Acceleration given in power per second
 	public static final double ACCELERATION_MAX = 1.5;
-	public static final double kF_DRIVE_LEFT = 	(IS_PBOT) 		? .1817180616740088 :
+	public static final double kF_DRIVE_LEFT = 	(IS_PBOT) 		? 0.1817180616740088 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final double kF_DRIVE_RIGHT = (IS_PBOT) 		? 0.16686239968682717 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
@@ -223,22 +223,22 @@ public class RobotMap {
 	public static final String 		LOG_TIME_ZONE = "America/Chicago";
 	public static final boolean 		LOG_TO_CONSOLE 				= true;
 	public static final boolean 		LOG_TO_FILE 					= false;
-	public static final Logger.Level LOG_GLOBAL 					= Logger.Level.DEBUG;
-	public static final Logger.Level LOG_ROBOT 					= Logger.Level.DEBUG;
-	public static final Logger.Level	LOG_OI 						= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_AXIS_TRIGGER 			= Logger.Level.ERROR;
-	public static final Logger.Level	LOG_POV_BUTTON				= Logger.Level.ERROR;
+	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG;
+	public static final Log.Level LOG_ROBOT 					= Log.Level.DEBUG;
+	public static final Log.Level	LOG_OI 						= Log.Level.TRACE;
+	public static final Log.Level	LOG_AXIS_TRIGGER 			= Log.Level.ERROR;
+	public static final Log.Level	LOG_POV_BUTTON				= Log.Level.ERROR;
 	/** Subsystems **/                                                   
-	public static final Logger.Level	LOG_DRIVETRAIN				= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_DRIVETRAIN_FOLLOWERS		= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_DRIVETRAIN_ENCODERS 		= Logger.Level.DEBUG;
-	public static final Logger.Level	LOG_DRIVETRAIN_AUTON			= Logger.Level.DEBUG;
-	public static final Logger.Level	LOG_GYROSCOPE				= Logger.Level.DEBUG;
-	public static final Logger.Level	LOG_WINCH					= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_CLAW						= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_ELEVATOR					= Logger.Level.TRACE;
-	public static final Logger.Level LOG_ARM						= Logger.Level.TRACE;
-	public static final Logger.Level	LOG_HOOK						= Logger.Level.TRACE;
-	public static final Logger.Level LOG_COMPRESSOR              = Logger.Level.TRACE;
+	public static final Log.Level	LOG_DRIVETRAIN				= Log.Level.TRACE;
+	public static final Log.Level	LOG_DRIVETRAIN_FOLLOWERS		= Log.Level.TRACE;
+	public static final Log.Level	LOG_DRIVETRAIN_ENCODERS 		= Log.Level.DEBUG;
+	public static final Log.Level	LOG_DRIVETRAIN_AUTON			= Log.Level.DEBUG;
+	public static final Log.Level	LOG_GYROSCOPE				= Log.Level.DEBUG;
+	public static final Log.Level	LOG_WINCH					= Log.Level.TRACE;
+	public static final Log.Level	LOG_CLAW						= Log.Level.TRACE;
+	public static final Log.Level	LOG_ELEVATOR					= Log.Level.TRACE;
+	public static final Log.Level LOG_ARM						= Log.Level.TRACE;
+	public static final Log.Level	LOG_HOOK						= Log.Level.TRACE;
+	public static final Log.Level LOG_COMPRESSOR              = Log.Level.TRACE;
 
 }

@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3042.robot.commands;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.subsystems.Arm.Position;
@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class HookDeploy_SetPosition extends Command {
 	/** Configuration Constants ***********************************************/
-	public static final Logger.Level LOG_LEVEL = RobotMap.LOG_ARM;
+	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ARM;
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(LOG_LEVEL, getName());
+	Log log = new Log(LOG_LEVEL, getName());
 	private Position position; 
 
     public void Hook_Set_Position(Position position) {
@@ -28,7 +28,7 @@ public class HookDeploy_SetPosition extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	log.add("Initialize", Logger.Level.TRACE);
+    	log.add("Initialize", Log.Level.TRACE);
     	
     	Robot.arm.setPosition(position);
     }
@@ -44,12 +44,12 @@ public class HookDeploy_SetPosition extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	log.add("End", Logger.Level.TRACE);
+    	log.add("End", Log.Level.TRACE);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	log.add("Interrupted", Logger.Level.TRACE);
+    	log.add("Interrupted", Log.Level.TRACE);
     }
 }

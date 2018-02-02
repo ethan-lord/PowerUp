@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_TankDrive;
 
@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 	/** Configuration Constants ***********************************************/
-	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN;
 	private static final int CAN_LEFT_MOTOR = RobotMap.CAN_LEFT_MOTOR;
 	private static final int CAN_RIGHT_MOTOR = RobotMap.CAN_RIGHT_MOTOR;
 	private static final boolean HAS_FOLLOWERS = RobotMap.HAS_FOLLOWERS;
@@ -28,7 +28,7 @@ public class Drivetrain extends Subsystem {
 	
 	
 	/** Instance Variables ****************************************************/
-	private Logger log = new Logger(LOG_LEVEL, getName());
+	private Log log = new Log(LOG_LEVEL, getName());
 	private TalonSRX leftMotor = new TalonSRX(CAN_LEFT_MOTOR);
 	private TalonSRX rightMotor = new TalonSRX(CAN_RIGHT_MOTOR);
 	private DrivetrainFollowers followers;

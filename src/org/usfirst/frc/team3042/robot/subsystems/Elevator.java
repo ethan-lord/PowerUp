@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Elevator_HoldPosition;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
 	/** Configuration Constants ***********************************************/
-	private static final Logger.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
 	private TalonSRX elevatorTalon = new TalonSRX(RobotMap.CAN_ELEVATOR_TALON);
 	private final int BOT_POS = RobotMap.ELEVATOR_BOTTOM_POSITION;
 	private final int INT_POS = RobotMap.ELEVATOR_INTAKE_POSITION;
@@ -35,7 +35,7 @@ public class Elevator extends Subsystem {
 	private static final int MAGIC_CRUISE = RobotMap.ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY;
 	
 	/** Instance Variables ****************************************************/
-	private Logger log = new Logger(LOG_LEVEL, getName());
+	private Log log = new Log(LOG_LEVEL, getName());
 	private int currentPos = 0;
 	private int currentPreset = 0;
 	public Position[] positionFromInt = new Position[]{Position.BOTTOM, Position.INTAKE, Position.SWITCH, Position.LOW_SCALE, Position.MID_SCALE, Position.HIGH_SCALE};

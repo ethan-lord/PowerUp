@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3042.robot;
 
-import org.usfirst.frc.team3042.lib.Logger;
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
@@ -29,7 +29,7 @@ public class OI {
 	
 	
 	/** Instance Variables ****************************************************/
-	Logger log = new Logger(RobotMap.LOG_OI, "OI");
+	Log log = new Log(RobotMap.LOG_OI, "OI");
 	Gamepad gamepad, joyLeft, joyRight;
 	int driveAxisLeft, driveAxisRight;
 
@@ -47,7 +47,7 @@ public class OI {
 	 * gamepad.POVUp.whileActive(new ExampleCommand());
 	 */
 	public OI() {
-		log.add("OI Constructor", Logger.Level.TRACE);
+		log.add("OI Constructor", Log.Level.TRACE);
 		
 		gamepad = new Gamepad(USB_GAMEPAD);
 		
