@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -72,7 +73,8 @@ public class Arm extends Subsystem {
 	}
 	
 	public int getPosition(){
-		log.add("Position Value: " + currentPos, Log.Level.DEBUG_PERIODIC);
+		SmartDashboard.putNumber("Pot", currentPos);
+		log.add("Pot: " + currentPos, Log.Level.DEBUG_PERIODIC);
 		return currentPos;
 	}
 	
