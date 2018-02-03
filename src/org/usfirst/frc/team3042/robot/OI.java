@@ -3,7 +3,11 @@ package org.usfirst.frc.team3042.robot;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
+<<<<<<< HEAD
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
+=======
+import org.usfirst.frc.team3042.robot.commands.Drivetrain_Calibrate;
+>>>>>>> branch 'master' of https://github.com/team3042/PowerUp.git
 import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
@@ -75,15 +79,19 @@ public class OI {
 			
 			double turnRadius = 1.5 * ROBOT_WIDTH;
 			Path testPath = new Path();
-			testPath.addStraight(5.0, 60);
-			testPath.addLeftTurn(46.4, 15, 60);
-			//testPath.addStraight(57, 24);
+			testPath.addStraight(10.0, 24);
+			testPath.addLeftTurn(45.0, 15, 24);
+//			testPath.addStraight(57, 24);
 			//testPath.addRightTurn(46.4, 15, 24);
 			//testPath.addStraight(6, 24);
 			gamepad.B.whenPressed(new DrivetrainAuton_Drive(testPath));
 			
+<<<<<<< HEAD
 			//gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
 			//gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
+=======
+			gamepad.Y.whenPressed(new Drivetrain_Calibrate());
+>>>>>>> branch 'master' of https://github.com/team3042/PowerUp.git
 		}
 		
 		/** Primary Robot Controls ********************************************/

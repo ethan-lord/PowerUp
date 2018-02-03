@@ -1,6 +1,7 @@
  package org.usfirst.frc.team3042.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.MotionProfile;
@@ -60,6 +61,9 @@ public class DrivetrainAuton_Drive extends Command {
 	protected void execute() {
 		MotionProfileStatus leftStatus = auton.getLeftStatus();
 		MotionProfileStatus rightStatus = auton.getRightStatus();
+		
+		SmartDashboard.putNumber("Left Error", auton.getLeftError());
+		SmartDashboard.putNumber("Right Error", auton.getRightError());
 		
 		if  ( (leftStatus.btmBufferCnt > BUFFER_TRIGGER) && 
 				(rightStatus.btmBufferCnt > BUFFER_TRIGGER) ) {
