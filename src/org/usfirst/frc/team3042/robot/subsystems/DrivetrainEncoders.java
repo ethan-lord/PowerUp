@@ -92,6 +92,14 @@ public class DrivetrainEncoders extends Subsystem {
 		return rightEncoder.getSelectedSensorVelocity(PIDIDX) * 600 / COUNTS_PER_REVOLUTION;//600/COUNTS_PER_REVOLUTION conversion from counts per 100 ms to rpm
 	}
 	
+	public double getLeftSpeedNative() {
+		return leftEncoder.getSelectedSensorVelocity(PIDIDX);
+	}
+	
+	public double getRightSpeedNative() {
+		return rightEncoder.getSelectedSensorVelocity(PIDIDX);
+	}
+	
 	
 	/** rpmToF ****************************************************************
 	 * Convert RPM reading into an F-Gain

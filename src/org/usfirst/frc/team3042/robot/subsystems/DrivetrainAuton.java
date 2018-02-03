@@ -149,4 +149,12 @@ public class DrivetrainAuton extends Subsystem {
 		leftMotor.set(ControlMode.MotionProfile, SetValueMotionProfile.Disable.value);
 		rightMotor.set(ControlMode.MotionProfile, SetValueMotionProfile.Disable.value);
 	}
+	
+	public double getLeftError() {
+		return leftMotor.getClosedLoopError(PIDIDX);
+	}
+	
+	public double getRightError() {
+		return rightMotor.getClosedLoopError(PIDIDX);
+	}
 }

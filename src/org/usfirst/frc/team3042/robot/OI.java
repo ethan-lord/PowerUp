@@ -3,6 +3,7 @@ package org.usfirst.frc.team3042.robot;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
+import org.usfirst.frc.team3042.robot.commands.Drivetrain_Calibrate;
 import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
 
 /**
@@ -72,12 +73,14 @@ public class OI {
 			
 			double turnRadius = 1.5 * ROBOT_WIDTH;
 			Path testPath = new Path();
-			testPath.addStraight(5.0, 60);
-			testPath.addLeftTurn(46.4, 15, 60);
-			//testPath.addStraight(57, 24);
+			testPath.addStraight(10.0, 24);
+			testPath.addLeftTurn(45.0, 15, 24);
+//			testPath.addStraight(57, 24);
 			//testPath.addRightTurn(46.4, 15, 24);
 			//testPath.addStraight(6, 24);
 			gamepad.B.whenPressed(new DrivetrainAuton_Drive(testPath));
+			
+			gamepad.Y.whenPressed(new Drivetrain_Calibrate());
 		}
 		
 		/** Artemis Controls **************************************************/

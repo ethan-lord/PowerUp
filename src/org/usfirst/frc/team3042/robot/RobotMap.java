@@ -85,10 +85,10 @@ public class RobotMap {
 	public static final boolean REVERSE_LEFT_MOTOR = 	(IS_PBOT) ? true : false;
 	public static final boolean REVERSE_RIGHT_MOTOR = 	(IS_PBOT) ? false: false;
 	// Maximum Acceleration given in power per second
-	public static final double ACCELERATION_MAX = 1.5;
-	public static final double kF_DRIVE_LEFT = 	(IS_PBOT) 		? 0.1817180616740088 :
+	public static final double ACCELERATION_MAX = 50;
+	public static final double kF_DRIVE_LEFT = 	(IS_PBOT) 		? 1.21 ://0.7130907570054371 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
-	public static final double kF_DRIVE_RIGHT = (IS_PBOT) 		? 0.16686239968682717 :
+	public static final double kF_DRIVE_RIGHT = (IS_PBOT) 		? 1.12 ://0.6492764661081493 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final int TALON_ERROR_TIMEOUT = 0;// measured in Ms
 	public static final int TRAJPERIOD = 10;
@@ -174,26 +174,26 @@ public class RobotMap {
 	/** Drivetrain Autonomous Settings ****************************************/
 	public static final boolean HAS_AUTON = HAS_ENCODERS;
 	public static final int AUTON_PROFILE = 0;
-	public static final double kP_AUTON = 		(IS_PBOT) 		? 0.4 :
+	public static final double kP_AUTON = 		(IS_PBOT) 		? 0.0 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final double kI_AUTON = 		(IS_PBOT) 		? 0.0 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
-	public static final double kD_AUTON = 		(IS_PBOT) 		? 0.8 :
+	public static final double kD_AUTON = 		(IS_PBOT) 		? 0.0 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final int I_ZONE_AUTON =		(IS_PBOT)		? 0 :
 												(IS_PRIMARY)	? 0 : 0;
 	//The rate of pushing motion profile points to the talon, in ms
 	public static final int AUTON_FRAME_RATE = 10;
 	//Parameters for calibrating the F-gain
-	public static final double AUTON_CALIBRATE_POWER = 0.5;
+	public static final double AUTON_CALIBRATE_POWER = 1.0;
 	public static final double AUTON_CALIBRATE_TIME = 5.0; //seconds
 	public static final int AUTON_COUNT_AVERAGE = 20;
 	//Parameters for motion profile driving
-	public static final int AUTON_DT_MS = 30;
+	public static final int AUTON_DT_MS = 20;
 	public static final double AUTON_DT_SEC = (double)AUTON_DT_MS / 1000.0;
 	public static final double AUTON_ACCEL_TIME = 1.0; //time in sec
 	public static final double AUTON_SMOOTH_TIME = 0.1; //time in sec
-	public static final double AUTON_MAX_ACCEL = 3.0; //rev per sec per sec
+	public static final double AUTON_MAX_ACCEL = 4.8; //rev per sec per sec
 	public static final int AUTON_BUFFER_TRIGGER = 10;
 	public static final int AUTON_TIMEOUT = 0; // timeout in ms; set to zero
 	public static final int AUTON_PIDIDX = 0; // used for cascading PID; set to zero
@@ -223,7 +223,7 @@ public class RobotMap {
 	public static final String 		LOG_TIME_ZONE = "America/Chicago";
 	public static final boolean 		LOG_TO_CONSOLE 				= true;
 	public static final boolean 		LOG_TO_FILE 					= false;
-	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG_PERIODIC;
+	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG;
 	public static final Log.Level LOG_ROBOT 					= Log.Level.DEBUG;
 	public static final Log.Level	LOG_OI 						= Log.Level.TRACE;
 	public static final Log.Level	LOG_AXIS_TRIGGER 			= Log.Level.ERROR;
