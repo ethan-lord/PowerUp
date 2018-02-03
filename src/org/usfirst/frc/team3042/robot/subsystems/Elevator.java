@@ -6,6 +6,7 @@ import org.usfirst.frc.team3042.robot.commands.Elevator_HoldPosition;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -26,6 +27,7 @@ public class Elevator extends Subsystem {
 	private static final int SLOTIDX_1 = RobotMap.SLOTIDX_1;
 	private static final int TIMEOUT = RobotMap.TALON_ERROR_TIMEOUT;
 	private static final int FRAME_RATE = RobotMap.AUTON_FRAME_RATE;
+	private static final int PIDIDX = RobotMap.PIDIDX;
 	private static final int kP = RobotMap.ELEVATOR_KP;
 	private static final int kI = RobotMap.ELEVATOR_KI;
 	private static final int kD = RobotMap.ELEVATOR_KD;
@@ -36,7 +38,7 @@ public class Elevator extends Subsystem {
 	
 	/** Instance Variables ****************************************************/
 	private Log log = new Log(LOG_LEVEL, getName());
-	private int currentPos = 0;
+	private int currentGoalPos = 0;
 	private int currentPreset = 0;
 	public Position[] positionFromInt = new Position[]{Position.BOTTOM, Position.INTAKE, Position.SWITCH, Position.LOW_SCALE, Position.MID_SCALE, Position.HIGH_SCALE};
 	
@@ -58,6 +60,7 @@ public class Elevator extends Subsystem {
 		motor.config_kD(SLOTIDX_1, kD, TIMEOUT);
 		motor.config_kF(SLOTIDX_1, kF, TIMEOUT);
 		motor.config_IntegralZone(SLOTIDX_1, I_ZONE, TIMEOUT);
+		motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PIDIDX, TIMEOUT);
 	}
     
     public void initMotionMagic(TalonSRX motor){
@@ -77,27 +80,27 @@ public class Elevator extends Subsystem {
 		switch (position) {
 			case BOTTOM:
 				elevatorTalon.set(ControlMode.MotionMagic, BOT_POS);
-				currentPos = BOT_POS;
+				currentGoalPos = BOT_POS;
 				currentPreset = 0;
                 break;
 			case INTAKE:
 				elevatorTalon.set(ControlMode.MotionMagic, INT_POS);
-				currentPos = INT_POS;
+				currentGoalPos = INT_POS;
 				currentPreset = 1;
 				break;
 			case SWITCH:
 				elevatorTalon.set(ControlMode.MotionMagic, SWITCH_POS);
-				currentPos = SWITCH_POS;
+				currentGoalPos = SWITCH_POS;
 				currentPreset = 2;
 				break;
 			case LOW_SCALE:
 				elevatorTalon.set(ControlMode.MotionMagic, LOW_SCALE_POS);
-				currentPos = LOW_SCALE_POS;
+				currentGoalPos = LOW_SCALE_POS;
 				currentPreset = 3;
 				break;
 			case HIGH_SCALE:
 				elevatorTalon.set(ControlMode.MotionMagic, HIGH_SCALE_POS);
-				currentPos = HIGH_SCALE_POS;
+				currentGoalPos = HIGH_SCALE_POS;
 				currentPreset = 4;
 				break;
 			default:
@@ -108,10 +111,10 @@ public class Elevator extends Subsystem {
 	
 	public void manual(int direction){
 		if(direction == POVButton.UP){
-			elevatorTalon.set(ControlMode.Position, currentPos += MANUAL_SPEED);
+			elevatorTalon.set(ControlMode.MotionMagic, currentGoalPos += MANUAL_SPEED);
 		}
 		else if(direction == POVButton.DOWN){
-			elevatorTalon.set(ControlMode.Position, currentPos -= MANUAL_SPEED);
+			elevatorTalon.set(ControlMode.MotionMagic, currentGoalPos -= MANUAL_SPEED);
 		}
 	}
 	
@@ -127,7 +130,11 @@ public class Elevator extends Subsystem {
 	}
 	
 	public int getPosition(){
-		return currentPos;
+		return elevatorTalon.getSelectedSensorPosition(PIDIDX);
+	}
+	
+	public int getCurrentGoalPos(){
+		return currentGoalPos;
 	}
 	
 	public int getCurrentPreset(){

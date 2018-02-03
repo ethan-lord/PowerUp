@@ -5,6 +5,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_HoldPosition;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
+import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -38,12 +39,13 @@ public class Arm extends Subsystem {
 	/** Instance Variables ****************************************************/
 	private TalonSRX armTalon = new TalonSRX(CAN_ARM_MOTOR);
 	private int currentPreset = 0;
-	private int currentPos = 0;
+	private int currentGoalPos = 0;
 	public Position[] positionFromInt = new Position[]{Position.BOTTOM, Position.MIDDLE, Position.TOP};
 	Log log = new Log(LOG_LEVEL, getName());
 	
 	public Arm(){
 		initMotor(armTalon);
+		initMotionMagic(armTalon);
 	}
 	
     public void initDefaultCommand() {
@@ -54,10 +56,10 @@ public class Arm extends Subsystem {
     
     public void manual(int direction){
 		if(direction == POVButton.UP){
-			armTalon.set(ControlMode.Position, currentPos += MANUAL_SPEED);
+			armTalon.set(ControlMode.MotionMagic, currentGoalPos += MANUAL_SPEED);
 		}
 		else if(direction == POVButton.DOWN){
-			armTalon.set(ControlMode.Position, currentPos -= MANUAL_SPEED);
+			armTalon.set(ControlMode.MotionMagic, currentGoalPos -= MANUAL_SPEED);
 		}
 	}
 	
@@ -73,9 +75,12 @@ public class Arm extends Subsystem {
 	}
 	
 	public int getPosition(){
-		SmartDashboard.putNumber("Pot", currentPos);
-		log.add("Pot: " + currentPos, Log.Level.DEBUG_PERIODIC);
-		return currentPos;
+		log.add("Pot: " + currentGoalPos, Log.Level.DEBUG_PERIODIC);
+		return armTalon.getSelectedSensorPosition(PIDIDX);
+	}
+	
+	public int getCurrentGoalPos(){
+		return currentGoalPos;
 	}
 	
 	public int getCurrentPreset(){
@@ -87,13 +92,13 @@ public class Arm extends Subsystem {
 	}
     
     private void initMotor(TalonSRX motor) {
-    	motor.configSelectedFeedbackSensor(FeedbackDevice.Analog, PIDIDX, TIMEOUT);
 		motor.changeMotionControlFramePeriod(FRAME_RATE);
 		motor.config_kP(SLOTIDX_1, kP, TIMEOUT);
 		motor.config_kI(SLOTIDX_1, kI, TIMEOUT);
 		motor.config_kD(SLOTIDX_1, kD, TIMEOUT);
 		motor.config_kF(SLOTIDX_1, kF, TIMEOUT);
 		motor.config_IntegralZone(SLOTIDX_1, I_ZONE, TIMEOUT);
+		motor.configSelectedFeedbackSensor(FeedbackDevice.Analog, PIDIDX, TIMEOUT);
 	}
     
     public void initMotionMagic(TalonSRX motor){
@@ -105,17 +110,17 @@ public class Arm extends Subsystem {
 		switch (position) {
 			case BOTTOM:
 				armTalon.set(ControlMode.MotionMagic, BOT_POS);
-				currentPos = BOT_POS;
+				currentGoalPos = BOT_POS;
 				currentPreset = 0;
                 break;
 			case MIDDLE:
 				armTalon.set(ControlMode.MotionMagic, MID_POS);
-				currentPos = MID_POS;
+				currentGoalPos = MID_POS;
 				currentPreset = 1;
 				break;
 			case TOP:
 				armTalon.set(ControlMode.MotionMagic, TOP_POS);
-				currentPos = TOP_POS;
+				currentGoalPos = TOP_POS;
 				currentPreset = 2;
 				break;
 			default:

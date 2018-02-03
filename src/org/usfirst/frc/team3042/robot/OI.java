@@ -3,7 +3,9 @@ package org.usfirst.frc.team3042.robot;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
+import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
 import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
+import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -12,7 +14,8 @@ import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
 public class OI {	
 	/** Configuration Constants ***********************************************/
 	private static final boolean IS_PBOT = RobotMap.IS_PBOT;
-	private static final boolean IS_ARTEMIS = RobotMap.IS_PRIMARY;
+	private static final boolean IS_PRIMARY = RobotMap.IS_PRIMARY;
+	private static final boolean IS_SECONDARY = RobotMap.IS_SECONDARY;
 	private static final int USB_GAMEPAD = RobotMap.USB_GAMEPAD;
 	private static final int USB_JOY_LEFT = RobotMap.USB_JOYSTICK_LEFT;
 	private static final int USB_JOY_RIGHT = RobotMap.USB_JOYSTICK_RIGHT;
@@ -78,10 +81,18 @@ public class OI {
 			//testPath.addRightTurn(46.4, 15, 24);
 			//testPath.addStraight(6, 24);
 			gamepad.B.whenPressed(new DrivetrainAuton_Drive(testPath));
+			
+			//gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
+			//gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
 		}
 		
-		/** Artemis Controls **************************************************/
-		if (IS_ARTEMIS) {
+		/** Primary Robot Controls ********************************************/
+		if (IS_PRIMARY) {
+			
+		}
+		
+		/** Secondary Robot Controls ******************************************/
+		if (IS_SECONDARY) {
 			
 		}
 	}

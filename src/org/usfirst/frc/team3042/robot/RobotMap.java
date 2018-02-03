@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
  */
 public class RobotMap {
 	/** Robot selector ********************************************************/
-	public static enum Bot {PBOT, PRIMARY, SECONDARY;}
+	public static enum Bot {PBOT, PRIMARY, SECONDARY};
 	// Set the bot to which you intend to push code.
 	private static Bot currentBot = Bot.PBOT;
 
@@ -56,7 +56,7 @@ public class RobotMap {
 	
 	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 0 : 0;
 	
-	public static final int CAN_ARM_MOTOR =			IS_PRIMARY ? 0 : 0;
+	public static final int CAN_ARM_MOTOR =			IS_PRIMARY ? 0 : 10;
 
 	public static final int CAN_HOOK_MOTOR =			IS_PRIMARY ? 0 : 0;
 	
@@ -118,12 +118,12 @@ public class RobotMap {
 	public static final boolean STARTS_ACTIVE = true;
 	
 	/** Elevator Settings *****************************************************/
-	public static final boolean HAS_ELEVATOR = !IS_PBOT;
-	public static final int ELEVATOR_BOTTOM_POSITION = IS_PRIMARY 	? 0 : 0;
-	public static final int ELEVATOR_INTAKE_POSITION = IS_PRIMARY 	? 0 : 0;
-	public static final int ELEVATOR_SWITCH_POSITION = IS_PRIMARY 	? 0 : 0;
-	public static final int ELEVATOR_LOW_SCALE_POSITION = IS_PRIMARY 	? 0 : 0;
-	public static final int ELEVATOR_HIGH_SCALE_POSITION = IS_PRIMARY 	? 0 : 0;
+	public static final boolean HAS_ELEVATOR = false;// creating even though it is running on pbot !IS_PBOT;
+	public static final int ELEVATOR_BOTTOM_POSITION = IS_PRIMARY 		? 0 : 0;
+	public static final int ELEVATOR_INTAKE_POSITION = IS_PRIMARY 		? 0 : 500;
+	public static final int ELEVATOR_SWITCH_POSITION = IS_PRIMARY 		? 0 : 1000;
+	public static final int ELEVATOR_LOW_SCALE_POSITION = IS_PRIMARY 	? 0 : 1500;
+	public static final int ELEVATOR_HIGH_SCALE_POSITION = IS_PRIMARY 	? 0 : 2000;
 	public static final int ELEVATOR_MANUAL_SPEED = IS_PRIMARY 	? 5 : 5;
 	public static final int ELEVATOR_KP = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_KI = IS_PRIMARY 	? 0 : 0;
@@ -134,7 +134,7 @@ public class RobotMap {
 	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 0;
 	
 	/** Arm Settings **********************************************************/
-	public static final boolean HAS_ARM = !IS_PBOT;
+	public static final boolean HAS_ARM = true;//!IS_PBOT;
 	public static final int ARM_KP = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_KI = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_KD = IS_PRIMARY 	? 0 : 0;
@@ -222,7 +222,7 @@ public class RobotMap {
 	public static final String 		LOG_TIME_ZONE = "America/Chicago";
 	public static final boolean 		LOG_TO_CONSOLE 				= true;
 	public static final boolean 		LOG_TO_FILE 					= false;
-	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG;
+	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG_PERIODIC;
 	public static final Log.Level LOG_ROBOT 					= Log.Level.DEBUG;
 	public static final Log.Level	LOG_OI 						= Log.Level.TRACE;
 	public static final Log.Level	LOG_AXIS_TRIGGER 			= Log.Level.ERROR;
