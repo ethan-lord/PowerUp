@@ -101,33 +101,34 @@ public class Elevator extends Subsystem {
 	public void setPosition(Position position) {
 		switch (position) {
 			case BOTTOM:
+				log.add("Bottom", Log.Level.DEBUG);
 				setTalonPosition(BOT_POS);
 				currentGoalPos = BOT_POS;
-				currentPreset = 0;
                 break;
 			case INTAKE:
+				log.add("Intake", Log.Level.DEBUG);
 				setTalonPosition(INT_POS);
 				currentGoalPos = INT_POS;
-				currentPreset = 1;
 				break;
 			case SWITCH:
+				log.add("Switch", Log.Level.DEBUG);
 				setTalonPosition(SWITCH_POS);
 				currentGoalPos = SWITCH_POS;
-				currentPreset = 2;
 				break;
 			case LOW_SCALE:
+				log.add("Low Scale", Log.Level.DEBUG);
 				setTalonPosition(LOW_SCALE_POS);
 				currentGoalPos = LOW_SCALE_POS;
-				currentPreset = 3;
 				break;
 			case MID_SCALE:
+				log.add("Mid Scale", Log.Level.DEBUG);
 				setTalonPosition(MID_SCALE_POS);
 				currentGoalPos = MID_SCALE_POS;
-				currentPreset = 4;
+				break;
 			case HIGH_SCALE:
+				log.add("High Scale", Log.Level.DEBUG);
 				setTalonPosition(HIGH_SCALE_POS);
 				currentGoalPos = HIGH_SCALE_POS;
-				currentPreset = 5;
 				break;
 			default:
 				stop();
@@ -152,6 +153,7 @@ public class Elevator extends Subsystem {
 			setPosition(positionFromInt[currentPreset]);
 		}
 		else if(direction == POVButton.DOWN){
+			log.add("Previous Preset: " + currentPreset, Log.Level.DEBUG);
 			currentPreset = Math.max(currentPreset - 1, 0);
 			log.add("Preset: " + currentPreset, Log.Level.DEBUG);
 			setPosition(positionFromInt[currentPreset]);
