@@ -119,12 +119,15 @@ public class Elevator extends Subsystem {
 	}
 	
 	public void cyclePreset(int direction){
+		log.add("Cycling the position now", Log.Level.DEBUG);
 		if(direction == POVButton.UP){
 			currentPreset = (currentPreset + 1) % positionFromInt.length; // modulus to keep the value in the range of 0-4
+			log.add("Preset: " + currentPreset, Log.Level.DEBUG);
 			setPosition(positionFromInt[currentPreset]);
 		}
 		else if(direction == POVButton.DOWN){
 			currentPreset = (currentPreset - 1) % positionFromInt.length; // modulus to keep the value in the range of 0-4
+			log.add("Preset: " + currentPreset, Log.Level.DEBUG);
 			setPosition(positionFromInt[currentPreset]);
 		}
 	}

@@ -54,9 +54,9 @@ public class RobotMap {
 	public static final int CAN_CLAW_RIGHT_TALON =  	IS_PRIMARY  ? 0 : 0;
 	public static final int CAN_CLAW_LEFT_TALON =   	IS_PRIMARY  ? 0 : 0;
 	
-	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 0 : 0;
+	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 0 : 10;
 	
-	public static final int CAN_ARM_MOTOR =			IS_PRIMARY ? 0 : 10;
+	public static final int CAN_ARM_MOTOR =			IS_PRIMARY ? 0 : 0;
 
 	public static final int CAN_HOOK_MOTOR =			IS_PRIMARY ? 0 : 0;
 	
@@ -118,7 +118,7 @@ public class RobotMap {
 	public static final boolean STARTS_ACTIVE = true;
 	
 	/** Elevator Settings *****************************************************/
-	public static final boolean HAS_ELEVATOR = false;// creating even though it is running on pbot !IS_PBOT;
+	public static final boolean HAS_ELEVATOR = true;// creating even though it is running on pbot !IS_PBOT;
 	public static final int ELEVATOR_BOTTOM_POSITION = IS_PRIMARY 		? 0 : 0;
 	public static final int ELEVATOR_INTAKE_POSITION = IS_PRIMARY 		? 0 : 500;
 	public static final int ELEVATOR_SWITCH_POSITION = IS_PRIMARY 		? 0 : 1000;
@@ -130,11 +130,11 @@ public class RobotMap {
 	public static final int ELEVATOR_KD = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_KF = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_I_ZONE = IS_PRIMARY 	? 0 : 0;
-	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 0;
-	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 0;
+	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 1000;
+	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 1000;
 	
 	/** Arm Settings **********************************************************/
-	public static final boolean HAS_ARM = true;//!IS_PBOT;
+	public static final boolean HAS_ARM = !IS_PBOT;
 	public static final int ARM_KP = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_KI = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_KD = IS_PRIMARY 	? 0 : 0;
@@ -192,7 +192,7 @@ public class RobotMap {
 	public static final double AUTON_DT_SEC = (double)AUTON_DT_MS / 1000.0;
 	public static final double AUTON_ACCEL_TIME = 1.0; //time in sec
 	public static final double AUTON_SMOOTH_TIME = 0.1; //time in sec
-	public static final double AUTON_MAX_ACCEL = 4.8; //rev per sec per sec
+	public static final double AUTON_MAX_ACCEL = 4.8; //rev per sec per sec. Used to test whether profiles should work
 	public static final int AUTON_BUFFER_TRIGGER = 10;
 	public static final int AUTON_TIMEOUT = 0; // timeout in ms; set to zero
 	public static final int AUTON_PIDIDX = 0; // used for cascading PID; set to zero
@@ -235,8 +235,8 @@ public class RobotMap {
 	public static final Log.Level	LOG_GYROSCOPE				= Log.Level.DEBUG;
 	public static final Log.Level	LOG_WINCH					= Log.Level.TRACE;
 	public static final Log.Level	LOG_CLAW						= Log.Level.TRACE;
-	public static final Log.Level	LOG_ELEVATOR					= Log.Level.TRACE;
-	public static final Log.Level 	LOG_ARM						= Log.Level.DEBUG_PERIODIC;
+	public static final Log.Level	LOG_ELEVATOR					= Log.Level.DEBUG;
+	public static final Log.Level 	LOG_ARM						= Log.Level.TRACE;
 	public static final Log.Level	LOG_HOOK						= Log.Level.TRACE;
 	public static final Log.Level 	LOG_COMPRESSOR              = Log.Level.TRACE;
 

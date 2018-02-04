@@ -83,8 +83,8 @@ public class OI {
 			//testPath.addStraight(6, 24);
 			gamepad.B.whenPressed(new DrivetrainAuton_Drive(testPath));
 			
-			//gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
-			//gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
+			gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
+			gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
 			
 			gamepad.Y.whenPressed(new Drivetrain_Calibrate());
 		}
