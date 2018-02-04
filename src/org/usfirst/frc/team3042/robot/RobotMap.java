@@ -123,7 +123,10 @@ public class RobotMap {
 	public static final int ELEVATOR_INTAKE_POSITION = IS_PRIMARY 		? 0 : 500;
 	public static final int ELEVATOR_SWITCH_POSITION = IS_PRIMARY 		? 0 : 1000;
 	public static final int ELEVATOR_LOW_SCALE_POSITION = IS_PRIMARY 	? 0 : 1500;
+	public static final int ELEVATOR_MID_SCALE_POSITION = IS_PRIMARY    ? 0 : 1750;
 	public static final int ELEVATOR_HIGH_SCALE_POSITION = IS_PRIMARY 	? 0 : 2000;
+	public static final int ELEVATOR_MAX_POSITION = IS_PRIMARY          ? 0 : 0;
+	public static final int ELEVATOR_MIN_POSITION = IS_PRIMARY          ? 0 : 0;
 	public static final int ELEVATOR_MANUAL_SPEED = IS_PRIMARY 	? 5 : 5;
 	public static final int ELEVATOR_KP = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_KI = IS_PRIMARY 	? 0 : 0;
