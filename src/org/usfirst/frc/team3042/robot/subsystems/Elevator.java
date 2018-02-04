@@ -137,26 +137,30 @@ public class Elevator extends Subsystem {
 	}
 	
 	public void manual(int direction){
-		if(direction == POVButton.UP){
-			elevatorTalon.set(ControlMode.MotionMagic, currentGoalPos += MANUAL_SPEED);
-		}
-		else if(direction == POVButton.DOWN){
-			elevatorTalon.set(ControlMode.MotionMagic, currentGoalPos -= MANUAL_SPEED);
+		switch (direction) {
+			case POVButton.UP:
+				setTalonPosition(currentGoalPos += MANUAL_SPEED);
+				break;
+			case POVButton.DOWN:
+				setTalonPosition(currentGoalPos -= MANUAL_SPEED);
+				break;
+			default:
+				break;
 		}
 	}
 	
 	public void cyclePreset(int direction){
-		log.add("Cycling the position now", Log.Level.DEBUG);
-		if(direction == POVButton.UP){
-			currentPreset = Math.min(currentPreset + 1, positionFromInt.length - 1);
-			log.add("Preset: " + currentPreset, Log.Level.DEBUG);
-			setPosition(positionFromInt[currentPreset]);
-		}
-		else if(direction == POVButton.DOWN){
-			log.add("Previous Preset: " + currentPreset, Log.Level.DEBUG);
-			currentPreset = Math.max(currentPreset - 1, 0);
-			log.add("Preset: " + currentPreset, Log.Level.DEBUG);
-			setPosition(positionFromInt[currentPreset]);
+		switch (direction) {
+			case POVButton.UP:
+				currentPreset = Math.min(currentPreset + 1, positionFromInt.length - 1);
+				setPosition(positionFromInt[currentPreset]);
+				break;
+			case POVButton.DOWN:
+				currentPreset = Math.max(currentPreset - 1, 0);
+				setPosition(positionFromInt[currentPreset]);
+				break;
+			default:
+				break;
 		}
 	}
 	
