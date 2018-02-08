@@ -32,10 +32,10 @@ public class Elevator extends Subsystem {
 	private static final int TIMEOUT = RobotMap.TALON_ERROR_TIMEOUT;
 	private static final int FRAME_RATE = RobotMap.AUTON_FRAME_RATE;
 	private static final int PIDIDX = RobotMap.PIDIDX;
-	private static final int kP = RobotMap.ELEVATOR_KP;
-	private static final int kI = RobotMap.ELEVATOR_KI;
-	private static final int kD = RobotMap.ELEVATOR_KD;
-	private static final int kF = RobotMap.ELEVATOR_KF;
+	private static final double kP = RobotMap.ELEVATOR_KP;
+	private static final double kI = RobotMap.ELEVATOR_KI;
+	private static final double kD = RobotMap.ELEVATOR_KD;
+	private static final double kF = RobotMap.ELEVATOR_KF;
 	private static final int I_ZONE = RobotMap.ELEVATOR_I_ZONE;
 	private static final int MAGIC_ACCEL = RobotMap.ELEVATOR_MOTION_MAGIC_ACCELERATION;
 	private static final int MAGIC_CRUISE = RobotMap.ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY;
@@ -51,7 +51,7 @@ public class Elevator extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     	
     	//setDefaultCommand(new Elevator_HoldPosition());
-    	setDefaultCommand(new Elevator_Stop());
+    	setDefaultCommand(new Elevator_HoldPosition());
     }
     
     public Elevator(){

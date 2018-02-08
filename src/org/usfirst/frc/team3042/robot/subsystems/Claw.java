@@ -21,8 +21,7 @@ public class Claw extends Subsystem {
 	private Ultrasonic ultra = new Ultrasonic(RobotMap.DIO_CLAW_ULTRA_PING, RobotMap.DIO_CLAW_ULTRA_ECHO);
 	
 	// instance variables
-	private Solenoid clampLeft = new Solenoid(RobotMap.CLAMP_SOLENOID_LEFT);
-	private Solenoid clampRight = new Solenoid(RobotMap.CLAMP_SOLENOID_RIGHT);
+	private Solenoid clampSolenoid = new Solenoid(RobotMap.CLAMP_SOLENOID_LEFT);
 	private double intakePower = RobotMap.CLAW_INTAKE_POWER;
 	private double releasePower = RobotMap.CLAW_RELEASE_POWER;
 	private boolean isActive = RobotMap.STARTS_ACTIVE;
@@ -58,13 +57,11 @@ public class Claw extends Subsystem {
     	setPower(clawLeftTalon, releasePower);
     }
     public void clamp(){
-    	clampLeft.set(true);
-    	clampRight.set(true);
+    	clampSolenoid.set(true);
     	isActive = true;
     }
     public void unclamp(){
-    	clampLeft.set(false);
-    	clampRight.set(false);
+    	clampSolenoid.set(false);
     	isActive = false;
     }
     public void clampToggle(){

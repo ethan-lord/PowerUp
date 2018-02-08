@@ -48,7 +48,9 @@ public class DrivetrainAuton_Drive extends Command {
 		
 		auton.initMotionProfile();
 		
-		for (int n=0; n<leftMotionProfile.getLength(); n++) {
+		for (int n=0; n< Math.min(leftMotionProfile.getLength(), rightMotionProfile.getLength()); n++) {
+			leftMotionProfile.getPoint(leftMotionProfile.getLength() - 1).isLastPoint = true;
+			rightMotionProfile.getPoint(rightMotionProfile.getLength() - 1).isLastPoint = true;
 			auton.pushPoints(leftMotionProfile.getPoint(n), 
 					rightMotionProfile.getPoint(n));
 		}
