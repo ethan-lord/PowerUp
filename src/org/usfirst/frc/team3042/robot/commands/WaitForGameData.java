@@ -9,34 +9,30 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Elevator_HoldPosition extends Command {
+public class WaitForGameData extends Command {
 	/** Configuration Constants ***********************************************/
-	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
+	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ROBOT;
 	
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
-	
-    public Elevator_HoldPosition() {
+
+    public WaitForGameData() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
-    	
-    	Robot.elevator.setTalonPosition(Robot.elevator.getCurrentGoalPos());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	log.add("Encoder Value: " + Robot.elevator.getPosition(), Log.Level.TRACE);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.gameDataPresent();
     }
 
     // Called once after isFinished returns true

@@ -34,6 +34,8 @@ public class Arm extends Subsystem {
 	private static final int TOP_POS = RobotMap.ARM_TOP_POS;
 	private static final int MAGIC_ACCEL = RobotMap.ARM_MOTION_MAGIC_ACCELERATION;
 	private static final int MAGIC_CRUISE = RobotMap.ARM_MOTION_MAGIC_CRUISE_VELOCITY;
+	private static final int MAX_POS = RobotMap.ARM_MAX_POSITION;
+	private static final int MIN_POS = RobotMap.ARM_MIN_POSITION;
 	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ARM;
 	
 	/** Instance Variables ****************************************************/
@@ -64,13 +66,17 @@ public class Arm extends Subsystem {
 	}
 	
 	public void cyclePreset(int direction){
-		if(direction == POVButton.UP){
-			currentPreset = (currentPreset + 1) % positionFromInt.length; // modulus to keep the value in the range of 0-4
+		switch (direction) {
+		case POVButton.UP:
+			currentPreset = Math.min(currentPreset + 1, positionFromInt.length - 1);
 			setPosition(positionFromInt[currentPreset]);
-		}
-		else if(direction == POVButton.DOWN){
-			currentPreset = (currentPreset - 1) % positionFromInt.length; // modulus to keep the value in the range of 0-4
+			break;
+		case POVButton.DOWN:
+			currentPreset = Math.max(currentPreset - 1, 0);
 			setPosition(positionFromInt[currentPreset]);
+			break;
+		default:
+			break;
 		}
 	}
 	
@@ -106,21 +112,27 @@ public class Arm extends Subsystem {
 		motor.configMotionCruiseVelocity(MAGIC_CRUISE, TIMEOUT);
 	}
     
+	public int safetyCheck(int position) {
+		return Math.max(Math.min(MAX_POS, position), MIN_POS);
+	}
+    
+	public void setTalonPosition(int position) {
+		armTalon.set(ControlMode.MotionMagic, safetyCheck(position));
+		currentGoalPos = position;
+	}
+    
     public void setPosition(Position position) {
 		switch (position) {
 			case BOTTOM:
-				armTalon.set(ControlMode.MotionMagic, BOT_POS);
-				currentGoalPos = BOT_POS;
+				setTalonPosition(BOT_POS);
 				currentPreset = 0;
                 break;
 			case MIDDLE:
-				armTalon.set(ControlMode.MotionMagic, MID_POS);
-				currentGoalPos = MID_POS;
+				setTalonPosition(MID_POS);
 				currentPreset = 1;
 				break;
 			case TOP:
-				armTalon.set(ControlMode.MotionMagic, TOP_POS);
-				currentGoalPos = TOP_POS;
+				setTalonPosition(TOP_POS);
 				currentPreset = 2;
 				break;
 			default:

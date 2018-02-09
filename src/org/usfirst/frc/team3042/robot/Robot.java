@@ -149,11 +149,23 @@ public class Robot extends IterativeRobot {
 		}
 	}
 	
-	public boolean gameDataPresent(){
+	public static boolean gameDataPresent(){
 		return gameData.length() == 3;
 	}
 	
-	public String getGameData(){
+	public static String getGameData(){
 		return gameData;
+	}
+	
+	public static enum Side{
+		LEFT, RIGHT
+	}
+	
+	public static Side getSwitchSide(){
+		return (gameData.substring(1, 1) == "R") ? Side.RIGHT : Side.LEFT;
+	}
+	
+	public static Side getScaleSide(){
+		return (gameData.substring(1, 1) == "R") ? Side.RIGHT : Side.LEFT;
 	}
 }
