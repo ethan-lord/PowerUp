@@ -39,28 +39,25 @@ public class RobotMap {
 
 
 	/** PWM ports *************************************************************/
-	public static final int PWM_PAN_PORT 	= 0;
-	public static final int PWM_TILT_PORT 	= 1;
-	
 	
 	/** CAN ID numbers ********************************************************/
 	public static final int CAN_LEFT_MOTOR 	= 		IS_PBOT 	? 3 :
-													IS_PRIMARY 	? 0 : 0;
+													IS_PRIMARY 	? 0 : 14;
 	public static final int CAN_RIGHT_MOTOR = 		IS_PBOT 	? 9 :
-													IS_PRIMARY 	? 0 : 0;
-	public static final int CAN_LEFT_FOLLOWER = 		IS_PRIMARY 	? 0 : 0;
-	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 0 : 0;
-	public static final int CAN_WINCH_MOTOR_LEFT = 	IS_PRIMARY  ? 0 : 0;
-	public static final int CAN_WINCH_MOTOR_RIGHT = 	IS_PRIMARY  ? 0 : 0;
+													IS_PRIMARY 	? 0 : 25;
+	public static final int CAN_LEFT_FOLLOWER = 		IS_PRIMARY 	? 0 : 18;
+	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 0 : 7;
+	public static final int CAN_WINCH_MOTOR_LEFT = 	IS_PRIMARY  ? 0 : 19;
+	public static final int CAN_WINCH_MOTOR_RIGHT = 	IS_PRIMARY  ? 0 : 8;
 	
-	public static final int CAN_CLAW_RIGHT_TALON =  	IS_PRIMARY  ? 0 : 0;
-	public static final int CAN_CLAW_LEFT_TALON =   	IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_CLAW_RIGHT_TALON =  	IS_PRIMARY  ? 0 : 1;
+	public static final int CAN_CLAW_LEFT_TALON =   	IS_PRIMARY  ? 0 : 12;
 	
-	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 0 : 10;
+	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 0 : 17;
 	
-	public static final int CAN_ARM_MOTOR =			IS_PRIMARY ? 0 : 0;
+	public static final int CAN_ARM_MOTOR =			IS_PRIMARY ? 0 : 2;
 
-	public static final int CAN_HOOK_MOTOR =			IS_PRIMARY ? 0 : 0;
+	public static final int CAN_HOOK_MOTOR =			IS_PRIMARY ? 0 : 15;
 	
 	/** DIO channels **********************************************************/
 	public static final int DIO_CLAW_ULTRA_PING = 1;
@@ -120,7 +117,7 @@ public class RobotMap {
 	public static final double CLAW_INTAKE_TIMEOUT = IS_PRIMARY ? 0 : 0;
 	
 	/** Elevator Settings *****************************************************/
-	public static final boolean HAS_ELEVATOR = true;// creating even though it is running on pbot !IS_PBOT;
+	public static final boolean HAS_ELEVATOR = !IS_PBOT;
 	public static final int ELEVATOR_BOTTOM_POSITION = IS_PRIMARY 		? 0 : 0;
 	public static final int ELEVATOR_INTAKE_POSITION = IS_PRIMARY 		? 0 : 5000;
 	public static final int ELEVATOR_SWITCH_POSITION = IS_PRIMARY 		? 0 : 10000;
