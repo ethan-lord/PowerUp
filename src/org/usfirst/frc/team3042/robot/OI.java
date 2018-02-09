@@ -6,6 +6,7 @@ import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Calibrate;
 import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
+import org.usfirst.frc.team3042.robot.paths.CenterToRightSwitch;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
 /**
@@ -72,15 +73,22 @@ public class OI {
 		/** PBOT Controls *****************************************************/
 		if (IS_PBOT) {
 			
-			gamepad.A.whenPressed(new DrivetrainAuton_Drive((new CenterToLeftSwitch()).buildPath()));
+			gamepad.A.whenPressed(new DrivetrainAuton_Drive((new CenterToRightSwitch()).buildPath()));
 			
 			double turnRadius = 1.5 * ROBOT_WIDTH;
 			Path testPath = new Path();
-			testPath.addStraight(10.0, 24);
-			testPath.addLeftTurn(45.0, 15, 24);
-//			testPath.addStraight(57, 24);
+			testPath.addStraight(36.0, 24);
+			testPath.addRightTurn(45.0, 15.3042, 24);
+			testPath.addStraight(57, 24);
 			//testPath.addRightTurn(46.4, 15, 24);
 			//testPath.addStraight(6, 24);
+			
+//			testPath.addStraight(36.0, 18.0);
+//			testPath.addRightTurn(90.0, turnRadius, 21.0);
+//			testPath.addLeftTurn(120, turnRadius, 21.0);
+//			testPath.addLeftTurn(120, turnRadius, -21.0);
+//			testPath.addRightTurn(90.0, turnRadius, -21.0);
+//			testPath.addStraight(36.0, -18.0);
 			gamepad.B.whenPressed(new DrivetrainAuton_Drive(testPath));
 			
 			gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));

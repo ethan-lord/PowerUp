@@ -20,6 +20,8 @@ public class RobotMap {
 	public static final boolean IS_PRIMARY = (currentBot == Bot.PRIMARY);
 	public static final boolean IS_SECONDARY = (currentBot == Bot.SECONDARY);
 	
+	public static final boolean DEMO_MODE = false;
+	
 	
 	/** Robot Size Parameters *************************************************
 	 * The units of the wheel diameter determine the units of the position 
@@ -72,7 +74,7 @@ public class RobotMap {
 	
 	/** OI Settings ***********************************************************/
 	public static final boolean USE_JOYSTICKS = !IS_PBOT;
-	public static final double JOYSTICK_DRIVE_SCALE = 0.5;
+	public static final double JOYSTICK_DRIVE_SCALE = (IS_PBOT || DEMO_MODE)? 1.0 : 1.0;
 	public static final double TRIGGER_SPINNER_SCALE = 0.1;
 	public static final double JOYSTICK_DEAD_ZONE = 0.0;
 
@@ -85,7 +87,7 @@ public class RobotMap {
 	public static final boolean REVERSE_RIGHT_MOTOR = 	(IS_PBOT) ? false: false;
 	// Maximum Acceleration given in power per second
 	public static final double ACCELERATION_MAX = 50;
-	public static final double kF_DRIVE_LEFT = 	(IS_PBOT) 		? 1.21 ://0.7130907570054371 :
+	public static final double kF_DRIVE_LEFT = 	(IS_PBOT) 		? 1.1666666666666666666666666666 ://0.7130907570054371 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final double kF_DRIVE_RIGHT = (IS_PBOT) 		? 1.12 ://0.6492764661081493 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
@@ -120,18 +122,18 @@ public class RobotMap {
 	/** Elevator Settings *****************************************************/
 	public static final boolean HAS_ELEVATOR = true;// creating even though it is running on pbot !IS_PBOT;
 	public static final int ELEVATOR_BOTTOM_POSITION = IS_PRIMARY 		? 0 : 0;
-	public static final int ELEVATOR_INTAKE_POSITION = IS_PRIMARY 		? 0 : 500;
-	public static final int ELEVATOR_SWITCH_POSITION = IS_PRIMARY 		? 0 : 1000;
-	public static final int ELEVATOR_LOW_SCALE_POSITION = IS_PRIMARY 	? 0 : 1500;
-	public static final int ELEVATOR_MID_SCALE_POSITION = IS_PRIMARY    ? 0 : 1750;
-	public static final int ELEVATOR_HIGH_SCALE_POSITION = IS_PRIMARY 	? 0 : 2000;
-	public static final int ELEVATOR_MAX_POSITION = IS_PRIMARY          ? 0 : 10000;
+	public static final int ELEVATOR_INTAKE_POSITION = IS_PRIMARY 		? 0 : 5000;
+	public static final int ELEVATOR_SWITCH_POSITION = IS_PRIMARY 		? 0 : 10000;
+	public static final int ELEVATOR_LOW_SCALE_POSITION = IS_PRIMARY 	? 0 : 15000;
+	public static final int ELEVATOR_MID_SCALE_POSITION = IS_PRIMARY    ? 0 : 17500;
+	public static final int ELEVATOR_HIGH_SCALE_POSITION = IS_PRIMARY 	? 0 : 20000;
+	public static final int ELEVATOR_MAX_POSITION = IS_PRIMARY          ? 0 : 100000;
 	public static final int ELEVATOR_MIN_POSITION = IS_PRIMARY          ? 0 : 0;
 	public static final int ELEVATOR_MANUAL_SPEED = IS_PRIMARY 	? 5 : 5;
-	public static final int ELEVATOR_KP = IS_PRIMARY 	? 0 : 0;
-	public static final int ELEVATOR_KI = IS_PRIMARY 	? 0 : 0;
-	public static final int ELEVATOR_KD = IS_PRIMARY 	? 0 : 0;
-	public static final int ELEVATOR_KF = IS_PRIMARY 	? 0 : 0;
+	public static final double ELEVATOR_KP = IS_PRIMARY 	? 0 : 0.51;
+	public static final double ELEVATOR_KI = IS_PRIMARY 	? 0 : 0;
+	public static final double ELEVATOR_KD = IS_PRIMARY 	? 0 : 5.1;
+	public static final double ELEVATOR_KF = IS_PRIMARY 	? 0 : .036;
 	public static final int ELEVATOR_I_ZONE = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 1000;
 	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 1000;
@@ -176,11 +178,11 @@ public class RobotMap {
 	/** Drivetrain Autonomous Settings ****************************************/
 	public static final boolean HAS_AUTON = HAS_ENCODERS;
 	public static final int AUTON_PROFILE = 0;
-	public static final double kP_AUTON = 		(IS_PBOT) 		? 0.0 :
+	public static final double kP_AUTON = 		(IS_PBOT) 		? 1.0 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final double kI_AUTON = 		(IS_PBOT) 		? 0.0 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
-	public static final double kD_AUTON = 		(IS_PBOT) 		? 0.0 :
+	public static final double kD_AUTON = 		(IS_PBOT) 		? 2.0 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final int I_ZONE_AUTON =		(IS_PBOT)		? 0 :
 												(IS_PRIMARY)	? 0 : 0;
@@ -191,7 +193,7 @@ public class RobotMap {
 	public static final double AUTON_CALIBRATE_TIME = 5.0; //seconds
 	public static final int AUTON_COUNT_AVERAGE = 20;
 	//Parameters for motion profile driving
-	public static final int AUTON_DT_MS = 20;
+	public static final int AUTON_DT_MS = 30;
 	public static final double AUTON_DT_SEC = (double)AUTON_DT_MS / 1000.0;
 	public static final double AUTON_ACCEL_TIME = 1.0; //time in sec
 	public static final double AUTON_SMOOTH_TIME = 0.1; //time in sec

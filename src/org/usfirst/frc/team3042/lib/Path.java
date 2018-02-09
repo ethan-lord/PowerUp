@@ -74,11 +74,12 @@ public class Path {
 		speed = convertSpeed(speed);
 		
 		double innerScale = innerScale(radius);
+		double outerScale = outerScale(radius);
 		
 		leftDistance.add(distance * Math.abs(innerScale));
-		leftSpeed.add(speed * innerScale);
-		rightDistance.add(distance);
-		rightSpeed.add(speed);
+		leftSpeed.add(speed * Math.abs(innerScale));
+		rightDistance.add(distance * Math.abs(outerScale));
+		rightSpeed.add(speed * Math.abs(outerScale));
 	}
 	public void addRightTurn(double angle, double radius, double speed) {
 		log.add("Adding Right Turn with angle: " + angle + ", radius: " + radius + ", speed: " + speed, LOG_LEVEL.DEBUG);
@@ -86,11 +87,12 @@ public class Path {
 		speed = convertSpeed(speed);
 		
 		double innerScale = innerScale(radius);
+		double outerScale = outerScale(radius);
 		
-		leftDistance.add(distance);
-		leftSpeed.add(speed);
+		leftDistance.add(distance * Math.abs(outerScale));
+		leftSpeed.add(speed * Math.abs(outerScale));
 		rightDistance.add(distance * Math.abs(innerScale));
-		rightSpeed.add(speed * innerScale);
+		rightSpeed.add(speed * Math.abs(innerScale));
 	}
 	private double convertDistance(double angle, double radius) {
 		angle *= Math.PI / 180.0; //convert to radians
@@ -99,7 +101,13 @@ public class Path {
 	}
 	private double innerScale(double radius) {
 		radius = Math.abs(radius);
-		double innerRadius = radius - ROBOT_WIDTH;
+		double innerRadius = radius - ROBOT_WIDTH / 2;
+		if (radius > 0.0) innerRadius /= radius;
+		return innerRadius;
+	}
+	private double outerScale(double radius){
+		radius = Math.abs(radius);
+		double innerRadius = radius + ROBOT_WIDTH / 2;
 		if (radius > 0.0) innerRadius /= radius;
 		return innerRadius;
 	}
