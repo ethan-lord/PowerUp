@@ -67,14 +67,13 @@ public class RobotMap {
 	public static final int DIO_CLAW_ULTRA_ECHO = 0;
 	
 	/** PCM channels **********************************************************/
-	public static final int LIGHT_RING_CHANNEL = 1;
 	public static final int CLAMP_SOLENOID_LEFT = 0;
 	public static final int CLAMP_SOLENOID_RIGHT = 0;
 	
 	
 	/** OI Settings ***********************************************************/
 	public static final boolean USE_JOYSTICKS = !IS_PBOT;
-	public static final double JOYSTICK_DRIVE_SCALE = (IS_PBOT || DEMO_MODE)? 1.0 : 1.0;
+	public static final double JOYSTICK_DRIVE_SCALE = (IS_PBOT || DEMO_MODE)? 0.5 : 1.0;
 	public static final double TRIGGER_SPINNER_SCALE = 0.1;
 	public static final double JOYSTICK_DEAD_ZONE = 0.0;
 
@@ -118,6 +117,7 @@ public class RobotMap {
 	public static final double CLAW_RELEASE_POWER = IS_PRIMARY 	? 0 : 0;
 	public static final double CLAW_GRAB_DISTANCE = 4;
 	public static final boolean STARTS_ACTIVE = true;
+	public static final double CLAW_INTAKE_TIMEOUT = IS_PRIMARY ? 0 : 0;
 	
 	/** Elevator Settings *****************************************************/
 	public static final boolean HAS_ELEVATOR = true;// creating even though it is running on pbot !IS_PBOT;
