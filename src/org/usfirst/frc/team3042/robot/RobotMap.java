@@ -66,6 +66,7 @@ public class RobotMap {
 	/** PCM channels **********************************************************/
 	public static final int CLAMP_SOLENOID = 0;
 	public static final int SHIFT_SOLENOID = 1;
+	public static final int POP_SOLENOID   = 2;
 	
 	
 	/** OI Settings ***********************************************************/
@@ -83,7 +84,7 @@ public class RobotMap {
 	public static final boolean REVERSE_RIGHT_MOTOR = 	(IS_PBOT) ? false: true;
 	// Maximum Acceleration given in power per second
 	public static final double ACCELERATION_MAX = 50;
-	public static final double kF_DRIVE_LEFT = 	(IS_PBOT) 		? 1.1666666666666666666666666666 ://0.7130907570054371 :
+	public static final double kF_DRIVE_LEFT = 	(IS_PBOT) 		? 1.16666666666666666666666666667 ://0.7130907570054371 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final double kF_DRIVE_RIGHT = (IS_PBOT) 		? 1.12 ://0.6492764661081493 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
@@ -93,6 +94,9 @@ public class RobotMap {
 	public static final int PIDIDX = 0; //pidIdx - 0 for Primary closed-loop. 1 for cascaded closed-loop. See Phoenix-Documentation for how to interpret.
 	public static final int SLOTIDX_1 = 0;
 	public static final boolean STARTS_HIGH_GEAR = (IS_PRIMARY) ? false : false;
+	public static final int DRIVETRAIN_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 1000;
+	public static final int DRIVETRAIN_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 1000;	
+	
 	
 	/** Winch Settings ********************************************************/
 	public static final boolean HAS_WINCH = !IS_PBOT;
@@ -169,6 +173,11 @@ public class RobotMap {
 	public static final double HOOK_KD = IS_PRIMARY 	? 0 : 0;
 	public static final double HOOK_KF = IS_PRIMARY 	? 0 : 0;
 	public static final boolean HOOK_DEPLOY_REVERSE_SENSOR_PHASE = IS_PRIMARY ? true : true;
+	
+	
+	/** P.O.P. Settings *******************************************************/
+	public static final boolean HAS_POP = !IS_PBOT;
+	
 
 	
 	/** Compressor Settings ***************************************************/
@@ -257,5 +266,6 @@ public class RobotMap {
 	public static final Log.Level 	LOG_ARM						= Log.Level.DEBUG;
 	public static final Log.Level	LOG_HOOK						= Log.Level.TRACE;
 	public static final Log.Level 	LOG_COMPRESSOR              = Log.Level.TRACE;
+	public static final Log.Level   LOG_POP                     = Log.Level.TRACE;
 
 }

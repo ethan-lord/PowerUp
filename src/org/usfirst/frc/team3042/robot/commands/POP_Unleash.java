@@ -7,25 +7,24 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *UNLEASH THE PLATFORMS OF POWER!!!!!!!!!!!! HOO RAW
  */
-public class Claw_Unclamp extends Command {
+public class POP_Unleash extends Command {
 	/** Configuration Constants ***********************************************/
-	public static final Log.Level LOG_LEVEL = RobotMap.LOG_CLAW;
-	
+	public static final Log.Level LOG_LEVEL = RobotMap.LOG_POP;
+
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
-	
-    public Claw_Unclamp() {
+
+
+    public POP_Unleash() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.claw);
+    	requires(Robot.pop);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.claw.unclamp();
-    	
     	log.add("Initialize", Log.Level.TRACE);
     }
 

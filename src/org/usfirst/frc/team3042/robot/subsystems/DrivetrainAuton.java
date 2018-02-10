@@ -20,6 +20,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DrivetrainAuton extends Subsystem {
 	/** Configuration Constants ***********************************************/
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
+	private static final double WHEEL_DIAMETER = RobotMap.WHEEL_DIAMETER;
+	private static final int COUNTS_PER_REVOLUTION = RobotMap.COUNTS_PER_REVOLUTION;
 	private static final int PID_PROFILE = RobotMap.AUTON_PROFILE;
 	private static final double kP = RobotMap.kP_AUTON;
 	private static final double kI = RobotMap.kI_AUTON;
@@ -28,6 +30,8 @@ public class DrivetrainAuton extends Subsystem {
 	private static final double kF_RIGHT = RobotMap.kF_DRIVE_RIGHT;
 	private static final int I_ZONE = RobotMap.I_ZONE_AUTON;
 	private static final int DT_MS = RobotMap.AUTON_DT_MS;
+	private static final int MAGIC_ACCEL = RobotMap.DRIVETRAIN_MOTION_MAGIC_ACCELERATION;
+	private static final int MAGIC_CRUISE = RobotMap.DRIVETRAIN_MOTION_MAGIC_CRUISE_VELOCITY;
 	//The Frame Rate is given in ms
 	private static final int FRAME_RATE = RobotMap.AUTON_FRAME_RATE;
 	private static final int TIMEOUT = RobotMap.TALON_ERROR_TIMEOUT;
@@ -65,7 +69,10 @@ public class DrivetrainAuton extends Subsystem {
 		this.encoders = encoders;
 		
 		initMotor(leftMotor, kF_LEFT);
-		initMotor(rightMotor, kF_RIGHT);;
+		initMotor(rightMotor, kF_RIGHT);
+		
+		initMotionMagic(leftMotor);
+		initMotionMagic(rightMotor);
 
 		/** Starting talons processing motion profile **/
 		//Convert from ms to sec for the notifier
@@ -93,6 +100,31 @@ public class DrivetrainAuton extends Subsystem {
 	public void initDefaultCommand() {
 	}
 	
+	/** prepareMotionMagic ****************************************************
+	 * 
+	 */
+    public void initMotionMagic(TalonSRX motor){
+		motor.configMotionAcceleration(MAGIC_ACCEL, TIMEOUT);
+		motor.configMotionCruiseVelocity(MAGIC_CRUISE, TIMEOUT);
+	}
+    
+    
+    /** Motion Magic command methods ******************************************
+     * Makes things move
+     */
+	public void setLeftPositionMotionMagic(double position) {
+		leftMotor.set(ControlMode.MotionMagic, inchesToCounts(position));
+	}
+	
+	public void setRightPositionMotionMagic(double position) {
+		rightMotor.set(ControlMode.MotionMagic, inchesToCounts(position));
+	}
+	
+	public int inchesToCounts(double inches) {
+		int counts = (int) (inches / (WHEEL_DIAMETER * Math.PI) * COUNTS_PER_REVOLUTION);
+		return counts;
+	}
+	
 
 	/** prepareMotionProfile *****************************************************
 	 * Clears out any old trajectories and prepares to receive new trajectory 
@@ -109,8 +141,7 @@ public class DrivetrainAuton extends Subsystem {
 		motor.clearMotionProfileTrajectories();
 		motor.selectProfileSlot(PID_PROFILE, PIDIDX);
 	}
-	
-	
+    
 	/** Motion Profile command methods ****************************************/
 	public void pushPoints(	TrajectoryPoint leftPoint, 
 							TrajectoryPoint rightPoint) {

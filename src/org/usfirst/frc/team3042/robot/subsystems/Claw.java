@@ -15,13 +15,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *The CLAW
  */
 public class Claw extends Subsystem {
-	// configuration constants
+	/** Configuration Constants ***********************************************/
 	private TalonSRX clawRightTalon = new TalonSRX(RobotMap.CAN_CLAW_RIGHT_TALON);
 	private TalonSRX clawLeftTalon = new TalonSRX(RobotMap.CAN_CLAW_LEFT_TALON);
 
 	private Ultrasonic ultra = new Ultrasonic(RobotMap.DIO_CLAW_ULTRA_PING, RobotMap.DIO_CLAW_ULTRA_ECHO);
 	
-	// instance variables
+	/** Instance Variables ****************************************************/
 	private Solenoid clampSolenoid = new Solenoid(RobotMap.CLAMP_SOLENOID);
 	private double intakePower = RobotMap.CLAW_INTAKE_POWER;
 	private double releasePower = RobotMap.CLAW_RELEASE_POWER;
