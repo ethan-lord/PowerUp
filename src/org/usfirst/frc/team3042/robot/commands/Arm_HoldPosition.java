@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Holding thine arm in same position
  */
 public class Arm_HoldPosition extends Command {
 	/** Configuration Constants ***********************************************/

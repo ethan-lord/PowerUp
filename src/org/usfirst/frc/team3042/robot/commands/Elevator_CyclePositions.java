@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Makes it move how we want to
  */
 public class Elevator_CyclePositions extends Command {
 	/** Configuration Constants ***********************************************/

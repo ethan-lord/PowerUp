@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Stop thine arm
  */
 public class Arm_Stop extends Command {
 	/** Configuration Constants ***********************************************/

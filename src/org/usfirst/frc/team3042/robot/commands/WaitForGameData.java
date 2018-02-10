@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Wait for new command 
  */
 public class WaitForGameData extends Command {
 	/** Configuration Constants ***********************************************/

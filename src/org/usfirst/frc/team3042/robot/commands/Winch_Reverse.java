@@ -7,26 +7,23 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * DON'T MOVE
+ * LETS GO DOWN
  */
-public class Elevator_HoldPosition extends Command {
-	/** Configuration Constants ***********************************************/
-	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
+public class Winch_Reverse extends Command {
+private static final Log.Level LOG_LEVEL = RobotMap.LOG_WINCH;
 	
-	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
-	
-    public Elevator_HoldPosition() {
+    public Winch_Reverse() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
+    	requires(Robot.winch);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
     	
-    	Robot.elevator.setTalonPosition(Robot.elevator.getCurrentGoalPos());
+    	Robot.winch.reverse();
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *Hooky
+ * Hooky
  */
 public class HookDeploy extends Subsystem {
 	/** Configuration constants ******************************************************************/

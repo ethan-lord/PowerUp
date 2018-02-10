@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Makes it go zoom zoom or snail snail
  */
 public class Drivetrain_Shift extends Command {
 	/** Configuration Constants ***********************************************/

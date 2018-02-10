@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * DON'T MOVE A MUSCLE
  */
 public class Winch_Stop extends Command {
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_WINCH;

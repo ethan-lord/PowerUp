@@ -116,7 +116,7 @@ public class RobotMap {
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
 	public static final double CLAW_INTAKE_POWER = IS_PRIMARY 	? 0 : 0.5;
-	public static final double CLAW_RELEASE_POWER = IS_PRIMARY 	? 0 : 0;
+	public static final double CLAW_RELEASE_POWER = IS_PRIMARY 	? 0 : -0.3042;
 	public static final double CLAW_GRAB_DISTANCE = 4;
 	public static final boolean STARTS_ACTIVE = true;
 	public static final double CLAW_INTAKE_TIMEOUT = IS_PRIMARY ? 0 : 0;

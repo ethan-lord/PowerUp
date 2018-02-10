@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * Compress the cube
  */
 public class CompressorSubsystem extends Subsystem {
 	/** Configuration Constants ***********************************************/

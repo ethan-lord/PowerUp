@@ -18,7 +18,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * We can't do anything without this
  */
 public class Elevator extends Subsystem {
 	/** Configuration Constants ***********************************************/

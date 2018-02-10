@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *Winches used for climbing.
+ * Winches used for climbing.
  */
 public class Winch extends Subsystem {
 
@@ -61,7 +61,7 @@ public class Winch extends Subsystem {
     	setDefaultCommand(new Winch_Stop());
     }
     
-    public void setPower(TalonSRX motor, double winchPower) {
+    private void setPower(TalonSRX motor, double winchPower) {
 		winchPower = safetyCheck(winchPower);
     
 				
@@ -131,6 +131,11 @@ public class Winch extends Subsystem {
 	public void stop() {
 		setPower(winchMotorLeft, 0.0);
 		setPower(winchMotorRight, 0.0);
+	}
+	
+	public void reverse() {
+		setPower(winchMotorLeft, -climbPower);
+		setPower(winchMotorRight, -climbPower);
 	}
 	
 	public enum Side {

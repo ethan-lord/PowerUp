@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *The CLAW
+ * The CLAW
  */
 public class Claw extends Subsystem {
 	/** Configuration Constants ***********************************************/

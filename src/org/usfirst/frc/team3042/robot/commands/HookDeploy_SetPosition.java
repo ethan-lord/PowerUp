@@ -8,7 +8,7 @@ import org.usfirst.frc.team3042.robot.subsystems.Arm.Position;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *Lets play Hooky
+ * Lets play Hooky
  */
 public class HookDeploy_SetPosition extends Command {
 	/** Configuration Constants ***********************************************/

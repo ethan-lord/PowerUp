@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * The claw goes to sleep
  */
 public class Claw_Stop extends Command {
 	/** Configuration Constants ***********************************************/

@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *Lifts over nine thousand
+ * Lifts over nine thousand
  */
 public class Arm extends Subsystem {
 	/** Configuration Constants ***********************************************/

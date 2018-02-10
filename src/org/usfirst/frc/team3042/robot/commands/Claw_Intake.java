@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * The claw eats the power cube
  */
 public class Claw_Intake extends Command {
 	/** Configuration Constants ***********************************************/
