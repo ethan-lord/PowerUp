@@ -113,8 +113,8 @@ public class OI {
 			gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
 			gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
 			
-			//gamepad.Y.whileHeld(new Arm_Drive(POVButton.UP));
-			//gamepad.A.whileHeld(new Arm_Drive(POVButton.DOWN));
+			gamepad.Y.whileHeld(new Arm_Drive(POVButton.UP));
+			gamepad.A.whileHeld(new Arm_Drive(POVButton.DOWN));
 			gamepad.X.whenPressed(new Claw_Toggle());
 			gamepad.RB.whileHeld(new Claw_Intake());
 			gamepad.B.whileHeld(new Winch_Climb());
