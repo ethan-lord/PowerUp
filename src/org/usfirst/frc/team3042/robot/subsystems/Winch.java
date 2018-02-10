@@ -104,20 +104,20 @@ public class Winch extends Subsystem {
     	double powerL = basePowerL;
     	double powerR = basePowerR;
     	
-    	double time = this.time.get();
-    	double deltaTime = time - oldTime;
-    	
-    	//Left to Right.
-    	double errorLeftRight = 0 - gyro.getAngleX(); //positive error tilts to the left.
-    	double deltaErrorLeftRight = errorLeftRight - oldErrorLeftRight;
-    	
-    	powerL += errorLeftRight * kPL + accumErrorLeftRight * kIL + (deltaErrorLeftRight / deltaTime) * kDL;
-    	powerR -= errorLeftRight * kPR + accumErrorLeftRight * kIR + (deltaErrorLeftRight / deltaTime) * kDR;
-    	
-    	//Prepare for next time through
-    	oldTime = time;
-    	accumErrorLeftRight += errorLeftRight;
-    	oldErrorLeftRight = errorLeftRight;
+//    	double time = this.time.get();
+//    	double deltaTime = time - oldTime;
+//    	
+//    	//Left to Right.
+//    	double errorLeftRight = 0 - gyro.getAngleX(); //positive error tilts to the left.
+//    	double deltaErrorLeftRight = errorLeftRight - oldErrorLeftRight;
+//    	
+//    	powerL += errorLeftRight * kPL + accumErrorLeftRight * kIL + (deltaErrorLeftRight / deltaTime) * kDL;
+//    	powerR -= errorLeftRight * kPR + accumErrorLeftRight * kIR + (deltaErrorLeftRight / deltaTime) * kDR;
+//    	
+//    	//Prepare for next time through
+//    	oldTime = time;
+//    	accumErrorLeftRight += errorLeftRight;
+//    	oldErrorLeftRight = errorLeftRight;
     	
     	return new double[]{powerL, powerR};
     }

@@ -103,7 +103,7 @@ public class RobotMap {
 	
 	public static final double WINCH_HAS_LOAD_THRESHHOLD = 0;//test to determine what this should be.
 	
-	public static final double WINCH_BASE_POWER = 6;// inches per second
+	public static final double WINCH_BASE_POWER = .6;// percent output
 	
 	public static final double KP_WINCH_LEFT = IS_PRIMARY 	? 0 : 0;
 	public static final double KI_WINCH_LEFT = IS_PRIMARY 	? 0 : 0;
@@ -133,6 +133,7 @@ public class RobotMap {
 	public static final int ELEVATOR_HIGH_SCALE_POSITION = IS_PRIMARY 	? 0 : 20000;
 	public static final int ELEVATOR_MAX_POSITION = IS_PRIMARY          ? 0 : 100000;
 	public static final int ELEVATOR_MIN_POSITION = IS_PRIMARY          ? 0 : 0;
+	public static final double ELEVATOR_MAX_SPEED = IS_PRIMARY			? 0 : 1000;
 	public static final int ELEVATOR_MANUAL_SPEED = IS_PRIMARY 	? 5 : 5;
 	public static final double ELEVATOR_KP = IS_PRIMARY 	? 0 : 0.51;
 	public static final double ELEVATOR_KI = IS_PRIMARY 	? 0 : 0;
@@ -141,6 +142,8 @@ public class RobotMap {
 	public static final int ELEVATOR_I_ZONE = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 1000;
 	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 1000;
+	public static final int Elevator_SPROCKET_CIRCUMFERENCE = IS_PRIMARY ? 4 : 4;
+	public static final double COUNTER_GRAVITY_VELOCITY = IS_PRIMARY ? 0 : 0;
 	public static final boolean ELEVATOR_REVERSE = true;
 	
 	/** Arm Settings **********************************************************/
@@ -255,6 +258,7 @@ public class RobotMap {
 	public static final Log.Level	LOG_DRIVETRAIN_FOLLOWERS		= Log.Level.TRACE;
 	public static final Log.Level	LOG_DRIVETRAIN_ENCODERS 		= Log.Level.DEBUG;
 	public static final Log.Level	LOG_DRIVETRAIN_AUTON			= Log.Level.DEBUG;
+	public static final Log.Level	LOG_MOTION_PROFILE				= Log.Level.DEBUG;
 	public static final Log.Level	LOG_GYROSCOPE				= Log.Level.DEBUG;
 	public static final Log.Level	LOG_WINCH					= Log.Level.TRACE;
 	public static final Log.Level	LOG_CLAW						= Log.Level.TRACE;
