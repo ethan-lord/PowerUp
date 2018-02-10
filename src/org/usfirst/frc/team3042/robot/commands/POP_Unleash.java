@@ -7,7 +7,15 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *UNLEASH THE PLATFORMS OF POWER!!!!!!!!!!!! HOO RAW
+ *UNLEASH THE PLATFORMS OF POWER!!!!!!!!!!!! HOO RAW -Gabriel , lord of the relm of Mahlen, is thine Bestest Around! - For the Holy White Knights of Space. 
+ *(….\..CORE....../….)
+ *.\….\…….……/…./
+ *..\….\………../…./
+ *…\…/;¯.|.¯`\…. /
+ *…/… |….|…. (¯`\
+ *..|…..|;¯.|;¯.|\.. ..\
+ *..\……` ¯..¯ ;……/
+ *…\.                                                                             
  */
 public class POP_Unleash extends Command {
 	/** Configuration Constants ***********************************************/
