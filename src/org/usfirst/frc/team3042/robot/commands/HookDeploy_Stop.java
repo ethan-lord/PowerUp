@@ -21,12 +21,12 @@ public class HookDeploy_Stop extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.hookDeploy);
-    	Robot.hookDeploy.stop();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
+    	Robot.hookDeploy.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run

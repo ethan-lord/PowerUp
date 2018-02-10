@@ -2,9 +2,14 @@ package org.usfirst.frc.team3042.robot;
 
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.Path;
+import org.usfirst.frc.team3042.robot.commands.Arm_Drive;
+import org.usfirst.frc.team3042.robot.commands.Claw_Intake;
+import org.usfirst.frc.team3042.robot.commands.Claw_Toggle;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
+import org.usfirst.frc.team3042.robot.commands.HookDeploy_HoldPosition;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Calibrate;
+import org.usfirst.frc.team3042.robot.commands.Drivetrain_Shift;
 import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
 import org.usfirst.frc.team3042.robot.paths.CenterToRightSwitch;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
@@ -35,7 +40,7 @@ public class OI {
 	
 	/** Instance Variables ****************************************************/
 	Log log = new Log(RobotMap.LOG_OI, "OI");
-	Gamepad gamepad, joyLeft, joyRight;
+	public Gamepad gamepad, joyLeft, joyRight;
 	int driveAxisLeft, driveAxisRight;
 
 
@@ -91,20 +96,28 @@ public class OI {
 //			testPath.addStraight(36.0, -18.0);
 			gamepad.B.whenPressed(new DrivetrainAuton_Drive(testPath));
 			
-			gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
-			gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
-			
 			gamepad.Y.whenPressed(new Drivetrain_Calibrate());
 		}
 		
 		/** Primary Robot Controls ********************************************/
 		if (IS_PRIMARY) {
-			
+			gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
+			gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
 		}
 		
 		/** Secondary Robot Controls ******************************************/
 		if (IS_SECONDARY) {
+			gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
+			gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
 			
+			//gamepad.Y.whileHeld(new Arm_Drive(POVButton.UP));
+			//gamepad.A.whileHeld(new Arm_Drive(POVButton.DOWN));
+			gamepad.X.whenPressed(new Claw_Toggle());
+			gamepad.RB.whileHeld(new Claw_Intake());
+			
+			joyRight.button1.whenPressed(new Drivetrain_Shift());
+			
+			joyLeft.button1.whenPressed(new Drivetrain_Shift());
 		}
 	}
 	

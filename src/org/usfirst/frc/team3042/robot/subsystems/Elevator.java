@@ -4,6 +4,7 @@ import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Elevator_HoldPosition;
 import org.usfirst.frc.team3042.robot.commands.Elevator_Stop;
+import org.usfirst.frc.team3042.robot.commands.Elevator_Test;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -51,7 +52,7 @@ public class Elevator extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     	
     	//setDefaultCommand(new Elevator_HoldPosition());
-    	setDefaultCommand(new Elevator_HoldPosition());
+    	setDefaultCommand(new Elevator_Test());
     }
     
     public Elevator(){
@@ -67,6 +68,7 @@ public class Elevator extends Subsystem {
 		motor.config_kF(SLOTIDX_1, kF, TIMEOUT);
 		motor.config_IntegralZone(SLOTIDX_1, I_ZONE, TIMEOUT);
 		motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PIDIDX, TIMEOUT);
+		motor.setInverted(RobotMap.ELEVATOR_REVERSE);
 	}
     
     public void initMotionMagic(TalonSRX motor){
@@ -74,6 +76,9 @@ public class Elevator extends Subsystem {
 		motor.configMotionCruiseVelocity(MAGIC_CRUISE, TIMEOUT);
 	}
     
+    public void setPower(double power) {
+    	setPower (elevatorTalon, power);
+    }
     private void setPower(TalonSRX talon, double power){
     	talon.set(ControlMode.PercentOutput, power);
     }

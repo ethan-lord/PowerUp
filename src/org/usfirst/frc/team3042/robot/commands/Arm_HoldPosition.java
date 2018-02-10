@@ -42,12 +42,12 @@ public class Arm_HoldPosition extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	log.add("Initialize", Log.Level.TRACE);
+    	log.add("End", Log.Level.TRACE);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	log.add("Initialize", Log.Level.TRACE);
+    	log.add("Interrupted", Log.Level.TRACE);
     }
 }

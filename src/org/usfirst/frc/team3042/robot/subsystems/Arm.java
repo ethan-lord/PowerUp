@@ -3,6 +3,7 @@ package org.usfirst.frc.team3042.robot.subsystems;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_HoldPosition;
+import org.usfirst.frc.team3042.robot.commands.Arm_Stop;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
 import com.ctre.phoenix.ParamEnum;
@@ -23,10 +24,10 @@ public class Arm extends Subsystem {
 	private static final int TIMEOUT = RobotMap.TALON_ERROR_TIMEOUT;
 	private static final int FRAME_RATE = RobotMap.AUTON_FRAME_RATE;
 	private static final int PIDIDX = RobotMap.PIDIDX;
-	private static final int kP = RobotMap.ARM_KP;
-	private static final int kI = RobotMap.ARM_KI;
-	private static final int kD = RobotMap.ARM_KD;
-	private static final int kF = RobotMap.ARM_KF;
+	private static final double kP = RobotMap.ARM_KP;
+	private static final double kI = RobotMap.ARM_KI;
+	private static final double kD = RobotMap.ARM_KD;
+	private static final double kF = RobotMap.ARM_KF;
 	private static final int I_ZONE = RobotMap.ARM_I_ZONE;
 	private static final int MANUAL_SPEED = RobotMap.ARM_MANUAL_SPEED;
 	private static final int BOT_POS = RobotMap.ARM_BOTTOM_POS;
@@ -37,11 +38,12 @@ public class Arm extends Subsystem {
 	private static final int MAX_POS = RobotMap.ARM_MAX_POSITION;
 	private static final int MIN_POS = RobotMap.ARM_MIN_POSITION;
 	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ARM;
+	public static final boolean REVERSE_PHASE = RobotMap.ARM_REVERSE_SENSOR_PHASE;
 	
 	/** Instance Variables ****************************************************/
 	private TalonSRX armTalon = new TalonSRX(CAN_ARM_MOTOR);
 	private int currentPreset = 0;
-	private int currentGoalPos = 0;
+	private int currentGoalPos = MID_POS;
 	public Position[] positionFromInt = new Position[]{Position.BOTTOM, Position.MIDDLE, Position.TOP};
 	Log log = new Log(LOG_LEVEL, getName());
 	
@@ -57,12 +59,20 @@ public class Arm extends Subsystem {
     }
     
     public void manual(int direction){
-		if(direction == POVButton.UP){
-			armTalon.set(ControlMode.MotionMagic, currentGoalPos += MANUAL_SPEED);
-		}
-		else if(direction == POVButton.DOWN){
-			armTalon.set(ControlMode.MotionMagic, currentGoalPos -= MANUAL_SPEED);
-		}
+    	switch (direction) {
+		case POVButton.UP:
+			//setTalonPosition(currentGoalPos += MANUAL_SPEED);
+			log.add("Error: " + armTalon.getClosedLoopError(PIDIDX) + "\nPosition: " + armTalon.getSelectedSensorPosition(PIDIDX), Log.Level.DEBUG);
+			armTalon.set(ControlMode.PercentOutput, -0.5);
+			break;
+		case POVButton.DOWN:
+			//setTalonPosition(currentGoalPos -= MANUAL_SPEED);
+			log.add("Error: " + armTalon.getClosedLoopError(PIDIDX) + "\nPosition: " + armTalon.getSelectedSensorPosition(PIDIDX), Log.Level.DEBUG);
+			armTalon.set(ControlMode.PercentOutput, 0.5);
+			break;
+		default:
+			break;
+    	}
 	}
 	
 	public void cyclePreset(int direction){
@@ -98,6 +108,7 @@ public class Arm extends Subsystem {
 	}
     
     private void initMotor(TalonSRX motor) {
+    	motor.setSensorPhase(REVERSE_PHASE);
 		motor.changeMotionControlFramePeriod(FRAME_RATE);
 		motor.config_kP(SLOTIDX_1, kP, TIMEOUT);
 		motor.config_kI(SLOTIDX_1, kI, TIMEOUT);
@@ -117,7 +128,8 @@ public class Arm extends Subsystem {
 	}
     
 	public void setTalonPosition(int position) {
-		armTalon.set(ControlMode.MotionMagic, safetyCheck(position));
+		log.add("Setting arm to position: " + safetyCheck(position), Log.Level.DEBUG);
+		armTalon.set(ControlMode.Position, safetyCheck(position));
 		currentGoalPos = position;
 	}
     

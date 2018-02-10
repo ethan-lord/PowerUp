@@ -9,24 +9,23 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Claw_Intake extends Command {
+public class Drivetrain_Shift extends Command {
 	/** Configuration Constants ***********************************************/
-	public static final Log.Level LOG_LEVEL = RobotMap.LOG_CLAW;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
 	
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
-
-    public Claw_Intake() {
+	
+    public Drivetrain_Shift() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.claw);
+    	requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
-    	
-    	Robot.claw.intake();
+    	Robot.drivetrain.ToggleGear();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,7 +34,7 @@ public class Claw_Intake extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -46,7 +45,6 @@ public class Claw_Intake extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	log.add("Interrupted", Log.Level.TRACE);
-    	Robot.claw.stop();
+    	log.add("Interrupt", Log.Level.TRACE);
     }
 }
