@@ -14,6 +14,7 @@ import org.usfirst.frc.team3042.robot.subsystems.Claw;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3042.robot.subsystems.Elevator;
 import org.usfirst.frc.team3042.robot.subsystems.HookDeploy;
+import org.usfirst.frc.team3042.robot.subsystems.POP;
 import org.usfirst.frc.team3042.robot.subsystems.Winch;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -37,6 +38,7 @@ public class Robot extends IterativeRobot {
 	private static final boolean HAS_COMPRESSOR = RobotMap.HAS_COMPRESSOR;
 	private static final boolean HAS_ARM = RobotMap.HAS_ARM;
 	private static final boolean HAS_HOOKDEPLOY = RobotMap.HAS_HOOKDEPLOY;
+	private static final boolean HAS_POP = RobotMap.HAS_POP;
 	
 	/** Create Subsystems *****************************************************/
 	private Log log = new Log(LOG_LEVEL, "Robot");
@@ -46,6 +48,7 @@ public class Robot extends IterativeRobot {
 	public static final Elevator elevator = (HAS_ELEVATOR) ? new Elevator() : null;
 	public static final Arm arm = (HAS_ARM) ? new Arm() : null;
 	public static final HookDeploy hookDeploy = (HAS_HOOKDEPLOY) ? new HookDeploy() : null; 
+	public static final POP pop = (HAS_POP) ? new POP() : null;
 	public static OI oi;
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
 	

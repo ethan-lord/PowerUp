@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * Intakes Power Cubes, when the claw senses a Cube with the Ultrasonic.
  */
 public class Intake extends CommandGroup {
-	
+
 	/** Instance Variables ****************************************************/
 	double timeout = RobotMap.CLAW_INTAKE_TIMEOUT;
 
@@ -19,11 +19,10 @@ public class Intake extends CommandGroup {
 		// addSequential(new Command2());
 		// these will run in order.
 		addSequential(new Claw_Intake());
-		if (Robot.claw.isCubeIn() == true) {
-			addSequential(new Claw_Clamp());
-			addSequential(new Wait(timeout));
-			addSequential(new Claw_Stop());
-		}
+		addSequential(new Claw_WaitForCube());
+		addSequential(new Claw_Clamp());
+		addSequential(new Wait(timeout));
+		addSequential(new Claw_Stop());
 
 		// To run multiple commands at the same time,
 		// use addParallel()

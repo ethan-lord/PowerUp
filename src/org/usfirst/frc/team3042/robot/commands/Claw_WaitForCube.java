@@ -7,16 +7,16 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *Waits for cube to be in thy claw
  */
-public class Claw_Unclamp extends Command {
+public class Claw_WaitForCube extends Command {
 	/** Configuration Constants ***********************************************/
 	public static final Log.Level LOG_LEVEL = RobotMap.LOG_CLAW;
 	
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
-	
-    public Claw_Unclamp() {
+
+    public Claw_WaitForCube() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.claw);
@@ -24,8 +24,6 @@ public class Claw_Unclamp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.claw.unclamp();
-    	
     	log.add("Initialize", Log.Level.TRACE);
     }
 
@@ -35,7 +33,7 @@ public class Claw_Unclamp extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.claw.isCubeIn();
     }
 
     // Called once after isFinished returns true
