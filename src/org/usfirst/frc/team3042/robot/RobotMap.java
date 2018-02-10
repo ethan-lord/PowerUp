@@ -14,7 +14,7 @@ public class RobotMap {
 	/** Robot selector ********************************************************/
 	public static enum Bot {PBOT, PRIMARY, SECONDARY};
 	// Set the bot to which you intend to push code.
-	private static Bot currentBot = Bot.PBOT;
+	private static Bot currentBot = Bot.SECONDARY;
 
 	public static final boolean IS_PBOT 	= (currentBot == Bot.PBOT);
 	public static final boolean IS_PRIMARY = (currentBot == Bot.PRIMARY);
@@ -39,44 +39,40 @@ public class RobotMap {
 
 
 	/** PWM ports *************************************************************/
-	public static final int PWM_PAN_PORT 	= 0;
-	public static final int PWM_TILT_PORT 	= 1;
-	
 	
 	/** CAN ID numbers ********************************************************/
 	public static final int CAN_LEFT_MOTOR 	= 		IS_PBOT 	? 3 :
-													IS_PRIMARY 	? 0 : 0;
+													IS_PRIMARY 	? 0 : 14;
 	public static final int CAN_RIGHT_MOTOR = 		IS_PBOT 	? 9 :
-													IS_PRIMARY 	? 0 : 0;
-	public static final int CAN_LEFT_FOLLOWER = 		IS_PRIMARY 	? 0 : 0;
-	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 0 : 0;
-	public static final int CAN_WINCH_MOTOR_LEFT = 	IS_PRIMARY  ? 0 : 0;
-	public static final int CAN_WINCH_MOTOR_RIGHT = 	IS_PRIMARY  ? 0 : 0;
+													IS_PRIMARY 	? 0 : 25;
+	public static final int CAN_LEFT_FOLLOWER = 		IS_PRIMARY 	? 0 : 8;
+	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 0 : 7;
+	public static final int CAN_WINCH_MOTOR_LEFT = 	IS_PRIMARY  ? 0 : 19;
+	public static final int CAN_WINCH_MOTOR_RIGHT = 	IS_PRIMARY  ? 0 : 18;
 	
-	public static final int CAN_CLAW_RIGHT_TALON =  	IS_PRIMARY  ? 0 : 0;
-	public static final int CAN_CLAW_LEFT_TALON =   	IS_PRIMARY  ? 0 : 0;
+	public static final int CAN_CLAW_RIGHT_TALON =  	IS_PRIMARY  ? 0 : 1;
+	public static final int CAN_CLAW_LEFT_TALON =   	IS_PRIMARY  ? 0 : 12;
 	
-	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 0 : 10;
+	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 0 : 17;
 	
-	public static final int CAN_ARM_MOTOR =			IS_PRIMARY ? 0 : 0;
+	public static final int CAN_ARM_MOTOR =			IS_PRIMARY ? 0 : 2;
 
-	public static final int CAN_HOOK_MOTOR =			IS_PRIMARY ? 0 : 0;
+	public static final int CAN_HOOK_MOTOR =			IS_PRIMARY ? 0 : 15;
 	
 	/** DIO channels **********************************************************/
 	public static final int DIO_CLAW_ULTRA_PING = 1;
 	public static final int DIO_CLAW_ULTRA_ECHO = 0;
 	
 	/** PCM channels **********************************************************/
-	public static final int LIGHT_RING_CHANNEL = 1;
-	public static final int CLAMP_SOLENOID_LEFT = 0;
-	public static final int CLAMP_SOLENOID_RIGHT = 0;
+	public static final int CLAMP_SOLENOID = 0;
+	public static final int SHIFT_SOLENOID = 1;
 	
 	
 	/** OI Settings ***********************************************************/
 	public static final boolean USE_JOYSTICKS = !IS_PBOT;
-	public static final double JOYSTICK_DRIVE_SCALE = (IS_PBOT || DEMO_MODE)? 1.0 : 1.0;
+	public static final double JOYSTICK_DRIVE_SCALE = (IS_PBOT || DEMO_MODE)? 0.5 : 1.0;
 	public static final double TRIGGER_SPINNER_SCALE = 0.1;
-	public static final double JOYSTICK_DEAD_ZONE = 0.0;
+	public static final double JOYSTICK_DEAD_ZONE = 0.1;
 
 
 	/** Drivetrain Settings ***************************************************/
@@ -84,7 +80,7 @@ public class RobotMap {
 	public static final boolean HAS_FOLLOWERS = !IS_PBOT;
 	public static final NeutralMode DRIVETRAIN_BRAKE_MODE = NeutralMode.Brake;
 	public static final boolean REVERSE_LEFT_MOTOR = 	(IS_PBOT) ? true : false;
-	public static final boolean REVERSE_RIGHT_MOTOR = 	(IS_PBOT) ? false: false;
+	public static final boolean REVERSE_RIGHT_MOTOR = 	(IS_PBOT) ? false: true;
 	// Maximum Acceleration given in power per second
 	public static final double ACCELERATION_MAX = 50;
 	public static final double kF_DRIVE_LEFT = 	(IS_PBOT) 		? 1.1666666666666666666666666666 ://0.7130907570054371 :
@@ -96,6 +92,7 @@ public class RobotMap {
 	public static final int BASE_TRAJPERIOD = 0;
 	public static final int PIDIDX = 0; //pidIdx - 0 for Primary closed-loop. 1 for cascaded closed-loop. See Phoenix-Documentation for how to interpret.
 	public static final int SLOTIDX_1 = 0;
+	public static final boolean STARTS_HIGH_GEAR = (IS_PRIMARY) ? false : false;
 	
 	/** Winch Settings ********************************************************/
 	public static final boolean HAS_WINCH = !IS_PBOT;
@@ -114,13 +111,16 @@ public class RobotMap {
 	
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
-	public static final double CLAW_INTAKE_POWER = IS_PRIMARY 	? 0 : 0;
+	public static final double CLAW_INTAKE_POWER = IS_PRIMARY 	? 0 : 0.5;
 	public static final double CLAW_RELEASE_POWER = IS_PRIMARY 	? 0 : 0;
 	public static final double CLAW_GRAB_DISTANCE = 4;
 	public static final boolean STARTS_ACTIVE = true;
+	public static final double CLAW_INTAKE_TIMEOUT = IS_PRIMARY ? 0 : 0;
+	public static final boolean CLAW_RIGHT_REVERSE = true;
+	public static final boolean CLAW_LEFT_REVERSE = true;
 	
 	/** Elevator Settings *****************************************************/
-	public static final boolean HAS_ELEVATOR = true;// creating even though it is running on pbot !IS_PBOT;
+	public static final boolean HAS_ELEVATOR = !IS_PBOT;
 	public static final int ELEVATOR_BOTTOM_POSITION = IS_PRIMARY 		? 0 : 0;
 	public static final int ELEVATOR_INTAKE_POSITION = IS_PRIMARY 		? 0 : 5000;
 	public static final int ELEVATOR_SWITCH_POSITION = IS_PRIMARY 		? 0 : 10000;
@@ -137,33 +137,40 @@ public class RobotMap {
 	public static final int ELEVATOR_I_ZONE = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 1000;
 	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 1000;
+	public static final boolean ELEVATOR_REVERSE = true;
 	
 	/** Arm Settings **********************************************************/
 	public static final boolean HAS_ARM = !IS_PBOT;
-	public static final int ARM_KP = IS_PRIMARY 	? 0 : 0;
-	public static final int ARM_KI = IS_PRIMARY 	? 0 : 0;
-	public static final int ARM_KD = IS_PRIMARY 	? 0 : 0;
-	public static final int ARM_KF = IS_PRIMARY 	? 0 : 0;
-	public static final int ARM_I_ZONE = IS_PRIMARY 	? 0 : 0;
-	public static final int ARM_MANUAL_SPEED = IS_PRIMARY	? 0 : 0;
+	public static final double ARM_KP = IS_PRIMARY 	? 0 : 8.0;
+	public static final double ARM_KI = IS_PRIMARY 	? 0 : 0.0;
+	public static final double ARM_KD = IS_PRIMARY 	? 0 : 100.0;
+	public static final double ARM_KF = IS_PRIMARY 	? 0 : 0;
+	public static final int ARM_I_ZONE = IS_PRIMARY 	? 0 : 20;
+	public static final boolean ARM_REVERSE_SENSOR_PHASE = false;
+	public static final int ARM_MANUAL_SPEED = IS_PRIMARY	? 0 : 1;
 	public static final int ARM_BOTTOM_POS = IS_PRIMARY	? 0 : 0;
-	public static final int ARM_MIDDLE_POS = IS_PRIMARY	? 0 : 0;
+	public static final int ARM_MIDDLE_POS = IS_PRIMARY	? 0 : 800;
 	public static final int ARM_TOP_POS = IS_PRIMARY	? 0 : 0;
 	public static final int ARM_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 0;
 	public static final int ARM_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 0;
-	public static final int ARM_MAX_POSITION = IS_PRIMARY    ? 0 : 100000;
-	public static final int ARM_MIN_POSITION = IS_PRIMARY    ? 0 : 0;
+	public static final int ARM_MAX_POSITION = IS_PRIMARY    ? 0 : 870;
+	public static final int ARM_MIN_POSITION = IS_PRIMARY    ? 0 : 500;
 	
 	/** HookDeploy Settings **********************************************/
 	public static final boolean HAS_HOOKDEPLOY = !IS_PBOT;
 	public static final int HOOK_STOWED_POS = IS_PRIMARY	? 0 : 0;
 	public static final int HOOK_READY_POS = IS_PRIMARY		? 0 : 0;
 	public static final int HOOK_DELIVERY_POS = IS_PRIMARY 	? 0 : 0;
+	public static final double HOOK_KP = IS_PRIMARY 	? 0 : 2;
+	public static final double HOOK_KI = IS_PRIMARY 	? 0 : 0;
+	public static final double HOOK_KD = IS_PRIMARY 	? 0 : 0;
+	public static final double HOOK_KF = IS_PRIMARY 	? 0 : 0;
+	public static final boolean HOOK_DEPLOY_REVERSE_SENSOR_PHASE = IS_PRIMARY ? true : true;
 
 	
 	/** Compressor Settings ***************************************************/
 	public static final int COMPRESSOR_PORT = 0;
-	public static final boolean HAS_COMPRESSOR = !IS_PBOT;
+	public static final boolean HAS_COMPRESSOR = true;//!IS_PBOT;
 	
 	
 	/** Drivetrain Encoder Settings *******************************************/
@@ -243,7 +250,7 @@ public class RobotMap {
 	public static final Log.Level	LOG_WINCH					= Log.Level.TRACE;
 	public static final Log.Level	LOG_CLAW						= Log.Level.TRACE;
 	public static final Log.Level	LOG_ELEVATOR					= Log.Level.DEBUG;
-	public static final Log.Level 	LOG_ARM						= Log.Level.TRACE;
+	public static final Log.Level 	LOG_ARM						= Log.Level.DEBUG;
 	public static final Log.Level	LOG_HOOK						= Log.Level.TRACE;
 	public static final Log.Level 	LOG_COMPRESSOR              = Log.Level.TRACE;
 
