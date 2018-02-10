@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
+import org.usfirst.frc.team3042.lib.ADIS16448_IMU;
 import org.usfirst.frc.team3042.lib.Log;
+import org.usfirst.frc.team3042.lib.math.Rotation2d;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_TankDrive;
 
@@ -35,6 +37,7 @@ public class Drivetrain extends Subsystem {
 	private Solenoid shift = new Solenoid(SHIFT_SOLENOID);
 	private TalonSRX leftMotor = new TalonSRX(CAN_LEFT_MOTOR);
 	private TalonSRX rightMotor = new TalonSRX(CAN_RIGHT_MOTOR);
+	private ADIS16448_IMU gyro = new ADIS16448_IMU();
 	private DrivetrainFollowers followers;
 	private DrivetrainEncoders encoders;
 	private DrivetrainAuton auton;
@@ -104,6 +107,13 @@ public class Drivetrain extends Subsystem {
 		power = Math.min(1.0, power);
 		power = Math.max(-1.0, power);
 		return power;
+	}
+	
+	/** Make Gyro WORK FOR IT! *********************************************
+	 * 
+	 */
+	public Rotation2d getGyro() {
+		return Rotation2d.fromDegrees(gyro.getAngle());
 	}
 	
 	

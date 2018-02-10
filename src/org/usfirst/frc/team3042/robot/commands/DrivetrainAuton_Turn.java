@@ -10,7 +10,7 @@ import org.usfirst.frc.team3042.robot.subsystems.DrivetrainAuton;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Spins the robot around and around
  */
 public class DrivetrainAuton_Turn extends Command {
 	/** Configuration Constants ***********************************************/
@@ -21,21 +21,35 @@ public class DrivetrainAuton_Turn extends Command {
 	Log log = new Log(LOG_LEVEL, getName());
 	Drivetrain drivetrain = Robot.drivetrain;
 	DrivetrainAuton auton = Robot.drivetrain.getAuton();
+	Rotation2d goal, turn;
 
     public DrivetrainAuton_Turn(Rotation2d turn) {
 		log.add("Constructor", Log.Level.TRACE);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    		requires(drivetrain);
+    	requires(drivetrain);
+    	
+    	this.turn = turn;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
 		log.add("Initialize", Log.Level.TRACE);
+		
+		goal = drivetrain.getGyro().rotateBy(turn);
+		
+		double distance = angleToDistance(turn);
+		auton.setLeftPositionMotionMagic(-distance);
+		auton.setRightPositionMotionMagic(distance);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Rotation2d remainingTurn = goal.rotateBy(drivetrain.getGyro().inverse());
+    	
+    	double distance = angleToDistance(remainingTurn);
+		auton.setLeftPositionMotionMagic(-distance);
+		auton.setRightPositionMotionMagic(distance);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -52,5 +66,10 @@ public class DrivetrainAuton_Turn extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
 		log.add("Interrupt", Log.Level.TRACE);
+    }
+    
+    private double angleToDistance(Rotation2d turn) {
+    	double distance = RobotMap.ROBOT_WIDTH * turn.getRadians() / 2;
+    	return distance;
     }
 }
