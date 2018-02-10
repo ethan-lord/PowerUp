@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3042.robot;
 
+import org.usfirst.frc.team3042.lib.ElevatorPath;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.robot.commands.Arm_Drive;
@@ -8,10 +9,12 @@ import org.usfirst.frc.team3042.robot.commands.Claw_Toggle;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_HoldPosition;
+import org.usfirst.frc.team3042.robot.commands.Winch_Climb;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Calibrate;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Shift;
 import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
 import org.usfirst.frc.team3042.robot.paths.CenterToRightSwitch;
+import org.usfirst.frc.team3042.robot.subsystems.Elevator;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
 /**
@@ -114,13 +117,13 @@ public class OI {
 			//gamepad.A.whileHeld(new Arm_Drive(POVButton.DOWN));
 			gamepad.X.whenPressed(new Claw_Toggle());
 			gamepad.RB.whileHeld(new Claw_Intake());
+			gamepad.B.whileHeld(new Winch_Climb());
 			
 			joyRight.button1.whenPressed(new Drivetrain_Shift());
 			
 			joyLeft.button1.whenPressed(new Drivetrain_Shift());
 		}
 	}
-	
 	
 	/** Access to the driving axes values *************************************
 	 * A negative has been added to make pushing forward positive.

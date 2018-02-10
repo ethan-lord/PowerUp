@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
+import org.usfirst.frc.team3042.lib.ElevatorPath;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Elevator_HoldPosition;
@@ -7,6 +8,9 @@ import org.usfirst.frc.team3042.robot.commands.Elevator_Stop;
 import org.usfirst.frc.team3042.robot.commands.Elevator_Test;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
+import com.ctre.phoenix.motion.MotionProfileStatus;
+import com.ctre.phoenix.motion.SetValueMotionProfile;
+import com.ctre.phoenix.motion.TrajectoryPoint;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -45,7 +49,9 @@ public class Elevator extends Subsystem {
 	private Log log = new Log(LOG_LEVEL, getName());
 	private int currentGoalPos = 0;
 	private int currentPreset = 0;
-	public Position[] positionFromInt = new Position[]{Position.BOTTOM, Position.INTAKE, Position.SWITCH, Position.LOW_SCALE, Position.MID_SCALE, Position.HIGH_SCALE};
+	public static Position[] positionFromPreset = new Position[]{Position.BOTTOM, Position.INTAKE, Position.SWITCH, Position.LOW_SCALE, Position.MID_SCALE, Position.HIGH_SCALE};
+	public static double[] distanceFromPreset = new double[] {0, 0, 0, 0, 0, 0};
+	public static final double maxSpeed = RobotMap.ELEVATOR_MAX_SPEED;
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -158,16 +164,49 @@ public class Elevator extends Subsystem {
 	public void cyclePreset(int direction){
 		switch (direction) {
 			case POVButton.UP:
-				currentPreset = Math.min(currentPreset + 1, positionFromInt.length - 1);
-				setPosition(positionFromInt[currentPreset]);
+				currentPreset = Math.min(currentPreset + 1, positionFromPreset.length - 1);
+				setPosition(positionFromPreset[currentPreset]);
 				break;
 			case POVButton.DOWN:
 				currentPreset = Math.max(currentPreset - 1, 0);
-				setPosition(positionFromInt[currentPreset]);
+				setPosition(positionFromPreset[currentPreset]);
 				break;
 			default:
 				break;
 		}
+	}
+	
+	public ElevatorPath elevatorPathFromOnePositionToAnotherPosition(int preset1, int preset2){
+		ElevatorPath path = new ElevatorPath();
+		path.addStraight(Elevator.distanceFromPreset[preset2] - Elevator.distanceFromPreset[preset1], Elevator.maxSpeed);
+		return path;
+	}
+	
+	public void pushPoint(	TrajectoryPoint leftPoint) {
+		elevatorTalon.pushMotionProfileTrajectory(leftPoint);
+	}
+	public MotionProfileStatus getStatus() {
+		MotionProfileStatus status = new MotionProfileStatus();
+		elevatorTalon.getMotionProfileStatus(status);
+		return status;
+	}
+	
+	public void initMotionProfile() {		
+		initMotor(elevatorTalon);
+		disableMotionProfile();
+		removeUnderrun();
+	}
+	
+	public void enableMotionProfile() {
+		elevatorTalon.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
+	}
+	
+	public void disableMotionProfile() {
+		elevatorTalon.set(ControlMode.MotionProfile, SetValueMotionProfile.Disable.value);
+	}
+	
+	public void removeUnderrun() {
+		elevatorTalon.clearMotionProfileHasUnderrun(TIMEOUT);
 	}
 	
 	public int getPosition(){

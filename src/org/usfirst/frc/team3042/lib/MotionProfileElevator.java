@@ -5,12 +5,11 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import com.ctre.phoenix.motion.TrajectoryPoint;
 import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
 
-
 /** MotionProfile *************************************************************
  * All distances are assumed to be in revolutions.
  * All Times are assumed to be in seconds.
  */
-public class MotionProfile {
+public class MotionProfileElevator {
 	/** Configuration Constants ***********************************************/
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_MOTION_PROFILE;
 	private static final int PROFILE = RobotMap.AUTON_PROFILE;
@@ -20,6 +19,7 @@ public class MotionProfile {
 	private static final double MAX_ACCEL = RobotMap.AUTON_MAX_ACCEL;
 	private static final int COUNTS_PER_REV = RobotMap.COUNTS_PER_REVOLUTION;
 	private static final int PIDIDX = RobotMap.AUTON_PIDIDX;
+	private static final double COUNTER_GRAVITY_VELOCITY = RobotMap.COUNTER_GRAVITY_VELOCITY;
 	
 	
 	/** Instance Variables ****************************************************/
@@ -31,7 +31,7 @@ public class MotionProfile {
 	 * distance given in rotations
 	 * Speed given in rps
 	 */
-	public MotionProfile(double[] distance, double[] speed) {
+	public MotionProfileElevator(double[] distance, double[] speed) {
 		checkAccel(speed);
 		
 		double[] velocity = calculateVelocity(distance, speed);
@@ -144,7 +144,7 @@ public class MotionProfile {
 		for (int n=0; n<length; n++) {
 			trajectory[n] = new TrajectoryPoint();
 			trajectory[n].position = position[n] * COUNTS_PER_REV;
-			trajectory[n].velocity = velocity[n] * COUNTS_PER_REV / 10.0;			
+			trajectory[n].velocity = velocity[n] * COUNTS_PER_REV / 10.0 - COUNTER_GRAVITY_VELOCITY;			
 			trajectory[n].headingDeg = 0; // Set to zero; unimplemented feature
 			trajectory[n].profileSlotSelect0 = PROFILE;
 			trajectory[n].profileSlotSelect1 = PIDIDX;
