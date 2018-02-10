@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Driving thine arm
  */
 public class Arm_Drive extends Command {
 	/** Configuration Constants ***********************************************/

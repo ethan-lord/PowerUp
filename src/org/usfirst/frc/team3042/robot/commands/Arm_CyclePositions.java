@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Cycling all thine arm positions
  */
 public class Arm_CyclePositions extends Command {
 	/** Configuration Constants ***********************************************/

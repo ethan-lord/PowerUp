@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Claw spits the power cube out because it tastes gross
  */
 public class Claw_Unclamp extends Command {
 	/** Configuration Constants ***********************************************/

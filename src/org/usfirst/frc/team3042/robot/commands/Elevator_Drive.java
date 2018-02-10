@@ -6,7 +6,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Make it go up and down
  */
 public class Elevator_Drive extends Command {
 	/** Configuration Constants ***********************************************/

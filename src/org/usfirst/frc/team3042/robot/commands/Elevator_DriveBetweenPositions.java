@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Make it DRIVE instead of teleporting
  */
 public class Elevator_DriveBetweenPositions extends Command {
 	/** Configuration Constants ***********************************************/

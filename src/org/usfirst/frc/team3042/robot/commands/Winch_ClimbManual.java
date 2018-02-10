@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.subsystems.Winch;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * THIS COULD BE BAD
  */
 public class Winch_ClimbManual extends Command {
 	/** Configuration Constants ***********************************************/

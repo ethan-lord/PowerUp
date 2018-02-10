@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *Winches used for climbing.
+ * Winches used for climbing.
  */
 public class Winch extends Subsystem {
 

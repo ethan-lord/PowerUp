@@ -8,7 +8,7 @@ import org.usfirst.frc.team3042.robot.subsystems.Elevator;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * I COMMAND YOU TO SET THIS POSITION
  */
 public class Elevator_SetPosition extends Command {
 	/** Configuration Constants ***********************************************/

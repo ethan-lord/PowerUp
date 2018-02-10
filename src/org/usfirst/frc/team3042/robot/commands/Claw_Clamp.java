@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * The claw goes clampy clamp
  */
 public class Claw_Clamp extends Command {
 	/** Configuration Constants ***********************************************/

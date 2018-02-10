@@ -8,7 +8,7 @@ import org.usfirst.frc.team3042.robot.subsystems.Arm.Position;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Set thine arm position
  */
 public class Arm_SetPosition extends Command {
 	/** Configuration Constants ***********************************************/

@@ -6,7 +6,7 @@ import org.usfirst.frc.team3042.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * We don't know if it will work
  */
 public class Elevator_Test extends Command {
 

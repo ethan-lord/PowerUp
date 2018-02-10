@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * YOU SHALL NOT PASS (unless we say you can)
  */
 public class Wait extends Command {
 	/** Configuration Constants ***********************************************/

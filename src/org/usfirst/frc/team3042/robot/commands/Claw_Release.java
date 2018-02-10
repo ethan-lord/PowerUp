@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * The claw thorws up the power cube because you are not supposed to eat power cubes
  */
 public class Claw_Release extends Command {
 	/** Configuration Constants ***********************************************/

@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * NO NEED FOR LEVITATE
  */
 public class Winch_Climb extends Command {
 	/** Configuration Constants ***********************************************/

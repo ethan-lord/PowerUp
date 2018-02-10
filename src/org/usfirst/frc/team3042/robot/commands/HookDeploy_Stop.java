@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *Stop Hooking Around
+ * Stop Hooking Around
  */
 public class HookDeploy_Stop extends Command {
 	/** Configuration Constants ***********************************************/

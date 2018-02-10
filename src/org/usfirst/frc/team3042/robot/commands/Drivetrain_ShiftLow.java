@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Change robot into a snail
  */
 public class Drivetrain_ShiftLow extends Command {
 	/** Configuration Constants ***********************************************/

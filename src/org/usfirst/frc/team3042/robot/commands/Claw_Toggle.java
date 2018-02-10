@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Wakes the claw up
  */
 public class Claw_Toggle extends Command {
 	/** Configuration Constants ***********************************************/
