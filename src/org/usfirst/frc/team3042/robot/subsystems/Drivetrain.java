@@ -85,10 +85,10 @@ public class Drivetrain extends Subsystem {
     }
     public void ToggleGear(){
     	if (isHighGear){
-    		setHighGear();
+    		setLowGear();
     	}
     	else {
-    		setLowGear();
+    		setHighGear();
     	}
     }
 	
