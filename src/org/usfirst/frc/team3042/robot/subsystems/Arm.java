@@ -37,13 +37,14 @@ public class Arm extends Subsystem {
 	private static final int MAGIC_CRUISE = RobotMap.ARM_MOTION_MAGIC_CRUISE_VELOCITY;
 	private static final int MAX_POS = RobotMap.ARM_MAX_POSITION;
 	private static final int MIN_POS = RobotMap.ARM_MIN_POSITION;
+	private static final int FRAME_POS = RobotMap.ARM_FRAME_PERIMITER;
 	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ARM;
 	public static final boolean REVERSE_PHASE = RobotMap.ARM_REVERSE_SENSOR_PHASE;
 	
 	/** Instance Variables ****************************************************/
 	private TalonSRX armTalon = new TalonSRX(CAN_ARM_MOTOR);
 	private int currentPreset = 0;
-	private int currentGoalPos = MID_POS;
+	private int currentGoalPos = FRAME_POS;
 	public Position[] positionFromInt = new Position[]{Position.BOTTOM, Position.MIDDLE, Position.TOP};
 	Log log = new Log(LOG_LEVEL, getName());
 	
@@ -55,7 +56,7 @@ public class Arm extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new Arm_Stop());
+    	setDefaultCommand(new Arm_HoldPosition());
     }
     
     public void manual(int direction){
@@ -63,12 +64,12 @@ public class Arm extends Subsystem {
 		case POVButton.UP:
 			//setTalonPosition(currentGoalPos += MANUAL_SPEED);
 			log.add("Error: " + armTalon.getClosedLoopError(PIDIDX) + "\nPosition: " + armTalon.getSelectedSensorPosition(PIDIDX), Log.Level.DEBUG);
-			armTalon.set(ControlMode.PercentOutput, -0.5);
+			armTalon.set(ControlMode.PercentOutput, -0.3);
 			break;
 		case POVButton.DOWN:
 			//setTalonPosition(currentGoalPos -= MANUAL_SPEED);
 			log.add("Error: " + armTalon.getClosedLoopError(PIDIDX) + "\nPosition: " + armTalon.getSelectedSensorPosition(PIDIDX), Log.Level.DEBUG);
-			armTalon.set(ControlMode.PercentOutput, 0.5);
+			armTalon.set(ControlMode.PercentOutput, 0.3);
 			break;
 		default:
 			break;
@@ -105,6 +106,14 @@ public class Arm extends Subsystem {
 	
 	public static enum Position {
 		BOTTOM, MIDDLE, TOP;
+	}
+	
+	public void intoFrame(){
+		setTalonPosition(FRAME_POS);
+	}
+	
+	public void toIntake(){
+		setTalonPosition(BOT_POS);
 	}
     
     private void initMotor(TalonSRX motor) {

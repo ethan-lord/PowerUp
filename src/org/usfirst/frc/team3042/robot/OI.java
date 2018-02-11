@@ -4,6 +4,8 @@ import org.usfirst.frc.team3042.lib.ElevatorPath;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.robot.commands.Arm_Drive;
+import org.usfirst.frc.team3042.robot.commands.Arm_IntoFrame;
+import org.usfirst.frc.team3042.robot.commands.Arm_ToIntake;
 import org.usfirst.frc.team3042.robot.commands.Claw_Intake;
 import org.usfirst.frc.team3042.robot.commands.Claw_Toggle;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
@@ -101,20 +103,13 @@ public class OI {
 			
 			gamepad.Y.whenPressed(new Drivetrain_Calibrate());
 		}
-		
-		/** Primary Robot Controls ********************************************/
-		if (IS_PRIMARY) {
-			gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
-			gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
-		}
-		
-		/** Secondary Robot Controls ******************************************/
-		if (IS_SECONDARY) {
-			gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
-			gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
+		/** Primary and Secondary Robot Controls ******************************************/
+		if (IS_PRIMARY || IS_SECONDARY) {
+			//gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
+			//gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
 			
-			gamepad.Y.whileHeld(new Arm_Drive(POVButton.UP));
-			gamepad.A.whileHeld(new Arm_Drive(POVButton.DOWN));
+			gamepad.Y.whileHeld(new Arm_IntoFrame());
+			gamepad.A.whileHeld(new Arm_ToIntake());
 			gamepad.X.whenPressed(new Claw_Toggle());
 			gamepad.RB.whileHeld(new Claw_Intake());
 			gamepad.B.whileHeld(new Winch_Climb());

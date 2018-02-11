@@ -148,20 +148,21 @@ public class RobotMap {
 	
 	/** Arm Settings **********************************************************/
 	public static final boolean HAS_ARM = !IS_PBOT;
-	public static final double ARM_KP = IS_PRIMARY 	? 0 : 8.0;
-	public static final double ARM_KI = IS_PRIMARY 	? 0 : 0.0;
-	public static final double ARM_KD = IS_PRIMARY 	? 0 : 100.0;
+	public static final double ARM_KP = IS_PRIMARY 	? 0 : 4.0;
+	public static final double ARM_KI = IS_PRIMARY 	? 0 : 0.03;
+	public static final double ARM_KD = IS_PRIMARY 	? 0 : 150.0;
 	public static final double ARM_KF = IS_PRIMARY 	? 0 : 0;
-	public static final int ARM_I_ZONE = IS_PRIMARY 	? 0 : 20;
+	public static final int ARM_I_ZONE = IS_PRIMARY 	? 0 : 30;
 	public static final boolean ARM_REVERSE_SENSOR_PHASE = false;
 	public static final int ARM_MANUAL_SPEED = IS_PRIMARY	? 0 : 1;
-	public static final int ARM_BOTTOM_POS = IS_PRIMARY	? 0 : 0;
-	public static final int ARM_MIDDLE_POS = IS_PRIMARY	? 0 : 800;
-	public static final int ARM_TOP_POS = IS_PRIMARY	? 0 : 0;
+	public static final int ARM_BOTTOM_POS = IS_PRIMARY	? 0 : 430;
+	public static final int ARM_MIDDLE_POS = IS_PRIMARY	? 0 : 350;
+	public static final int ARM_TOP_POS = IS_PRIMARY	? 0 : 270;
+	public static final int ARM_FRAME_PERIMITER = IS_PRIMARY ? 0 : 125;
 	public static final int ARM_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 0;
 	public static final int ARM_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 0;
-	public static final int ARM_MAX_POSITION = IS_PRIMARY    ? 0 : 870;
-	public static final int ARM_MIN_POSITION = IS_PRIMARY    ? 0 : 500;
+	public static final int ARM_MAX_POSITION = IS_PRIMARY    ? 0 : 500;
+	public static final int ARM_MIN_POSITION = IS_PRIMARY    ? 0 : 125;
 	
 	/** HookDeploy Settings **********************************************/
 	public static final boolean HAS_HOOKDEPLOY = !IS_PBOT;
