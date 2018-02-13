@@ -7,7 +7,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 public class ElevatorPath {
 	/** Configurations Constants **********************************************/
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
-	private static final double CIRCUMFERENCE = RobotMap.Elevator_SPROCKET_CIRCUMFERENCE;
+	private static final double CIRCUMFERENCE = RobotMap.ELEVATOR_SPROCKET_CIRCUMFERENCE;
 
 	
 	/** Instance Variables ****************************************************/
