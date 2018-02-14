@@ -38,14 +38,14 @@ public class Elevator_HoldPositionSimple extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		int goalPos = Robot.elevator.getCurrentGoalPos();
+    	int goalPos = Robot.elevator.getCurrentGoalPos();
 		int currentPos = Robot.elevator.getPosition();
     	
 		if (Math.abs(currentPos - goalPos) < RobotMap.ELEVATOR_POSITION_CONTROL_RANGE) {
 			if (goalPos == RobotMap.ELEVATOR_BOTTOM_POSITION) {
 				Robot.elevator.setPower(0);
 			} else {
-				Robot.elevator.setTalonPositionMagic(goalPos); // Not sure if this should just be regular position control or motion magic
+				Robot.elevator.setTalonPosition(goalPos); // Not sure if this should just be regular position control or motion magic
 			}
 		} else if (goalPos > currentPos) {
 			Robot.elevator.setTalonPositionMagic(goalPos);

@@ -102,6 +102,12 @@ public class Elevator extends Subsystem {
 		currentGoalPos = position;
 	}
 	
+	public void setTalonPosition(int position) {
+		elevatorTalon.set(ControlMode.Position, safetyCheck(position));
+		currentGoalPos = position;
+	}
+
+	
 	public int safetyCheck(int position) {
 		return Math.max(Math.min(MAX_POS, position), MIN_POS);
 	}
