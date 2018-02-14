@@ -23,8 +23,8 @@ public class Elevator_Test extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double speed = -Robot.oi.gamepad.getRawAxis(Gamepad.LEFT_JOY_Y_AXIS);
-    	speed *= .7;
-    	speed = Math.max(0.0, speed);
+    	speed *= 1.0;
+    	speed = Math.max(0.10, speed);
     	Robot.elevator.setPower(speed);
     }
 

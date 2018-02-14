@@ -58,7 +58,7 @@ public class Arm extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     	//setDefaultCommand(new Arm_Stop());
-    	setDefaultCommand(new Arm_Stop());
+    	setDefaultCommand(new Arm_HoldPosition());
     }
     
     public void manual(int direction){

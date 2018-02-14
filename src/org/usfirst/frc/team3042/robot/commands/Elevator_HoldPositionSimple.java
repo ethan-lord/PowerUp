@@ -41,11 +41,11 @@ public class Elevator_HoldPositionSimple extends Command {
     	int goalPos = Robot.elevator.getCurrentGoalPos();
 		int currentPos = Robot.elevator.getPosition();
     	
-		if (Math.abs(currentPos - goalPos) < RobotMap.ELEVATOR_POSITION_CONTROL_RANGE) {
+		if (Math.abs(goalPos - currentPos) < RobotMap.ELEVATOR_POSITION_CONTROL_RANGE){
 			if (goalPos == RobotMap.ELEVATOR_BOTTOM_POSITION) {
 				Robot.elevator.setPower(0);
 			} else {
-				Robot.elevator.setTalonPosition(goalPos); // Not sure if this should just be regular position control or motion magic
+				Robot.elevator.setTalonPosition(goalPos);
 			}
 		} else if (goalPos > currentPos) {
 			Robot.elevator.setTalonPositionMagic(goalPos);
@@ -56,7 +56,7 @@ public class Elevator_HoldPositionSimple extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false; // Not sure what to do here
+        return false;
     }
 
     // Called once after isFinished returns true

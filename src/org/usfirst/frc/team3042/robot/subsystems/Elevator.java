@@ -4,6 +4,7 @@ import org.usfirst.frc.team3042.lib.ElevatorPath;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Elevator_HoldPosition;
+import org.usfirst.frc.team3042.robot.commands.Elevator_HoldPositionSimple;
 import org.usfirst.frc.team3042.robot.commands.Elevator_Stop;
 import org.usfirst.frc.team3042.robot.commands.Elevator_Test;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
@@ -47,7 +48,7 @@ public class Elevator extends Subsystem {
 	
 	/** Instance Variables ****************************************************/
 	private Log log = new Log(LOG_LEVEL, getName());
-	private int currentGoalPos = 0;
+	private int currentGoalPos = BOT_POS;
 	private int currentPreset = 0;
 	public static Position[] positionFromPreset = new Position[]{Position.BOTTOM, Position.INTAKE, Position.SWITCH, Position.LOW_SCALE, Position.MID_SCALE, Position.HIGH_SCALE};
 	public static double[] distanceFromPreset = new double[] {0, 0, 0, 0, 0, 0};
@@ -58,7 +59,7 @@ public class Elevator extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     	
     	//setDefaultCommand(new Elevator_HoldPosition());
-    	setDefaultCommand(new Elevator_Stop());
+    	setDefaultCommand(new Elevator_HoldPositionSimple());
     }
     
     public Elevator(){
