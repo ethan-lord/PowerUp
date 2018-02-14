@@ -142,7 +142,9 @@ public class RobotMap {
 	public static final int ELEVATOR_I_ZONE = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 1000;
 	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 1000;
-	public static final int Elevator_SPROCKET_CIRCUMFERENCE = IS_PRIMARY ? 4 : 4;
+	public static final double ELEVATOR_LOWER_VELOCITY = IS_PRIMARY ? 0 : 0.3;
+	public static final double ELEVATOR_POSITION_CONTROL_RANGE = IS_PRIMARY ? 0 : 200;
+	public static final int ELEVATOR_SPROCKET_CIRCUMFERENCE = IS_PRIMARY ? 4 : 4;
 	public static final double COUNTER_GRAVITY_VELOCITY = IS_PRIMARY ? 0 : 0;
 	public static final boolean ELEVATOR_REVERSE = true;
 	

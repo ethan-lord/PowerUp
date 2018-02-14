@@ -97,7 +97,7 @@ public class Elevator extends Subsystem {
 	 * elevatorTalon.set(controlMode.MotionMagic, safetyCheck(position));
 	 * @param position
 	 */
-	public void setTalonPosition(int position) {
+	public void setTalonPositionMagic(int position) {
 		elevatorTalon.set(ControlMode.MotionMagic, safetyCheck(position));
 		currentGoalPos = position;
 	}
@@ -114,32 +114,32 @@ public class Elevator extends Subsystem {
 		switch (position) {
 			case BOTTOM:
 				log.add("Bottom", Log.Level.DEBUG);
-				setTalonPosition(BOT_POS);
+				setTalonPositionMagic(BOT_POS);
 				log.add("Botton position: " + BOT_POS, Log.Level.DEBUG);
                 break;
 			case INTAKE:
 				log.add("Intake", Log.Level.DEBUG);
-				setTalonPosition(INT_POS);
+				setTalonPositionMagic(INT_POS);
 				log.add("Intake position: " + INT_POS, Log.Level.DEBUG);
 				break;
 			case SWITCH:
 				log.add("Switch", Log.Level.DEBUG);
-				setTalonPosition(SWITCH_POS);
+				setTalonPositionMagic(SWITCH_POS);
 				log.add("Switch position: " + SWITCH_POS, Log.Level.DEBUG);
 				break;
 			case LOW_SCALE:
 				log.add("Low Scale", Log.Level.DEBUG);
-				setTalonPosition(LOW_SCALE_POS);
+				setTalonPositionMagic(LOW_SCALE_POS);
 				log.add("Low scale position: " + LOW_SCALE_POS, Log.Level.DEBUG);
 				break;
 			case MID_SCALE:
 				log.add("Mid Scale", Log.Level.DEBUG);
-				setTalonPosition(MID_SCALE_POS);
+				setTalonPositionMagic(MID_SCALE_POS);
 				log.add("Mid scale position: " + MID_SCALE_POS, Log.Level.DEBUG);
 				break;
 			case HIGH_SCALE:
 				log.add("High Scale", Log.Level.DEBUG);
-				setTalonPosition(HIGH_SCALE_POS);
+				setTalonPositionMagic(HIGH_SCALE_POS);
 				log.add("High scale position: " + HIGH_SCALE_POS, Log.Level.DEBUG);
 				break;
 			default:
@@ -151,10 +151,10 @@ public class Elevator extends Subsystem {
 	public void manual(int direction){
 		switch (direction) {
 			case POVButton.UP:
-				setTalonPosition(currentGoalPos += MANUAL_SPEED);
+				setTalonPositionMagic(currentGoalPos += MANUAL_SPEED);
 				break;
 			case POVButton.DOWN:
-				setTalonPosition(currentGoalPos -= MANUAL_SPEED);
+				setTalonPositionMagic(currentGoalPos -= MANUAL_SPEED);
 				break;
 			default:
 				break;
