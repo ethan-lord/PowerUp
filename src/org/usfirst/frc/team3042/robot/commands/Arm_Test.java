@@ -6,26 +6,26 @@ import org.usfirst.frc.team3042.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * We don't know if it will work
+ *
  */
-public class Elevator_Test extends Command {
+public class Arm_Test extends Command {
 
-    public Elevator_Test() {
+    public Arm_Test() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
+    	requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.arm.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double speed = -Robot.oi.gamepad.getRawAxis(Gamepad.LEFT_JOY_Y_AXIS);
-    	speed *= .7;
-    	speed = Math.max(0.0, speed);
-    	Robot.elevator.setPower(speed);
+    	double power = -Robot.oi.gamepad.getRawAxis(Gamepad.RIGHT_JOY_Y_AXIS);
+    	power *= (power > 0) ? 0.5 : 0.25;
+    	Robot.arm.setPower(power);
     }
 
     // Make this return true when this Command no longer needs to run execute()

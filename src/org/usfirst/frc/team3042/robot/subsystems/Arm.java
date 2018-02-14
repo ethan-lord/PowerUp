@@ -4,6 +4,7 @@ import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_HoldPosition;
 import org.usfirst.frc.team3042.robot.commands.Arm_Stop;
+import org.usfirst.frc.team3042.robot.commands.Arm_Test;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
 import com.ctre.phoenix.ParamEnum;
@@ -56,7 +57,8 @@ public class Arm extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new Arm_HoldPosition());
+    	//setDefaultCommand(new Arm_Stop());
+    	setDefaultCommand(new Arm_Stop());
     }
     
     public void manual(int direction){
@@ -64,12 +66,12 @@ public class Arm extends Subsystem {
 		case POVButton.UP:
 			//setTalonPosition(currentGoalPos += MANUAL_SPEED);
 			log.add("Error: " + armTalon.getClosedLoopError(PIDIDX) + "\nPosition: " + armTalon.getSelectedSensorPosition(PIDIDX), Log.Level.DEBUG);
-			armTalon.set(ControlMode.PercentOutput, -0.3);
+			armTalon.set(ControlMode.PercentOutput, 0.3);
 			break;
 		case POVButton.DOWN:
 			//setTalonPosition(currentGoalPos -= MANUAL_SPEED);
 			log.add("Error: " + armTalon.getClosedLoopError(PIDIDX) + "\nPosition: " + armTalon.getSelectedSensorPosition(PIDIDX), Log.Level.DEBUG);
-			armTalon.set(ControlMode.PercentOutput, 0.3);
+			armTalon.set(ControlMode.PercentOutput, -0.3);
 			break;
 		default:
 			break;
@@ -164,6 +166,9 @@ public class Arm extends Subsystem {
     public void stop() {
 		setPower(armTalon, 0);
 	}
+    public void setPower(double power) {
+    	setPower(armTalon, power);
+    }
     private void setPower(TalonSRX talon, double power){
     	talon.set(ControlMode.PercentOutput, power);
     }

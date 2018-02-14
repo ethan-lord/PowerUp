@@ -7,6 +7,7 @@ import org.usfirst.frc.team3042.robot.commands.Arm_Drive;
 import org.usfirst.frc.team3042.robot.commands.Arm_IntoFrame;
 import org.usfirst.frc.team3042.robot.commands.Arm_ToIntake;
 import org.usfirst.frc.team3042.robot.commands.Claw_Intake;
+import org.usfirst.frc.team3042.robot.commands.Claw_Release;
 import org.usfirst.frc.team3042.robot.commands.Claw_Toggle;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
@@ -108,11 +109,12 @@ public class OI {
 			//gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
 			//gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
 			
-			gamepad.Y.whileHeld(new Arm_IntoFrame());
-			gamepad.A.whileHeld(new Arm_ToIntake());
+			gamepad.Y.whileHeld(new Arm_Drive(POVButton.UP)); // trash code
+			gamepad.A.whileHeld(new Arm_Drive(POVButton.DOWN));
 			gamepad.X.whenPressed(new Claw_Toggle());
 			gamepad.RB.whileHeld(new Claw_Intake());
-			gamepad.B.whileHeld(new Winch_Climb());
+			//gamepad.B.whileHeld(new Winch_Climb());
+			gamepad.LB.whileHeld(new Claw_Release());
 			
 			joyRight.button1.whenPressed(new Drivetrain_Shift());
 			
