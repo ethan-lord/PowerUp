@@ -56,7 +56,7 @@ public class Elevator_HoldPositionSimple extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return false; // should not end, this is an upgraded version of the hold position with the same purpose of being the default command.
     }
 
     // Called once after isFinished returns true
