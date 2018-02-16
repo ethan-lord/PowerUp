@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DrivetrainAuton_Turn extends Command {
 	/** Configuration Constants ***********************************************/
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
+	private static final double closeEnough = RobotMap.DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES;
 	
 	
 	/** Instance Variables ****************************************************/
@@ -36,11 +37,13 @@ public class DrivetrainAuton_Turn extends Command {
     protected void initialize() {
 		log.add("Initialize", Log.Level.TRACE);
 		
+		drivetrain.zeroGyro();
+		
 		goal = drivetrain.getGyro().rotateBy(turn);
 		
 		double distance = angleToDistance(turn);
-		auton.setLeftPositionMotionMagic(-distance);
-		auton.setRightPositionMotionMagic(distance);
+		auton.setLeftPositionMotionMagic(distance);
+		auton.setRightPositionMotionMagic(-distance);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -48,13 +51,13 @@ public class DrivetrainAuton_Turn extends Command {
     	Rotation2d remainingTurn = goal.rotateBy(drivetrain.getGyro().inverse());
     	
     	double distance = angleToDistance(remainingTurn);
-		auton.setLeftPositionMotionMagic(-distance);
-		auton.setRightPositionMotionMagic(distance);
+		auton.setLeftPositionMotionMagic(distance);
+		auton.setRightPositionMotionMagic(-distance);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return drivetrain.isParallel(goal, turn);
     }
 
     // Called once after isFinished returns true

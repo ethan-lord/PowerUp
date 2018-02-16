@@ -1,8 +1,11 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
+import static org.usfirst.frc.team3042.lib.math.Util.epsilonEquals;
+
 import org.usfirst.frc.team3042.lib.ADIS16448_IMU;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.math.Rotation2d;
+import org.usfirst.frc.team3042.lib.math.Translation2d;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_TankDrive;
 
@@ -30,6 +33,8 @@ public class Drivetrain extends Subsystem {
 	private static final boolean REVERSE_RIGHT_MOTOR = RobotMap.REVERSE_RIGHT_MOTOR;
 	private static final int SHIFT_SOLENOID = RobotMap.SHIFT_SOLENOID;
 	private static final boolean STARTS_HIGH = RobotMap.STARTS_HIGH_GEAR;
+	private static final double closeEnough = RobotMap.DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES;
+
 	
 	
 	/** Instance Variables ****************************************************/
@@ -115,6 +120,18 @@ public class Drivetrain extends Subsystem {
 	public Rotation2d getGyro() {
 		return Rotation2d.fromDegrees(gyro.getAngle());
 	}
+	public void zeroGyro() {
+		gyro.reset();
+	}
+	
+	
+	/** Methods stolen from Rotation2d then changed the keplison to a larger number ******/
+    public static boolean epsilonEquals(double a, double b, double epsilon) {
+        return (a - epsilon <= b) && (a + epsilon >= b);
+    }
+    public boolean isParallel(Rotation2d thing1, Rotation2d thing2) {
+        return epsilonEquals(Translation2d.cross(thing1.toTranslation(), thing2.toTranslation()), 0.0, closeEnough);
+    }
 	
 	
 	/** Provide commands access to the encoders and autonomous ****************/
