@@ -27,12 +27,12 @@ public class Center_RightSwitch extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
-    	
+
     	addParallel(new Elevator_SetPosition(Elevator.Position.SWITCH));
     	addParallel(new Arm_SetPosition(Arm.Position.MIDDLE));
     	addSequential(new DrivetrainAuton_Drive(new CenterToRightSwitch().buildPath()));
     	addSequential(new Claw_Unclamp());
-
+    	
         // A command group will require all of the subsystems that each member
         // would require.
         // e.g. if Command1 requires chassis, and Command2 requires arm,
