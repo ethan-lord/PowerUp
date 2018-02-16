@@ -133,7 +133,8 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
-		SmartDashboard.putNumber("Elevator position", Robot.elevator.getPosition());
+		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Elevator position", Robot.elevator.getPosition());
+		//Only log on primary and secondary robots, pbot would crash code with this
 		Scheduler.getInstance().run();
 	}
 

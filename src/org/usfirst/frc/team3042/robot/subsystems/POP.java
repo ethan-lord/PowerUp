@@ -21,7 +21,7 @@ public class POP extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	/**
-	 * THIS IS WHERE WE UNLEASH THY POP TO KILL EVERYONE!!!!!!!!!!!!!!!
+	 * THIS IS WHERE WE UNLEASH THE POP TO KILL EVERYONE!!!!!!!!!!!!!!!
 	 */
 	public void unleashThyPOP() {
 		popSolenoid.set(true);
