@@ -3,6 +3,7 @@ package org.usfirst.frc.team3042.robot;
 import org.usfirst.frc.team3042.lib.ElevatorPath;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.Path;
+import org.usfirst.frc.team3042.lib.math.Rotation2d;
 import org.usfirst.frc.team3042.robot.commands.Arm_CyclePositions;
 import org.usfirst.frc.team3042.robot.commands.Arm_Drive;
 import org.usfirst.frc.team3042.robot.commands.Arm_IntoFrame;
@@ -11,6 +12,7 @@ import org.usfirst.frc.team3042.robot.commands.Claw_Intake;
 import org.usfirst.frc.team3042.robot.commands.Claw_Release;
 import org.usfirst.frc.team3042.robot.commands.Claw_Toggle;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
+import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_HoldPosition;
 import org.usfirst.frc.team3042.robot.commands.Winch_Climb;
@@ -102,6 +104,8 @@ public class OI {
 //			testPath.addRightTurn(90.0, turnRadius, -21.0);
 //			testPath.addStraight(36.0, -18.0);
 			gamepad.B.whenPressed(new DrivetrainAuton_Drive(testPath));
+			
+			gamepad.X.whenPressed(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(90)));
 			
 			gamepad.Y.whenPressed(new Drivetrain_Calibrate());
 		}

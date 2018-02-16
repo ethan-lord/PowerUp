@@ -14,7 +14,7 @@ public class RobotMap {
 	/** Robot selector ********************************************************/
 	public static enum Bot {PBOT, PRIMARY, SECONDARY};
 	// Set the bot to which you intend to push code.
-	private static Bot currentBot = Bot.SECONDARY;
+	private static Bot currentBot = Bot.PBOT;
 
 	public static final boolean IS_PBOT 	= (currentBot == Bot.PBOT);
 	public static final boolean IS_PRIMARY = (currentBot == Bot.PRIMARY);
@@ -94,8 +94,8 @@ public class RobotMap {
 	public static final int PIDIDX = 0; //pidIdx - 0 for Primary closed-loop. 1 for cascaded closed-loop. See Phoenix-Documentation for how to interpret.
 	public static final int SLOTIDX_1 = 0;
 	public static final boolean STARTS_HIGH_GEAR = (IS_PRIMARY) ? false : false;
-	public static final int DRIVETRAIN_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 1000;
-	public static final int DRIVETRAIN_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 1000;	
+	public static final int DRIVETRAIN_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 493;
+	public static final int DRIVETRAIN_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 150;	
 	
 	
 	/** Winch Settings ********************************************************/
@@ -210,6 +210,8 @@ public class RobotMap {
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final int I_ZONE_AUTON =		(IS_PBOT)		? 0 :
 												(IS_PRIMARY)	? 0 : 0;
+	public static final double DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES = 1;
+	public static final double DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_RADIANS = DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES * Math.PI / 180.0;
 	//The rate of pushing motion profile points to the talon, in ms
 	public static final int AUTON_FRAME_RATE = 10;
 	//Parameters for calibrating the F-gain
