@@ -3,6 +3,7 @@ package org.usfirst.frc.team3042.robot.subsystems;
 import org.usfirst.frc.team3042.lib.ElevatorPath;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
+import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
 import org.usfirst.frc.team3042.robot.commands.Elevator_HoldPosition;
 import org.usfirst.frc.team3042.robot.commands.Elevator_HoldPositionSimple;
 import org.usfirst.frc.team3042.robot.commands.Elevator_Stop;
@@ -51,7 +52,6 @@ public class Elevator extends Subsystem {
 	private int currentGoalPos = BOT_POS;
 	private int currentPreset = 0;
 	public static Position[] positionFromPreset = new Position[]{Position.BOTTOM, Position.INTAKE, Position.SWITCH, Position.LOW_SCALE, Position.MID_SCALE, Position.HIGH_SCALE};
-	public static double[] distanceFromPreset = new double[] {0, 0, 0, 0, 0, 0};
 	public static final double maxSpeed = RobotMap.ELEVATOR_MAX_SPEED;
 	
     public void initDefaultCommand() {
@@ -59,7 +59,7 @@ public class Elevator extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     	
     	//setDefaultCommand(new Elevator_HoldPosition());
-    	setDefaultCommand(new Elevator_Test());
+    	setDefaultCommand(new Elevator_HoldPositionSimple());
     }
     
     public Elevator(){
@@ -181,12 +181,6 @@ public class Elevator extends Subsystem {
 			default:
 				break;
 		}
-	}
-	
-	public ElevatorPath elevatorPathFromOnePositionToAnotherPosition(int preset1, int preset2){
-		ElevatorPath path = new ElevatorPath();
-		path.addStraight(Elevator.distanceFromPreset[preset2] - Elevator.distanceFromPreset[preset1], Elevator.maxSpeed);
-		return path;
 	}
 	
 	public void pushPoint(	TrajectoryPoint leftPoint) {

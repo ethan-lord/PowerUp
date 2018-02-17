@@ -3,7 +3,7 @@ package org.usfirst.frc.team3042.robot.commands;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
-import org.usfirst.frc.team3042.robot.subsystems.Arm.Position;
+import org.usfirst.frc.team3042.robot.subsystems.HookDeploy.Position;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -18,7 +18,7 @@ public class HookDeploy_SetPosition extends Command {
 	Log log = new Log(LOG_LEVEL, getName());
 	private Position position; 
 
-    public void Hook_Set_Position(Position position) {
+    public HookDeploy_SetPosition(Position position) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.arm);
@@ -30,7 +30,7 @@ public class HookDeploy_SetPosition extends Command {
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
     	
-    	Robot.arm.setPosition(position);
+    	Robot.hookDeploy.setPosition(position);
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -134,7 +134,7 @@ public class Winch extends Subsystem {
 	}
 	
 	public void reverse() {
-		setPower(winchMotorLeft, -climbPower);
+		setPower(winchMotorLeft, climbPower);
 		setPower(winchMotorRight, -climbPower);
 	}
 	

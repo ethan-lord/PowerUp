@@ -15,12 +15,15 @@ import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_HoldPosition;
+import org.usfirst.frc.team3042.robot.commands.HookDeploy_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Winch_Climb;
+import org.usfirst.frc.team3042.robot.commands.Winch_Reverse;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Calibrate;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Shift;
 import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
 import org.usfirst.frc.team3042.robot.paths.CenterToRightSwitch;
 import org.usfirst.frc.team3042.robot.subsystems.Elevator;
+import org.usfirst.frc.team3042.robot.subsystems.HookDeploy;
 import org.usfirst.frc.team3042.robot.triggers.POVButton;
 
 /**
@@ -118,7 +121,10 @@ public class OI {
 			gamepad.A.whenPressed(new Arm_CyclePositions(POVButton.DOWN));
 			gamepad.X.whenPressed(new Claw_Toggle());
 			gamepad.RB.whileHeld(new Claw_Intake());
-			//gamepad.B.whileHeld(new Winch_Climb());
+			gamepad.Start.whenPressed(new HookDeploy_SetPosition(HookDeploy.Position.DELIVERY));
+			gamepad.Back.whenPressed(new HookDeploy_SetPosition(HookDeploy.Position.READY));
+			gamepad.B.whileHeld(new Winch_Climb());
+			//gamepad.B.whileHeld(new Winch_Reverse());
 			gamepad.LB.whileHeld(new Claw_Release());
 			
 			joyRight.button1.whenPressed(new Drivetrain_Shift());

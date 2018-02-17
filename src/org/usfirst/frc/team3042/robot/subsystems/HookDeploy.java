@@ -2,6 +2,8 @@ package org.usfirst.frc.team3042.robot.subsystems;
 
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
+import org.usfirst.frc.team3042.robot.commands.HookDeploy_HoldPosition;
+import org.usfirst.frc.team3042.robot.commands.HookDeploy_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_Stop;
 import org.usfirst.frc.team3042.robot.subsystems.Arm.Position;
 
@@ -28,12 +30,13 @@ public class HookDeploy extends Subsystem {
 	private static final double kI = RobotMap.HOOK_KI;
 	private static final double kD = RobotMap.HOOK_KD;
 	private static final double kF = RobotMap.HOOK_KF;
+	private static final int IZONE = RobotMap.HOOK_IZONE;
 	public static final boolean REVERSE_PHASE = RobotMap.HOOK_DEPLOY_REVERSE_SENSOR_PHASE;
 	
 	/** Instance Variables ***********************************************************************/
 	private TalonSRX hookTalon = new TalonSRX(CAN_HOOK_MOTOR);
 	private int currentPreset = 0;
-	private int currentPos = 0;
+	private int currentGoalPos = STOW_POS;
 	private Position[] positionFromInt = new Position[]{Position.STOWED, Position.READY, Position.DELIVERY};
 	
     // Put methods for controlling this subsystem
@@ -45,6 +48,7 @@ public class HookDeploy extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	//setDefaultCommand(new HookDeploy_HoldPosition(currentGoalPos));
     	setDefaultCommand(new HookDeploy_Stop());
     }
     public void stop() {
@@ -60,17 +64,17 @@ public class HookDeploy extends Subsystem {
 		switch (position) {
 			case STOWED:
 				hookTalon.set(ControlMode.Position, STOW_POS);
-				currentPos = STOW_POS;
+				currentGoalPos = STOW_POS;
 				currentPreset = 0;
                 break;
 			case READY:
 				hookTalon.set(ControlMode.Position, RDY_POS);
-				currentPos = RDY_POS;
+				currentGoalPos = RDY_POS;
 				currentPreset = 1;
 				break;
 			case DELIVERY:
 				hookTalon.set(ControlMode.Position, DELVR_POS);
-				currentPos = DELVR_POS;
+				currentGoalPos = DELVR_POS;
 				currentPreset = 2;
 				break;
 			default:
@@ -88,6 +92,7 @@ public class HookDeploy extends Subsystem {
 		motor.config_kI(SLOTIDX_1, kI, TIMEOUT);
 		motor.config_kD(SLOTIDX_1, kD, TIMEOUT);
 		motor.config_kF(SLOTIDX_1, kF, TIMEOUT);
+		motor.config_IntegralZone(SLOTIDX_1, IZONE, TIMEOUT);
 		motor.configSelectedFeedbackSensor(FeedbackDevice.Analog, PIDIDX, TIMEOUT);
 	}
     public void setTalonPosition(int position){

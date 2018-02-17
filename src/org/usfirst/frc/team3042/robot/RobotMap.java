@@ -14,7 +14,7 @@ public class RobotMap {
 	/** Robot selector ********************************************************/
 	public static enum Bot {PBOT, PRIMARY, SECONDARY};
 	// Set the bot to which you intend to push code.
-	private static Bot currentBot = Bot.PBOT;
+	private static Bot currentBot = Bot.SECONDARY;
 
 	public static final boolean IS_PBOT 	= (currentBot == Bot.PBOT);
 	public static final boolean IS_PRIMARY = (currentBot == Bot.PRIMARY);
@@ -125,25 +125,25 @@ public class RobotMap {
 	
 	/** Elevator Settings *****************************************************/
 	public static final boolean HAS_ELEVATOR = !IS_PBOT;
-	public static final int ELEVATOR_BOTTOM_POSITION = IS_PRIMARY 		? 0 : 700;
-	public static final int ELEVATOR_INTAKE_POSITION = IS_PRIMARY 		? 0 : 700;
-	public static final int ELEVATOR_SWITCH_POSITION = IS_PRIMARY 		? 0 : 5000;
-	public static final int ELEVATOR_LOW_SCALE_POSITION = IS_PRIMARY 	? 0 : 22000;
-	public static final int ELEVATOR_MID_SCALE_POSITION = IS_PRIMARY    ? 0 : 28000;
-	public static final int ELEVATOR_HIGH_SCALE_POSITION = IS_PRIMARY 	? 0 : 34000;
-	public static final int ELEVATOR_MAX_POSITION = IS_PRIMARY          ? 0 : 34000;
+	public static final int ELEVATOR_BOTTOM_POSITION = IS_PRIMARY 		? 0 : 200;
+	public static final int ELEVATOR_INTAKE_POSITION = IS_PRIMARY 		? 0 : 200;
+	public static final int ELEVATOR_SWITCH_POSITION = IS_PRIMARY 		? 0 : 12000;
+	public static final int ELEVATOR_LOW_SCALE_POSITION = IS_PRIMARY 	? 0 : 25000;
+	public static final int ELEVATOR_MID_SCALE_POSITION = IS_PRIMARY    ? 0 : 31000;
+	public static final int ELEVATOR_HIGH_SCALE_POSITION = IS_PRIMARY 	? 0 : 36000;
+	public static final int ELEVATOR_MAX_POSITION = IS_PRIMARY          ? 0 : 37000;
 	public static final int ELEVATOR_MIN_POSITION = IS_PRIMARY          ? 0 : 0;
 	public static final double ELEVATOR_MAX_SPEED = IS_PRIMARY			? 0 : 1000;
 	public static final int ELEVATOR_MANUAL_SPEED = IS_PRIMARY 	? 5 : 5;
-	public static final double ELEVATOR_KP = IS_PRIMARY 	? 0 : 0.51;
+	public static final double ELEVATOR_KP = IS_PRIMARY 	? 0 : 0.5;
 	public static final double ELEVATOR_KI = IS_PRIMARY 	? 0 : 0;
-	public static final double ELEVATOR_KD = IS_PRIMARY 	? 0 : 5.1;
-	public static final double ELEVATOR_KF = IS_PRIMARY 	? 0 : .036;
+	public static final double ELEVATOR_KD = IS_PRIMARY 	? 0 : 15.0;
+	public static final double ELEVATOR_KF = IS_PRIMARY 	? 0 : 0.5;
 	public static final int ELEVATOR_I_ZONE = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 1000;
 	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 1000;
 	public static final double ELEVATOR_LOWER_VELOCITY = IS_PRIMARY ? 0 : 0.10;
-	public static final double ELEVATOR_POSITION_CONTROL_RANGE = IS_PRIMARY ? 0 : 200;
+	public static final double ELEVATOR_POSITION_CONTROL_RANGE = IS_PRIMARY ? 0 : 300;
 	public static final int ELEVATOR_SPROCKET_CIRCUMFERENCE = IS_PRIMARY ? 4 : 4;
 	public static final double COUNTER_GRAVITY_VELOCITY = IS_PRIMARY ? 0 : 0;
 	public static final boolean ELEVATOR_REVERSE = true;
@@ -151,10 +151,10 @@ public class RobotMap {
 	/** Arm Settings **********************************************************/
 	public static final boolean HAS_ARM = !IS_PBOT;
 	public static final double ARM_KP = IS_PRIMARY 	? 0 : 5.0;
-	public static final double ARM_KI = IS_PRIMARY 	? 0 : 0.0;
-	public static final double ARM_KD = IS_PRIMARY 	? 0 : 200.0;
+	public static final double ARM_KI = IS_PRIMARY 	? 0 : 0.01;
+	public static final double ARM_KD = IS_PRIMARY 	? 0 : 50.0;
 	public static final double ARM_KF = IS_PRIMARY 	? 0 : 0;
-	public static final int ARM_I_ZONE = IS_PRIMARY 	? 0 : 30;
+	public static final int ARM_I_ZONE = IS_PRIMARY 	? 0 : 20;
 	public static final boolean ARM_REVERSE_SENSOR_PHASE = true;
 	public static final int ARM_MANUAL_SPEED = IS_PRIMARY	? 0 : 1;
 	public static final int ARM_BOTTOM_POS = IS_PRIMARY	? 0 : -180;
@@ -168,12 +168,13 @@ public class RobotMap {
 	
 	/** HookDeploy Settings **********************************************/
 	public static final boolean HAS_HOOKDEPLOY = !IS_PBOT;
-	public static final int HOOK_STOWED_POS = IS_PRIMARY	? 0 : 0;
+	public static final int HOOK_STOWED_POS = IS_PRIMARY	? 0 : -650;
 	public static final int HOOK_READY_POS = IS_PRIMARY		? 0 : 0;
-	public static final int HOOK_DELIVERY_POS = IS_PRIMARY 	? 0 : 0;
-	public static final double HOOK_KP = IS_PRIMARY 	? 0 : 2;
-	public static final double HOOK_KI = IS_PRIMARY 	? 0 : 0;
-	public static final double HOOK_KD = IS_PRIMARY 	? 0 : 0;
+	public static final int HOOK_DELIVERY_POS = IS_PRIMARY 	? 0 : -30;
+	public static final double HOOK_KP = IS_PRIMARY 	? 0 : 5.0;
+	public static final double HOOK_KI = IS_PRIMARY 	? 0 : 0.01;
+	public static final double HOOK_KD = IS_PRIMARY 	? 0 : 50;
+	public static final int HOOK_IZONE = IS_PRIMARY	? 0 : 20;
 	public static final double HOOK_KF = IS_PRIMARY 	? 0 : 0;
 	public static final boolean HOOK_DEPLOY_REVERSE_SENSOR_PHASE = IS_PRIMARY ? true : true;
 	
