@@ -61,11 +61,6 @@ public class Robot extends IterativeRobot {
 	
 	private static String gameData = "";
 	
-	NetworkTableInstance offSeasonNetworkTable = NetworkTableInstance.create();
-	public void startSeasonNetworkTable() {
-		offSeasonNetworkTable.startClient("10.0.100.5");
-	}
-	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<Command>();
 
@@ -83,8 +78,6 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Drive Stright", new DriveStraight());
 		chooser.addDefault("Do nothing (defult)", new DoNothing());
 		SmartDashboard.putData("Auto Mode", chooser);
-		
-		startSeasonNetworkTable();
 	}
 
 	
@@ -168,9 +161,7 @@ public class Robot extends IterativeRobot {
 	public void searchForGameData(){
 		SmartDashboard.putBoolean("Game Data Exists", gameDataPresent());
 		if(!gameDataPresent()){
-			//gameData = DriverStation.getInstance().getGameSpecificMessage();
-			// week zero game data interface
-			//gameData = offSeasonNetworkTable.getTable("OffseasonFMSInfo").getEntry("GameData").getString("defaultValue");
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
 		}
 	}
 	

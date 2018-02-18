@@ -9,10 +9,12 @@ import org.usfirst.frc.team3042.robot.commands.Arm_Drive;
 import org.usfirst.frc.team3042.robot.commands.Arm_IntoFrame;
 import org.usfirst.frc.team3042.robot.commands.Arm_ToIntake;
 import org.usfirst.frc.team3042.robot.commands.Claw_Clamp;
+import org.usfirst.frc.team3042.robot.commands.Claw_ClampIntake;
 import org.usfirst.frc.team3042.robot.commands.Claw_Intake;
 import org.usfirst.frc.team3042.robot.commands.Claw_Release;
 import org.usfirst.frc.team3042.robot.commands.Claw_Toggle;
 import org.usfirst.frc.team3042.robot.commands.Claw_Unclamp;
+import org.usfirst.frc.team3042.robot.commands.Claw_UnclampIntake;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
@@ -123,15 +125,16 @@ public class OI {
 			
 			gamepad.Y.whenPressed(new Arm_CyclePositions(POVButton.UP));
 			gamepad.A.whenPressed(new Arm_CyclePositions(POVButton.DOWN));
-			gamepad.X.whenActive(new Claw_Unclamp());
-			gamepad.X.whenInactive(new Claw_Clamp());
+			gamepad.X.whenPressed(new Claw_Unclamp());
+			gamepad.X.whenReleased(new Claw_Clamp());
+			
 			gamepad.RB.whileHeld(new Claw_Intake());
+			gamepad.LB.whileHeld(new Claw_Release());
 			gamepad.Start.whenPressed(new HookDeploy_SetPosition(HookDeploy.Position.DELIVERY));
 			gamepad.Back.whenPressed(new HookDeploy_SetPosition(HookDeploy.Position.READY));
 			gamepad.B.whenPressed(new POP_Unleash());
 			gamepad.LT.whileActive(new Winch_ClimbOneSide(Robot.winchLeft));
 			gamepad.RT.whileActive(new Winch_ClimbOneSide(Robot.winchRight));
-			gamepad.LB.whileHeld(new Claw_Release());
 			
 			joyRight.button1.whenPressed(new Drivetrain_Shift());
 			

@@ -17,6 +17,8 @@ public class Winch_Stop extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.winch);
+    	requires(Robot.winchLeft);
+    	requires(Robot.winchRight);
     }
 
     // Called just before this Command runs the first time

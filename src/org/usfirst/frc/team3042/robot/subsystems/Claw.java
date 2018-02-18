@@ -60,11 +60,11 @@ public class Claw extends Subsystem {
     	setPower(clawLeftTalon, releasePower);
     }
     public void clamp(){
-    	clampSolenoid.set(true);
+    	clampSolenoid.set(false);
     	isActive = true;
     }
     public void unclamp(){
-    	clampSolenoid.set(false);
+    	clampSolenoid.set(true);
     	isActive = false;
     }
     public void clampToggle(){
