@@ -8,15 +8,19 @@ import org.usfirst.frc.team3042.robot.commands.Arm_CyclePositions;
 import org.usfirst.frc.team3042.robot.commands.Arm_Drive;
 import org.usfirst.frc.team3042.robot.commands.Arm_IntoFrame;
 import org.usfirst.frc.team3042.robot.commands.Arm_ToIntake;
+import org.usfirst.frc.team3042.robot.commands.Claw_Clamp;
 import org.usfirst.frc.team3042.robot.commands.Claw_Intake;
 import org.usfirst.frc.team3042.robot.commands.Claw_Release;
 import org.usfirst.frc.team3042.robot.commands.Claw_Toggle;
+import org.usfirst.frc.team3042.robot.commands.Claw_Unclamp;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_HoldPosition;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_SetPosition;
+import org.usfirst.frc.team3042.robot.commands.POP_Unleash;
 import org.usfirst.frc.team3042.robot.commands.Winch_Climb;
+import org.usfirst.frc.team3042.robot.commands.Winch_ClimbOneSide;
 import org.usfirst.frc.team3042.robot.commands.Winch_Reverse;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Calibrate;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Shift;
@@ -119,12 +123,14 @@ public class OI {
 			
 			gamepad.Y.whenPressed(new Arm_CyclePositions(POVButton.UP));
 			gamepad.A.whenPressed(new Arm_CyclePositions(POVButton.DOWN));
-			gamepad.X.whenPressed(new Claw_Toggle());
+			gamepad.X.whenActive(new Claw_Unclamp());
+			gamepad.X.whenInactive(new Claw_Clamp());
 			gamepad.RB.whileHeld(new Claw_Intake());
 			gamepad.Start.whenPressed(new HookDeploy_SetPosition(HookDeploy.Position.DELIVERY));
 			gamepad.Back.whenPressed(new HookDeploy_SetPosition(HookDeploy.Position.READY));
-			gamepad.B.whileHeld(new Winch_Climb());
-			//gamepad.B.whileHeld(new Winch_Reverse());
+			gamepad.B.whenPressed(new POP_Unleash());
+			gamepad.LT.whileActive(new Winch_ClimbOneSide(Robot.winchLeft));
+			gamepad.RT.whileActive(new Winch_ClimbOneSide(Robot.winchRight));
 			gamepad.LB.whileHeld(new Claw_Release());
 			
 			joyRight.button1.whenPressed(new Drivetrain_Shift());
@@ -169,6 +175,12 @@ public class OI {
 		double leftTrigger = gamepad.getRawAxis(GAMEPAD_LEFT_TRIGGER);
 		double rightTrigger = gamepad.getRawAxis(GAMEPAD_RIGHT_TRIGGER);
 		return (rightTrigger - leftTrigger) * TRIGGER_SPINNER_SCALE;
+	}
+	public double getLeftTrigger(){
+		return gamepad.getRawAxis(GAMEPAD_LEFT_TRIGGER);
+	}
+	public double getRightTrigger(){
+		return gamepad.getRawAxis(GAMEPAD_RIGHT_TRIGGER);
 	}
 }
 

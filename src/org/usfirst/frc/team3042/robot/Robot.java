@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team3042.robot;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -9,6 +10,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team3042.lib.Log;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Center_ChooseSwitchSide;
+import org.usfirst.frc.team3042.robot.commands.autonomous.DoNothing;
+import org.usfirst.frc.team3042.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
 import org.usfirst.frc.team3042.robot.subsystems.Claw;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
@@ -44,6 +48,9 @@ public class Robot extends IterativeRobot {
 	private Log log = new Log(LOG_LEVEL, "Robot");
 	public static final Drivetrain 	drivetrain 	= (HAS_DRIVETRAIN) 	? new Drivetrain() : null;
 	public static final Winch winch = (HAS_WINCH) ? new Winch() : null;
+	public static final Winch winchLeft = (HAS_WINCH) ? new Winch(Winch.Side.LEFT) : null;
+	public static final Winch winchRight = (HAS_WINCH) ? new Winch(Winch.Side.RIGHT) : null;
+
 	public static final Claw claw = (HAS_CLAW) ? new Claw() : null;
 	public static final Elevator elevator = (HAS_ELEVATOR) ? new Elevator() : null;
 	public static final Arm arm = (HAS_ARM) ? new Arm() : null;
@@ -53,6 +60,11 @@ public class Robot extends IterativeRobot {
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
 	
 	private static String gameData = "";
+	
+	NetworkTableInstance offSeasonNetworkTable = NetworkTableInstance.create();
+	public void startSeasonNetworkTable() {
+		offSeasonNetworkTable.startClient("10.0.100.5");
+	}
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<Command>();
@@ -66,7 +78,13 @@ public class Robot extends IterativeRobot {
 		log.add("Robot Init", Log.Level.TRACE);
 		
 		oi = new OI();
+		
+		chooser.addObject("Center to switch", new Center_ChooseSwitchSide());
+		chooser.addObject("Drive Stright", new DriveStraight());
+		chooser.addDefault("Do nothing (defult)", new DoNothing());
 		SmartDashboard.putData("Auto Mode", chooser);
+		
+		startSeasonNetworkTable();
 	}
 
 	
@@ -148,10 +166,11 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void searchForGameData(){
-		log.add("Game Data: " + gameData, Log.Level.ALL);
 		SmartDashboard.putBoolean("Game Data Exists", gameDataPresent());
 		if(!gameDataPresent()){
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
+			//gameData = DriverStation.getInstance().getGameSpecificMessage();
+			// week zero game data interface
+			//gameData = offSeasonNetworkTable.getTable("OffseasonFMSInfo").getEntry("GameData").getString("defaultValue");
 		}
 	}
 	
@@ -168,7 +187,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public static Side getSwitchSide(){
-		return (gameData.substring(1, 1) == "R") ? Side.RIGHT : Side.LEFT;
+		return (gameData.substring(0, 0) == "R") ? Side.RIGHT : Side.LEFT;
 	}
 	
 	public static Side getScaleSide(){

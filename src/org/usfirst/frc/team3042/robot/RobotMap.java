@@ -141,8 +141,8 @@ public class RobotMap {
 	public static final double ELEVATOR_KF = IS_PRIMARY 	? 0 : 0.5;
 	public static final int ELEVATOR_I_ZONE = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 1000;
-	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 1000;
-	public static final double ELEVATOR_LOWER_VELOCITY = IS_PRIMARY ? 0 : 0.10;
+	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 1500;
+	public static final double ELEVATOR_LOWER_VELOCITY = IS_PRIMARY ? 0 : 0.8;
 	public static final double ELEVATOR_POSITION_CONTROL_RANGE = IS_PRIMARY ? 0 : 300;
 	public static final int ELEVATOR_SPROCKET_CIRCUMFERENCE = IS_PRIMARY ? 4 : 4;
 	public static final double COUNTER_GRAVITY_VELOCITY = IS_PRIMARY ? 0 : 0;
@@ -150,11 +150,11 @@ public class RobotMap {
 	
 	/** Arm Settings **********************************************************/
 	public static final boolean HAS_ARM = !IS_PBOT;
-	public static final double ARM_KP = IS_PRIMARY 	? 0 : 5.0;
-	public static final double ARM_KI = IS_PRIMARY 	? 0 : 0.01;
+	public static final double ARM_KP = IS_PRIMARY 	? 0 : 6.0;
+	public static final double ARM_KI = IS_PRIMARY 	? 0 : 0.015;
 	public static final double ARM_KD = IS_PRIMARY 	? 0 : 50.0;
 	public static final double ARM_KF = IS_PRIMARY 	? 0 : 0;
-	public static final int ARM_I_ZONE = IS_PRIMARY 	? 0 : 20;
+	public static final int ARM_I_ZONE = IS_PRIMARY 	? 0 : 30;
 	public static final boolean ARM_REVERSE_SENSOR_PHASE = true;
 	public static final int ARM_MANUAL_SPEED = IS_PRIMARY	? 0 : 1;
 	public static final int ARM_BOTTOM_POS = IS_PRIMARY	? 0 : -180;

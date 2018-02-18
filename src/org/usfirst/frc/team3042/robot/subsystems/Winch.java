@@ -138,7 +138,7 @@ public class Winch extends Subsystem {
 		setPower(winchMotorRight, -climbPower);
 	}
 	
-	public enum Side {
+	public static enum Side {
 		LEFT, RIGHT;
 	}
 }

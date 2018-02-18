@@ -1,37 +1,39 @@
 package org.usfirst.frc.team3042.robot.commands;
 
 import org.usfirst.frc.team3042.lib.Log;
+import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
-import org.usfirst.frc.team3042.robot.subsystems.Winch;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * THIS COULD BE BAD
+ *
  */
-public class Winch_ClimbManual extends Command {
+public class POP_UnleashBothTriggers extends Command {
 	/** Configuration Constants ***********************************************/
-	private static final Log.Level LOG_LEVEL = RobotMap.LOG_WINCH;
-	
+	public static final Log.Level LOG_LEVEL = RobotMap.LOG_POP;
+
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
-	Winch winchSide;
-	
-    public Winch_ClimbManual(Winch winchSide) {
+
+
+    public POP_UnleashBothTriggers() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	this.winchSide = winchSide;
-    	requires(winchSide);//winchSide must be the side of the winch this command should require and control.
+    	requires(Robot.pop);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
-    	winchSide.climbOneSide();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(Robot.oi.getLeftTrigger() == 1 && Robot.oi.getRightTrigger() == 1){
+    		Robot.pop.unleashThePOP();
+    		log.add("POP unleashed", Log.Level.TRACE);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -2,6 +2,7 @@ package org.usfirst.frc.team3042.robot.subsystems;
 
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
+import org.usfirst.frc.team3042.robot.commands.POP_UnleashBothTriggers;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,13 +24,13 @@ public class POP extends Subsystem {
 	/**
 	 * THIS IS WHERE WE UNLEASH THE POP TO KILL EVERYONE!!!!!!!!!!!!!!!
 	 */
-	public void unleashThyPOP() {
+	public void unleashThePOP() {
 		popSolenoid.set(true);
 	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	// This line exists so that it is not stupidly yelling at us.
     }
 }
 
