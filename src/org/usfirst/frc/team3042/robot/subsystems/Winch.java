@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
 import org.usfirst.frc.team3042.lib.ADIS16448_IMU;
+import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Winch_Stop;
 
@@ -25,6 +26,9 @@ public class Winch extends Subsystem {
 	
 	private double hasLoadThreshhold = RobotMap.WINCH_HAS_LOAD_THRESHHOLD;
 	
+	private boolean combinedLeftRight = false;
+	private Side side;
+	
 	//ADIS16448_IMU gyro = new ADIS16448_IMU();
 	
 	private Timer time = new Timer();
@@ -48,9 +52,10 @@ public class Winch extends Subsystem {
 	private double accumErrorLeftRight = 0;
 	
 	public Winch(){
-		
+		combinedLeftRight = true;
 	}
 	public Winch(Side side){
+		this.side = side;
 		winchMotorOneSide = (side == Side.LEFT)? winchMotorLeft : winchMotorRight;
 		//If we choose to control each side independantly, create two subsystems with this constructor.
 	}
@@ -58,7 +63,7 @@ public class Winch extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new Winch_Stop());
+    	setDefaultCommand(new Winch_Stop((combinedLeftRight)? Robot.winch : (side == Side.LEFT)? Robot.winchLeft : Robot.winchRight));
     }
     
     private void setPower(TalonSRX motor, double winchPower) {
@@ -92,7 +97,7 @@ public class Winch extends Subsystem {
     
     public void climbOneSide(){
     	if(winchMotorOneSide != null){
-    		setPower(winchMotorOneSide, climbPower);
+    		setPower(winchMotorOneSide, climbPower *= (side == Side.LEFT)? -1 : 1);
     	}
     	//Used only if we control manually both sides of the winch indepentantly
     	//Does nothing if set up for automatic leveling

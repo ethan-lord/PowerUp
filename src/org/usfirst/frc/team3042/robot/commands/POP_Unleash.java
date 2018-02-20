@@ -3,6 +3,7 @@ package org.usfirst.frc.team3042.robot.commands;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
+import org.usfirst.frc.team3042.robot.subsystems.POP;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -26,6 +27,7 @@ public class POP_Unleash extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
+    	Robot.pop.unleashThePOP();
     }
 
     // Called repeatedly when this Command is scheduled to run

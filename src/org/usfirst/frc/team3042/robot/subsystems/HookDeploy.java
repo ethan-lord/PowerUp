@@ -48,7 +48,8 @@ public class HookDeploy extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new HookDeploy_HoldPosition(currentGoalPos));
+    	//setDefaultCommand(new HookDeploy_HoldPosition(currentGoalPos));
+    	setDefaultCommand(new HookDeploy_Stop());
     }
     public void stop() {
 		setPower(hookTalon, 0);
