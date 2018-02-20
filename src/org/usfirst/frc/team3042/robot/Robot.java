@@ -5,6 +5,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -15,6 +16,7 @@ import org.usfirst.frc.team3042.robot.commands.autonomous.DoNothing;
 import org.usfirst.frc.team3042.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
 import org.usfirst.frc.team3042.robot.subsystems.Claw;
+import org.usfirst.frc.team3042.robot.subsystems.DriverCamera;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3042.robot.subsystems.Elevator;
 import org.usfirst.frc.team3042.robot.subsystems.HookDeploy;
@@ -58,6 +60,9 @@ public class Robot extends IterativeRobot {
 	public static final POP pop = (HAS_POP) ? new POP() : null;
 	public static OI oi;
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
+	public static final DriverCamera driverCamera = new DriverCamera();
+	
+	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 	
 	private static String gameData = "";
 	
@@ -76,7 +81,7 @@ public class Robot extends IterativeRobot {
 		
 		chooser.addObject("Center to switch", new Center_ChooseSwitchSide());
 		chooser.addObject("Drive Stright", new DriveStraight());
-		chooser.addDefault("Do nothing (defult)", new DoNothing());
+		chooser.addDefault("Do nothing (default)", new DoNothing());
 		SmartDashboard.putData("Auto Mode", chooser);
 	}
 
@@ -131,6 +136,8 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		log.add("Teleop Init", Log.Level.TRACE);
 		
+		Robot.elevator.setZero();
+		
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -146,8 +153,19 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Arm Position", Robot.arm.getPosition());
 		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Hook Position", Robot.hookDeploy.getPosition());
+		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Elevator Position", Robot.elevator.getPosition());
 		//Only log on primary and secondary robots, pbot would crash code with this
 		Scheduler.getInstance().run();
+		
+		SmartDashboard.putNumber("PDP Channel 0", pdp.getCurrent(0));
+		SmartDashboard.putNumber("PDP Channel 1", pdp.getCurrent(1));
+		SmartDashboard.putNumber("PDP Channel 2", pdp.getCurrent(2));
+		SmartDashboard.putNumber("PDP Channel 3", pdp.getCurrent(3));
+		SmartDashboard.putNumber("PDP Channel 11", pdp.getCurrent(11));
+		SmartDashboard.putNumber("PDP Channel 12", pdp.getCurrent(12));
+		SmartDashboard.putNumber("PDP Channel 13", pdp.getCurrent(13));
+		SmartDashboard.putNumber("PDP Channel 14", pdp.getCurrent(14));
+		SmartDashboard.putNumber("PDP Channel 15", pdp.getCurrent(15));
 	}
 
 	

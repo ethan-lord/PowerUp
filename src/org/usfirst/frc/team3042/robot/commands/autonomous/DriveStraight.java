@@ -29,7 +29,7 @@ public class DriveStraight extends Command {
     	log.add("Initialize", Log.Level.TRACE);
     	
     	Path path = new Path();
-    	path.addStraight(120, 60);
+    	path.addStraight(60, 36);
     	DrivetrainAuton_Drive driveCommand = new DrivetrainAuton_Drive(path);
     	driveCommand.start();
     }

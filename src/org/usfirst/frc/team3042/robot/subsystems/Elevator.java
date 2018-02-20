@@ -53,6 +53,7 @@ public class Elevator extends Subsystem {
 	private int currentPreset = 0;
 	public static Position[] positionFromPreset = new Position[]{Position.BOTTOM, Position.INTAKE, Position.SWITCH, Position.LOW_SCALE, Position.MID_SCALE, Position.HIGH_SCALE};
 	public static final double maxSpeed = RobotMap.ELEVATOR_MAX_SPEED;
+	public int elevatorZero = 0;
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -77,6 +78,10 @@ public class Elevator extends Subsystem {
 		motor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PIDIDX, TIMEOUT);
 		motor.setInverted(RobotMap.ELEVATOR_REVERSE);
 	}
+    
+    public void zeroTheEncoder(){
+    	
+    }
     
     public void initMotionMagic(TalonSRX motor){
 		motor.configMotionAcceleration(MAGIC_ACCEL, TIMEOUT);
@@ -107,6 +112,10 @@ public class Elevator extends Subsystem {
 		elevatorTalon.set(ControlMode.Position, safetyCheck(position));
 		currentGoalPos = position;
 	}
+	
+	public void setZero(){
+		elevatorZero = elevatorTalon.getSelectedSensorPosition(PIDIDX);
+	}
 
 	
 	public int safetyCheck(int position) {
@@ -121,32 +130,32 @@ public class Elevator extends Subsystem {
 		switch (position) {
 			case BOTTOM:
 				log.add("Bottom", Log.Level.DEBUG);
-				setTalonPositionMagic(BOT_POS);
+				setTalonPositionMagic(BOT_POS - elevatorZero);
 				log.add("Botton position: " + BOT_POS, Log.Level.DEBUG);
                 break;
 			case INTAKE:
 				log.add("Intake", Log.Level.DEBUG);
-				setTalonPositionMagic(INT_POS);
+				setTalonPositionMagic(INT_POS - elevatorZero);
 				log.add("Intake position: " + INT_POS, Log.Level.DEBUG);
 				break;
 			case SWITCH:
 				log.add("Switch", Log.Level.DEBUG);
-				setTalonPositionMagic(SWITCH_POS);
+				setTalonPositionMagic(SWITCH_POS - elevatorZero);
 				log.add("Switch position: " + SWITCH_POS, Log.Level.DEBUG);
 				break;
 			case LOW_SCALE:
 				log.add("Low Scale", Log.Level.DEBUG);
-				setTalonPositionMagic(LOW_SCALE_POS);
+				setTalonPositionMagic(LOW_SCALE_POS - elevatorZero);
 				log.add("Low scale position: " + LOW_SCALE_POS, Log.Level.DEBUG);
 				break;
 			case MID_SCALE:
 				log.add("Mid Scale", Log.Level.DEBUG);
-				setTalonPositionMagic(MID_SCALE_POS);
+				setTalonPositionMagic(MID_SCALE_POS - elevatorZero);
 				log.add("Mid scale position: " + MID_SCALE_POS, Log.Level.DEBUG);
 				break;
 			case HIGH_SCALE:
 				log.add("High Scale", Log.Level.DEBUG);
-				setTalonPositionMagic(HIGH_SCALE_POS);
+				setTalonPositionMagic(HIGH_SCALE_POS - elevatorZero);
 				log.add("High scale position: " + HIGH_SCALE_POS, Log.Level.DEBUG);
 				break;
 			default:

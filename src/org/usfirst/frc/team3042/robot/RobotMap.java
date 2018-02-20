@@ -73,7 +73,7 @@ public class RobotMap {
 	public static final boolean USE_JOYSTICKS = !IS_PBOT;
 	public static final double JOYSTICK_DRIVE_SCALE = (IS_PBOT || DEMO_MODE)? 0.5 : 1.0;
 	public static final double TRIGGER_SPINNER_SCALE = 0.1;
-	public static final double JOYSTICK_DEAD_ZONE = 0.1;
+	public static final double JOYSTICK_DEAD_ZONE = 0.15;
 
 
 	/** Drivetrain Settings ***************************************************/
@@ -85,9 +85,9 @@ public class RobotMap {
 	// Maximum Acceleration given in power per second
 	public static final double ACCELERATION_MAX = 50;
 	public static final double kF_DRIVE_LEFT = 	(IS_PBOT) 		? 1.16666666666666666666666666667 ://0.7130907570054371 :
-												(IS_PRIMARY) 	? 0.0 : 0.0;
+												(IS_PRIMARY) 	? 0.0 : 1.21;
 	public static final double kF_DRIVE_RIGHT = (IS_PBOT) 		? 1.12 ://0.6492764661081493 :
-												(IS_PRIMARY) 	? 0.0 : 0.0;
+												(IS_PRIMARY) 	? 0.0 : 1.24;
 	public static final int TALON_ERROR_TIMEOUT = 0;// measured in Ms
 	public static final int TRAJPERIOD = 10;
 	public static final int BASE_TRAJPERIOD = 0;
@@ -103,7 +103,7 @@ public class RobotMap {
 	
 	public static final double WINCH_HAS_LOAD_THRESHHOLD = 0;//test to determine what this should be.
 	
-	public static final double WINCH_BASE_POWER = .6;// percent output
+	public static final double WINCH_BASE_POWER = 1.0;// percent output
 	
 	public static final double KP_WINCH_LEFT = IS_PRIMARY 	? 0 : 0;
 	public static final double KI_WINCH_LEFT = IS_PRIMARY 	? 0 : 0;
@@ -116,7 +116,7 @@ public class RobotMap {
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
 	public static final double CLAW_INTAKE_POWER = IS_PRIMARY 	? 0 : 0.8;
-	public static final double CLAW_RELEASE_POWER = IS_PRIMARY 	? 0 : -1.0;
+	public static final double CLAW_RELEASE_POWER = IS_PRIMARY 	? 0 : -0.6;
 	public static final double CLAW_GRAB_DISTANCE = 4;
 	public static final boolean STARTS_ACTIVE = false;
 	public static final double CLAW_INTAKE_TIMEOUT = IS_PRIMARY ? 0 : 0;
@@ -140,9 +140,9 @@ public class RobotMap {
 	public static final double ELEVATOR_KD = IS_PRIMARY 	? 0 : 15.0;
 	public static final double ELEVATOR_KF = IS_PRIMARY 	? 0 : 0.5;
 	public static final int ELEVATOR_I_ZONE = IS_PRIMARY 	? 0 : 0;
-	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 1000;
-	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 1500;
-	public static final double ELEVATOR_LOWER_VELOCITY = IS_PRIMARY ? 0 : 0.8;
+	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 1500;
+	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 2500;
+	public static final double ELEVATOR_LOWER_VELOCITY = IS_PRIMARY ? 0 : 0.05;
 	public static final double ELEVATOR_POSITION_CONTROL_RANGE = IS_PRIMARY ? 0 : 300;
 	public static final int ELEVATOR_SPROCKET_CIRCUMFERENCE = IS_PRIMARY ? 4 : 4;
 	public static final double COUNTER_GRAVITY_VELOCITY = IS_PRIMARY ? 0 : 0;
@@ -158,7 +158,7 @@ public class RobotMap {
 	public static final boolean ARM_REVERSE_SENSOR_PHASE = true;
 	public static final int ARM_MANUAL_SPEED = IS_PRIMARY	? 0 : 1;
 	public static final int ARM_BOTTOM_POS = IS_PRIMARY	? 0 : -180;
-	public static final int ARM_MIDDLE_POS = IS_PRIMARY	? 0 : -35;
+	public static final int ARM_MIDDLE_POS = IS_PRIMARY	? 0 : -15;
 	public static final int ARM_TOP_POS = IS_PRIMARY	? 0 : 0;
 	public static final int ARM_FRAME_PERIMITER = IS_PRIMARY ? 0 : 0;
 	public static final int ARM_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 0;
@@ -168,9 +168,9 @@ public class RobotMap {
 	
 	/** HookDeploy Settings **********************************************/
 	public static final boolean HAS_HOOKDEPLOY = !IS_PBOT;
-	public static final int HOOK_STOWED_POS = IS_PRIMARY	? 0 : -650;
-	public static final int HOOK_READY_POS = IS_PRIMARY		? 0 : 0;
-	public static final int HOOK_DELIVERY_POS = IS_PRIMARY 	? 0 : -30;
+	public static final int HOOK_STOWED_POS = IS_PRIMARY	? 0 : -730;
+	public static final int HOOK_READY_POS = IS_PRIMARY		? 0 : -25;
+	public static final int HOOK_DELIVERY_POS = IS_PRIMARY 	? 0 : -70;
 	public static final double HOOK_KP = IS_PRIMARY 	? 0 : 5.0;
 	public static final double HOOK_KI = IS_PRIMARY 	? 0 : 0.01;
 	public static final double HOOK_KD = IS_PRIMARY 	? 0 : 50;
@@ -204,11 +204,11 @@ public class RobotMap {
 	public static final boolean HAS_AUTON = HAS_ENCODERS;
 	public static final int AUTON_PROFILE = 0;
 	public static final double kP_AUTON = 		(IS_PBOT) 		? 1.0 :
-												(IS_PRIMARY) 	? 0.0 : 0.0;
+												(IS_PRIMARY) 	? 0.0 : 2.0;
 	public static final double kI_AUTON = 		(IS_PBOT) 		? 0.0 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final double kD_AUTON = 		(IS_PBOT) 		? 2.0 :
-												(IS_PRIMARY) 	? 0.0 : 0.0;
+												(IS_PRIMARY) 	? 0.0 : 4.0;
 	public static final int I_ZONE_AUTON =		(IS_PBOT)		? 0 :
 												(IS_PRIMARY)	? 0 : 0;
 	public static final double DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES = 1;
