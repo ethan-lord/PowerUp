@@ -137,12 +137,13 @@ public class OI {
 			gamepad.B.whenPressed(new POP_Unleash());
 			gamepad.LT.whileActive(new Winch_ClimbOneSide(Robot.winchLeft));
 			gamepad.RT.whileActive(new Winch_ClimbOneSide(Robot.winchRight));
+	
 			
 			joyRight.button1.whenPressed(new Drivetrain_Shift());
 			
 			joyLeft.button1.whenPressed(new Drivetrain_Shift());
 			
-			
+			//joyLeft.button9.whileActive(new Winch_Reverse());
 			joyRight.button9.whenPressed(new DrivetrainAuton_Drive(new CenterToLeftSwitch().buildPath()));
 		}
 	}
