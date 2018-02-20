@@ -48,14 +48,13 @@ public class HookDeploy extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	//setDefaultCommand(new HookDeploy_HoldPosition(currentGoalPos));
-    	setDefaultCommand(new HookDeploy_Stop());
+    	setDefaultCommand(new HookDeploy_HoldPosition(currentGoalPos));
     }
     public void stop() {
 		setPower(hookTalon, 0);
     }
     private void setPower(TalonSRX talon, double power){
-    	talon.set(ControlMode.PercentOutput, power);
+    		talon.set(ControlMode.PercentOutput, power);
     }
     public static enum Position {
 		STOWED, READY, DELIVERY;
