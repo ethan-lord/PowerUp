@@ -5,6 +5,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_HoldPosition;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_Stop;
+import org.usfirst.frc.team3042.robot.commands.HookDeploy_Test;
 import org.usfirst.frc.team3042.robot.subsystems.Arm.Position;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -49,6 +50,7 @@ public class HookDeploy extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new HookDeploy_HoldPosition(currentGoalPos));
+    	//setDefaultCommand(new HookDeploy_Stop());
     }
     public void stop() {
 		setPower(hookTalon, 0);

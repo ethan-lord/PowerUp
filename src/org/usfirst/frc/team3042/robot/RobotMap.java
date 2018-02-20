@@ -115,8 +115,8 @@ public class RobotMap {
 	
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
-	public static final double CLAW_INTAKE_POWER = IS_PRIMARY 	? 0 : 0.8;
-	public static final double CLAW_RELEASE_POWER = IS_PRIMARY 	? 0 : -0.6;
+	public static final double CLAW_INTAKE_POWER = IS_PRIMARY 	? 0.8 : 0.8;
+	public static final double CLAW_RELEASE_POWER = IS_PRIMARY 	? -0.6 : -0.6;
 	public static final double CLAW_GRAB_DISTANCE = 4;
 	public static final boolean STARTS_ACTIVE = false;
 	public static final double CLAW_INTAKE_TIMEOUT = IS_PRIMARY ? 0 : 0;
@@ -168,15 +168,15 @@ public class RobotMap {
 	
 	/** HookDeploy Settings **********************************************/
 	public static final boolean HAS_HOOKDEPLOY = !IS_PBOT;
-	public static final int HOOK_STOWED_POS = IS_PRIMARY	? 0 : -730;
-	public static final int HOOK_READY_POS = IS_PRIMARY		? 0 : -25;
-	public static final int HOOK_DELIVERY_POS = IS_PRIMARY 	? 0 : -70;
-	public static final double HOOK_KP = IS_PRIMARY 	? 0 : 5.0;
-	public static final double HOOK_KI = IS_PRIMARY 	? 0 : 0.01;
-	public static final double HOOK_KD = IS_PRIMARY 	? 0 : 50;
-	public static final int HOOK_IZONE = IS_PRIMARY	? 0 : 20;
+	public static final int HOOK_STOWED_POS = IS_PRIMARY	? 1000 : -730;
+	public static final int HOOK_READY_POS = IS_PRIMARY		? 200 : -25;
+	public static final int HOOK_DELIVERY_POS = IS_PRIMARY 	? 260 : -70;
+	public static final double HOOK_KP = IS_PRIMARY 	? 2.0 : 5.0;
+	public static final double HOOK_KI = IS_PRIMARY 	? 0.001 : 0.01;
+	public static final double HOOK_KD = IS_PRIMARY 	? 50 : 50;
+	public static final int HOOK_IZONE = IS_PRIMARY	? 20 : 20;
 	public static final double HOOK_KF = IS_PRIMARY 	? 0 : 0;
-	public static final boolean HOOK_DEPLOY_REVERSE_SENSOR_PHASE = IS_PRIMARY ? true : true;
+	public static final boolean HOOK_DEPLOY_REVERSE_SENSOR_PHASE = IS_PRIMARY ? false : true;
 	
 	
 	/** P.O.P. Settings *******************************************************/
