@@ -62,7 +62,7 @@ public class Robot extends IterativeRobot {
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
 	public static final DriverCamera driverCamera = new DriverCamera();
 	
-	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
+	//public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 	
 	private static String gameData = "";
 	
@@ -156,7 +156,7 @@ public class Robot extends IterativeRobot {
 		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Elevator Position", Robot.elevator.getPosition());
 		//Only log on primary and secondary robots, pbot would crash code with this
 		Scheduler.getInstance().run();
-		
+		/*
 		SmartDashboard.putNumber("PDP Channel 0", pdp.getCurrent(0));
 		SmartDashboard.putNumber("PDP Channel 1", pdp.getCurrent(1));
 		SmartDashboard.putNumber("PDP Channel 2", pdp.getCurrent(2));
@@ -166,6 +166,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("PDP Channel 13", pdp.getCurrent(13));
 		SmartDashboard.putNumber("PDP Channel 14", pdp.getCurrent(14));
 		SmartDashboard.putNumber("PDP Channel 15", pdp.getCurrent(15));
+		*/
 	}
 
 	

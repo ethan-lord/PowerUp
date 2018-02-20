@@ -14,7 +14,7 @@ public class RobotMap {
 	/** Robot selector ********************************************************/
 	public static enum Bot {PBOT, PRIMARY, SECONDARY};
 	// Set the bot to which you intend to push code.
-	private static Bot currentBot = Bot.SECONDARY;
+	private static Bot currentBot = Bot.PRIMARY;
 
 	public static final boolean IS_PBOT 	= (currentBot == Bot.PBOT);
 	public static final boolean IS_PRIMARY = (currentBot == Bot.PRIMARY);
@@ -42,22 +42,22 @@ public class RobotMap {
 	
 	/** CAN ID numbers ********************************************************/
 	public static final int CAN_LEFT_MOTOR 	= 		IS_PBOT 	? 3 :
-													IS_PRIMARY 	? 0 : 14;
+													IS_PRIMARY 	? 29 : 14;
 	public static final int CAN_RIGHT_MOTOR = 		IS_PBOT 	? 9 :
-													IS_PRIMARY 	? 0 : 25;
-	public static final int CAN_LEFT_FOLLOWER = 		IS_PRIMARY 	? 0 : 8;
-	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 0 : 7;
-	public static final int CAN_WINCH_MOTOR_LEFT = 	IS_PRIMARY  ? 0 : 19;
-	public static final int CAN_WINCH_MOTOR_RIGHT = 	IS_PRIMARY  ? 0 : 18;
+													IS_PRIMARY 	? 32 : 25;
+	public static final int CAN_LEFT_FOLLOWER = 		IS_PRIMARY 	? 28 : 8;
+	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 5 : 7;
+	public static final int CAN_WINCH_MOTOR_LEFT = 	IS_PRIMARY  ? 34 : 19;
+	public static final int CAN_WINCH_MOTOR_RIGHT = 	IS_PRIMARY  ? 27 : 18;
 	
-	public static final int CAN_CLAW_RIGHT_TALON =  	IS_PRIMARY  ? 0 : 1;
-	public static final int CAN_CLAW_LEFT_TALON =   	IS_PRIMARY  ? 0 : 12;
+	public static final int CAN_CLAW_RIGHT_TALON =  	IS_PRIMARY  ? 30 : 1;
+	public static final int CAN_CLAW_LEFT_TALON =   	IS_PRIMARY  ? 26 : 12;
 	
-	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 0 : 17;
+	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 13 : 17;
 	
-	public static final int CAN_ARM_MOTOR =			IS_PRIMARY ? 0 : 2;
+	public static final int CAN_ARM_MOTOR =			IS_PRIMARY ? 33 : 2;
 
-	public static final int CAN_HOOK_MOTOR =			IS_PRIMARY ? 0 : 15;
+	public static final int CAN_HOOK_MOTOR =			IS_PRIMARY ? 31 : 15;
 	
 	/** DIO channels **********************************************************/
 	public static final int DIO_CLAW_ULTRA_PING = 1;
@@ -196,8 +196,8 @@ public class RobotMap {
 	public static final int COUNTS_PER_REVOLUTION = 1440;
 	//How often the encoders update on the CAN, in milliseconds
 	public static final int ENCODER_FRAME_RATE = 10;
-	public static final boolean SENSOR_PHASE_LEFT = 	(IS_PBOT) ? false: false;
-	public static final boolean SENSOR_PHASE_RIGHT = 	(IS_PBOT) ? false: false;
+	public static final boolean SENSOR_PHASE_LEFT = 	(IS_PRIMARY) ? true: false;
+	public static final boolean SENSOR_PHASE_RIGHT = 	(IS_PRIMARY) ? false: false;
 	
 	
 	/** Drivetrain Autonomous Settings ****************************************/
