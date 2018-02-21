@@ -141,7 +141,8 @@ public class Arm extends Subsystem {
 	public void setTalonPosition(int position) {
 		log.add("Setting arm to position: " + safetyCheck(position), Log.Level.DEBUG);
 		armTalon.set(ControlMode.Position, safetyCheck(position));
-		currentGoalPos = position;
+		log.add("Current arm position: " + getPosition(), Log.Level.DEBUG);
+		currentGoalPos = safetyCheck(position);
 	}
     
     public void setPosition(Position position) {

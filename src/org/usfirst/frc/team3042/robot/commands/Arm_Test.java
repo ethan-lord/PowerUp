@@ -24,7 +24,7 @@ public class Arm_Test extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double power = -Robot.oi.gamepad.getRawAxis(Gamepad.RIGHT_JOY_Y_AXIS);
-    	power *= (power > 0) ? 0.5 : 0.25;
+    	power *= (power > 0) ? 0.5 : 0.8;
     	Robot.arm.setPower(power);
     }
 
