@@ -14,7 +14,7 @@ public class RobotMap {
 	/** Robot selector ********************************************************/
 	public static enum Bot {PBOT, PRIMARY, SECONDARY};
 	// Set the bot to which you intend to push code.
-	private static Bot currentBot = Bot.PRIMARY;
+	private static Bot currentBot = Bot.SECONDARY;
 
 	public static final boolean IS_PBOT 	= (currentBot == Bot.PBOT);
 	public static final boolean IS_PRIMARY = (currentBot == Bot.PRIMARY);
@@ -29,7 +29,7 @@ public class RobotMap {
 	 * in inches, position will be in inches and speed in inches per second.
 	 */
 	public static final double WHEEL_DIAMETER = 4.0;
-	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 23.795;
+	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 28;
 	
 	
 	/** USB ports *************************************************************/					
@@ -181,6 +181,7 @@ public class RobotMap {
 	
 	/** P.O.P. Settings *******************************************************/
 	public static final boolean HAS_POP = !IS_PBOT;
+	public static final double TIME_TO_REENGAGE = 0.5;
 	
 
 	
@@ -245,6 +246,9 @@ public class RobotMap {
 	/** Gyroscope Settings ****************************************************/
 	public static final boolean HAS_GYROSCOPE = true;
 	public static final double GYROSCOPE_SCALE = 0.25;
+	
+	/** Autonomous Constants ****************************************************/
+	public static final double AUTO_CLAW_RELEASE_TIME = 1.0;
 	
 	
 	/** Logger Settings *******************************************************/

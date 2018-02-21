@@ -25,6 +25,7 @@ import org.usfirst.frc.team3042.robot.commands.Winch_Climb;
 import org.usfirst.frc.team3042.robot.commands.Winch_ClimbOneSide;
 import org.usfirst.frc.team3042.robot.commands.Winch_Reverse;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Center_LeftSwitch;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Center_RightSwitch;
 import org.usfirst.frc.team3042.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Calibrate;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Shift;
@@ -144,7 +145,7 @@ public class OI {
 			joyLeft.button1.whenPressed(new Drivetrain_Shift());
 			
 			//joyLeft.button9.whileActive(new Winch_Reverse());
-			joyRight.button9.whenPressed(new DrivetrainAuton_Drive(new CenterToLeftSwitch().buildPath()));
+			joyRight.button9.whenPressed(new Center_LeftSwitch());
 		}
 	}
 	

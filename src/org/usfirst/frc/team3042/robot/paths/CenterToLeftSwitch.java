@@ -13,10 +13,10 @@ public class CenterToLeftSwitch implements PathContainer {
     @Override
     public Path buildPath() {
         ArrayList<Waypoint> waypoints = new ArrayList<Waypoint>();
-        waypoints.add(new Waypoint(20,157,0,48));
-        waypoints.add(new Waypoint(40,157,15,48));
-        waypoints.add(new Waypoint(100,220,15,48));
-        waypoints.add(new Waypoint(121,220,0,48));
+        waypoints.add(new Waypoint(20,157,0,60));
+        waypoints.add(new Waypoint(53,157,15,60));
+        waypoints.add(new Waypoint(80,234,15,60));
+        waypoints.add(new Waypoint(99,234,0,60));
 
         return PathBuilder.buildPathFromWaypoints(waypoints);
     }

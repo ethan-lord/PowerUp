@@ -16,7 +16,7 @@ public class Wait extends Command {
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
 	Timer time = new Timer();
-	double duration;
+	double duration;// measured in seconds
 	double timeZero;
 	
     public Wait(double duration) {
