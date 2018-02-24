@@ -1,4 +1,4 @@
-﻿package org.usfirst.frc.team3042.robot.paths;
+package org.usfirst.frc.team3042.robot.paths;
 
 import java.util.ArrayList;
 

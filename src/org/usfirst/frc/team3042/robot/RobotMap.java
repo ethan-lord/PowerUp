@@ -152,7 +152,7 @@ public class RobotMap {
 	public static final boolean HAS_ARM = !IS_PBOT;
 	public static final double ARM_KP = IS_PRIMARY 	? 3.0 : 6.0;
 	public static final double ARM_KI = IS_PRIMARY 	? 0.015 : 0.015;
-	public static final double ARM_KD = IS_PRIMARY 	? 60.0 : 60.0;
+	public static final double ARM_KD = IS_PRIMARY 	? 60.0 : 70.0;
 	public static final double ARM_KF = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_I_ZONE = IS_PRIMARY 	? 30 : 30;
 	public static final boolean ARM_REVERSE_SENSOR_PHASE = (IS_PRIMARY) ? false : true;
@@ -165,6 +165,7 @@ public class RobotMap {
 	public static final int ARM_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 0;
 	public static final int ARM_MAX_POSITION = IS_PRIMARY    ? 820 : 0;
 	public static final int ARM_MIN_POSITION = IS_PRIMARY    ? 480 : -190;
+	public static final int ARM_POSITION_CONTROL_RANGE = IS_PRIMARY	? 20 : 20;
 	
 	/** HookDeploy Settings **********************************************/
 	public static final boolean HAS_HOOKDEPLOY = !IS_PBOT;

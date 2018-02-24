@@ -93,6 +93,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void disabledInit() {
 		log.add("Disabled Init", Log.Level.TRACE);
+		gameData = "";
 	}
 
 	
@@ -184,7 +185,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public static boolean gameDataPresent(){
-		return gameData.length() == 3;
+		return gameData.length() >= 3;
 	}
 	
 	public static String getGameData(){
@@ -196,10 +197,20 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public static Side getSwitchSide(){
-		return (gameData.substring(0, 0) == "R") ? Side.RIGHT : Side.LEFT;
+		if(gameDataPresent()){
+			return (Robot.getGameData().substring(0, 1).equals("R")) ? Side.RIGHT : Side.LEFT;
+		}
+		else{
+			return null;
+		}
 	}
 	
 	public static Side getScaleSide(){
-		return (gameData.substring(1, 1) == "R") ? Side.RIGHT : Side.LEFT;
+		if(gameDataPresent()){
+			return (gameData.substring(1, 2) == "R") ? Side.RIGHT : Side.LEFT;
+		}
+		else{
+			return null;
+		}
 	}
 }

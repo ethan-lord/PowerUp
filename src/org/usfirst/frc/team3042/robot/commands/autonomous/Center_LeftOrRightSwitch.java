@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3042.robot.commands;
+package org.usfirst.frc.team3042.robot.commands.autonomous;
 
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.Robot;
@@ -7,30 +7,33 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Cycling all thine arm positions
+ *
  */
-public class Arm_CyclePositions extends Command {
+public class Center_LeftOrRightSwitch extends Command {
 	/** Configuration Constants ***********************************************/
-	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
-	private static final int ARM_POSITION_CONTROL_RANGE = RobotMap.ARM_POSITION_CONTROL_RANGE;
+	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ROBOT;
 	
 	/** Instance Variables ****************************************************/
-	private Log log = new Log(LOG_LEVEL, getName());
-	private int direction;
+	Log log = new Log(LOG_LEVEL, getName());
 	
-    public Arm_CyclePositions(int direction) {
+    public Center_LeftOrRightSwitch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.arm);
-    	
-    	this.direction = direction;
+    	requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	log.add("Initialize", Log.Level.TRACE);
+    	log.add("GameData: " + Robot.getGameData(), Log.Level.DEBUG);
+    	log.add("Robot.getGameData().substring(0, 1) = " + Robot.getGameData().substring(0, 1) + ".", Log.Level.DEBUG);
+    	log.add("Robot.getSwitchSide() = " + Robot.getSwitchSide(), Log.Level.DEBUG);
     	
-    	Robot.arm.cyclePreset(direction);
+    	if (Robot.getSwitchSide() == Robot.Side.LEFT) {
+    		new Center_LeftSwitch().start();
+    	}
+    	else {
+    		new Center_RightSwitch().start();
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -39,10 +42,10 @@ public class Arm_CyclePositions extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(Robot.arm.getCurrentGoalPos() - Robot.arm.getPosition()) < ARM_POSITION_CONTROL_RANGE;
+        return true;
     }
 
- // Called once after isFinished returns true
+    // Called once after isFinished returns true
     protected void end() {
     	log.add("End", Log.Level.TRACE);
     }
