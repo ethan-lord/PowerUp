@@ -29,7 +29,7 @@ public class RobotMap {
 	 * in inches, position will be in inches and speed in inches per second.
 	 */
 	public static final double WHEEL_DIAMETER = 4.0;
-	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 28;
+	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 40;
 	
 	
 	/** USB ports *************************************************************/					
@@ -152,7 +152,7 @@ public class RobotMap {
 	public static final boolean HAS_ARM = !IS_PBOT;
 	public static final double ARM_KP = IS_PRIMARY 	? 3.0 : 6.0;
 	public static final double ARM_KI = IS_PRIMARY 	? 0.015 : 0.015;
-	public static final double ARM_KD = IS_PRIMARY 	? 50.0 : 50.0;
+	public static final double ARM_KD = IS_PRIMARY 	? 60.0 : 60.0;
 	public static final double ARM_KF = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_I_ZONE = IS_PRIMARY 	? 30 : 30;
 	public static final boolean ARM_REVERSE_SENSOR_PHASE = (IS_PRIMARY) ? false : true;
@@ -205,11 +205,11 @@ public class RobotMap {
 	public static final boolean HAS_AUTON = HAS_ENCODERS;
 	public static final int AUTON_PROFILE = 0;
 	public static final double kP_AUTON = 		(IS_PBOT) 		? 1.0 :
-												(IS_PRIMARY) 	? 0.0 : 2.0;
+												(IS_PRIMARY) 	? 0.0 : 6.0;
 	public static final double kI_AUTON = 		(IS_PBOT) 		? 0.0 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final double kD_AUTON = 		(IS_PBOT) 		? 2.0 :
-												(IS_PRIMARY) 	? 0.0 : 4.0;
+												(IS_PRIMARY) 	? 0.0 : 24.0;
 	public static final int I_ZONE_AUTON =		(IS_PBOT)		? 0 :
 												(IS_PRIMARY)	? 0 : 0;
 	public static final double DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES = 1;

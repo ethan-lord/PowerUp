@@ -14,9 +14,9 @@ public class CenterToRightSwitch implements PathContainer {
     public Path buildPath() {
         ArrayList<Waypoint> waypoints = new ArrayList<Waypoint>();
         waypoints.add(new Waypoint(20,157,0,60));
-        waypoints.add(new Waypoint(53,157,15,60));
-        waypoints.add(new Waypoint(95,90,15,60));
-        waypoints.add(new Waypoint(130,90,0,60));
+        waypoints.add(new Waypoint(40,157,15,60));
+        waypoints.add(new Waypoint(85,64,15,60));
+        waypoints.add(new Waypoint(105,64,0,60));
 
         return PathBuilder.buildPathFromWaypoints(waypoints);
     }
