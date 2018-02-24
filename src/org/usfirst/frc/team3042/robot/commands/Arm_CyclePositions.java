@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Arm_CyclePositions extends Command {
 	/** Configuration Constants ***********************************************/
 	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
+	private static final int ARM_POSITION_CONTROL_RANGE = RobotMap.ARM_POSITION_CONTROL_RANGE;
 	
 	/** Instance Variables ****************************************************/
 	private Log log = new Log(LOG_LEVEL, getName());
@@ -38,7 +39,7 @@ public class Arm_CyclePositions extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return Math.abs(Robot.arm.getCurrentGoalPos() - Robot.arm.getPosition()) < ARM_POSITION_CONTROL_RANGE;
     }
 
  // Called once after isFinished returns true

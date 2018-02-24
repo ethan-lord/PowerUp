@@ -27,6 +27,10 @@ public class POP extends Subsystem {
 	public void unleashThePOP() {
 		popSolenoid.set(true);
 	}
+	
+	public void leashThePOP() {
+		popSolenoid.set(false);
+	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

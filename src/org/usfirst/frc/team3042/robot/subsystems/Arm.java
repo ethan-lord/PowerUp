@@ -144,19 +144,24 @@ public class Arm extends Subsystem {
 		log.add("Current arm position: " + getPosition(), Log.Level.DEBUG);
 		currentGoalPos = safetyCheck(position);
 	}
+	
+	public void setTalonPositionMagic(int position) {
+		armTalon.set(ControlMode.MotionMagic, safetyCheck(position));
+		currentGoalPos = safetyCheck(position);
+	}
     
     public void setPosition(Position position) {
 		switch (position) {
 			case BOTTOM:
-				setTalonPosition(BOT_POS);
+				setTalonPositionMagic(BOT_POS);
 				currentPreset = 0;
                 break;
 			case MIDDLE:
-				setTalonPosition(MID_POS);
+				setTalonPositionMagic(MID_POS);
 				currentPreset = 1;
 				break;
 			case TOP:
-				setTalonPosition(TOP_POS);
+				setTalonPositionMagic(TOP_POS);
 				currentPreset = 2;
 				break;
 			default:

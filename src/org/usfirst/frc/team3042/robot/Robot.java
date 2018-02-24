@@ -62,7 +62,7 @@ public class Robot extends IterativeRobot {
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
 	public static final DriverCamera driverCamera = new DriverCamera();
 	
-	//public static PowerDistributionPanel pdp = new PowerDistributionPanel();
+	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 	
 	private static String gameData = "";
 	
@@ -93,6 +93,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void disabledInit() {
 		log.add("Disabled Init", Log.Level.TRACE);
+		gameData = "";
 	}
 
 	
@@ -156,17 +157,16 @@ public class Robot extends IterativeRobot {
 		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Elevator Position", Robot.elevator.getPosition());
 		//Only log on primary and secondary robots, pbot would crash code with this
 		Scheduler.getInstance().run();
-		/*
-		SmartDashboard.putNumber("PDP Channel 0", pdp.getCurrent(0));
-		SmartDashboard.putNumber("PDP Channel 1", pdp.getCurrent(1));
+		
+		SmartDashboard.putNumber("PDP Channel Left Drivetrain 0", pdp.getCurrent(0));
+		SmartDashboard.putNumber("PDP Channel Left Drivetrain 1", pdp.getCurrent(1));
 		SmartDashboard.putNumber("PDP Channel 2", pdp.getCurrent(2));
-		SmartDashboard.putNumber("PDP Channel 3", pdp.getCurrent(3));
+		SmartDashboard.putNumber("PDP Channel Arm", pdp.getCurrent(3));
 		SmartDashboard.putNumber("PDP Channel 11", pdp.getCurrent(11));
-		SmartDashboard.putNumber("PDP Channel 12", pdp.getCurrent(12));
+		SmartDashboard.putNumber("PDP Channel Elevator", pdp.getCurrent(12));
 		SmartDashboard.putNumber("PDP Channel 13", pdp.getCurrent(13));
-		SmartDashboard.putNumber("PDP Channel 14", pdp.getCurrent(14));
-		SmartDashboard.putNumber("PDP Channel 15", pdp.getCurrent(15));
-		*/
+		SmartDashboard.putNumber("PDP Channel Right Drivetrain 14", pdp.getCurrent(14));
+		SmartDashboard.putNumber("PDP Channel Right Drivetrain 15", pdp.getCurrent(15));
 	}
 
 	
@@ -185,7 +185,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public static boolean gameDataPresent(){
-		return gameData.length() == 3;
+		return gameData.length() >= 3;
 	}
 	
 	public static String getGameData(){
@@ -197,10 +197,20 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public static Side getSwitchSide(){
-		return (gameData.substring(0, 0) == "R") ? Side.RIGHT : Side.LEFT;
+		if(gameDataPresent()){
+			return (Robot.getGameData().substring(0, 1).equals("R")) ? Side.RIGHT : Side.LEFT;
+		}
+		else{
+			return null;
+		}
 	}
 	
 	public static Side getScaleSide(){
-		return (gameData.substring(1, 1) == "R") ? Side.RIGHT : Side.LEFT;
+		if(gameDataPresent()){
+			return (gameData.substring(1, 2) == "R") ? Side.RIGHT : Side.LEFT;
+		}
+		else{
+			return null;
+		}
 	}
 }

@@ -14,7 +14,11 @@ public class RobotMap {
 	/** Robot selector ********************************************************/
 	public static enum Bot {PBOT, PRIMARY, SECONDARY};
 	// Set the bot to which you intend to push code.
+<<<<<<< HEAD
 	private static Bot currentBot = Bot.PBOT;
+=======
+	private static Bot currentBot = Bot.SECONDARY;
+>>>>>>> branch 'master' of https://github.com/team3042/PowerUp.git
 
 	public static final boolean IS_PBOT 	= (currentBot == Bot.PBOT);
 	public static final boolean IS_PRIMARY = (currentBot == Bot.PRIMARY);
@@ -29,7 +33,7 @@ public class RobotMap {
 	 * in inches, position will be in inches and speed in inches per second.
 	 */
 	public static final double WHEEL_DIAMETER = 4.0;
-	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 23.795;
+	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 40;
 	
 	
 	/** USB ports *************************************************************/					
@@ -116,7 +120,7 @@ public class RobotMap {
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
 	public static final double CLAW_INTAKE_POWER = IS_PRIMARY 	? 0.8 : 0.8;
-	public static final double CLAW_RELEASE_POWER = IS_PRIMARY 	? -0.6 : -0.6;
+	public static final double CLAW_RELEASE_POWER = IS_PRIMARY 	? -0.375 : -0.375;
 	public static final double CLAW_GRAB_DISTANCE = 4;
 	public static final boolean STARTS_ACTIVE = false;
 	public static final double CLAW_INTAKE_TIMEOUT = IS_PRIMARY ? 0 : 0;
@@ -152,7 +156,7 @@ public class RobotMap {
 	public static final boolean HAS_ARM = !IS_PBOT;
 	public static final double ARM_KP = IS_PRIMARY 	? 3.0 : 6.0;
 	public static final double ARM_KI = IS_PRIMARY 	? 0.015 : 0.015;
-	public static final double ARM_KD = IS_PRIMARY 	? 50.0 : 50.0;
+	public static final double ARM_KD = IS_PRIMARY 	? 60.0 : 70.0;
 	public static final double ARM_KF = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_I_ZONE = IS_PRIMARY 	? 30 : 30;
 	public static final boolean ARM_REVERSE_SENSOR_PHASE = (IS_PRIMARY) ? false : true;
@@ -165,6 +169,7 @@ public class RobotMap {
 	public static final int ARM_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 0;
 	public static final int ARM_MAX_POSITION = IS_PRIMARY    ? 820 : 0;
 	public static final int ARM_MIN_POSITION = IS_PRIMARY    ? 480 : -190;
+	public static final int ARM_POSITION_CONTROL_RANGE = IS_PRIMARY	? 20 : 20;
 	
 	/** HookDeploy Settings **********************************************/
 	public static final boolean HAS_HOOKDEPLOY = !IS_PBOT;
@@ -181,6 +186,7 @@ public class RobotMap {
 	
 	/** P.O.P. Settings *******************************************************/
 	public static final boolean HAS_POP = !IS_PBOT;
+	public static final double TIME_TO_REENGAGE = 0.5;
 	
 
 	
@@ -204,11 +210,11 @@ public class RobotMap {
 	public static final boolean HAS_AUTON = HAS_ENCODERS;
 	public static final int AUTON_PROFILE = 0;
 	public static final double kP_AUTON = 		(IS_PBOT) 		? 1.0 :
-												(IS_PRIMARY) 	? 0.0 : 2.0;
+												(IS_PRIMARY) 	? 0.0 : 6.0;
 	public static final double kI_AUTON = 		(IS_PBOT) 		? 0.0 :
 												(IS_PRIMARY) 	? 0.0 : 0.0;
 	public static final double kD_AUTON = 		(IS_PBOT) 		? 2.0 :
-												(IS_PRIMARY) 	? 0.0 : 4.0;
+												(IS_PRIMARY) 	? 0.0 : 24.0;
 	public static final int I_ZONE_AUTON =		(IS_PBOT)		? 0 :
 												(IS_PRIMARY)	? 0 : 0;
 	public static final double DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES = 1;
@@ -245,6 +251,9 @@ public class RobotMap {
 	/** Gyroscope Settings ****************************************************/
 	public static final boolean HAS_GYROSCOPE = true;
 	public static final double GYROSCOPE_SCALE = 0.25;
+	
+	/** Autonomous Constants ****************************************************/
+	public static final double AUTO_CLAW_RELEASE_TIME = 1.0;
 	
 	
 	/** Logger Settings *******************************************************/

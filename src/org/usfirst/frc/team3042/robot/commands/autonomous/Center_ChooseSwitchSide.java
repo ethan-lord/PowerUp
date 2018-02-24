@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3042.robot.commands.autonomous;
 
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.Robot;
+import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.WaitForGameData;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -9,7 +11,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class Center_ChooseSwitchSide extends CommandGroup {
-
+	/** Configuration Constants ***********************************************/
+	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ARM;
+	
+	/** Instance Variables ****************************************************/
+	Log log = new Log(LOG_LEVEL, getName());
+	
     public Center_ChooseSwitchSide() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
@@ -22,12 +29,7 @@ public class Center_ChooseSwitchSide extends CommandGroup {
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
     	addSequential(new WaitForGameData());
-    	if (Robot.getSwitchSide() == Robot.Side.LEFT) {
-    		addSequential(new Center_LeftSwitch());
-    	}
-    	else {
-    		addSequential(new Center_RightSwitch());
-    	}
+    	addSequential(new Center_LeftOrRightSwitch());
 
         // A command group will require all of the subsystems that each member
         // would require.
