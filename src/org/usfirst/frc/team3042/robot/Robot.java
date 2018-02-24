@@ -207,7 +207,7 @@ public class Robot extends IterativeRobot {
 	
 	public static Side getScaleSide(){
 		if(gameDataPresent()){
-			return (gameData.substring(1, 2) == "R") ? Side.RIGHT : Side.LEFT;
+			return (gameData.substring(1, 2).equals("R")) ? Side.RIGHT : Side.LEFT;
 		}
 		else{
 			return null;

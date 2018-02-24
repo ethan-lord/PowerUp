@@ -8,15 +8,16 @@ import org.usfirst.frc.team3042.lib.math.RigidTransform2d;
 import org.usfirst.frc.team3042.lib.math.Rotation2d;
 import org.usfirst.frc.team3042.lib.math.Translation2d;
 
-public class LeftToLeftScale implements PathContainer {
+public class LeftToRightScale implements PathContainer {
     
     @Override
     public Path buildPath() {
         ArrayList<Waypoint> waypoints = new ArrayList<Waypoint>();
-        waypoints.add(new Waypoint(20,282,0,60));
-        waypoints.add(new Waypoint(160,282,30,60));
-        waypoints.add(new Waypoint(250,247,30,60));
-        waypoints.add(new Waypoint(280,247,0,60));
+        waypoints.add(new Waypoint(20,282,0,0));
+        waypoints.add(new Waypoint(160,282,20,60));
+        waypoints.add(new Waypoint(243,247,30,60));
+        waypoints.add(new Waypoint(243,72,20,60));
+        waypoints.add(new Waypoint(280,72,0,60));
 
         return PathBuilder.buildPathFromWaypoints(waypoints);
     }
