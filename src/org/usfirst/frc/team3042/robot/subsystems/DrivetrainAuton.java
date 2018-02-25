@@ -188,4 +188,12 @@ public class DrivetrainAuton extends Subsystem {
 	public double getRightError() {
 		return rightMotor.getClosedLoopError(PIDIDX);
 	}
+	
+	public double getLeftGoal(){
+		return leftMotor.getActiveTrajectoryPosition();
+	}
+	
+	public double getRightGoal(){
+		return rightMotor.getActiveTrajectoryPosition();
+	}
 }
