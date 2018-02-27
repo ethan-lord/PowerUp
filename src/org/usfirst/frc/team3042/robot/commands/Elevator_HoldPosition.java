@@ -26,7 +26,7 @@ public class Elevator_HoldPosition extends Command {
     protected void initialize() {
     		log.add("Initialize", Log.Level.TRACE);
     	
-    		Robot.elevator.setTalonPosition(Robot.elevator.getCurrentGoalPos());
+    		Robot.elevator.setTalonPositionMagic(Robot.elevator.getCurrentGoalPos());
     }
 
     // Called repeatedly when this Command is scheduled to run

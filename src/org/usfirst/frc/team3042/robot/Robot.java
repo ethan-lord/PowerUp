@@ -94,6 +94,7 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		log.add("Disabled Init", Log.Level.TRACE);
 		gameData = "";
+		arm.setPreset(2);//preset 2 is the up to frame position
 	}
 
 	
