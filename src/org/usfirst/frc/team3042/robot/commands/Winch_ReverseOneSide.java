@@ -7,9 +7,9 @@ import org.usfirst.frc.team3042.robot.subsystems.Winch;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * THIS COULD BE BAD
+ *
  */
-public class Winch_ClimbOneSide extends Command {
+public class Winch_ReverseOneSide extends Command {
 	/** Configuration Constants ***********************************************/
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_WINCH;
 	
@@ -17,7 +17,7 @@ public class Winch_ClimbOneSide extends Command {
 	Log log = new Log(LOG_LEVEL, getName());
 	Winch winchSide;
 	
-    public Winch_ClimbOneSide(Winch winchSide) {
+    public Winch_ReverseOneSide(Winch winchSide) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	this.winchSide = winchSide;
@@ -27,9 +27,7 @@ public class Winch_ClimbOneSide extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
-    	winchSide.climbOneSide();
-    	//new Wait(2.0).start();
-    	//new HookDeploy_OverrideDefaultCommandWithStop().start();
+    	winchSide.reverseOneSide();
     }
 
     // Called repeatedly when this Command is scheduled to run
