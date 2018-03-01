@@ -112,14 +112,14 @@ public class PathBuilder {
         double speed;
 
         public Arc(Waypoint a, Waypoint b, Waypoint c) {
-            this(new Line(a, b), new Line(b, c), b.position);
+            this(new Line(a, b), new Line(b, c));
         }
 
-        public Arc(Line a, Line b, Translation2d center) {
+        public Arc(Line a, Line b) {
             this.a = a;
             this.b = b;
             this.speed = (a.speed + b.speed) / 2;
-            this.center = center;
+            this.center = intersect(a, b);
             this.radius = new Translation2d(center, a.end).norm();
         }
 

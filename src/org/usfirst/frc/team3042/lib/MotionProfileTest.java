@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3042.lib;
 
 import org.usfirst.frc.team3042.robot.RobotMap;
+import org.usfirst.frc.team3042.robot.paths.LeftToLeftScale;
 
 import com.ctre.phoenix.motion.TrajectoryPoint;
 
@@ -12,12 +13,7 @@ public class MotionProfileTest {
 		// TODO Auto-generated method stub
 		file.create("C:\\Users\\Robotics\\Desktop\\", "Profile.txt");
 
-		Path testPath = new Path();
-		testPath.addStraight(5.0, 60);
-		testPath.addLeftTurn(46.4, 15, 60);
-		testPath.addStraight(57, 24);
-		testPath.addRightTurn(46.4, 15, 24);
-		testPath.addStraight(6, 24);
+		Path testPath = new LeftToLeftScale().buildPath();
 
 		MotionProfile leftProfile = testPath.generateLeftPath();
 		MotionProfile rightProfile = testPath.generateRightPath();
