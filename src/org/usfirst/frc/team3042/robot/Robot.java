@@ -94,7 +94,7 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		log.add("Disabled Init", Log.Level.TRACE);
 		gameData = "";
-		arm.setPreset(2);//preset 2 is the up to frame position
+		if(!RobotMap.IS_PBOT) arm.setPreset(2);//preset 2 is the up to frame position
 	}
 
 	
@@ -138,7 +138,7 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		log.add("Teleop Init", Log.Level.TRACE);
 		
-		Robot.elevator.setZero();
+		if(!RobotMap.IS_PBOT) Robot.elevator.setZero();
 		
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to

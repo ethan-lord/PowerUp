@@ -67,6 +67,8 @@ public class DrivetrainAuton_Drive extends Command {
 		SmartDashboard.putNumber("Left Error", auton.getLeftError());
 		SmartDashboard.putNumber("Right Error", auton.getRightError());
 		
+		log.add("Left Error: " + auton.getLeftError() + ", Right Error: " + auton.getRightError(), Log.Level.DEBUG_PERIODIC);
+		
 		if  ( (leftStatus.btmBufferCnt > BUFFER_TRIGGER) && 
 				(rightStatus.btmBufferCnt > BUFFER_TRIGGER) ) {
 			auton.enableMotionProfile();
