@@ -169,6 +169,9 @@ public class Arm extends Subsystem {
 				break;
 		}
     }
+    public void setPreset(int preset){
+    	currentPreset = preset;
+    }
     public void stop() {
 		setPower(armTalon, 0);
 	}

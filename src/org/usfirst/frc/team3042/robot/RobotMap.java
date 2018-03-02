@@ -29,7 +29,7 @@ public class RobotMap {
 	 * in inches, position will be in inches and speed in inches per second.
 	 */
 	public static final double WHEEL_DIAMETER = 4.0;
-	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 40;
+	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 22.75;
 	
 	
 	/** USB ports *************************************************************/					
@@ -142,7 +142,7 @@ public class RobotMap {
 	public static final int ELEVATOR_I_ZONE = IS_PRIMARY 	? 0 : 0;
 	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 3500 : 1500;
 	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 4000 : 2500;
-	public static final double ELEVATOR_LOWER_VELOCITY = IS_PRIMARY ? 0.041 : 0.05;
+	public static final double ELEVATOR_LOWER_VELOCITY = IS_PRIMARY ? 0.041 : -0.1;
 	public static final double ELEVATOR_POSITION_CONTROL_RANGE = IS_PRIMARY ? 300 : 300;
 	public static final int ELEVATOR_SPROCKET_CIRCUMFERENCE = IS_PRIMARY ? 4 : 4;
 	public static final double COUNTER_GRAVITY_VELOCITY = IS_PRIMARY ? 0 : 0;
@@ -152,7 +152,7 @@ public class RobotMap {
 	public static final boolean HAS_ARM = !IS_PBOT;
 	public static final double ARM_KP = IS_PRIMARY 	? 3.0 : 6.0;
 	public static final double ARM_KI = IS_PRIMARY 	? 0.015 : 0.015;
-	public static final double ARM_KD = IS_PRIMARY 	? 60.0 : 70.0;
+	public static final double ARM_KD = IS_PRIMARY 	? 60.0 : 50.0;
 	public static final double ARM_KF = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_I_ZONE = IS_PRIMARY 	? 30 : 30;
 	public static final boolean ARM_REVERSE_SENSOR_PHASE = (IS_PRIMARY) ? false : true;
@@ -161,8 +161,8 @@ public class RobotMap {
 	public static final int ARM_MIDDLE_POS = IS_PRIMARY	? 800 : -15;
 	public static final int ARM_TOP_POS = IS_PRIMARY	? 820 : 0;
 	public static final int ARM_FRAME_PERIMITER = IS_PRIMARY ? 820 : 0;
-	public static final int ARM_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 0;
-	public static final int ARM_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 0;
+	public static final int ARM_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 100;
+	public static final int ARM_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 100;
 	public static final int ARM_MAX_POSITION = IS_PRIMARY    ? 820 : 0;
 	public static final int ARM_MIN_POSITION = IS_PRIMARY    ? 480 : -190;
 	public static final int ARM_POSITION_CONTROL_RANGE = IS_PRIMARY	? 20 : 20;

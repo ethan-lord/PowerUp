@@ -97,7 +97,14 @@ public class Winch extends Subsystem {
     
     public void climbOneSide(){
     	if(winchMotorOneSide != null){
-    		setPower(winchMotorOneSide, climbPower *= (side == Side.LEFT)? -1 : 1);
+    		setPower(winchMotorOneSide, climbPower * ((side == Side.LEFT)? -1 : 1));
+    	}
+    	//Used only if we control manually both sides of the winch indepentently
+    	//Does nothing if set up for automatic leveling
+    }
+    public void reverseOneSide(){
+    	if(winchMotorOneSide != null){
+    		setPower(winchMotorOneSide, climbPower * ((side == Side.LEFT)? 1 : -1));
     	}
     	//Used only if we control manually both sides of the winch indepentantly
     	//Does nothing if set up for automatic leveling

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3042.lib;
 
+import org.usfirst.frc.team3042.lib.Log.Level;
 import org.usfirst.frc.team3042.robot.RobotMap;
 
 import com.ctre.phoenix.motion.TrajectoryPoint;
@@ -34,8 +35,14 @@ public class MotionProfile {
 	public MotionProfile(double[] distance, double[] speed) {
 		checkAccel(speed);
 		
+		for(int i = 0; i < distance.length; i++){
+			log.add("distance[i] = " + distance[i], Level.DEBUG);
+		}
+		
 		double[] velocity = calculateVelocity(distance, speed);
 		double[] position = calculatePosition(velocity);
+		
+		log.add("position[position.length-1] = " + position[position.length - 1], Level.DEBUG);
 
 		fillTrajectory(position, velocity);
 	}

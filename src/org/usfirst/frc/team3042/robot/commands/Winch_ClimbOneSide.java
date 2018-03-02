@@ -28,8 +28,8 @@ public class Winch_ClimbOneSide extends Command {
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
     	winchSide.climbOneSide();
-    	new Wait(2.0).start();
-    	new HookDeploy_OverrideDefaultCommandWithStop().start();
+    	//new Wait(2.0).start();
+    	//new HookDeploy_OverrideDefaultCommandWithStop().start();
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -31,6 +31,7 @@ public class Path {
 		log.add("Adding Straight with distance: " + distance + ", speed: " + speed, LOG_LEVEL.DEBUG);
 		distance = convertDistance(distance);
 		speed = convertSpeed(speed);
+		log.add("Adding Straight with actual distance: " + distance + ", speed: " + speed, LOG_LEVEL.DEBUG);
 		
 		leftDistance.add(distance);
 		rightDistance.add(distance);
@@ -72,6 +73,7 @@ public class Path {
 		log.add("Adding Left Turn with angle: " + angle + ", radius: " + radius + ", speed: " + speed, LOG_LEVEL.DEBUG);
 		double distance = convertDistance(angle, radius);
 		speed = convertSpeed(speed);
+		log.add("Adding Left Turn with actual angle: " + angle + ", radius: " + radius + ", speed: " + speed, LOG_LEVEL.DEBUG);
 		
 		double innerScale = innerScale(radius);
 		double outerScale = outerScale(radius);
@@ -85,6 +87,7 @@ public class Path {
 		log.add("Adding Right Turn with angle: " + angle + ", radius: " + radius + ", speed: " + speed, LOG_LEVEL.DEBUG);
 		double distance = convertDistance(angle, radius);
 		speed = convertSpeed(speed);
+		log.add("Adding Right Turn with actual angle: " + angle + ", radius: " + radius + ", speed: " + speed, LOG_LEVEL.DEBUG);
 		
 		double innerScale = innerScale(radius);
 		double outerScale = outerScale(radius);
