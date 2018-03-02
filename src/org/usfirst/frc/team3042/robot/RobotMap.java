@@ -14,11 +14,7 @@ public class RobotMap {
 	/** Robot selector ********************************************************/
 	public static enum Bot {PBOT, PRIMARY, SECONDARY};
 	// Set the bot to which you intend to push code.
-<<<<<<< HEAD
-	private static Bot currentBot = Bot.PBOT;
-=======
 	private static Bot currentBot = Bot.SECONDARY;
->>>>>>> branch 'master' of https://github.com/team3042/PowerUp.git
 
 	public static final boolean IS_PBOT 	= (currentBot == Bot.PBOT);
 	public static final boolean IS_PRIMARY = (currentBot == Bot.PRIMARY);
