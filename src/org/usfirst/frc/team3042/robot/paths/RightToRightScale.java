@@ -14,9 +14,9 @@ public class RightToRightScale implements PathContainer {
     public Path buildPath() {
         ArrayList<Waypoint> waypoints = new ArrayList<Waypoint>();
         waypoints.add(new Waypoint(20,40,0,0));
-        waypoints.add(new Waypoint(160,40,20,60));
-        waypoints.add(new Waypoint(250,75,20,60));
-        waypoints.add(new Waypoint(280,75,0,60));
+        waypoints.add(new Waypoint(180,40,20,60));
+        waypoints.add(new Waypoint(250,81,20,60));
+        waypoints.add(new Waypoint(290,81,0,60));
 
         return PathBuilder.buildPathFromWaypoints(waypoints);
     }
@@ -30,7 +30,7 @@ public class RightToRightScale implements PathContainer {
     public boolean isReversed() {
         return false; 
     }
-	// WAYPOINT_DATA: [{"position":{"x":20,"y":40},"speed":0,"radius":0,"comment":""},{"position":{"x":160,"y":40},"speed":60,"radius":15,"comment":""},{"position":{"x":250,"y":75},"speed":60,"radius":15,"comment":""},{"position":{"x":280,"y":75},"speed":60,"radius":0,"comment":""}]
+	// WAYPOINT_DATA: [{"position":{"x":20,"y":40},"speed":0,"radius":0,"comment":""},{"position":{"x":180,"y":40},"speed":60,"radius":15,"comment":""},{"position":{"x":250,"y":75},"speed":60,"radius":15,"comment":""},{"position":{"x":280,"y":75},"speed":60,"radius":0,"comment":""}]
 	// IS_REVERSED: false
 	// FILE_NAME: RightToRightScale
 }

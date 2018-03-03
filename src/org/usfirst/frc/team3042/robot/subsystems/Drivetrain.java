@@ -120,6 +120,11 @@ public class Drivetrain extends Subsystem {
 	public Rotation2d getGyro() {
 		return Rotation2d.fromDegrees(gyro.getAngle());
 	}
+	
+	public double getGyroRaw() {
+		return gyro.getAngleZ();
+	}
+	
 	public void zeroGyro() {
 		gyro.reset();
 	}

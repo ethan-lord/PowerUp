@@ -13,10 +13,10 @@ public class LeftToLeftScale implements PathContainer {
     @Override
     public Path buildPath() {
         ArrayList<Waypoint> waypoints = new ArrayList<Waypoint>();
-        waypoints.add(new Waypoint(20,282,0,60));
-        waypoints.add(new Waypoint(160,282,30,60));
-        waypoints.add(new Waypoint(240,247,30,60));
-        waypoints.add(new Waypoint(280,247,0,60));
+        waypoints.add(new Waypoint(20,282,0,0));
+        waypoints.add(new Waypoint(180,282,20,60));
+        waypoints.add(new Waypoint(250,241,20,60));
+        waypoints.add(new Waypoint(290,239,0,60));
 
         return PathBuilder.buildPathFromWaypoints(waypoints);
     }

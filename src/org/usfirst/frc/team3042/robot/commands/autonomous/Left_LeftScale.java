@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3042.robot.commands.autonomous;
 
+import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
@@ -34,6 +35,11 @@ public class Left_LeftScale extends CommandGroup {
     	addSequential(new DrivetrainAuton_Drive(new LeftToLeftScale().buildPath()));
     	addSequential(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME));
     	addSequential(new Claw_Stop());
+    	Path backUp = new Path();
+    	backUp.addStraight(-24, -24);
+    	addSequential(new DrivetrainAuton_Drive(backUp));
+    	addParallel(new Arm_SetPosition(Arm.Position.TOP));
+    	addSequential(new Elevator_SetPosition(Elevator.Position.INTAKE));
 
         // A command group will require all of the subsystems that each member
         // would require.

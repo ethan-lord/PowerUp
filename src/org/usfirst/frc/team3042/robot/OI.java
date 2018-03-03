@@ -17,6 +17,7 @@ import org.usfirst.frc.team3042.robot.commands.Claw_Unclamp;
 import org.usfirst.frc.team3042.robot.commands.Claw_UnclampIntake;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
+import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_TurnCalibrate;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_HoldPosition;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_SetPosition;
@@ -27,10 +28,15 @@ import org.usfirst.frc.team3042.robot.commands.Winch_Reverse;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Center_LeftSwitch;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Center_RightSwitch;
 import org.usfirst.frc.team3042.robot.commands.autonomous.DriveStraight;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Left_LeftScale;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Left_RightScale;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Right_RightScale;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Calibrate;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Shift;
 import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
 import org.usfirst.frc.team3042.robot.paths.CenterToRightSwitch;
+import org.usfirst.frc.team3042.robot.paths.LeftToRightScale;
+import org.usfirst.frc.team3042.robot.paths.RightToLeftScale;
 import org.usfirst.frc.team3042.robot.paths.RightToRightScale;
 import org.usfirst.frc.team3042.robot.paths.TestThing;
 import org.usfirst.frc.team3042.robot.subsystems.Elevator;
@@ -147,7 +153,9 @@ public class OI {
 			joyLeft.button1.whenPressed(new Drivetrain_Shift());
 			
 			joyLeft.button9.whileActive(new Winch_Reverse());
-			joyRight.button9.whenPressed(new DrivetrainAuton_Drive(new CenterToRightSwitch().buildPath()));
+			joyRight.button7.whenPressed(new Center_LeftSwitch());
+			joyRight.button8.whenPressed(new DrivetrainAuton_TurnCalibrate(20, 3));
+			joyRight.button9.whenPressed(new Left_RightScale());
 			//joyRight.button10.whenPressed(new DriveStraight());
 		}
 	}

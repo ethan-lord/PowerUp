@@ -10,14 +10,13 @@ import org.usfirst.frc.team3042.lib.math.Translation2d;
 
 public class LeftToRightScale implements PathContainer {
     
-    @Override
+	@Override
     public Path buildPath() {
         ArrayList<Waypoint> waypoints = new ArrayList<Waypoint>();
-        waypoints.add(new Waypoint(20,282,0,0));
-        waypoints.add(new Waypoint(160,282,20,60));
-        waypoints.add(new Waypoint(243,247,30,60));
-        waypoints.add(new Waypoint(243,72,20,60));
-        waypoints.add(new Waypoint(280,72,0,60));
+        waypoints.add(new Waypoint(20,282,0,48));
+        waypoints.add(new Waypoint(233,282,40,48));
+        waypoints.add(new Waypoint(232,76,20,48));
+        waypoints.add(new Waypoint(279,74,0,48));
 
         return PathBuilder.buildPathFromWaypoints(waypoints);
     }
@@ -31,7 +30,7 @@ public class LeftToRightScale implements PathContainer {
     public boolean isReversed() {
         return false; 
     }
-	// WAYPOINT_DATA: [{"position":{"x":20,"y":282},"speed":60,"radius":0,"comment":""},{"position":{"x":60,"y":282},"speed":60,"radius":30,"comment":""},{"position":{"x":250,"y":300},"speed":60,"radius":30,"comment":""},{"position":{"x":310,"y":300},"speed":60,"radius":20,"comment":""},{"position":{"x":310,"y":270},"speed":60,"radius":0,"comment":""}]
+	// WAYPOINT_DATA: [{"position":{"x":20,"y":282},"speed":60,"radius":0,"comment":""},{"position":{"x":237,"y":282},"speed":60,"radius":40,"comment":""},{"position":{"x":237,"y":76},"speed":60,"radius":20,"comment":""},{"position":{"x":280,"y":76},"speed":60,"radius":0,"comment":""}]
 	// IS_REVERSED: false
-	// FILE_NAME: LeftToLeftScale
+	// FILE_NAME: LeftToRightScale
 }

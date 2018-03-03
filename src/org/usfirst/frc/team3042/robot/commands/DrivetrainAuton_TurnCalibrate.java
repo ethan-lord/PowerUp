@@ -37,7 +37,7 @@ public class DrivetrainAuton_TurnCalibrate extends Command {
     		
     		this.distance = distance;
     		
-    		leftMotionProfile = new MotionProfile(new double[] {-distance}, new double[] {speed});
+    		leftMotionProfile = new MotionProfile(new double[] {-distance}, new double[] {-speed});
     		rightMotionProfile = new MotionProfile(new double[] {distance}, new double[] {speed});
     }
 
@@ -60,7 +60,8 @@ public class DrivetrainAuton_TurnCalibrate extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {MotionProfileStatus leftStatus = auton.getLeftStatus();
+    protected void execute() {
+    	MotionProfileStatus leftStatus = auton.getLeftStatus();
 		MotionProfileStatus rightStatus = auton.getRightStatus();
 	
 		SmartDashboard.putNumber("Left Error", auton.getLeftError());
@@ -93,10 +94,10 @@ public class DrivetrainAuton_TurnCalibrate extends Command {
     protected void end() {
 		log.add("End", Log.Level.TRACE);
 		
-		log.add("Gyro turned " + drivetrain.getGyro().getDegrees() + " degrees", Log.Level.TRACE);
+		log.add("Gyro turned " + drivetrain.getGyroRaw() + " degrees", Log.Level.TRACE);
 		
 		double distanceInches = distance * RobotMap.WHEEL_DIAMETER * Math.PI;
-		double realWidth = distanceInches * 360 / (Math.PI * drivetrain.getGyro().getDegrees());
+		double realWidth = distanceInches * 360 / (Math.PI * drivetrain.getGyroRaw());
 		
 		log.add("Robot width is " + realWidth + " inches", Log.Level.TRACE);
 		

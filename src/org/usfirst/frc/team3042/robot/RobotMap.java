@@ -29,7 +29,7 @@ public class RobotMap {
 	 * in inches, position will be in inches and speed in inches per second.
 	 */
 	public static final double WHEEL_DIAMETER = 4.0;
-	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 28;
+	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 29.53042;
 	
 	
 	/** USB ports *************************************************************/					
@@ -206,11 +206,11 @@ public class RobotMap {
 	public static final boolean HAS_AUTON = HAS_ENCODERS;
 	public static final int AUTON_PROFILE = 0;
 	public static final double kP_AUTON = 		(IS_PBOT) 		? 1.0 :
-												(IS_PRIMARY) 	? 0.0 : 9.0;
+												(IS_PRIMARY) 	? 0.0 : 13.0;
 	public static final double kI_AUTON = 		(IS_PBOT) 		? 0.0 :
-												(IS_PRIMARY) 	? 0.0 : 0.01;
+												(IS_PRIMARY) 	? 0.0 : 0.05;
 	public static final double kD_AUTON = 		(IS_PBOT) 		? 2.0 :
-												(IS_PRIMARY) 	? 0.0 : 40.0;
+												(IS_PRIMARY) 	? 0.0 : 45.0;
 	public static final int I_ZONE_AUTON =		(IS_PBOT)		? 0 :
 												(IS_PRIMARY)	? 0 : 0;
 	public static final double DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES = 1;
