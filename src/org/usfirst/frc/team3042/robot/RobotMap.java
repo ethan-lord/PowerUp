@@ -126,9 +126,7 @@ public class RobotMap {
 	
 	/** Elevator Settings *****************************************************/
 	public static final boolean HAS_ELEVATOR = !IS_PBOT;
-	public static final int ELEVATOR_BOTTOM_POSITION = IS_PRIMARY 		? 200 : 200;
 	public static final int ELEVATOR_INTAKE_POSITION = IS_PRIMARY 		? 200 : 200;
-	public static final int ELEVATOR_SWITCH_POSITION = IS_PRIMARY 		? 12000 : 12000;
 	public static final int ELEVATOR_LOW_SCALE_POSITION = IS_PRIMARY 	? 25000 : 25000;
 	public static final int ELEVATOR_MID_SCALE_POSITION = IS_PRIMARY    ? 31000 : 31000;
 	public static final int ELEVATOR_HIGH_SCALE_POSITION = IS_PRIMARY 	? 36000 : 36000;

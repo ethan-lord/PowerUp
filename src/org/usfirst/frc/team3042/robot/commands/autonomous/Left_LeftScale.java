@@ -36,7 +36,7 @@ public class Left_LeftScale extends CommandGroup {
     	addSequential(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME));
     	addSequential(new Claw_Stop());
     	Path backUp = new Path();
-    	backUp.addStraight(-24, -24);
+    	backUp.addStraight(-24, -24);//to back up
     	addSequential(new DrivetrainAuton_Drive(backUp));
     	addParallel(new Arm_SetPosition(Arm.Position.TOP));
     	addSequential(new Elevator_SetPosition(Elevator.Position.INTAKE));

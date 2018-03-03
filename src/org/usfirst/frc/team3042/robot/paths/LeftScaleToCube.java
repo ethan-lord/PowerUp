@@ -13,23 +13,22 @@ public class LeftScaleToCube implements PathContainer {
     @Override
     public Path buildPath() {
         ArrayList<Waypoint> waypoints = new ArrayList<Waypoint>();
-        waypoints.add(new Waypoint(310,270,0,60));
-        waypoints.add(new Waypoint(270,260,20,60));
-        waypoints.add(new Waypoint(230,242,0,60));
+        waypoints.add(new Waypoint(266,246,0,60));
+        waypoints.add(new Waypoint(220,236,0,60));
 
         return PathBuilder.buildPathFromWaypoints(waypoints);
     }
     
     @Override
     public RigidTransform2d getStartPose() {
-        return new RigidTransform2d(new Translation2d(310, 270), Rotation2d.fromDegrees(180.0)); 
+        return new RigidTransform2d(new Translation2d(266, 246), Rotation2d.fromDegrees(180.0)); 
     }
 
     @Override
     public boolean isReversed() {
         return false; 
     }
-	// WAYPOINT_DATA: [{"position":{"x":310,"y":270},"speed":60,"radius":0,"comment":""},{"position":{"x":270,"y":260},"speed":60,"radius":20,"comment":""},{"position":{"x":230,"y":242},"speed":60,"radius":0,"comment":""}]
+	// WAYPOINT_DATA: [{"position":{"x":266,"y":246},"speed":60,"radius":0,"comment":""},{"position":{"x":220,"y":236},"speed":60,"radius":0,"comment":""}]
 	// IS_REVERSED: false
 	// FILE_NAME: LeftScaleToCube
 }

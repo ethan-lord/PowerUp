@@ -26,9 +26,7 @@ public class Elevator extends Subsystem {
 	/** Configuration Constants ***********************************************/
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_ELEVATOR;
 	private TalonSRX elevatorTalon = new TalonSRX(RobotMap.CAN_ELEVATOR_TALON);
-	private final int BOT_POS = RobotMap.ELEVATOR_BOTTOM_POSITION;
 	private final int INT_POS = RobotMap.ELEVATOR_INTAKE_POSITION;
-	private final int SWITCH_POS = RobotMap.ELEVATOR_SWITCH_POSITION;
 	private final int LOW_SCALE_POS = RobotMap.ELEVATOR_LOW_SCALE_POSITION;
 	private final int MID_SCALE_POS = RobotMap.ELEVATOR_MID_SCALE_POSITION;
 	private final int HIGH_SCALE_POS = RobotMap.ELEVATOR_HIGH_SCALE_POSITION;
@@ -49,9 +47,9 @@ public class Elevator extends Subsystem {
 	
 	/** Instance Variables ****************************************************/
 	private Log log = new Log(LOG_LEVEL, getName());
-	private int currentGoalPos = BOT_POS;
+	private int currentGoalPos = INT_POS;
 	private int currentPreset = 0;
-	public static Position[] positionFromPreset = new Position[]{Position.BOTTOM, Position.INTAKE, Position.SWITCH, Position.LOW_SCALE, Position.MID_SCALE, Position.HIGH_SCALE};
+	public static Position[] positionFromPreset = new Position[]{Position.INTAKE, Position.LOW_SCALE, Position.MID_SCALE, Position.HIGH_SCALE};
 	public static final double maxSpeed = RobotMap.ELEVATOR_MAX_SPEED;
 	public int elevatorZero = 0;
 	
@@ -123,25 +121,15 @@ public class Elevator extends Subsystem {
 	}
 	
 	/**
-	 * use this method to set Elevator Position to a Position - BOTTOM, INTAKE, SWITCH, LOW_SCALE, MID_SCALE, HIGH_SCALE;
+	 * use this method to set Elevator Position to a Position - INTAKE, SWITCH, LOW_SCALE, MID_SCALE, HIGH_SCALE;
 	 * @param position
 	 */
 	public void setPosition(Position position) {
 		switch (position) {
-			case BOTTOM:
-				log.add("Bottom", Log.Level.DEBUG);
-				setTalonPositionMagic(BOT_POS - elevatorZero);
-				log.add("Botton position: " + BOT_POS, Log.Level.DEBUG);
-                break;
 			case INTAKE:
 				log.add("Intake", Log.Level.DEBUG);
 				setTalonPositionMagic(INT_POS - elevatorZero);
 				log.add("Intake position: " + INT_POS, Log.Level.DEBUG);
-				break;
-			case SWITCH:
-				log.add("Switch", Log.Level.DEBUG);
-				setTalonPositionMagic(SWITCH_POS - elevatorZero);
-				log.add("Switch position: " + SWITCH_POS, Log.Level.DEBUG);
 				break;
 			case LOW_SCALE:
 				log.add("Low Scale", Log.Level.DEBUG);
@@ -232,7 +220,7 @@ public class Elevator extends Subsystem {
 	}
 	
 	public static enum Position {
-		BOTTOM, INTAKE, SWITCH, LOW_SCALE, MID_SCALE, HIGH_SCALE;
+		INTAKE, LOW_SCALE, MID_SCALE, HIGH_SCALE;
 	}
 }
 

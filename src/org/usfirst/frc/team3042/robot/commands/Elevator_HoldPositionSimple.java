@@ -44,14 +44,14 @@ public class Elevator_HoldPositionSimple extends Command {
     	int goalPos = Robot.elevator.getCurrentGoalPos();
 		int currentPos = Robot.elevator.getPosition();
     	
-		if(toldToMoveDown && goalPos != RobotMap.ELEVATOR_BOTTOM_POSITION){//falls to the bottom of the control range to avoid driving the motor downward
+		if(toldToMoveDown && goalPos != RobotMap.ELEVATOR_INTAKE_POSITION){//falls to the bottom of the control range to avoid driving the motor downward
 			if(goalPos - RobotMap.ELEVATOR_POSITION_CONTROL_RANGE < currentPos){
 				Robot.elevator.setPower(RobotMap.ELEVATOR_LOWER_VELOCITY);
 			} else {
 				toldToMoveDown = false;
 			}
 		} else if (Math.abs(goalPos - currentPos) < RobotMap.ELEVATOR_POSITION_CONTROL_RANGE){
-			if (goalPos == RobotMap.ELEVATOR_BOTTOM_POSITION) {
+			if (goalPos == RobotMap.ELEVATOR_INTAKE_POSITION) {
 				Robot.elevator.setPower(0);
 			} else {
 				Robot.elevator.setTalonPosition(goalPos);
