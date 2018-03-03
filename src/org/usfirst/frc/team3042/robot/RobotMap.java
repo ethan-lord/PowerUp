@@ -29,7 +29,7 @@ public class RobotMap {
 	 * in inches, position will be in inches and speed in inches per second.
 	 */
 	public static final double WHEEL_DIAMETER = 4.0;
-	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 22.75;
+	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 28;
 	
 	
 	/** USB ports *************************************************************/					
@@ -71,7 +71,7 @@ public class RobotMap {
 	
 	/** OI Settings ***********************************************************/
 	public static final boolean USE_JOYSTICKS = !IS_PBOT;
-	public static final double JOYSTICK_DRIVE_SCALE = (IS_PBOT || DEMO_MODE)? 1.0 : 1.0;
+	public static final double JOYSTICK_DRIVE_SCALE = (IS_PBOT || DEMO_MODE)? 0.6 : 1.0;
 	public static final double TRIGGER_SPINNER_SCALE = 0.1;
 	public static final double JOYSTICK_DEAD_ZONE = 0.15;
 
@@ -207,11 +207,11 @@ public class RobotMap {
 	public static final boolean HAS_AUTON = HAS_ENCODERS;
 	public static final int AUTON_PROFILE = 0;
 	public static final double kP_AUTON = 		(IS_PBOT) 		? 1.0 :
-												(IS_PRIMARY) 	? 0.0 : 6.0;
+												(IS_PRIMARY) 	? 0.0 : 9.0;
 	public static final double kI_AUTON = 		(IS_PBOT) 		? 0.0 :
-												(IS_PRIMARY) 	? 0.0 : 0.0;
+												(IS_PRIMARY) 	? 0.0 : 0.01;
 	public static final double kD_AUTON = 		(IS_PBOT) 		? 2.0 :
-												(IS_PRIMARY) 	? 0.0 : 24.0;
+												(IS_PRIMARY) 	? 0.0 : 40.0;
 	public static final int I_ZONE_AUTON =		(IS_PBOT)		? 0 :
 												(IS_PRIMARY)	? 0 : 0;
 	public static final double DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES = 1;
@@ -269,7 +269,7 @@ public class RobotMap {
 	public static final Log.Level	LOG_DRIVETRAIN				= Log.Level.TRACE;
 	public static final Log.Level	LOG_DRIVETRAIN_FOLLOWERS		= Log.Level.TRACE;
 	public static final Log.Level	LOG_DRIVETRAIN_ENCODERS 		= Log.Level.DEBUG;
-	public static final Log.Level	LOG_DRIVETRAIN_AUTON			= Log.Level.DEBUG;
+	public static final Log.Level	LOG_DRIVETRAIN_AUTON			= Log.Level.DEBUG_PERIODIC;
 	public static final Log.Level	LOG_MOTION_PROFILE				= Log.Level.DEBUG;
 	public static final Log.Level	LOG_GYROSCOPE				= Log.Level.DEBUG;
 	public static final Log.Level	LOG_WINCH					= Log.Level.TRACE;

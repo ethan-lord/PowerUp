@@ -147,7 +147,7 @@ public class OI {
 			joyLeft.button1.whenPressed(new Drivetrain_Shift());
 			
 			joyLeft.button9.whileActive(new Winch_Reverse());
-			joyRight.button9.whenPressed(new DrivetrainAuton_Drive(new RightToRightScale().buildPath()));
+			joyRight.button9.whenPressed(new DrivetrainAuton_Drive(new CenterToRightSwitch().buildPath()));
 			//joyRight.button10.whenPressed(new DriveStraight());
 		}
 	}
