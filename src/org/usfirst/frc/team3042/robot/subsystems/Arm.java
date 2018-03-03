@@ -92,7 +92,10 @@ public class Arm extends Subsystem {
 			break;
 		}
 	}
-	
+	/**
+	 * Returns the actual pos - not the enum one.
+	 * @return <code>armTalon.getSelectedSensorPosition(PIDIDX);</code>
+	 */
 	public int getPosition(){
 		log.add("Pot: " + currentGoalPos, Log.Level.DEBUG_PERIODIC);
 		return armTalon.getSelectedSensorPosition(PIDIDX);
