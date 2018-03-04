@@ -39,8 +39,11 @@ public class Left_RightScale extends CommandGroup {
     	Path backUp = new Path();
     	backUp.addStraight(-24, -24);
     	addSequential(new DrivetrainAuton_Drive(backUp));
-    	addParallel(new Arm_SetPosition(Arm.Position.TOP));
+    	Path turnInPlace = new Path();
+    	turnInPlace.addRightTurn(200.3042, 0, 36);
+    	addParallel(new DrivetrainAuton_Drive(turnInPlace));
     	addSequential(new Elevator_SetPosition(Elevator.Position.INTAKE));
+    	addSequential(new Arm_SetPosition(Arm.Position.BOTTOM));
 
         // A command group will require all of the subsystems that each member
         // would require.
