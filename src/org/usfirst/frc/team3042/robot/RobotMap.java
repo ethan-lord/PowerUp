@@ -66,7 +66,8 @@ public class RobotMap {
 	/** PCM channels **********************************************************/
 	public static final int CLAMP_SOLENOID = 0;
 	public static final int SHIFT_SOLENOID = 1;
-	public static final int POP_SOLENOID   = 2;
+	public static final int HOOK_DEPLOYMENT_SOLENOID  = 2;
+	public static final int POP_SOLENOID   = 3;
 	
 	
 	/** OI Settings ***********************************************************/
@@ -168,15 +169,6 @@ public class RobotMap {
 	
 	/** HookDeploy Settings **********************************************/
 	public static final boolean HAS_HOOKDEPLOY = !IS_PBOT;
-	public static final int HOOK_STOWED_POS = IS_PRIMARY	? 1000 : -730;
-	public static final int HOOK_READY_POS = IS_PRIMARY		? 200 : -25;
-	public static final int HOOK_DELIVERY_POS = IS_PRIMARY 	? 260 : -70;
-	public static final double HOOK_KP = IS_PRIMARY 	? 2.0 : 5.0;
-	public static final double HOOK_KI = IS_PRIMARY 	? 0.001 : 0.01;
-	public static final double HOOK_KD = IS_PRIMARY 	? 50 : 50;
-	public static final int HOOK_IZONE = IS_PRIMARY	? 20 : 20;
-	public static final double HOOK_KF = IS_PRIMARY 	? 0 : 0;
-	public static final boolean HOOK_DEPLOY_REVERSE_SENSOR_PHASE = IS_PRIMARY ? false : true;
 	
 	
 	/** P.O.P. Settings *******************************************************/

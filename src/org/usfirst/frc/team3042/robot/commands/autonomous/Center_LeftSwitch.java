@@ -5,7 +5,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Claw_Release;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
-import org.usfirst.frc.team3042.robot.commands.Claw_Stop;
+import org.usfirst.frc.team3042.robot.commands.Claw_StopAuton;
 import org.usfirst.frc.team3042.robot.commands.Claw_Unclamp;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.Elevator_SetPosition;
@@ -37,7 +37,7 @@ public class Center_LeftSwitch extends CommandGroup {
     	addParallel(new Arm_SetPosition(Arm.Position.MIDDLE));
     	addSequential(new DrivetrainAuton_Drive(new CenterToLeftSwitch().buildPath()));
     	addSequential(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME));
-    	addSequential(new Claw_Stop());
+    	addSequential(new Claw_StopAuton());
 
         // A command group will require all of the subsystems that each member
         // would require.

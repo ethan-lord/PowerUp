@@ -154,7 +154,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Arm Position", Robot.arm.getPosition());
-		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Hook Position", Robot.hookDeploy.getPosition());
 		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Elevator Position", Robot.elevator.getPosition());
 		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Gyroscope", Robot.drivetrain.getGyroRaw());
 		//Only log on primary and secondary robots, pbot would crash code with this

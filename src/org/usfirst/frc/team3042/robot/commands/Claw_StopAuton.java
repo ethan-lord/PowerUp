@@ -7,26 +7,26 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Stop Hooking Around
+ * The claw goes to sleep
  */
-public class HookDeploy_Stop extends Command {
+public class Claw_StopAuton extends Command {
 	/** Configuration Constants ***********************************************/
-	public static final Log.Level LOG_LEVEL = RobotMap.LOG_HOOK;
+	public static final Log.Level LOG_LEVEL = RobotMap.LOG_CLAW;
 	
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
-
-
-    public HookDeploy_Stop() {
+	
+	public Claw_StopAuton() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.hookDeploy);
+    	requires(Robot.claw);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
-    	Robot.hookDeploy.stop();
+    	
+    	Robot.claw.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,7 +35,7 @@ public class HookDeploy_Stop extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

@@ -5,6 +5,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
 import org.usfirst.frc.team3042.robot.commands.Claw_Stop;
+import org.usfirst.frc.team3042.robot.commands.Claw_StopAuton;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.Elevator_SetPosition;
 import org.usfirst.frc.team3042.robot.paths.LeftToLeftScale;
@@ -34,12 +35,15 @@ public class Left_LeftScale extends CommandGroup {
     	addParallel(new Elevator_SetPosition(Elevator.Position.MID_SCALE));
     	addSequential(new DrivetrainAuton_Drive(new LeftToLeftScale().buildPath()));
     	addSequential(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME));
-    	addSequential(new Claw_Stop());
+    	addSequential(new Claw_StopAuton());
     	Path backUp = new Path();
     	backUp.addStraight(-24, -24);//to back up
     	addSequential(new DrivetrainAuton_Drive(backUp));
-    	addParallel(new Arm_SetPosition(Arm.Position.TOP));
-    	addSequential(new Elevator_SetPosition(Elevator.Position.INTAKE));
+    	addParallel(new Elevator_SetPosition(Elevator.Position.INTAKE));
+    	Path turnInPlace = new Path();
+    	turnInPlace.addLeftTurn(200.3042, 0, 36);
+    	addSequential(new DrivetrainAuton_Drive(turnInPlace));
+    	addSequential(new Arm_SetPosition(Arm.Position.BOTTOM));
 
         // A command group will require all of the subsystems that each member
         // would require.

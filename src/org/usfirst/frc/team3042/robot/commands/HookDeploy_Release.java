@@ -3,43 +3,45 @@ package org.usfirst.frc.team3042.robot.commands;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
-import org.usfirst.frc.team3042.robot.subsystems.HookDeploy.Position;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Lets play Hooky
+ *
  */
-public class HookDeploy_SetPosition extends Command {
+public class HookDeploy_Release extends Command {
+
 	/** Configuration Constants ***********************************************/
-	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ARM;
-	
+	public static final Log.Level LOG_LEVEL = RobotMap.LOG_HOOK;
+
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
-	private Position position; 
 
-    public HookDeploy_SetPosition(Position position) {
+	Timer timer = new Timer();
+
+    public HookDeploy_Release() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.arm);
-    	
-    	this.position = position;
+    	requires(Robot.hookDeploy);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
+    	Robot.hookDeploy.unleashTheArm();
     	
-    	Robot.hookDeploy.setPosition(position);
+    	timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

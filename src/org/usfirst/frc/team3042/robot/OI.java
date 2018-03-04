@@ -19,8 +19,7 @@ import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_TurnCalibrate;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
-import org.usfirst.frc.team3042.robot.commands.HookDeploy_HoldPosition;
-import org.usfirst.frc.team3042.robot.commands.HookDeploy_SetPosition;
+import org.usfirst.frc.team3042.robot.commands.HookDeploy_Release;
 import org.usfirst.frc.team3042.robot.commands.POP_Unleash;
 import org.usfirst.frc.team3042.robot.commands.Winch_Climb;
 import org.usfirst.frc.team3042.robot.commands.Winch_ClimbOneSide;
@@ -141,9 +140,8 @@ public class OI {
 			
 			gamepad.RB.whileHeld(new Claw_Intake());
 			gamepad.LB.whileHeld(new Claw_Release());
-			gamepad.Start.whenPressed(new HookDeploy_SetPosition(HookDeploy.Position.DELIVERY));
-			gamepad.Back.whenPressed(new HookDeploy_SetPosition(HookDeploy.Position.READY));
-			gamepad.B.whenPressed(new POP_Unleash());
+			gamepad.Start.whenPressed(new HookDeploy_Release());
+			gamepad.Back.whenPressed(new POP_Unleash());
 			gamepad.RT.whileActive(new Winch_ClimbOneSide(Robot.winchLeft));
 			gamepad.LT.whileActive(new Winch_ClimbOneSide(Robot.winchRight));
 	
