@@ -15,8 +15,8 @@ public class LeftToRightScale implements PathContainer {
         ArrayList<Waypoint> waypoints = new ArrayList<Waypoint>();
         waypoints.add(new Waypoint(20,282,0,48));
         waypoints.add(new Waypoint(233,282,40,48));
-        waypoints.add(new Waypoint(232,76,20,48));
-        waypoints.add(new Waypoint(279,74,0,48));
+        waypoints.add(new Waypoint(232,80,20,48));
+        waypoints.add(new Waypoint(279,78,0,48));
 
         return PathBuilder.buildPathFromWaypoints(waypoints);
     }

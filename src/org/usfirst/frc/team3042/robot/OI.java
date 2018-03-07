@@ -16,6 +16,7 @@ import org.usfirst.frc.team3042.robot.commands.Claw_Toggle;
 import org.usfirst.frc.team3042.robot.commands.Claw_Unclamp;
 import org.usfirst.frc.team3042.robot.commands.Claw_UnclampIntake;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
+import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_GyroTurn;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_TurnCalibrate;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
@@ -29,6 +30,7 @@ import org.usfirst.frc.team3042.robot.commands.autonomous.Center_RightSwitch;
 import org.usfirst.frc.team3042.robot.commands.autonomous.DriveStraight;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Left_LeftScale;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Left_RightScale;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Right_LeftScale;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Right_RightScale;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Calibrate;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Shift;
@@ -145,6 +147,7 @@ public class OI {
 			gamepad.RT.whileActive(new Winch_ClimbOneSide(Robot.winchLeft));
 			gamepad.LT.whileActive(new Winch_ClimbOneSide(Robot.winchRight));
 	
+			gamepad.B.whenPressed(new DrivetrainAuton_GyroTurn(180));
 			
 			joyRight.button1.whenPressed(new Drivetrain_Shift());
 			
@@ -153,7 +156,7 @@ public class OI {
 			joyLeft.button9.whileActive(new Winch_Reverse());
 			joyRight.button7.whenPressed(new Center_LeftSwitch());
 			joyRight.button8.whenPressed(new DrivetrainAuton_TurnCalibrate(20, 3));
-			joyRight.button9.whenPressed(new Left_RightScale());
+			joyRight.button9.whenPressed(new Right_RightScale());
 			//joyRight.button10.whenPressed(new DriveStraight());
 		}
 	}

@@ -31,25 +31,11 @@ public class Winch extends Subsystem {
 	
 	//ADIS16448_IMU gyro = new ADIS16448_IMU();
 	
-	private Timer time = new Timer();
-	private double oldTime = time.get();
-	
 	private double climbPower = RobotMap.WINCH_BASE_POWER;
 	//Use dimensions of the robot and mounting locations of winches to make triangles to determine how
 	//much base power to give each winch.
 	private double basePowerL = -climbPower;
 	private double basePowerR = climbPower;
-	
-	private double kPL = RobotMap.KP_WINCH_LEFT;
-	private double kIL = RobotMap.KI_WINCH_LEFT;
-	private double kDL = RobotMap.KD_WINCH_LEFT;
-
-	private double kPR = RobotMap.KP_WINCH_RIGHT;
-	private double kIR = RobotMap.KI_WINCH_RIGHT;
-	private double kDR = RobotMap.KD_WINCH_RIGHT;
-	
-	private double oldErrorLeftRight = 0;
-	private double accumErrorLeftRight = 0;
 	
 	public Winch(){
 		combinedLeftRight = true;

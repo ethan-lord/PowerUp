@@ -1,37 +1,37 @@
-package org.usfirst.frc.team3042.robot.commands.autonomous;
+package org.usfirst.frc.team3042.robot.commands;
 
 import org.usfirst.frc.team3042.lib.Log;
-import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
-import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
+import org.usfirst.frc.team3042.robot.subsystems.Claw;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * The claw eats the power cube
+ * - this one has an is finished when the arm changes positions.
  */
-public class DriveStraight extends Command {
+public class Claw_IntakeAuto extends Command {
 	/** Configuration Constants ***********************************************/
-	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
+	public static final Log.Level LOG_LEVEL = RobotMap.LOG_CLAW;
 	
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
 	
-    public DriveStraight() {
+	/** Static Variables ******************************************************/
+	static int armPos;// is the current preset of the arm.//used to make this command end.
+
+    public Claw_IntakeAuto() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.drivetrain);
+    	requires(Robot.claw);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
-    	
-    	Path path = new Path();
-    	path.addStraight(120, 36);
-    	DrivetrainAuton_Drive driveCommand = new DrivetrainAuton_Drive(path);
-    	driveCommand.start();
+    	armPos = Robot.arm.getCurrentPreset();
+    	Robot.claw.intake();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -40,8 +40,8 @@ public class DriveStraight extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
-    }
+        return armPos != Robot.arm.getCurrentPreset();
+        }
 
     // Called once after isFinished returns true
     protected void end() {
@@ -52,5 +52,6 @@ public class DriveStraight extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	log.add("Interrupted", Log.Level.TRACE);
+    	Robot.claw.stop();
     }
 }

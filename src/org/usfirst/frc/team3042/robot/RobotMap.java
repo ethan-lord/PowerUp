@@ -106,19 +106,11 @@ public class RobotMap {
 	
 	public static final double WINCH_BASE_POWER = 1.0;// percent output
 	
-	public static final double KP_WINCH_LEFT = IS_PRIMARY 	? 0 : 0;
-	public static final double KI_WINCH_LEFT = IS_PRIMARY 	? 0 : 0;
-	public static final double KD_WINCH_LEFT = IS_PRIMARY 	? 0 : 0;
-	
-	public static final double KP_WINCH_RIGHT = IS_PRIMARY 	? 0 : 0;
-	public static final double KI_WINCH_RIGHT = IS_PRIMARY 	? 0 : 0;
-	public static final double KD_WINCH_RIGHT = IS_PRIMARY 	? 0 : 0;
-	
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
 	public static final double CLAW_INTAKE_POWER = IS_PRIMARY 	? 0.8 : 0.8;
 	public static final double CLAW_RELEASE_POWER_DEFAULT = IS_PRIMARY 	? -0.375 : -0.375;
-	public static final double CLAW_RELEASE_POWER_EXCHANGE = IS_PRIMARY   ? -0.53042 : -53042;
+	public static final double CLAW_RELEASE_POWER_EXCHANGE = IS_PRIMARY   ? -0.53042 : -0.53042;
 	public static final double CLAW_GRAB_DISTANCE = 4;
 	public static final boolean STARTS_ACTIVE = false;
 	public static final double CLAW_INTAKE_TIMEOUT = IS_PRIMARY ? 0 : 0;
@@ -145,7 +137,6 @@ public class RobotMap {
 	public static final double ELEVATOR_LOWER_VELOCITY = IS_PRIMARY ? 0.041 : -0.1;
 	public static final double ELEVATOR_POSITION_CONTROL_RANGE = IS_PRIMARY ? 300 : 300;
 	public static final int ELEVATOR_SPROCKET_CIRCUMFERENCE = IS_PRIMARY ? 4 : 4;
-	public static final double COUNTER_GRAVITY_VELOCITY = IS_PRIMARY ? 0 : 0;
 	public static final boolean ELEVATOR_REVERSE = true;
 	
 	/** Arm Settings **********************************************************/
@@ -226,13 +217,15 @@ public class RobotMap {
 	
 	/** Drivetrain Gyro Drive Settings ****************************************/
 	public static final double kP_GYRO = IS_PBOT 	? 0.01 :
-										 IS_PRIMARY ? 0 : 0;
-	public static final double kI_GYRO = IS_PBOT 	? 0 :
-										 IS_PRIMARY ? 0 : 0;
+										 IS_PRIMARY ? 0    : 1.0;
+	public static final double kI_GYRO = IS_PBOT 	? 0    :
+										 IS_PRIMARY ? 0    : 0;
 	public static final double kD_GYRO = IS_PBOT 	? 0.05 :
-										 IS_PRIMARY ? 0 : 0;
-	public static final double ANGLE_TOLERANCE = 2.0;
-	public static final double MAX_SPEED_GYRO = 0.4;
+										 IS_PRIMARY ? 0    : 10;
+	public static final int I_ZONE_GYRO = IS_PBOT   ? 0    :
+		 								 IS_PRIMARY ? 0    : 10;
+	public static final double ANGLE_TOLERANCE = 1.0;
+	public static final double MAX_SPEED_GYRO = 1.0;
 	
 	
 	/** Gyroscope Settings ****************************************************/

@@ -14,6 +14,8 @@ import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Center_ChooseSwitchSide;
 import org.usfirst.frc.team3042.robot.commands.autonomous.DoNothing;
 import org.usfirst.frc.team3042.robot.commands.autonomous.DriveStraight;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Left_ChooseScaleSide;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Right_ChooseScaleSide;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
 import org.usfirst.frc.team3042.robot.subsystems.Claw;
 import org.usfirst.frc.team3042.robot.subsystems.DriverCamera;
@@ -79,6 +81,8 @@ public class Robot extends IterativeRobot {
 		
 		oi = new OI();
 		
+		chooser.addObject("Left to Scale", new Left_ChooseScaleSide());
+		chooser.addObject("Right to Scale", new Right_ChooseScaleSide());
 		chooser.addObject("Center to switch", new Center_ChooseSwitchSide());
 		chooser.addObject("Drive Stright", new DriveStraight());
 		chooser.addDefault("Do nothing (default)", new DoNothing());
@@ -94,7 +98,7 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		log.add("Disabled Init", Log.Level.TRACE);
 		gameData = "";
-		if(!RobotMap.IS_PBOT) arm.setPreset(2);//preset 2 is the up to frame position
+		if(!RobotMap.IS_PBOT) arm.setPosition(Arm.Position.TOP);//preset 2 is the up to frame position
 	}
 
 	
