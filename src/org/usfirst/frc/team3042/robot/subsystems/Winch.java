@@ -32,8 +32,8 @@ public class Winch extends Subsystem {
 	//ADIS16448_IMU gyro = new ADIS16448_IMU();
 	
 	private double climbPower = RobotMap.WINCH_BASE_POWER;
-	//Use dimensions of the robot and mounting locations of winches to make triangles to determine how
-	//much base power to give each winch.
+
+	//not in use go to climbOneSide() for the quick fix to direction changes
 	private double basePowerL = -climbPower;
 	private double basePowerR = climbPower;
 	
@@ -83,14 +83,14 @@ public class Winch extends Subsystem {
     
     public void climbOneSide(){
     	if(winchMotorOneSide != null){
-    		setPower(winchMotorOneSide, climbPower * ((side == Side.LEFT)? -1 : 1));
+    		setPower(winchMotorOneSide, climbPower * ((side == Side.LEFT)? 1 : -1));
     	}
     	//Used only if we control manually both sides of the winch indepentently
     	//Does nothing if set up for automatic leveling
     }
     public void reverseOneSide(){
     	if(winchMotorOneSide != null){
-    		setPower(winchMotorOneSide, climbPower * ((side == Side.LEFT)? 1 : -1));
+    		setPower(winchMotorOneSide, climbPower * ((side == Side.LEFT)? -1 : 1));
     	}
     	//Used only if we control manually both sides of the winch indepentantly
     	//Does nothing if set up for automatic leveling
@@ -132,8 +132,8 @@ public class Winch extends Subsystem {
 	}
 	
 	public void reverse() {
-		setPower(winchMotorLeft, climbPower);
-		setPower(winchMotorRight, -climbPower);
+		setPower(winchMotorLeft, -climbPower);
+		setPower(winchMotorRight, climbPower);
 	}
 	
 	public static enum Side {

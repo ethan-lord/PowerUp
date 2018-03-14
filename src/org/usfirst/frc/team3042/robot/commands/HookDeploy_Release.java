@@ -17,7 +17,6 @@ public class HookDeploy_Release extends Command {
 
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
-
 	Timer timer = new Timer();
 
     public HookDeploy_Release() {
@@ -41,12 +40,13 @@ public class HookDeploy_Release extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return timer.get() > RobotMap.TIME_TO_REENGAGE_HOOK_DEPLOYMENT;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	log.add("End", Log.Level.TRACE);
+    	Robot.hookDeploy.leashTheArm();
     }
 
     // Called when another command which requires one or more of the same

@@ -24,9 +24,9 @@ public class Center_LeftOrRightSwitch extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	log.add("GameData: " + Robot.getGameData(), Log.Level.DEBUG);
+    	log.add("GameData: " + Robot.getGameData(), Log.Level.TRACE);
     	log.add("Robot.getGameData().substring(0, 1) = " + Robot.getGameData().substring(0, 1) + ".", Log.Level.DEBUG);
-    	log.add("Robot.getSwitchSide() = " + Robot.getSwitchSide(), Log.Level.DEBUG);
+    	log.add("Robot.getSwitchSide() = " + Robot.getSwitchSide(), Log.Level.TRACE);
     	
     	if (Robot.getSwitchSide() == Robot.Side.LEFT) {
     		new Center_LeftSwitch().start();

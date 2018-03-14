@@ -58,6 +58,7 @@ public class Elevator extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     	
     	//setDefaultCommand(new Elevator_Test());
+    	//setDefaultCommand(new Elevator_Stop());
     	setDefaultCommand(new Elevator_HoldPosition());
     }
     
