@@ -48,7 +48,7 @@ public class POP_Unleash extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.get() > RobotMap.TIME_TO_REENGAGE;
+        return timer.get() > RobotMap.TIME_TO_REENGAGE_POPS;
     }
 
     // Called once after isFinished returns true

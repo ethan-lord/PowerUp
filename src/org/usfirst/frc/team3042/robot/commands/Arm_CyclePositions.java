@@ -39,7 +39,7 @@ public class Arm_CyclePositions extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(Robot.arm.getCurrentGoalPos() - Robot.arm.getPosition()) < ARM_POSITION_CONTROL_RANGE;
+        return true;
     }
 
  // Called once after isFinished returns true

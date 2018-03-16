@@ -144,12 +144,15 @@ public class OI {
 			
 			gamepad.RB.whileHeld(new Claw_Intake());
 			gamepad.LB.whileHeld(new Claw_Release());
-			gamepad.Start.whenPressed(new HookDeploy_Release());
-			gamepad.Back.whenPressed(new POP_Unleash());
+			gamepad.Back.whenPressed(new HookDeploy_Release());
+			gamepad.Start.whenPressed(new POP_Unleash());
 			gamepad.RT.whileActive(new Winch_ClimbOneSide(Robot.winchLeft));
 			gamepad.LT.whileActive(new Winch_ClimbOneSide(Robot.winchRight));
 	
-			gamepad.B.whenPressed(new DrivetrainAuton_GyroTurn(180));
+			
+			//Path drivetrainTesting = new Path();
+			//drivetrainTesting.addStraight(200, 60);
+			//gamepad.B.whenPressed(new DrivetrainAuton_Drive(drivetrainTesting));
 			
 			joyRight.button1.whenPressed(new Drivetrain_Shift());
 			

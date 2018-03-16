@@ -24,9 +24,9 @@ public class Left_LeftOrRightScale extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	log.add("GameData: " + Robot.getGameData(), Log.Level.DEBUG);
+    	log.add("GameData: " + Robot.getGameData(), Log.Level.TRACE);
     	log.add("Robot.getGameData().substring(1, 2) = " + Robot.getGameData().substring(1, 2) + ".", Log.Level.DEBUG);
-    	log.add("Robot.getSwitchSide() = " + Robot.getSwitchSide(), Log.Level.DEBUG);
+    	log.add("Robot.getSwitchSide() = " + Robot.getSwitchSide(), Log.Level.TRACE);
     	
     	if (Robot.getScaleSide() == Robot.Side.LEFT) {
     		new Left_LeftScale().start();

@@ -27,7 +27,7 @@ public class Arm_HoldPosition extends Command {
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
     	
-    	Robot.arm.setTalonPosition(Robot.arm.getCurrentGoalPos());
+    	Robot.arm.setTalonPositionMagic(Robot.arm.getCurrentGoalPos());
     }
 
     // Called repeatedly when this Command is scheduled to run

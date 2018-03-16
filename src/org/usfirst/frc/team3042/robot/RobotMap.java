@@ -14,7 +14,7 @@ public class RobotMap {
 	/** Robot selector ********************************************************/
 	public static enum Bot {PBOT, PRIMARY, SECONDARY};
 	// Set the bot to which you intend to push code.
-	private static Bot currentBot = Bot.SECONDARY;
+	private static Bot currentBot = Bot.PRIMARY;
 
 	public static final boolean IS_PBOT 	= (currentBot == Bot.PBOT);
 	public static final boolean IS_PRIMARY = (currentBot == Bot.PRIMARY);
@@ -64,10 +64,10 @@ public class RobotMap {
 	public static final int DIO_CLAW_ULTRA_ECHO = 0;
 	
 	/** PCM channels **********************************************************/
-	public static final int CLAMP_SOLENOID = 0;
-	public static final int SHIFT_SOLENOID = 1;
-	public static final int HOOK_DEPLOYMENT_SOLENOID  = 2;
-	public static final int POP_SOLENOID   = 3;
+	public static final int CLAMP_SOLENOID = (IS_PRIMARY)? 0 : 0;
+	public static final int SHIFT_SOLENOID = (IS_PRIMARY)? 1 : 1;
+	public static final int HOOK_DEPLOYMENT_SOLENOID  = (IS_PRIMARY)? 3 : 2;
+	public static final int POP_SOLENOID   = (IS_PRIMARY)? 2 : 3;
 	
 	
 	/** OI Settings ***********************************************************/
@@ -86,9 +86,9 @@ public class RobotMap {
 	// Maximum Acceleration given in power per second
 	public static final double ACCELERATION_MAX = 50;
 	public static final double kF_DRIVE_LEFT = 	(IS_PBOT) 		? 1.16666666666666666666666666667 ://0.7130907570054371 :
-												(IS_PRIMARY) 	? 0.0 : 1.21;
+												(IS_PRIMARY) 	? 1.189 : 1.21;
 	public static final double kF_DRIVE_RIGHT = (IS_PBOT) 		? 1.12 ://0.6492764661081493 :
-												(IS_PRIMARY) 	? 0.0 : 1.24;
+												(IS_PRIMARY) 	? 1.278 : 1.24;
 	public static final int TALON_ERROR_TIMEOUT = 0;// measured in Ms
 	public static final int TRAJPERIOD = 10;
 	public static final int BASE_TRAJPERIOD = 0;
@@ -109,7 +109,7 @@ public class RobotMap {
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
 	public static final double CLAW_INTAKE_POWER = IS_PRIMARY 	? 0.8 : 0.8;
-	public static final double CLAW_RELEASE_POWER_DEFAULT = IS_PRIMARY 	? -0.375 : -0.375;
+	public static final double CLAW_RELEASE_POWER_DEFAULT = IS_PRIMARY 	? -0.5 : -0.375;
 	public static final double CLAW_RELEASE_POWER_EXCHANGE = IS_PRIMARY   ? -0.53042 : -0.53042;
 	public static final double CLAW_GRAB_DISTANCE = 4;
 	public static final boolean STARTS_ACTIVE = false;
@@ -141,30 +141,31 @@ public class RobotMap {
 	
 	/** Arm Settings **********************************************************/
 	public static final boolean HAS_ARM = !IS_PBOT;
-	public static final double ARM_KP = IS_PRIMARY 	? 3.0 : 6.0;
+	public static final double ARM_KP = IS_PRIMARY 	? 4.2 : 6.0;
 	public static final double ARM_KI = IS_PRIMARY 	? 0.015 : 0.015;
-	public static final double ARM_KD = IS_PRIMARY 	? 60.0 : 50.0;
+	public static final double ARM_KD = IS_PRIMARY 	? 80.0 : 50.0;
 	public static final double ARM_KF = IS_PRIMARY 	? 0 : 0;
 	public static final int ARM_I_ZONE = IS_PRIMARY 	? 30 : 30;
 	public static final boolean ARM_REVERSE_SENSOR_PHASE = (IS_PRIMARY) ? false : true;
 	public static final int ARM_MANUAL_SPEED = IS_PRIMARY	? 0 : 1;
 	public static final int ARM_BOTTOM_POS = IS_PRIMARY	? 480 : -180;
-	public static final int ARM_MIDDLE_POS = IS_PRIMARY	? 800 : -15;
-	public static final int ARM_TOP_POS = IS_PRIMARY	? 820 : 0;
-	public static final int ARM_FRAME_PERIMITER = IS_PRIMARY ? 820 : 0;
-	public static final int ARM_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 100;
-	public static final int ARM_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 100;
-	public static final int ARM_MAX_POSITION = IS_PRIMARY    ? 820 : 0;
+	public static final int ARM_MIDDLE_POS = IS_PRIMARY	? 770 : -15;
+	public static final int ARM_TOP_POS = IS_PRIMARY	? 810 : 0;
+	public static final int ARM_FRAME_PERIMITER = IS_PRIMARY ? 810 : 0;
+	public static final int ARM_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 200 : 100;
+	public static final int ARM_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 170 : 100;
+	public static final int ARM_MAX_POSITION = IS_PRIMARY    ? 810 : 0;
 	public static final int ARM_MIN_POSITION = IS_PRIMARY    ? 480 : -190;
-	public static final int ARM_POSITION_CONTROL_RANGE = IS_PRIMARY	? 20 : 20;
+	public static final int ARM_POSITION_CONTROL_RANGE = IS_PRIMARY	? 30 : 20;
 	
 	/** HookDeploy Settings **********************************************/
 	public static final boolean HAS_HOOKDEPLOY = !IS_PBOT;
+	public static final double TIME_TO_REENGAGE_HOOK_DEPLOYMENT = 1.0;
 	
 	
 	/** P.O.P. Settings *******************************************************/
 	public static final boolean HAS_POP = !IS_PBOT;
-	public static final double TIME_TO_REENGAGE = 0.5;
+	public static final double TIME_TO_REENGAGE_POPS = 0.5;
 	
 
 	
@@ -188,11 +189,11 @@ public class RobotMap {
 	public static final boolean HAS_AUTON = HAS_ENCODERS;
 	public static final int AUTON_PROFILE = 0;
 	public static final double kP_AUTON = 		(IS_PBOT) 		? 1.0 :
-												(IS_PRIMARY) 	? 0.0 : 13.0;
+												(IS_PRIMARY) 	? 1.3 : 13.0;
 	public static final double kI_AUTON = 		(IS_PBOT) 		? 0.0 :
-												(IS_PRIMARY) 	? 0.0 : 0.05;
+												(IS_PRIMARY) 	? 0.00 : 0.05;
 	public static final double kD_AUTON = 		(IS_PBOT) 		? 2.0 :
-												(IS_PRIMARY) 	? 0.0 : 45.0;
+												(IS_PRIMARY) 	? 4.5 : 45.0;
 	public static final int I_ZONE_AUTON =		(IS_PBOT)		? 0 :
 												(IS_PRIMARY)	? 0 : 0;
 	public static final double DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES = 1;
@@ -242,8 +243,8 @@ public class RobotMap {
 	public static final String 		LOG_DIRECTORY_PATH = "/home/lvuser/logs/";
 	public static final String 		LOG_TIME_ZONE = "America/Chicago";
 	public static final boolean 		LOG_TO_CONSOLE 				= true;
-	public static final boolean 		LOG_TO_FILE 					= false;
-	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG_PERIODIC;
+	public static final boolean 		LOG_TO_FILE 					= true;
+	public static final Log.Level LOG_GLOBAL 					= Log.Level.TRACE;
 	public static final Log.Level LOG_ROBOT 					= Log.Level.DEBUG;
 	public static final Log.Level	LOG_OI 						= Log.Level.TRACE;
 	public static final Log.Level	LOG_AXIS_TRIGGER 			= Log.Level.ERROR;

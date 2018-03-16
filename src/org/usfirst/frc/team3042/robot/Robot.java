@@ -64,7 +64,7 @@ public class Robot extends IterativeRobot {
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
 	public static final DriverCamera driverCamera = new DriverCamera();
 	
-	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
+	//public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 	
 	private static String gameData = "";
 	
@@ -106,7 +106,7 @@ public class Robot extends IterativeRobot {
 	 * Called repeatedly while the robot is is disabled mode.
 	 */
 	public void disabledPeriodic() {
-		searchForGameData();
+		//searchForGameData();
 		
 		Scheduler.getInstance().run();
 	}
@@ -119,6 +119,8 @@ public class Robot extends IterativeRobot {
 		log.add("Autonomous Init", Log.Level.TRACE);
 		
 		autonomousCommand = chooser.getSelected();
+		
+		gameData = "";
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
@@ -142,7 +144,8 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		log.add("Teleop Init", Log.Level.TRACE);
 		
-		if(!RobotMap.IS_PBOT) Robot.elevator.setZero();
+		//if(!RobotMap.IS_PBOT) Robot.elevator.setZero();
+		//stops elevator from working after auto if cross scale does not back up properly
 		
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
@@ -163,15 +166,15 @@ public class Robot extends IterativeRobot {
 		//Only log on primary and secondary robots, pbot would crash code with this
 		Scheduler.getInstance().run();
 		
-		SmartDashboard.putNumber("PDP Channel Left Drivetrain 0", pdp.getCurrent(0));
-		SmartDashboard.putNumber("PDP Channel Left Drivetrain 1", pdp.getCurrent(1));
-		SmartDashboard.putNumber("PDP Channel 2", pdp.getCurrent(2));
-		SmartDashboard.putNumber("PDP Channel Arm", pdp.getCurrent(3));
-		SmartDashboard.putNumber("PDP Channel 11", pdp.getCurrent(11));
-		SmartDashboard.putNumber("PDP Channel Elevator", pdp.getCurrent(12));
-		SmartDashboard.putNumber("PDP Channel 13", pdp.getCurrent(13));
-		SmartDashboard.putNumber("PDP Channel Right Drivetrain 14", pdp.getCurrent(14));
-		SmartDashboard.putNumber("PDP Channel Right Drivetrain 15", pdp.getCurrent(15));
+//		SmartDashboard.putNumber("PDP Channel Left Drivetrain 0", pdp.getCurrent(0));
+//		SmartDashboard.putNumber("PDP Channel Left Drivetrain 1", pdp.getCurrent(1));
+//		SmartDashboard.putNumber("PDP Channel 2", pdp.getCurrent(2));
+//		SmartDashboard.putNumber("PDP Channel Arm", pdp.getCurrent(3));
+//		SmartDashboard.putNumber("PDP Channel 11", pdp.getCurrent(11));
+//		SmartDashboard.putNumber("PDP Channel Elevator", pdp.getCurrent(12));
+//		SmartDashboard.putNumber("PDP Channel 13", pdp.getCurrent(13));
+//		SmartDashboard.putNumber("PDP Channel Right Drivetrain 14", pdp.getCurrent(14));
+//		SmartDashboard.putNumber("PDP Channel Right Drivetrain 15", pdp.getCurrent(15));
 	}
 
 	
