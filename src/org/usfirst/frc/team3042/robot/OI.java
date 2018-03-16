@@ -20,6 +20,7 @@ import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_GyroTurn;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_TurnCalibrate;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
+import org.usfirst.frc.team3042.robot.commands.Elevator_EmergencyMode;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_Release;
 import org.usfirst.frc.team3042.robot.commands.POP_Unleash;
 import org.usfirst.frc.team3042.robot.commands.Winch_Climb;
@@ -34,6 +35,7 @@ import org.usfirst.frc.team3042.robot.commands.autonomous.Right_LeftScale;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Right_RightScale;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Calibrate;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Shift;
+import org.usfirst.frc.team3042.robot.commands.Elevator_CrisisAverted;
 import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
 import org.usfirst.frc.team3042.robot.paths.CenterToRightSwitch;
 import org.usfirst.frc.team3042.robot.paths.LeftToRightScale;
@@ -157,6 +159,8 @@ public class OI {
 			joyRight.button7.whenPressed(new Center_LeftSwitch());
 			joyRight.button8.whenPressed(new DrivetrainAuton_TurnCalibrate(20, 3));
 			joyRight.button9.whenPressed(new Right_RightScale());
+			joyLeft.button3.whenPressed(new Elevator_EmergencyMode());
+			joyLeft.button5.whenPressed(new Elevator_CrisisAverted());
 			//joyRight.button10.whenPressed(new DriveStraight());
 		}
 	}
