@@ -36,14 +36,14 @@ public class Arm_HoldPosition extends Command {
     protected void execute() {
     	SmartDashboard.putNumber("Pot", Robot.arm.getPosition());
     	if(Robot.armEmergencyMode){
-    		if(Robot.oi.gamepad.getPOV(0) == -1){
-        		Robot.arm.setPower(0.05);
-        	}
-        	else if(Robot.oi.gamepad.getRawButton(4)){
+        	if(Robot.oi.gamepad.getRawButton(4)){
         		Robot.arm.setPower(0.5);
         	}
         	else if(Robot.oi.gamepad.getRawButton(1)){
         		Robot.arm.setPower(-0.5);
+        	}
+        	else{
+        		Robot.arm.setPower(-0.05);
         	}
     	}
     }

@@ -38,10 +38,10 @@ public class Elevator_HoldPosition extends Command {
         		Robot.elevator.setPower(0.04);
         	}
         	else if(Robot.oi.gamepad.getPOV(0) == 0){
-        		Robot.elevator.setPower(0.6);
+        		Robot.elevator.setPower(0.5);
         	}
         	else if(Robot.oi.gamepad.getPOV(0) == 180){
-        		Robot.elevator.setPower(-0.3);
+        		Robot.elevator.setPower(-0.5);
         	}
     	}
     }
