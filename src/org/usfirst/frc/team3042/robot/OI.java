@@ -8,7 +8,7 @@ import org.usfirst.frc.team3042.robot.commands.Arm_CrisisAverted;
 import org.usfirst.frc.team3042.robot.commands.Arm_CyclePositions;
 import org.usfirst.frc.team3042.robot.commands.Arm_Drive;
 import org.usfirst.frc.team3042.robot.commands.Arm_IntoFrame;
-import org.usfirst.frc.team3042.robot.commands.Arm_Pocalypse;
+import org.usfirst.frc.team3042.robot.commands.Arm_EmergencyMode;
 import org.usfirst.frc.team3042.robot.commands.Arm_ToIntake;
 import org.usfirst.frc.team3042.robot.commands.Claw_Clamp;
 import org.usfirst.frc.team3042.robot.commands.Claw_ClampIntake;
@@ -26,7 +26,6 @@ import org.usfirst.frc.team3042.robot.commands.Elevator_EmergencyMode;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_Release;
 import org.usfirst.frc.team3042.robot.commands.POP_Unleash;
 import org.usfirst.frc.team3042.robot.commands.Winch_Climb;
-import org.usfirst.frc.team3042.robot.commands.Winch_ClimbOneSide;
 import org.usfirst.frc.team3042.robot.commands.Winch_Reverse;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Center_LeftSwitch;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Center_RightSwitch;
@@ -148,8 +147,8 @@ public class OI {
 			gamepad.LB.whileHeld(new Claw_Release());
 			gamepad.Back.whenPressed(new HookDeploy_Release());
 			gamepad.Start.whenPressed(new POP_Unleash());
-			gamepad.RT.whileActive(new Winch_ClimbOneSide(Robot.winchLeft));
-			gamepad.LT.whileActive(new Winch_ClimbOneSide(Robot.winchRight));
+			gamepad.RT.whileActive(new Winch_Climb());
+			gamepad.LT.whileActive(new Winch_Climb());
 	
 			
 			//Path drivetrainTesting = new Path();
@@ -164,7 +163,7 @@ public class OI {
 			joyRight.button7.whenPressed(new Center_LeftSwitch());
 			joyRight.button8.whenPressed(new DrivetrainAuton_TurnCalibrate(20, 3));
 			joyRight.button9.whenPressed(new Right_RightScale());
-			joyRight.button3.whenPressed(new Arm_Pocalypse());
+			joyRight.button3.whenPressed(new Arm_EmergencyMode());
 			joyRight.button5.whenPressed(new Arm_CrisisAverted());
 			joyLeft.button3.whenPressed(new Elevator_EmergencyMode());
 			joyLeft.button5.whenPressed(new Elevator_CrisisAverted());

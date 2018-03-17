@@ -14,10 +14,10 @@ public class Winch_Stop extends Command {
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_WINCH;
 	
 	Log log = new Log(LOG_LEVEL, getName());
-    public Winch_Stop(Winch winch) {
+    public Winch_Stop() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(winch);
+    	requires(Robot.winch);
     }
 
     // Called just before this Command runs the first time

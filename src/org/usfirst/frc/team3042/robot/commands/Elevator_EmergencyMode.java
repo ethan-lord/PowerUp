@@ -26,24 +26,16 @@ public class Elevator_EmergencyMode extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
+    	Robot.elevatorEmergencyMode = true;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.gamepad.getPOV(0) == -1){
-    		Robot.elevator.setPower(0.04);
-    	}
-    	else if(Robot.oi.gamepad.getPOV(0) == 0){
-    		Robot.elevator.setPower(0.6);
-    	}
-    	else if(Robot.oi.gamepad.getPOV(0) == 180){
-    		Robot.elevator.setPower(-0.3);
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

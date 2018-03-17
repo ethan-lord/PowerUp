@@ -4,10 +4,11 @@ import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * NO NEED FOR LEVITATE
+ * 
  */
 public class Winch_Climb extends Command {
 	/** Configuration Constants ***********************************************/
@@ -15,6 +16,8 @@ public class Winch_Climb extends Command {
 	
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
+	int pressCount = 0;
+	Timer timer = new Timer();
 	
     public Winch_Climb() {
         // Use requires() here to declare subsystem dependencies
@@ -26,7 +29,14 @@ public class Winch_Climb extends Command {
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
     	
-    	Robot.winch.climb();
+    	pressCount++;
+    	
+    	if(timer.getMatchTime() < 30 || pressCount >= 3){
+    		Robot.winch.climb();
+    	}
+    	else{
+    		log.add("This was used too early, press #" + pressCount, Log.Level.TRACE);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

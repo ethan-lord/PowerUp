@@ -48,8 +48,8 @@ public class RobotMap {
 													IS_PRIMARY 	? 32 : 25;
 	public static final int CAN_LEFT_FOLLOWER = 		IS_PRIMARY 	? 28 : 8;
 	public static final int CAN_RIGHT_FOLLOWER = 	IS_PRIMARY 	? 5 : 7;
-	public static final int CAN_WINCH_MOTOR_LEFT = 	IS_PRIMARY  ? 34 : 19;
-	public static final int CAN_WINCH_MOTOR_RIGHT = 	IS_PRIMARY  ? 27 : 18;
+	public static final int CAN_WINCH_MOTOR_MASTER = 	IS_PRIMARY  ? 34 : 19;
+	public static final int CAN_WINCH_MOTOR_FOLLOWER = 	IS_PRIMARY  ? 27 : 18;
 	
 	public static final int CAN_CLAW_RIGHT_TALON =  	IS_PRIMARY  ? 30 : 1;
 	public static final int CAN_CLAW_LEFT_TALON =   	IS_PRIMARY  ? 26 : 12;

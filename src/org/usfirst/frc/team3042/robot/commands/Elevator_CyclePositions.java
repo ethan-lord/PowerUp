@@ -29,7 +29,9 @@ public class Elevator_CyclePositions extends Command {
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
     	
-    	Robot.elevator.cyclePreset(direction);
+    	if(!Robot.elevatorEmergencyMode){
+    		Robot.elevator.cyclePreset(direction);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
