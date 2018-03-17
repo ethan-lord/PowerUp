@@ -110,7 +110,9 @@ public class RobotPoseTracker {
         SmartDashboard.putNumber("robot_pose_x", odometry.getTranslation().x());
         SmartDashboard.putNumber("robot_pose_y", odometry.getTranslation().y());
         SmartDashboard.putNumber("robot_pose_theta", odometry.getRotation().getDegrees());
-        SmartDashboard.putNumber("robot velocity", measuredVelocity.dx);
+        SmartDashboard.putNumber("robot_velocity", measuredVelocity.dx);
+        SmartDashboard.putNumber("robot_predicted_velocity", predictedVelocity.dx);
+        SmartDashboard.putNumber("robot_distance_traveled", distanceDriven);
 	}
 	
 }
