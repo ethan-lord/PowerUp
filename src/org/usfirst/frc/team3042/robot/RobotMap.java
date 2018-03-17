@@ -14,7 +14,7 @@ public class RobotMap {
 	/** Robot selector ********************************************************/
 	public static enum Bot {PBOT, PRIMARY, SECONDARY};
 	// Set the bot to which you intend to push code.
-	private static Bot currentBot = Bot.PRIMARY;
+	private static Bot currentBot = Bot.SECONDARY;
 
 	public static final boolean IS_PBOT 	= (currentBot == Bot.PBOT);
 	public static final boolean IS_PRIMARY = (currentBot == Bot.PRIMARY);
@@ -104,7 +104,7 @@ public class RobotMap {
 	
 	public static final double WINCH_HAS_LOAD_THRESHHOLD = 0;//test to determine what this should be.
 	
-	public static final double WINCH_BASE_POWER = 1.0;// percent output
+	public static final double WINCH_BASE_POWER = IS_PRIMARY ? 1.0 : -1.0;// percent output
 	
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_PBOT;
