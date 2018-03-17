@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team3042.lib.Log;
+import org.usfirst.frc.team3042.lib.math.RigidTransform2d;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Center_ChooseSwitchSide;
 import org.usfirst.frc.team3042.robot.commands.autonomous.DoNothing;
 import org.usfirst.frc.team3042.robot.commands.autonomous.DriveStraight;
@@ -62,7 +63,7 @@ public class Robot extends IterativeRobot {
 	public static final POP pop = (HAS_POP) ? new POP() : null;
 	public static OI oi;
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
-	public static final DriverCamera driverCamera = new DriverCamera();
+	public static final DriverCamera driverCamera = (!RobotMap.IS_PBOT) ? new DriverCamera() : null;
 	
 	//public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 	
@@ -82,6 +83,7 @@ public class Robot extends IterativeRobot {
 		log.add("Robot Init", Log.Level.TRACE);
 		
 		poseTracker = RobotPoseTracker.getInstance();
+		poseTracker.reset(new RigidTransform2d());
 		
 		oi = new OI();
 		
@@ -168,7 +170,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Arm Position", Robot.arm.getPosition());
 		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Elevator Position", Robot.elevator.getPosition());
-		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Gyroscope", Robot.drivetrain.getGyroRaw());
+		SmartDashboard.putNumber("Gyroscope", Robot.drivetrain.getGyroRaw());
 		//Only log on primary and secondary robots, pbot would crash code with this
 		Scheduler.getInstance().run();
 		

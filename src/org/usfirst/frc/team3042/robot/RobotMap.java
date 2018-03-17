@@ -131,10 +131,10 @@ public class RobotMap {
 	public static final double ELEVATOR_KP = IS_PRIMARY 	? 0.5 : 0.5;
 	public static final double ELEVATOR_KI = IS_PRIMARY 	? 0 : 0;
 	public static final double ELEVATOR_KD = IS_PRIMARY 	? 15.0 : 15.0;
-	public static final double ELEVATOR_KF = IS_PRIMARY 	? 0.5 : 0.5;
+	public static final double ELEVATOR_KF = IS_PRIMARY 	? 0.5 : 0.35;
 	public static final int ELEVATOR_I_ZONE = IS_PRIMARY 	? 0 : 0;
-	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 3500 : 1500;
-	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 4000 : 2500;
+	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 8000 : 8000;
+	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 8000 : 8000;
 	public static final double ELEVATOR_LOWER_VELOCITY = IS_PRIMARY ? 0.041 : -0.1;
 	public static final double ELEVATOR_POSITION_CONTROL_RANGE = IS_PRIMARY ? 300 : 300;
 	public static final int ELEVATOR_SPROCKET_CIRCUMFERENCE = IS_PRIMARY ? 4 : 4;
@@ -250,7 +250,7 @@ public class RobotMap {
 	public static final String 		LOG_TIME_ZONE = "America/Chicago";
 	public static final boolean 		LOG_TO_CONSOLE 				= true;
 	public static final boolean 		LOG_TO_FILE 					= true;
-	public static final Log.Level LOG_GLOBAL 					= Log.Level.TRACE;
+	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG_PERIODIC;
 	public static final Log.Level LOG_ROBOT 					= Log.Level.DEBUG;
 	public static final Log.Level	LOG_OI 						= Log.Level.TRACE;
 	public static final Log.Level	LOG_AXIS_TRIGGER 			= Log.Level.ERROR;
