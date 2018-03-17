@@ -26,7 +26,6 @@ import org.usfirst.frc.team3042.robot.commands.Elevator_EmergencyMode;
 import org.usfirst.frc.team3042.robot.commands.HookDeploy_Release;
 import org.usfirst.frc.team3042.robot.commands.POP_Unleash;
 import org.usfirst.frc.team3042.robot.commands.Winch_Climb;
-import org.usfirst.frc.team3042.robot.commands.Winch_ClimbOneSide;
 import org.usfirst.frc.team3042.robot.commands.Winch_Reverse;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Center_LeftSwitch;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Center_RightSwitch;
@@ -148,8 +147,8 @@ public class OI {
 			gamepad.LB.whileHeld(new Claw_Release());
 			gamepad.Back.whenPressed(new HookDeploy_Release());
 			gamepad.Start.whenPressed(new POP_Unleash());
-			gamepad.RT.whileActive(new Winch_ClimbOneSide(Robot.winchLeft));
-			gamepad.LT.whileActive(new Winch_ClimbOneSide(Robot.winchRight));
+			gamepad.RT.whileActive(new Winch_Climb());
+			gamepad.LT.whileActive(new Winch_Climb());
 	
 			
 			//Path drivetrainTesting = new Path();

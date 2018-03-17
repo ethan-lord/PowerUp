@@ -16,11 +16,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Winch extends Subsystem {
 
-	private static final int CAN_WINCH_MOTOR_LEFT = RobotMap.CAN_WINCH_MOTOR_LEFT;
-	private static final int CAN_WINCH_MOTOR_RIGHT = RobotMap.CAN_WINCH_MOTOR_RIGHT;
+	private static final int CAN_WINCH_MOTOR = RobotMap.CAN_WINCH_MOTOR_MASTER;
+	private static final int CAN_WINCH_MOTOR_FOLLOWER = RobotMap.CAN_WINCH_MOTOR_FOLLOWER;
 
-	private TalonSRX winchMotorLeft = new TalonSRX(CAN_WINCH_MOTOR_LEFT);
-	private TalonSRX winchMotorRight = new TalonSRX(CAN_WINCH_MOTOR_RIGHT);
+	private TalonSRX winchMotorLeft = new TalonSRX(CAN_WINCH_MOTOR);
+	private TalonSRX winchMotorRight = new TalonSRX(CAN_WINCH_MOTOR_FOLLOWER);
 	
 	private TalonSRX winchMotorOneSide = null;
 	
