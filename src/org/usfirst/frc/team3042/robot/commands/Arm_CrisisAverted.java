@@ -3,43 +3,31 @@ package org.usfirst.frc.team3042.robot.commands;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
-import org.usfirst.frc.team3042.robot.subsystems.Winch;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * THIS COULD BE BAD
+ * Stop it. Get some help.
  */
-public class Winch_ClimbOneSide extends Command {
+public class Arm_CrisisAverted extends Command {
 	/** Configuration Constants ***********************************************/
-	private static final Log.Level LOG_LEVEL = RobotMap.LOG_WINCH;
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_ARM;
+		
+	
 	
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
-	int pressCount = 0;
-	Timer timer = new Timer();
-	Winch winchSide;
 	
-    public Winch_ClimbOneSide(Winch winchSide) {
+    public Arm_CrisisAverted() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	this.winchSide = winchSide;
-    	requires(winchSide);//winchSide must be the side of the winch this command should require and control.
+    	requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
-    	
-    	pressCount++;
-    	
-    	if(timer.getMatchTime() < 30 || pressCount >= 3){
-    		Robot.winch.climbOneSide();
-    	}
-    	else{
-    		log.add("This was used too early, press #" + pressCount, Log.Level.TRACE);
-    	}
+    	log.add("Breathe easy, the danger is past. Well done, Cadet!", LOG_LEVEL.TRACE);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -48,7 +36,7 @@ public class Winch_ClimbOneSide extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

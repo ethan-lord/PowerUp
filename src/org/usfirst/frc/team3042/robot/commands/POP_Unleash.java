@@ -17,6 +17,7 @@ public class POP_Unleash extends Command {
 
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
+	int pressCount = 0;
 
 	Timer timer = new Timer();
 
@@ -29,9 +30,15 @@ public class POP_Unleash extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
-    	Robot.pop.unleashThePOP();
     	
-    	timer.start();
+    	pressCount++;
+    	
+    	if(timer.getMatchTime() < 30 || pressCount >= 3){
+    		Robot.pop.unleashThePOP();
+    	}
+    	else{
+    		log.add("This was used too early, press #" + pressCount, Log.Level.TRACE);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

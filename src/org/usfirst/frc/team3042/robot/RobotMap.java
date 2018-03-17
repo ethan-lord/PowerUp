@@ -29,7 +29,8 @@ public class RobotMap {
 	 * in inches, position will be in inches and speed in inches per second.
 	 */
 	public static final double WHEEL_DIAMETER = 4.0;
-	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 20.2 : 29.53042;
+	public static final double ROBOT_WIDTH = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 29.53042 : 29.53042;
+	public static final double ROBOT_WIDTH_REAL = (IS_PBOT) ? 15.0 : (IS_PRIMARY) ? 23.795 : 23.795;
 	
 	
 	/** USB ports *************************************************************/					
@@ -214,6 +215,11 @@ public class RobotMap {
 	public static final int AUTON_TIMEOUT = 0; // timeout in ms; set to zero
 	public static final int AUTON_PIDIDX = 0; // used for cascading PID; set to zero
 	public static final int AUTON_HEADING = 0; //unimplemented feature; set to zero
+	
+	public static final double MIN_LOOK_AHEAD = 12.0; // inches
+    public static final double MIN_LOOK_AHEAD_SPEED = 9.0; // inches per second
+    public static final double MAX_LOOK_AHEAD = 24.0; // inches
+    public static final double MAX_LOOK_AHEAD_SPEED = 120.0; // inches per second
 	
 	
 	/** Drivetrain Gyro Drive Settings ****************************************/
