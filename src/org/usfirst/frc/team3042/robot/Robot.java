@@ -70,6 +70,9 @@ public class Robot extends IterativeRobot {
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<Command>();
+	
+	public static boolean elevatorEmergencyMode = false;
+	public static boolean armEmergencyMode = false;
 
 	
 	/** robotInit *************************************************************

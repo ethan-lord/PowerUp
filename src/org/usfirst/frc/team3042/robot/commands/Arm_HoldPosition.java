@@ -27,12 +27,25 @@ public class Arm_HoldPosition extends Command {
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
     	
-    	Robot.arm.setTalonPositionMagic(Robot.arm.getCurrentGoalPos());
+    	if(!Robot.armEmergencyMode){
+    		Robot.arm.setTalonPositionMagic(Robot.arm.getCurrentGoalPos());
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	SmartDashboard.putNumber("Pot", Robot.arm.getPosition());
+    	if(Robot.armEmergencyMode){
+    		if(Robot.oi.gamepad.getPOV(0) == -1){
+        		Robot.arm.setPower(0.05);
+        	}
+        	else if(Robot.oi.gamepad.getRawButton(4)){
+        		Robot.arm.setPower(0.5);
+        	}
+        	else if(Robot.oi.gamepad.getRawButton(1)){
+        		Robot.arm.setPower(-0.5);
+        	}
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -30,7 +30,9 @@ public class Arm_CyclePositions extends Command {
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
     	
-    	Robot.arm.cyclePreset(direction);
+    	if(!Robot.armEmergencyMode){
+    		Robot.arm.cyclePreset(direction);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

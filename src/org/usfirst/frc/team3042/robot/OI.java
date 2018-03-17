@@ -8,7 +8,7 @@ import org.usfirst.frc.team3042.robot.commands.Arm_CrisisAverted;
 import org.usfirst.frc.team3042.robot.commands.Arm_CyclePositions;
 import org.usfirst.frc.team3042.robot.commands.Arm_Drive;
 import org.usfirst.frc.team3042.robot.commands.Arm_IntoFrame;
-import org.usfirst.frc.team3042.robot.commands.Arm_Pocalypse;
+import org.usfirst.frc.team3042.robot.commands.Arm_EmergencyMode;
 import org.usfirst.frc.team3042.robot.commands.Arm_ToIntake;
 import org.usfirst.frc.team3042.robot.commands.Claw_Clamp;
 import org.usfirst.frc.team3042.robot.commands.Claw_ClampIntake;
@@ -163,7 +163,7 @@ public class OI {
 			joyRight.button7.whenPressed(new Center_LeftSwitch());
 			joyRight.button8.whenPressed(new DrivetrainAuton_TurnCalibrate(20, 3));
 			joyRight.button9.whenPressed(new Right_RightScale());
-			joyRight.button3.whenPressed(new Arm_Pocalypse());
+			joyRight.button3.whenPressed(new Arm_EmergencyMode());
 			joyRight.button5.whenPressed(new Arm_CrisisAverted());
 			joyLeft.button3.whenPressed(new Elevator_EmergencyMode());
 			joyLeft.button5.whenPressed(new Elevator_CrisisAverted());
