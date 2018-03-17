@@ -52,8 +52,6 @@ public class Robot extends IterativeRobot {
 	private Log log = new Log(LOG_LEVEL, "Robot");
 	public static final Drivetrain 	drivetrain 	= (HAS_DRIVETRAIN) 	? new Drivetrain() : null;
 	public static final Winch winch = (HAS_WINCH) ? new Winch() : null;
-	public static final Winch winchLeft = (HAS_WINCH) ? new Winch(Winch.Side.LEFT) : null;
-	public static final Winch winchRight = (HAS_WINCH) ? new Winch(Winch.Side.RIGHT) : null;
 
 	public static final Claw claw = (HAS_CLAW) ? new Claw() : null;
 	public static final Elevator elevator = (HAS_ELEVATOR) ? new Elevator() : null;
