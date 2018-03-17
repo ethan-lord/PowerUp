@@ -66,6 +66,8 @@ public class Robot extends IterativeRobot {
 	
 	//public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 	
+	RobotPoseTracker poseTracker;
+	
 	private static String gameData = "";
 	
 	Command autonomousCommand;
@@ -78,6 +80,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		log.add("Robot Init", Log.Level.TRACE);
+		
+		poseTracker = RobotPoseTracker.getInstance();
 		
 		oi = new OI();
 		
@@ -134,6 +138,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		searchForGameData();
 		
+		poseTracker.outputToDashboard();
+		
 		Scheduler.getInstance().run();
 	}
 
@@ -165,6 +171,8 @@ public class Robot extends IterativeRobot {
 		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Gyroscope", Robot.drivetrain.getGyroRaw());
 		//Only log on primary and secondary robots, pbot would crash code with this
 		Scheduler.getInstance().run();
+		
+		poseTracker.outputToDashboard();
 		
 //		SmartDashboard.putNumber("PDP Channel Left Drivetrain 0", pdp.getCurrent(0));
 //		SmartDashboard.putNumber("PDP Channel Left Drivetrain 1", pdp.getCurrent(1));
