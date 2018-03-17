@@ -126,6 +126,8 @@ public class Robot extends IterativeRobot {
 		log.add("Autonomous Init", Log.Level.TRACE);
 		
 		autonomousCommand = chooser.getSelected();
+
+		poseTracker.reset(new RigidTransform2d());
 		
 		gameData = "";
 
@@ -152,6 +154,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopInit() {
 		log.add("Teleop Init", Log.Level.TRACE);
+
+		poseTracker.reset(new RigidTransform2d());
 		
 		//if(!RobotMap.IS_PBOT) Robot.elevator.setZero();
 		//stops elevator from working after auto if cross scale does not back up properly

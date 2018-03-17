@@ -1,7 +1,9 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
 import org.usfirst.frc.team3042.lib.Log;
+import org.usfirst.frc.team3042.lib.math.RigidTransform2d;
 import org.usfirst.frc.team3042.robot.RobotMap;
+import org.usfirst.frc.team3042.robot.RobotPoseTracker;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainEncoders_Dashboard;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -43,6 +45,7 @@ public class DrivetrainEncoders extends Subsystem {
 		initEncoder(rightEncoder, SENSOR_PHASE_RIGHT);
 													
 		reset();
+		RobotPoseTracker.getInstance().reset(new RigidTransform2d());
 	}
 	private void initEncoder(TalonSRX encoder, boolean sensorPhase) {
 		encoder.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PIDIDX, TIMEOUT);
@@ -80,7 +83,7 @@ public class DrivetrainEncoders extends Subsystem {
 	 * Encoder speed returns counts per 100ms - getEncSpeed()
 	 */
 	public double getLeftPosition() {
-		return (leftEncoder.getSelectedSensorPosition(PIDIDX) - leftPositionZero) / COUNTS_PER_REVOLUTION;
+		return (leftEncoder.getSelectedSensorPosition(PIDIDX) + leftPositionZero) / COUNTS_PER_REVOLUTION;
 	}
 	public double getRightPosition() {
 		return (rightEncoder.getSelectedSensorPosition(PIDIDX) - rightPositionZero) / COUNTS_PER_REVOLUTION;

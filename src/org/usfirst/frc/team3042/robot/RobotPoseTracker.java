@@ -89,6 +89,8 @@ public class RobotPoseTracker {
 		double dLeftPos = leftPos - oldLeftPos;
 		double dRightPos = rightPos - oldRightPos;
 		
+		log.add("dLeft: " + dLeftPos + ", dRight: " + dRightPos, Log.Level.DEBUG_PERIODIC);
+		
 		Rotation2d currentHeading = Robot.drivetrain.getGyro();
 		Rotation2d dHeading = oldHeading.inverse().rotateBy(currentHeading);
 		
