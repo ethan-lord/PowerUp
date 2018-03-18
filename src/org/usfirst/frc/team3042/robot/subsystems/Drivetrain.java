@@ -6,6 +6,7 @@ import org.usfirst.frc.team3042.lib.ADIS16448_IMU;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.math.Rotation2d;
 import org.usfirst.frc.team3042.lib.math.Translation2d;
+import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_TankDrive;
 
@@ -34,7 +35,10 @@ public class Drivetrain extends Subsystem {
 	private static final int SHIFT_SOLENOID = RobotMap.SHIFT_SOLENOID;
 	private static final boolean STARTS_HIGH = RobotMap.STARTS_HIGH_GEAR;
 	private static final double closeEnough = RobotMap.DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES;
-
+	private static final double kF_LEFT = RobotMap.kF_DRIVE_LEFT;
+	private static final double kF_RIGHT = RobotMap.kF_DRIVE_RIGHT;
+	private static final double kF_HIGH_LEFT = RobotMap.kF_HIGH_DRIVE_LEFT;
+	private static final double kF_HIGH_RIGHT = RobotMap.kF_HIGH_DRIVE_RIGHT;
 	
 	
 	/** Instance Variables ****************************************************/
@@ -82,10 +86,14 @@ public class Drivetrain extends Subsystem {
 	
 	public void setHighGear(){
     	shift.set(!STARTS_HIGH);
+    	getAuton().setFgain(leftMotor, kF_HIGH_LEFT);
+    	getAuton().setFgain(rightMotor, kF_HIGH_RIGHT);
     	isHighGear = true;
     }
     public void setLowGear(){
     	shift.set(STARTS_HIGH);
+    	getAuton().setFgain(leftMotor, kF_LEFT);
+    	getAuton().setFgain(rightMotor, kF_RIGHT);
     	isHighGear = false;
     }
     public void ToggleGear(){

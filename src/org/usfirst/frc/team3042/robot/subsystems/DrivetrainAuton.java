@@ -28,6 +28,8 @@ public class DrivetrainAuton extends Subsystem {
 	private static final double kD = RobotMap.kD_AUTON;
 	private static final double kF_LEFT = RobotMap.kF_DRIVE_LEFT;
 	private static final double kF_RIGHT = RobotMap.kF_DRIVE_RIGHT;
+	private static final double kF_HIGH_LEFT = RobotMap.kF_HIGH_DRIVE_LEFT;
+	private static final double kF_HIGH_RIGHT = RobotMap.kF_HIGH_DRIVE_RIGHT;
 	private static final int I_ZONE = RobotMap.I_ZONE_AUTON;
 	private static final int DT_MS = RobotMap.AUTON_DT_MS;
 	private static final int MAGIC_ACCEL = RobotMap.DRIVETRAIN_MOTION_MAGIC_ACCELERATION;
@@ -91,6 +93,10 @@ public class DrivetrainAuton extends Subsystem {
 		motor.config_kD(SLOTIDX_1, kD, TIMEOUT);
 		motor.config_kF(SLOTIDX_1, kF, TIMEOUT);
 		motor.config_IntegralZone(SLOTIDX_1, I_ZONE, TIMEOUT);
+	}
+	
+	public void setFgain(TalonSRX motor, double kF) {
+		motor.config_kF(SLOTIDX_1, kF, TIMEOUT);
 	}
 	
 	
