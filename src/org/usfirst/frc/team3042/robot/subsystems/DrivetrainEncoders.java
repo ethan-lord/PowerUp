@@ -83,7 +83,7 @@ public class DrivetrainEncoders extends Subsystem {
 	 * Encoder speed returns counts per 100ms - getEncSpeed()
 	 */
 	public double getLeftPosition() {
-		return (leftEncoder.getSelectedSensorPosition(PIDIDX) + leftPositionZero) / COUNTS_PER_REVOLUTION;
+		return (leftEncoder.getSelectedSensorPosition(PIDIDX) - leftPositionZero) / COUNTS_PER_REVOLUTION;
 	}
 	public double getRightPosition() {
 		return (rightEncoder.getSelectedSensorPosition(PIDIDX) - rightPositionZero) / COUNTS_PER_REVOLUTION;
@@ -101,6 +101,13 @@ public class DrivetrainEncoders extends Subsystem {
 	
 	public double getRightSpeedNative() {
 		return rightEncoder.getSelectedSensorVelocity(PIDIDX);
+	}
+	
+	public double getLeftPositionIn() {
+		return Math.PI * RobotMap.WHEEL_DIAMETER * getLeftPosition();
+	}
+	public double getRightPositionIn() {
+		return Math.PI * RobotMap.WHEEL_DIAMETER * getRightPosition();
 	}
 	
 	

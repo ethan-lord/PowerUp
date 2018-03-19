@@ -84,15 +84,15 @@ public class RobotPoseTracker {
 	}
 	
 	private void updatePose() {
-		double leftPos = Robot.drivetrain.getEncoders().getLeftPosition();
-		double rightPos = Robot.drivetrain.getEncoders().getRightPosition();
+		double leftPos = Robot.drivetrain.getEncoders().getLeftPositionIn();
+		double rightPos = Robot.drivetrain.getEncoders().getRightPositionIn();
 		double dLeftPos = leftPos - oldLeftPos;
 		double dRightPos = rightPos - oldRightPos;
 		
 		log.add("dLeft: " + dLeftPos + ", dRight: " + dRightPos, Log.Level.DEBUG_PERIODIC);
 		
 		Rotation2d currentHeading = Robot.drivetrain.getGyro();
-		Rotation2d dHeading = oldHeading.inverse().rotateBy(currentHeading);
+		//Rotation2d dHeading = oldHeading.inverse().rotateBy(currentHeading);
 		
 		final Twist2d odometryVelocity = generateOdometry(dLeftPos, dRightPos, currentHeading);
 		final Twist2d predictedVelocity = Kinematics.forwardKinematics(Robot.drivetrain.getEncoders().getLeftSpeed()
