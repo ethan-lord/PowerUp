@@ -115,6 +115,18 @@ public class Path {
 		return innerRadius;
 	}
 	
+	public double getAvgDistance() {
+		double leftSum = 0, rightSum = 0;
+		
+		for (double distance : leftDistance) {
+			leftSum += distance;
+		}
+		for (double distance : rightDistance) {
+			rightSum += distance;
+		}
+		
+		return (leftSum + rightSum) / 2;
+	}
 	
 	/** Generate Motion Profile Paths *****************************************/
 	public MotionProfile generateLeftPath() {

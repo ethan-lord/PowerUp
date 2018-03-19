@@ -1,6 +1,12 @@
-package org.usfirst.frc.team3042.robot.commands;
+package org.usfirst.frc.team3042.robot.commands.autonomous;
 
 import org.usfirst.frc.team3042.lib.math.Rotation2d;
+import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
+import org.usfirst.frc.team3042.robot.commands.Claw_Intake;
+import org.usfirst.frc.team3042.robot.commands.Claw_Unclamp;
+import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
+import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
+import org.usfirst.frc.team3042.robot.commands.Elevator_SetPosition;
 import org.usfirst.frc.team3042.robot.paths.LeftCubeToScale;
 import org.usfirst.frc.team3042.robot.paths.LeftScaleToCube;
 import org.usfirst.frc.team3042.robot.paths.LeftToLeftScale;
