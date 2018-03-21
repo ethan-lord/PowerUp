@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3042.robot;
 
+import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.lib.math.Kinematics;
 import org.usfirst.frc.team3042.lib.math.RigidTransform2d;
 import org.usfirst.frc.team3042.lib.math.Rotation2d;
@@ -15,6 +16,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class RobotPoseTracker {
+	/** Configuration Constants ***********************************************/
+	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN_AUTON;
+	
+	/** Instance Variables ****************************************************/
+	Log log = new Log(LOG_LEVEL, "RobotPoseTracker");
+	
 	static RobotPoseTracker instance = null;
 
 	
@@ -45,13 +52,14 @@ public class RobotPoseTracker {
 		reset(new RigidTransform2d());
 		
 		notifier = new Notifier(runnable);
-		notifier.startPeriodic(0.02);
+		notifier.startPeriodic(0.5);
 	}
 	
 	public void reset(RigidTransform2d initialPose) {
 		pose = initialPose;
 		measuredVelocity = Twist2d.identity();
 		predictedVelocity = Twist2d.identity();
+		oldHeading = Rotation2d.fromDegrees(0);
 		distanceDriven = 0;
 	}
 	
@@ -76,13 +84,15 @@ public class RobotPoseTracker {
 	}
 	
 	private void updatePose() {
-		double leftPos = Robot.drivetrain.getEncoders().getLeftPosition();
-		double rightPos = Robot.drivetrain.getEncoders().getRightPosition();
+		double leftPos = Robot.drivetrain.getEncoders().getLeftPositionIn();
+		double rightPos = Robot.drivetrain.getEncoders().getRightPositionIn();
 		double dLeftPos = leftPos - oldLeftPos;
 		double dRightPos = rightPos - oldRightPos;
 		
+		log.add("dLeft: " + dLeftPos + ", dRight: " + dRightPos, Log.Level.DEBUG_PERIODIC);
+		
 		Rotation2d currentHeading = Robot.drivetrain.getGyro();
-		Rotation2d dHeading = oldHeading.inverse().rotateBy(currentHeading);
+		//Rotation2d dHeading = oldHeading.inverse().rotateBy(currentHeading);
 		
 		final Twist2d odometryVelocity = generateOdometry(dLeftPos, dRightPos, currentHeading);
 		final Twist2d predictedVelocity = Kinematics.forwardKinematics(Robot.drivetrain.getEncoders().getLeftSpeed()
@@ -91,6 +101,8 @@ public class RobotPoseTracker {
 		pose = Kinematics.integrateForwardKinematics(pose, odometryVelocity);
 		measuredVelocity = odometryVelocity;
 		this.predictedVelocity = predictedVelocity;
+		
+		//log.add("Current Heading: " + pose.getRotation(), Log.Level.DEBUG_PERIODIC);
 		
 		oldLeftPos = leftPos;
 		oldRightPos = rightPos;

@@ -29,6 +29,7 @@ public class DrivetrainAuton_Drive extends Command {
 	DrivetrainAuton auton = Robot.drivetrain.getAuton();
 	MotionProfile leftMotionProfile, rightMotionProfile;
 	boolean isLast;
+	double distance;
 	
 	
 	/** Drivetrain_Auton ******************************************************/
@@ -38,6 +39,8 @@ public class DrivetrainAuton_Drive extends Command {
 		
 		leftMotionProfile = path.generateLeftPath();
 		rightMotionProfile = path.generateRightPath();
+		
+		distance = path.getAvgDistance();
 	}	
 	
 	/** initialize ************************************************************
@@ -45,6 +48,8 @@ public class DrivetrainAuton_Drive extends Command {
 	 */
 	protected void initialize() {
 		log.add("Initialize", Log.Level.TRACE);
+		
+		auton.setDistanceToTravel(distance);
 		
 		auton.initMotionProfile();
 		

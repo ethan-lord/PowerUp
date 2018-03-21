@@ -3,6 +3,7 @@ package org.usfirst.frc.team3042.robot.commands;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
+import org.usfirst.frc.team3042.robot.subsystems.Arm;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -27,6 +28,8 @@ public class Arm_CrisisAverted extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
+    	Robot.armEmergencyMode = false;
+    	Robot.arm.setPosition(Arm.Position.MIDDLE);
     	log.add("Breathe easy, the danger is past. Well done, Cadet!", LOG_LEVEL.TRACE);
     }
 
