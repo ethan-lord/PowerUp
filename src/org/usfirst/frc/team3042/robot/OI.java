@@ -53,9 +53,9 @@ import org.usfirst.frc.team3042.robot.triggers.POVButton;
  */
 public class OI {	
 	/** Configuration Constants ***********************************************/
-	private static final boolean IS_PBOT = RobotMap.IS_PBOT;
-	private static final boolean IS_PRIMARY = RobotMap.IS_PRIMARY;
-	private static final boolean IS_SECONDARY = RobotMap.IS_SECONDARY;
+	private static final boolean IS_GEORGE = RobotMap.IS_GEORGE;
+	private static final boolean IS_DABNEY = RobotMap.IS_DABNEY;
+	private static final boolean IS_BUSHNELL = RobotMap.IS_BUSHNELL;
 	private static final int USB_GAMEPAD = RobotMap.USB_GAMEPAD;
 	private static final int USB_JOY_LEFT = RobotMap.USB_JOYSTICK_LEFT;
 	private static final int USB_JOY_RIGHT = RobotMap.USB_JOYSTICK_RIGHT;
@@ -109,7 +109,7 @@ public class OI {
 		}
 		
 		/** PBOT Controls *****************************************************/
-		if (IS_PBOT) {
+		if (IS_GEORGE) {
 			
 			gamepad.A.whenPressed(new DrivetrainAuton_Drive((new CenterToRightSwitch()).buildPath()));
 			
@@ -134,7 +134,7 @@ public class OI {
 			gamepad.Y.whenPressed(new Drivetrain_Calibrate());
 		}
 		/** Primary and Secondary Robot Controls ******************************************/
-		if (IS_PRIMARY || IS_SECONDARY) {
+		if (IS_DABNEY || IS_BUSHNELL) {
 			gamepad.POVUp.whenActive(new Elevator_CyclePositions(POVButton.UP));
 			gamepad.POVDown.whenActive(new Elevator_CyclePositions(POVButton.DOWN));
 			

@@ -60,6 +60,7 @@ public class DrivetrainAuton extends Subsystem {
 	private TalonSRX leftMotor, rightMotor;
 	private DrivetrainEncoders encoders;
 	private Notifier notifier;
+	private double distanceToTravel;
 	
 
 	/** DrivetrainAuton *******************************************************/
@@ -202,5 +203,13 @@ public class DrivetrainAuton extends Subsystem {
 	
 	public double getRightGoal(){
 		return rightMotor.getActiveTrajectoryPosition();
+	}
+	
+	public void setDistanceToTravel(double distance) {
+		distanceToTravel = distance;
+	}
+	
+	public double getDistanceToTravel() {
+		return distanceToTravel;
 	}
 }

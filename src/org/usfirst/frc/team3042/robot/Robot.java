@@ -61,7 +61,7 @@ public class Robot extends IterativeRobot {
 	public static final POP pop = (HAS_POP) ? new POP() : null;
 	public static OI oi;
 	public static final Compressor compressor = (HAS_COMPRESSOR) ? new Compressor() : null;
-	public static final DriverCamera driverCamera = (!RobotMap.IS_PBOT) ? new DriverCamera() : null;
+	public static final DriverCamera driverCamera = (!RobotMap.IS_GEORGE) ? new DriverCamera() : null;
 	
 	//public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 	
@@ -105,7 +105,7 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		log.add("Disabled Init", Log.Level.TRACE);
 		gameData = "";
-		if(!RobotMap.IS_PBOT) arm.setPosition(Arm.Position.TOP);//preset 2 is the up to frame position
+		if(!RobotMap.IS_GEORGE) arm.setPosition(Arm.Position.TOP);//preset 2 is the up to frame position
 	}
 
 	
@@ -173,8 +173,8 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
-		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Arm Position", Robot.arm.getPosition());
-		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Elevator Position", Robot.elevator.getPosition());
+		if(!RobotMap.IS_GEORGE) SmartDashboard.putNumber("Arm Position", Robot.arm.getPosition());
+		if(!RobotMap.IS_GEORGE) SmartDashboard.putNumber("Elevator Position", Robot.elevator.getPosition());
 		SmartDashboard.putNumber("Gyroscope", Robot.drivetrain.getGyroRaw());
 		//Only log on primary and secondary robots, pbot would crash code with this
 		Scheduler.getInstance().run();
