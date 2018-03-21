@@ -22,6 +22,7 @@ public class AxisTrigger extends Trigger {
 	Joystick gamepad;
 	int axis;
 	Direction direction;
+	Boolean reset = false;
 
 	
 	/** GamepadTrigger ******************************************************** 
@@ -47,6 +48,8 @@ public class AxisTrigger extends Trigger {
 	 * Return if the axis has been pushed to trigger the command.
 	 */
     public boolean get() {
+    	reset = Math.abs(gamepad.getRawAxis(axis)) < 0.25;
+    	
     	boolean triggered;
     	if ( (direction == Direction.UP) || (direction == Direction.LEFT) ){
     		triggered = gamepad.getRawAxis(axis) < -.5;
@@ -54,6 +57,7 @@ public class AxisTrigger extends Trigger {
     	else {
     		triggered = gamepad.getRawAxis(axis) > .5;
     	}
-    	return triggered;
+    	
+    	return triggered && reset;
     }
 }
