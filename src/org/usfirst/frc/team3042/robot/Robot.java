@@ -103,7 +103,7 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		log.add("Disabled Init", Log.Level.TRACE);
 		gameData = "";
-		if(!RobotMap.IS_PBOT) arm.setPosition(Arm.Position.TOP);//preset 2 is the up to frame position
+		if(!RobotMap.IS_GEORGE) arm.setPosition(Arm.Position.TOP);//preset 2 is the up to frame position
 	}
 
 	
@@ -167,9 +167,9 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
-		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Arm Position", Robot.arm.getPosition());
-		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Elevator Position", Robot.elevator.getPosition());
-		if(!RobotMap.IS_PBOT) SmartDashboard.putNumber("Gyroscope", Robot.drivetrain.getGyroRaw());
+		if(!RobotMap.IS_GEORGE) SmartDashboard.putNumber("Arm Position", Robot.arm.getPosition());
+		if(!RobotMap.IS_GEORGE) SmartDashboard.putNumber("Elevator Position", Robot.elevator.getPosition());
+		if(!RobotMap.IS_GEORGE) SmartDashboard.putNumber("Gyroscope", Robot.drivetrain.getGyroRaw());
 		//Only log on primary and secondary robots, pbot would crash code with this
 		Scheduler.getInstance().run();
 		
