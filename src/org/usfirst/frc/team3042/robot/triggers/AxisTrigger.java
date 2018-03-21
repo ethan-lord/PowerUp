@@ -48,7 +48,7 @@ public class AxisTrigger extends Trigger {
 	 * Return if the axis has been pushed to trigger the command.
 	 */
     public boolean get() {
-    	reset = Math.abs(gamepad.getRawAxis(axis)) < 0.25;
+    	reset = reset || (Math.abs(gamepad.getRawAxis(axis)) < 0.25);
     	
     	boolean triggered;
     	if ( (direction == Direction.UP) || (direction == Direction.LEFT) ){
