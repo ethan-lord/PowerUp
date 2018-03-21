@@ -26,6 +26,7 @@ public class Winch extends Subsystem {
 	
 	public Winch(){
 		winchMotorFollow.set(ControlMode.Follower, CAN_WINCH_MOTOR);
+		winchMotorFollow.setInverted(true);
 	}
 	
     public void initDefaultCommand() {

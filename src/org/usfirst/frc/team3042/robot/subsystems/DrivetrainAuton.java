@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3042.robot.subsystems;
 
 import org.usfirst.frc.team3042.lib.Log;
+import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 
 import com.ctre.phoenix.motion.MotionProfileStatus;

@@ -126,7 +126,7 @@ public class Drivetrain extends Subsystem {
 	 * 
 	 */
 	public Rotation2d getGyro() {
-		return Rotation2d.fromDegrees(gyro.getAngle());
+		return Rotation2d.fromDegrees(gyro.getAngleZ());
 	}
 	
 	public double getGyroRaw() {
@@ -143,9 +143,8 @@ public class Drivetrain extends Subsystem {
         return (a - epsilon <= b) && (a + epsilon >= b);
     }
     public boolean isParallel(Rotation2d thing1, Rotation2d thing2) {
-        return epsilonEquals(Translation2d.cross(thing1.toTranslation(), thing2.toTranslation()), 0.0, closeEnough);
+        return Math.abs(thing1.getDegrees() - thing2.getDegrees()) < closeEnough;
     }
-	
 	
 	/** Provide commands access to the encoders and autonomous ****************/
 	public DrivetrainEncoders getEncoders() {

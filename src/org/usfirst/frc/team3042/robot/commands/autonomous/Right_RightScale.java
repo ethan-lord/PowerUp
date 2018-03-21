@@ -9,6 +9,7 @@ import org.usfirst.frc.team3042.robot.commands.Claw_Stop;
 import org.usfirst.frc.team3042.robot.commands.Claw_StopAuton;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
+import org.usfirst.frc.team3042.robot.commands.Drivetrain_ShiftHigh;
 import org.usfirst.frc.team3042.robot.commands.Elevator_SetPosition;
 import org.usfirst.frc.team3042.robot.paths.RightToRightScale;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
@@ -32,6 +33,7 @@ public class Right_RightScale extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
+    	addSequential(new Drivetrain_ShiftHigh());
     	addParallel(new Arm_SetPosition(Arm.Position.MIDDLE));
     	addParallel(new Elevator_SetPosition(Elevator.Position.MID_SCALE));
     	addSequential(new DrivetrainAuton_Drive(new RightToRightScale().buildPath()));

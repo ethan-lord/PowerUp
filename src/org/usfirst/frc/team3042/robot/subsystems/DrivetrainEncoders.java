@@ -75,6 +75,12 @@ public class DrivetrainEncoders extends Subsystem {
 		rightCountsZero = 0;
 	}
 	
+	public double getLeftPositionZero(){
+		return leftPositionZero;
+	}
+	public double getRightPositionZero(){
+		return rightPositionZero;
+	}
 	
 	/** Get the encoder position or speed *************************************
 	 * Position is given in Revolutions - getPosition()

@@ -42,8 +42,10 @@ public class DrivetrainAuton_Turn extends Command {
 		goal = drivetrain.getGyro().rotateBy(turn);
 		
 		double distance = angleToDistance(turn);
-		auton.setLeftPositionMotionMagic(distance);
-		auton.setRightPositionMotionMagic(-distance);
+		auton.setLeftPositionMotionMagic(distance + Robot.drivetrain.getEncoders().getLeftPositionZero());
+		auton.setRightPositionMotionMagic(-distance + Robot.drivetrain.getEncoders().getLeftPositionZero());
+		
+		Robot.drivetrain.getEncoders().reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -51,13 +53,15 @@ public class DrivetrainAuton_Turn extends Command {
     	Rotation2d remainingTurn = goal.rotateBy(drivetrain.getGyro().inverse());
     	
     	double distance = angleToDistance(remainingTurn);
-		auton.setLeftPositionMotionMagic(distance);
-		auton.setRightPositionMotionMagic(-distance);
+		auton.setLeftPositionMotionMagic(distance + Robot.drivetrain.getEncoders().getLeftPositionZero());
+		auton.setRightPositionMotionMagic(-distance + Robot.drivetrain.getEncoders().getRightPositionZero());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return drivetrain.isParallel(goal, turn);
+    	log.add("where we are = " + drivetrain.getGyro().getDegrees(), Log.Level.DEBUG);
+    	log.add("where we should be = " + turn.getDegrees(), Log.Level.DEBUG);
+        return drivetrain.isParallel(drivetrain.getGyro(), turn);
     }
 
     // Called once after isFinished returns true

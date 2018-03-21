@@ -8,6 +8,7 @@ import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
 import org.usfirst.frc.team3042.robot.commands.Claw_StopAuton;
 import org.usfirst.frc.team3042.robot.commands.Claw_Unclamp;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
+import org.usfirst.frc.team3042.robot.commands.Drivetrain_ShiftHigh;
 import org.usfirst.frc.team3042.robot.commands.Elevator_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Wait;
 import org.usfirst.frc.team3042.robot.paths.CenterToLeftSwitch;
@@ -34,6 +35,7 @@ public class Center_LeftSwitch extends CommandGroup {
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
     	//addParallel(new Elevator_SetPosition(Elevator.Position.BOTTOM));
+    	addSequential(new Drivetrain_ShiftHigh());
     	addParallel(new Arm_SetPosition(Arm.Position.MIDDLE));
     	addSequential(new DrivetrainAuton_Drive(new CenterToLeftSwitch().buildPath()));
     	addSequential(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME));

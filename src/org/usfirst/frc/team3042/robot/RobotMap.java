@@ -57,8 +57,6 @@ public class RobotMap {
 	public static final int CAN_ELEVATOR_TALON = 	IS_PRIMARY ? 13 : 17;
 	
 	public static final int CAN_ARM_MOTOR =			IS_PRIMARY ? 33 : 2;
-
-	public static final int CAN_HOOK_MOTOR =			IS_PRIMARY ? 31 : 15;
 	
 	/** DIO channels **********************************************************/
 	public static final int DIO_CLAW_ULTRA_PING = 1;
@@ -97,7 +95,7 @@ public class RobotMap {
 	public static final int BASE_TRAJPERIOD = 0;
 	public static final int PIDIDX = 0; //pidIdx - 0 for Primary closed-loop. 1 for cascaded closed-loop. See Phoenix-Documentation for how to interpret.
 	public static final int SLOTIDX_1 = 0;
-	public static final boolean STARTS_HIGH_GEAR = (IS_PRIMARY) ? false : false;
+	public static final boolean STARTS_HIGH_GEAR = (IS_PRIMARY) ? false : true;
 	public static final int DRIVETRAIN_MOTION_MAGIC_ACCELERATION = IS_PRIMARY ? 0 : 493;
 	public static final int DRIVETRAIN_MOTION_MAGIC_CRUISE_VELOCITY = IS_PRIMARY ? 0 : 150;	
 	
@@ -192,11 +190,11 @@ public class RobotMap {
 	public static final boolean HAS_AUTON = HAS_ENCODERS;
 	public static final int AUTON_PROFILE = 0;
 	public static final double kP_AUTON = 		(IS_PBOT) 		? 1.0 :
-												(IS_PRIMARY) 	? 1.3 : 13.0;
+												(IS_PRIMARY) 	? 1.3 : 6;
 	public static final double kI_AUTON = 		(IS_PBOT) 		? 0.0 :
-												(IS_PRIMARY) 	? 0.00 : 0.05;
+												(IS_PRIMARY) 	? 0.00 : 0.00;
 	public static final double kD_AUTON = 		(IS_PBOT) 		? 2.0 :
-												(IS_PRIMARY) 	? 4.5 : 45.0;
+												(IS_PRIMARY) 	? 4.5 : 0;
 	public static final int I_ZONE_AUTON =		(IS_PBOT)		? 0 :
 												(IS_PRIMARY)	? 0 : 0;
 	public static final double DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES = 1;
@@ -252,7 +250,7 @@ public class RobotMap {
 	public static final String 		LOG_TIME_ZONE = "America/Chicago";
 	public static final boolean 		LOG_TO_CONSOLE 				= true;
 	public static final boolean 		LOG_TO_FILE 					= true;
-	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG_PERIODIC;
+	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG;
 	public static final Log.Level LOG_ROBOT 					= Log.Level.DEBUG;
 	public static final Log.Level	LOG_OI 						= Log.Level.TRACE;
 	public static final Log.Level	LOG_AXIS_TRIGGER 			= Log.Level.ERROR;
