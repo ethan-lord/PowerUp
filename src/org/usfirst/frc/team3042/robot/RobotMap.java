@@ -91,6 +91,8 @@ public class RobotMap {
 												(IS_DABNEY) 	? 1.189 : 1.21;
 	public static final double kF_DRIVE_RIGHT = (IS_GEORGE) 		? 1.12 ://0.6492764661081493 :
 												(IS_DABNEY) 	? 1.278 : 1.24;
+	public static final double kF_HIGH_DRIVE_LEFT = (IS_DABNEY) ? 0.5778 : 0.5880;
+	public static final double kF_HIGH_DRIVE_RIGHT = (IS_DABNEY) ? 0.6210 : 0.6025;
 	public static final int TALON_ERROR_TIMEOUT = 0;// measured in Ms
 	public static final int TRAJPERIOD = 10;
 	public static final int BASE_TRAJPERIOD = 0;
