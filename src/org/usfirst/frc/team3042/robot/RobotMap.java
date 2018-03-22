@@ -14,7 +14,7 @@ public class RobotMap {
 	/** Robot selector ********************************************************/
 	public static enum Bot {GEORGE, DABNEY, BUSHNELL};
 	// Set the bot to which you intend to push code.
-	private static Bot currentBot = Bot.BUSHNELL;
+	private static Bot currentBot = Bot.GEORGE;
 
 	public static final boolean IS_GEORGE 	= (currentBot == Bot.GEORGE);
 	public static final boolean IS_DABNEY = (currentBot == Bot.DABNEY);
@@ -100,8 +100,10 @@ public class RobotMap {
 	public static final int SLOTIDX_1 = 0;
 
 	public static final boolean STARTS_HIGH_GEAR = (IS_DABNEY) ? false : false;
-	public static final int DRIVETRAIN_MOTION_MAGIC_ACCELERATION = IS_DABNEY ? 0 : 493;
-	public static final int DRIVETRAIN_MOTION_MAGIC_CRUISE_VELOCITY = IS_DABNEY ? 0 : 150;	
+	public static final int DRIVETRAIN_MOTION_MAGIC_ACCELERATION = (IS_GEORGE)? 500 :
+																	(IS_DABNEY)? 0 : 0;
+	public static final int DRIVETRAIN_MOTION_MAGIC_CRUISE_VELOCITY = (IS_GEORGE)? 250 :
+																		(IS_DABNEY)? 0 : 0;
 	
 	
 	/** Winch Settings ********************************************************/
@@ -194,15 +196,15 @@ public class RobotMap {
 	public static final boolean HAS_AUTON = HAS_ENCODERS;
 	public static final int AUTON_PROFILE = 0;
 
-	public static final double kP_AUTON = 		(IS_GEORGE) 		? 1.0 :
-												(IS_DABNEY) 	? 1.3 : 13.0;
+	public static final double kP_AUTON = 		(IS_GEORGE) 		? 10.0 :
+												(IS_DABNEY) 	? 1.3 : 6.0;
 	public static final double kI_AUTON = 		(IS_GEORGE) 		? 0.0 :
-												(IS_DABNEY) 	? 0.00 : 0.05;
+												(IS_DABNEY) 	? 0.00 : 0.0;
 	public static final double kD_AUTON = 		(IS_GEORGE) 		? 2.0 :
-												(IS_DABNEY) 	? 4.5 : 45.0;
+												(IS_DABNEY) 	? 4.5 : 0;
 	public static final int I_ZONE_AUTON =		(IS_GEORGE)		? 0 :
 												(IS_DABNEY)	? 0 : 0;
-	public static final double DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES = 1;
+	public static final double DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES = 0.5;
 	public static final double DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_RADIANS = DRIVETRAIN_ALLOWABLE_TURN_ERROR_IN_THE_Z_AXIS_IN_DRIVETRAIN_AUTONOMOUS_IN_DEGREES * Math.PI / 180.0;
 	//The rate of pushing motion profile points to the talon, in ms
 	public static final int AUTON_FRAME_RATE = 10;
@@ -255,7 +257,7 @@ public class RobotMap {
 	public static final String 		LOG_TIME_ZONE = "America/Chicago";
 	public static final boolean 		LOG_TO_CONSOLE 				= true;
 	public static final boolean 		LOG_TO_FILE 					= true;
-	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG;
+	public static final Log.Level LOG_GLOBAL 					= Log.Level.DEBUG_PERIODIC;
 	public static final Log.Level LOG_ROBOT 					= Log.Level.DEBUG;
 	public static final Log.Level	LOG_OI 						= Log.Level.TRACE;
 	public static final Log.Level	LOG_AXIS_TRIGGER 			= Log.Level.ERROR;

@@ -121,11 +121,11 @@ public class DrivetrainAuton extends Subsystem {
      * Makes things move
      */
 	public void setLeftPositionMotionMagic(double position) {
-		leftMotor.set(ControlMode.MotionMagic, inchesToCounts(position));
+		leftMotor.set(ControlMode.MotionMagic, inchesToCounts(position) + Robot.drivetrain.getEncoders().getLeftPositionZero());
 	}
 	
 	public void setRightPositionMotionMagic(double position) {
-		rightMotor.set(ControlMode.MotionMagic, inchesToCounts(position));
+		rightMotor.set(ControlMode.MotionMagic, inchesToCounts(position) + Robot.drivetrain.getEncoders().getRightPositionZero());
 	}
 	
 	public int inchesToCounts(double inches) {

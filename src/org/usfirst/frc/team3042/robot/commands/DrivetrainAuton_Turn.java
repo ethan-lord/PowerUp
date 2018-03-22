@@ -41,10 +41,6 @@ public class DrivetrainAuton_Turn extends Command {
 		
 		goal = drivetrain.getGyro().rotateBy(turn);
 		
-		double distance = angleToDistance(turn);
-		auton.setLeftPositionMotionMagic(distance + Robot.drivetrain.getEncoders().getLeftPositionZero());
-		auton.setRightPositionMotionMagic(-distance + Robot.drivetrain.getEncoders().getLeftPositionZero());
-		
 		Robot.drivetrain.getEncoders().reset();
     }
 
@@ -52,15 +48,20 @@ public class DrivetrainAuton_Turn extends Command {
     protected void execute() {
     	Rotation2d remainingTurn = goal.rotateBy(drivetrain.getGyro().inverse());
     	
+    	log.add("Turn Remaining: " + remainingTurn, Log.Level.DEBUG_PERIODIC);
+    	
     	double distance = angleToDistance(remainingTurn);
-		auton.setLeftPositionMotionMagic(distance + Robot.drivetrain.getEncoders().getLeftPositionZero());
-		auton.setRightPositionMotionMagic(-distance + Robot.drivetrain.getEncoders().getRightPositionZero());
+    	
+    	//log.add("Distance remaining: " + distance, Log.Level.DEBUG_PERIODIC);
+    	
+		auton.setLeftPositionMotionMagic(distance + Robot.drivetrain.getEncoders().getLeftPositionIn());
+		auton.setRightPositionMotionMagic(-distance + Robot.drivetrain.getEncoders().getRightPositionIn());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	log.add("where we are = " + drivetrain.getGyro().getDegrees(), Log.Level.DEBUG);
-    	log.add("where we should be = " + turn.getDegrees(), Log.Level.DEBUG);
+    	//log.add("where we are = " + drivetrain.getGyro().getDegrees(), Log.Level.DEBUG);
+    	//log.add("where we should be = " + turn.getDegrees(), Log.Level.DEBUG);
         return drivetrain.isParallel(drivetrain.getGyro(), turn);
     }
 
