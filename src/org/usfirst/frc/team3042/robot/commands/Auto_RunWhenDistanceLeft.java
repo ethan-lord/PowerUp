@@ -42,11 +42,18 @@ public class Auto_RunWhenDistanceLeft extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     		double distanceTraveled = 
-    				(Robot.drivetrain.getEncoders().getLeftPosition() + Robot.drivetrain.getEncoders().getRightPosition()) / 2;
+    				(Robot.drivetrain.getEncoders().getLeftTrajPos() + Robot.drivetrain.getEncoders().getRightTrajPos()) / 2;
     		double distanceToTravel = Robot.drivetrain.getAuton().getDistanceToTravel();
+    		
+    		if (distanceToTravel == 0) {
+    			distanceToTravel = 1000;
+    		}
+    		
+    		log.add("DistanceToTravel: " + distanceToTravel + ", DistanceTraveled: " + distanceTraveled, Log.Level.DEBUG_PERIODIC);
     		
     		if (distanceToTravel - distanceTraveled < distance) {
     			command.start();
+    			finished = true;
     		}
     }
 

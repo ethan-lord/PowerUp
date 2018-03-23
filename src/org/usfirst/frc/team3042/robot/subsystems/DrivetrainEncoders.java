@@ -116,6 +116,13 @@ public class DrivetrainEncoders extends Subsystem {
 		return Math.PI * RobotMap.WHEEL_DIAMETER * getRightPosition();
 	}
 	
+	public double getLeftTrajPos() {
+		return (leftEncoder.getActiveTrajectoryPosition() - leftPositionZero) / COUNTS_PER_REVOLUTION;
+	}
+	public double getRightTrajPos() {
+		return (rightEncoder.getActiveTrajectoryPosition() - rightPositionZero) / COUNTS_PER_REVOLUTION;
+	}
+	
 	
 	/** rpmToF ****************************************************************
 	 * Convert RPM reading into an F-Gain
