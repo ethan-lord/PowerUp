@@ -4,6 +4,7 @@ import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.lib.math.Rotation2d;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
+import org.usfirst.frc.team3042.robot.commands.Auto_RunWhenDistanceLeft;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
 import org.usfirst.frc.team3042.robot.commands.Claw_Stop;
 import org.usfirst.frc.team3042.robot.commands.Claw_StopAuton;
@@ -33,18 +34,16 @@ public class Right_RightScale extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
-    	addSequential(new Drivetrain_ShiftHigh());
     	addParallel(new Arm_SetPosition(Arm.Position.MIDDLE));
-    	addParallel(new Elevator_SetPosition(Elevator.Position.MID_SCALE));
-    	addSequential(new DrivetrainAuton_Drive(new RightToRightScale().buildPath()));
-    	addSequential(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME));
+    	addParallel(new DrivetrainAuton_Drive(new RightToRightScale().buildPath()));
+    	addParallel(new Auto_RunWhenDistanceLeft(new Elevator_SetPosition(Elevator.Position.MID_SCALE), 120.0));
+    	addSequential(new Auto_RunWhenDistanceLeft(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME), 15.0));
     	addSequential(new Claw_StopAuton());
     	Path backUp = new Path();
     	backUp.addStraight(-24, -24);
     	addSequential(new DrivetrainAuton_Drive(backUp));
     	addParallel(new Elevator_SetPosition(Elevator.Position.INTAKE));
-    	new Rotation2d();
-		addParallel(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(200.3042)));
+	addParallel(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(200.3042)));
     	addSequential(new Arm_SetPosition(Arm.Position.BOTTOM));
 
         // A command group will require all of the subsystems that each member

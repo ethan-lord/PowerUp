@@ -4,7 +4,9 @@ import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
+import org.usfirst.frc.team3042.robot.commands.Auto_RunWhenDistanceLeft;
 import org.usfirst.frc.team3042.robot.commands.Claw_Intake;
+import org.usfirst.frc.team3042.robot.commands.Claw_IntakeAuto;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
 import org.usfirst.frc.team3042.robot.commands.Claw_StopAuton;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
@@ -32,13 +34,13 @@ public class Left_LeftScaleLeftSwitch extends CommandGroup {
         // Command1 and Command2 will run in parallel.
 
     	addSequential(new Left_LeftScale());
-    	addParallel(new Claw_Intake());
+    	addParallel(new Claw_IntakeAuto());
     	addSequential(new DrivetrainAuton_Drive(new LeftScaleToCube().buildPath()));
     	addSequential(new Arm_SetPosition(Arm.Position.MIDDLE));
     	Path driveForward = new Path();
-    	driveForward.addStraight(10, 12);
-    	addSequential(new DrivetrainAuton_Drive(driveForward));
-    	addSequential(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME));
+    	driveForward.addStraight(12, 12);
+    	addParallel(new DrivetrainAuton_Drive(driveForward));
+    	addSequential(new Auto_RunWhenDistanceLeft(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME), 6.0));
     	addSequential(new Claw_StopAuton());
     	
         // A command group will require all of the subsystems that each member

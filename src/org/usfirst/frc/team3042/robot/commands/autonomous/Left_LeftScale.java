@@ -35,12 +35,12 @@ public class Left_LeftScale extends CommandGroup {
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
     	addParallel(new Arm_SetPosition(Arm.Position.MIDDLE));
-    	addParallel(new Elevator_SetPosition(Elevator.Position.MID_SCALE));
     	addParallel(new DrivetrainAuton_Drive(new LeftToLeftScale().buildPath()));
-    	addSequential(new Auto_RunWhenDistanceLeft(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME), 12.0));
+    	addParallel(new Auto_RunWhenDistanceLeft(new Elevator_SetPosition(Elevator.Position.MID_SCALE), 120.0));
+    	addSequential(new Auto_RunWhenDistanceLeft(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME), 15.0));
     	addSequential(new Claw_StopAuton());
     	Path backUp = new Path();
-    	backUp.addStraight(-24, -24);//to back up
+    	backUp.addStraight(-24, -24);
     	addSequential(new DrivetrainAuton_Drive(backUp));
     	addParallel(new Elevator_SetPosition(Elevator.Position.INTAKE));
     	addParallel(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(200.3042)));
