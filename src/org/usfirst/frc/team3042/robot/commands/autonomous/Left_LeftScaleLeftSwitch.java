@@ -5,10 +5,12 @@ import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Auto_RunWhenDistanceLeft;
+import org.usfirst.frc.team3042.robot.commands.Claw_Clamp;
 import org.usfirst.frc.team3042.robot.commands.Claw_Intake;
 import org.usfirst.frc.team3042.robot.commands.Claw_IntakeAuto;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
 import org.usfirst.frc.team3042.robot.commands.Claw_StopAuton;
+import org.usfirst.frc.team3042.robot.commands.Claw_Unclamp;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
 import org.usfirst.frc.team3042.robot.paths.LeftScaleToCube;
@@ -34,8 +36,10 @@ public class Left_LeftScaleLeftSwitch extends CommandGroup {
         // Command1 and Command2 will run in parallel.
 
     	addSequential(new Left_LeftScale());
+    	addParallel(new Claw_Unclamp());
     	addParallel(new Claw_IntakeAuto());
     	addSequential(new DrivetrainAuton_Drive(new LeftScaleToCube().buildPath()));
+    	addParallel(new Claw_Clamp());
     	addSequential(new Arm_SetPosition(Arm.Position.MIDDLE));
     	Path driveForward = new Path();
     	driveForward.addStraight(12, 12);
