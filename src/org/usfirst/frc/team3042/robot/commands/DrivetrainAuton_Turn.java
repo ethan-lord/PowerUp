@@ -30,7 +30,7 @@ public class DrivetrainAuton_Turn extends Command {
         // eg. requires(chassis);
     	requires(drivetrain);
     	
-    	this.turn = turn;
+    	this.turn = turn.inverse();
     }
 
     // Called just before this Command runs the first time
