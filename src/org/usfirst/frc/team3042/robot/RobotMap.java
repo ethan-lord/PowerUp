@@ -14,10 +14,10 @@ public class RobotMap {
 	/** Robot selector ********************************************************/
 	public static enum Bot {GEORGE, DABNEY, BUSHNELL};
 	// Set the bot to which you intend to push code.
-	private static Bot currentBot = Bot.GEORGE;
+	private static Bot currentBot = Bot.BUSHNELL;
 
 	public static final boolean IS_GEORGE 	= (currentBot == Bot.GEORGE);
-	public static final boolean IS_DABNEY = (currentBot == Bot.DABNEY);
+	public static final boolean IS_DABNEY   = (currentBot == Bot.DABNEY);
 	public static final boolean IS_BUSHNELL = (currentBot == Bot.BUSHNELL);
 	
 	public static final boolean DEMO_MODE = false;
@@ -42,13 +42,13 @@ public class RobotMap {
 	/** PWM ports *************************************************************/
 	
 	/** CAN ID numbers ********************************************************/
-	public static final int CAN_LEFT_MOTOR 	= 		IS_GEORGE 	? 3 :
-													IS_DABNEY 	? 29 : 14;
-	public static final int CAN_RIGHT_MOTOR = 		IS_GEORGE 	? 9 :
-													IS_DABNEY 	? 32 : 25;
-	public static final int CAN_LEFT_FOLLOWER = 		IS_DABNEY 	? 28 : 8;
-	public static final int CAN_RIGHT_FOLLOWER = 	IS_DABNEY 	? 5 : 7;
-	public static final int CAN_WINCH_MOTOR_MASTER = 	IS_DABNEY  ? 34 : 19;
+	public static final int CAN_LEFT_MOTOR 	     = 	IS_GEORGE 	? 3 :
+														IS_DABNEY 	? 29 : 14;
+	public static final int CAN_RIGHT_MOTOR      =  IS_GEORGE 	? 9 :
+														IS_DABNEY 	? 32 : 25;
+	public static final int CAN_LEFT_FOLLOWER        = 	IS_DABNEY 	? 28 : 8;
+	public static final int CAN_RIGHT_FOLLOWER       = 	IS_DABNEY 	? 5 : 7;
+	public static final int CAN_WINCH_MOTOR_MASTER   = 	IS_DABNEY  ? 34 : 19;
 	public static final int CAN_WINCH_MOTOR_FOLLOWER = 	IS_DABNEY  ? 27 : 18;
 	
 	public static final int CAN_CLAW_RIGHT_TALON =  	IS_DABNEY  ? 30 : 1;
@@ -100,10 +100,10 @@ public class RobotMap {
 	public static final int SLOTIDX_1 = 0;
 
 	public static final boolean STARTS_HIGH_GEAR = (IS_DABNEY) ? false : false;
-	public static final int DRIVETRAIN_MOTION_MAGIC_ACCELERATION = (IS_GEORGE)? 500 :
-																	(IS_DABNEY)? 0 : 0;
-	public static final int DRIVETRAIN_MOTION_MAGIC_CRUISE_VELOCITY = (IS_GEORGE)? 250 :
-																		(IS_DABNEY)? 0 : 0;
+	public static final int DRIVETRAIN_MOTION_MAGIC_ACCELERATION =  (IS_GEORGE)? 1000 :
+																	 (IS_DABNEY)? 1000 : 1000;
+	public static final int DRIVETRAIN_MOTION_MAGIC_CRUISE_VELOCITY = (IS_GEORGE)? 500 :
+																	   (IS_DABNEY)? 500 : 500;
 	
 	
 	/** Winch Settings ********************************************************/
@@ -111,7 +111,7 @@ public class RobotMap {
 	
 	public static final double WINCH_HAS_LOAD_THRESHHOLD = 0;//test to determine what this should be.
 	
-	public static final double WINCH_BASE_POWER = IS_DABNEY ? 1.0 : -1.0;// percent output
+	public static final double WINCH_BASE_POWER = IS_DABNEY ? 1.0 : 1.0;// percent output
 	
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_GEORGE;

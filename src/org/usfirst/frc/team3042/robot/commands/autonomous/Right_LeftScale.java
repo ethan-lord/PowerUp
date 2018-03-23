@@ -1,12 +1,14 @@
 package org.usfirst.frc.team3042.robot.commands.autonomous;
 
 import org.usfirst.frc.team3042.lib.Path;
+import org.usfirst.frc.team3042.lib.math.Rotation2d;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
 import org.usfirst.frc.team3042.robot.commands.Claw_Stop;
 import org.usfirst.frc.team3042.robot.commands.Claw_StopAuton;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
+import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
 import org.usfirst.frc.team3042.robot.commands.Elevator_SetPosition;
 import org.usfirst.frc.team3042.robot.paths.RightToLeftScale;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
@@ -38,9 +40,7 @@ public class Right_LeftScale extends CommandGroup {
     	Path backUp = new Path();
     	backUp.addStraight(-24, -24);
     	addSequential(new DrivetrainAuton_Drive(backUp));
-    	Path turnInPlace = new Path();
-    	turnInPlace.addRightTurn(-200.3042, 0, 36);
-    	addParallel(new DrivetrainAuton_Drive(turnInPlace));
+    	addParallel(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(200.3042)));
     	//addSequential(new Elevator_SetPosition(Elevator.Position.INTAKE));
     	addSequential(new Arm_SetPosition(Arm.Position.BOTTOM));
 
