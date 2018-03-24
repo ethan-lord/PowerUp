@@ -41,7 +41,7 @@ public class Right_RightScaleRightSwitch extends CommandGroup {
     	addSequential(new Arm_SetPosition(Arm.Position.MIDDLE));
     	Path driveForward = new Path();
     	driveForward.addStraight(12, 12);
-    	addSequential(new DrivetrainAuton_Drive(driveForward));
+    	addParallel(new DrivetrainAuton_Drive(driveForward));
     	addSequential(new Auto_RunWhenDistanceLeft(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME), 6.0));
     	addSequential(new Claw_StopAuton());
         // A command group will require all of the subsystems that each member

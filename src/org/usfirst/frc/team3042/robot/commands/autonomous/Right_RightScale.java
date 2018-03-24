@@ -43,7 +43,7 @@ public class Right_RightScale extends CommandGroup {
     	backUp.addStraight(-24, -24);
     	addSequential(new DrivetrainAuton_Drive(backUp));
     	addParallel(new Elevator_SetPosition(Elevator.Position.INTAKE));
-	addParallel(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(200.3042)));
+	addParallel(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(160)));
     	addSequential(new Arm_SetPosition(Arm.Position.BOTTOM));
 
         // A command group will require all of the subsystems that each member
