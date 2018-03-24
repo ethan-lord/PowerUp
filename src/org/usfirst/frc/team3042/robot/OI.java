@@ -127,7 +127,7 @@ public class OI {
 //			testPath.addLeftTurn(120, turnRadius, -21.0);
 //			testPath.addRightTurn(90.0, turnRadius, -21.0);
 //			testPath.addStraight(36.0, -18.0);
-			gamepad.B.whenPressed(new Left_LeftScale());
+			//gamepad.B.whenPressed(new Left_LeftScale());
 			
 			gamepad.X.whenPressed(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(90)));
 			
