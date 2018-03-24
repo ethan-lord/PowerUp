@@ -40,8 +40,7 @@ public class DrivetrainAuton_Drive extends Command {
 		leftMotionProfile = path.generateLeftPath();
 		rightMotionProfile = path.generateRightPath();
 		
-		distance = (leftMotionProfile.getPoint(leftMotionProfile.getLength()-1).position 
-				+ rightMotionProfile.getPoint(rightMotionProfile.getLength()-1).position) / 2;
+		distance = path.getAvgDistance();
 	}	
 	
 	/** initialize ************************************************************

@@ -19,7 +19,6 @@ public class Claw_WaitForCube extends Command {
     public Claw_WaitForCube() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.claw);
     }
 
     // Called just before this Command runs the first time

@@ -34,6 +34,7 @@ import org.usfirst.frc.team3042.robot.commands.autonomous.Left_LeftScale;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Left_RightScale;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Right_LeftScale;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Right_RightScale;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Right_RightScaleRightSwitch;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Calibrate;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_Shift;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CrisisAverted;
@@ -160,7 +161,7 @@ public class OI {
 			joyLeft.button1.whenPressed(new Drivetrain_Shift());
 			
 			joyLeft.button9.whileActive(new Winch_Reverse());
-			joyRight.button7.whenPressed(new Center_LeftSwitch());
+			joyRight.button7.whenPressed(new Right_RightScaleRightSwitch());
 			joyRight.button8.whenPressed(new DrivetrainAuton_TurnCalibrate(20, 3));
 			joyRight.button9.whenPressed(new Right_RightScale());
 			joyRight.button3.whenPressed(new Arm_EmergencyMode());

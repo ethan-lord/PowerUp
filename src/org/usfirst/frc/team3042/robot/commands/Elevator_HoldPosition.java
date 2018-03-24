@@ -43,6 +43,8 @@ public class Elevator_HoldPosition extends Command {
         	else if(Robot.oi.gamepad.getPOV(0) == 180){
         		Robot.elevator.setPower(-0.5);
         	}
+    	} else {
+    		Robot.elevator.setTalonPositionMagic(Robot.elevator.getCurrentGoalPos());
     	}
     }
 

@@ -50,6 +50,7 @@ public class Claw_ReleaseTimed extends Command {
     protected void end() {
     	log.add("End", Log.Level.TRACE);
     	time.stop();
+    	Robot.claw.stop();
     }
 
     // Called when another command which requires one or more of the same
@@ -57,5 +58,6 @@ public class Claw_ReleaseTimed extends Command {
     protected void interrupted() {
     	log.add("Interrupted", Log.Level.TRACE);
     	time.stop();
+    	Robot.claw.stop();
     }
 }

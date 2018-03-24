@@ -14,7 +14,7 @@ public class RobotMap {
 	/** Robot selector ********************************************************/
 	public static enum Bot {GEORGE, DABNEY, BUSHNELL};
 	// Set the bot to which you intend to push code.
-	private static Bot currentBot = Bot.GEORGE;
+	private static Bot currentBot = Bot.BUSHNELL;
 
 	public static final boolean IS_GEORGE 	= (currentBot == Bot.GEORGE);
 	public static final boolean IS_DABNEY   = (currentBot == Bot.DABNEY);
@@ -116,9 +116,10 @@ public class RobotMap {
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_GEORGE;
 	public static final double CLAW_INTAKE_POWER = IS_DABNEY 	? 0.8 : 0.8;
-	public static final double CLAW_RELEASE_POWER_DEFAULT = IS_DABNEY 	? -0.5 : -0.375;
+	public static final double CLAW_RELEASE_POWER_DEFAULT = IS_DABNEY 	? -0.5 : -0.5;
 	public static final double CLAW_RELEASE_POWER_EXCHANGE = IS_DABNEY   ? -0.53042 : -0.53042;
-	public static final double CLAW_GRAB_DISTANCE = 4;
+	public static final double CLAW_GRAB_DISTANCE = 5;
+	public static final double CLAW_GRAB_TIME = 1;
 	public static final boolean STARTS_ACTIVE = false;
 	public static final double CLAW_INTAKE_TIMEOUT = IS_DABNEY ? 0 : 0;
 	public static final boolean CLAW_RIGHT_REVERSE = (IS_DABNEY) ? false : true;
@@ -139,8 +140,8 @@ public class RobotMap {
 	public static final double ELEVATOR_KD = IS_DABNEY 	? 15.0 : 15.0;
 	public static final double ELEVATOR_KF = IS_DABNEY 	? 0.5 : 0.5;
 	public static final int ELEVATOR_I_ZONE = IS_DABNEY 	? 0 : 0;
-	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_DABNEY ? 3500 : 1500;
-	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_DABNEY ? 4000 : 2500;
+	public static final int ELEVATOR_MOTION_MAGIC_ACCELERATION = IS_DABNEY ? 3500 : 8000;
+	public static final int ELEVATOR_MOTION_MAGIC_CRUISE_VELOCITY = IS_DABNEY ? 4000 : 8000;
 	public static final double ELEVATOR_LOWER_VELOCITY = IS_DABNEY ? 0.041 : -0.1;
 	public static final double ELEVATOR_POSITION_CONTROL_RANGE = IS_DABNEY ? 300 : 300;
 	public static final int ELEVATOR_SPROCKET_CIRCUMFERENCE = IS_DABNEY ? 4 : 4;

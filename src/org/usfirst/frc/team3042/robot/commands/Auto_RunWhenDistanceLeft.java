@@ -51,7 +51,8 @@ public class Auto_RunWhenDistanceLeft extends Command {
     		
     		log.add("DistanceToTravel: " + distanceToTravel + ", DistanceTraveled: " + distanceTraveled, Log.Level.DEBUG_PERIODIC);
     		
-    		if (distanceToTravel - distanceTraveled < distance) {
+    		if ((distanceToTravel - distanceTraveled < distance) & !finished) {
+    			log.add("Starting command", Log.Level.DEBUG);
     			command.start();
     			finished = true;
     		}
@@ -59,7 +60,7 @@ public class Auto_RunWhenDistanceLeft extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return finished;
+        return command.isCompleted();
     }
 
     // Called once after isFinished returns true

@@ -129,22 +129,22 @@ public class Elevator extends Subsystem {
 		switch (position) {
 			case INTAKE:
 				log.add("Intake", Log.Level.DEBUG);
-				setTalonPositionMagic(INT_POS - elevatorZero);
+				currentGoalPos = INT_POS - elevatorZero; //setTalonPositionMagic(INT_POS - elevatorZero);
 				log.add("Intake position: " + INT_POS, Log.Level.DEBUG);
 				break;
 			case LOW_SCALE:
 				log.add("Low Scale", Log.Level.DEBUG);
-				setTalonPositionMagic(LOW_SCALE_POS - elevatorZero);
+				currentGoalPos = LOW_SCALE_POS - elevatorZero; //setTalonPositionMagic(LOW_SCALE_POS - elevatorZero);
 				log.add("Low scale position: " + LOW_SCALE_POS, Log.Level.DEBUG);
 				break;
 			case MID_SCALE:
 				log.add("Mid Scale", Log.Level.DEBUG);
-				setTalonPositionMagic(MID_SCALE_POS - elevatorZero);
+				currentGoalPos = MID_SCALE_POS - elevatorZero; //setTalonPositionMagic(MID_SCALE_POS - elevatorZero);
 				log.add("Mid scale position: " + MID_SCALE_POS, Log.Level.DEBUG);
 				break;
 			case HIGH_SCALE:
 				log.add("High Scale", Log.Level.DEBUG);
-				setTalonPositionMagic(HIGH_SCALE_POS - elevatorZero);
+				currentGoalPos = HIGH_SCALE_POS - elevatorZero; //setTalonPositionMagic(HIGH_SCALE_POS - elevatorZero);
 				log.add("High scale position: " + HIGH_SCALE_POS, Log.Level.DEBUG);
 				break;
 			default:

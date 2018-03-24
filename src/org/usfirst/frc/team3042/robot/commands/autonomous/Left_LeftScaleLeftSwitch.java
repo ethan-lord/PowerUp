@@ -36,10 +36,8 @@ public class Left_LeftScaleLeftSwitch extends CommandGroup {
         // Command1 and Command2 will run in parallel.
 
     	addSequential(new Left_LeftScale());
-    	addParallel(new Claw_Unclamp());
     	addParallel(new Claw_IntakeAuto());
     	addSequential(new DrivetrainAuton_Drive(new LeftScaleToCube().buildPath()));
-    	addParallel(new Claw_Clamp());
     	addSequential(new Arm_SetPosition(Arm.Position.MIDDLE));
     	Path driveForward = new Path();
     	driveForward.addStraight(12, 12);
