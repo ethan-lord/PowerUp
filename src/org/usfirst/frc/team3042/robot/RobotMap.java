@@ -249,6 +249,7 @@ public class RobotMap {
 	
 	/** Autonomous Constants ****************************************************/
 	public static final double AUTO_CLAW_RELEASE_TIME = 1.0;
+	public static final double AUTO_CLAW_RELEASE_DISTANCE = 12.0;
 	
 	
 	/** Logger Settings *******************************************************/

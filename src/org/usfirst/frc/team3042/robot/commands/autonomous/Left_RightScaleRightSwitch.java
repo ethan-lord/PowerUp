@@ -4,6 +4,7 @@ import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Claw_IntakeAuto;
+import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseAuto;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
@@ -32,7 +33,7 @@ public class Left_RightScaleRightSwitch extends CommandGroup {
     	driveForward.addStraight(12, 12);
     	addSequential(new DrivetrainAuton_Drive(driveForward));
     	addSequential(new Arm_SetPosition(Arm.Position.MIDDLE));
-    	addParallel(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME), 6.0);
+    	addParallel(new Claw_ReleaseAuto(), 6.0);
     	addSequential(new DrivetrainAuton_Drive(driveForward));
 
         // A command group will require all of the subsystems that each member

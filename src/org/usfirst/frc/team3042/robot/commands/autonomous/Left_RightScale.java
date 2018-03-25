@@ -5,6 +5,7 @@ import org.usfirst.frc.team3042.lib.math.Rotation2d;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Auto_RunWhenDistanceLeft;
+import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseAuto;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
 import org.usfirst.frc.team3042.robot.commands.Claw_Stop;
 import org.usfirst.frc.team3042.robot.commands.Claw_StopAuton;
@@ -41,7 +42,7 @@ public class Left_RightScale extends CommandGroup {
     	addParallel(new Auto_RunWhenDistanceLeft(new Elevator_SetPosition(Elevator.Position.MID_SCALE), 150.0));
     	addSequential(new DrivetrainAuton_Drive(new LeftToRightScale().buildPath()));
     	
-    	addSequential(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME));
+    	addSequential(new Claw_ReleaseAuto());
     	Path backUp = new Path();
     	backUp.addStraight(-40, -48);
     	addSequential(new DrivetrainAuton_Drive(backUp));
