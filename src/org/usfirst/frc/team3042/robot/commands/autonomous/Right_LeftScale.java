@@ -10,7 +10,9 @@ import org.usfirst.frc.team3042.robot.commands.Claw_Stop;
 import org.usfirst.frc.team3042.robot.commands.Claw_StopAuton;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Drive;
 import org.usfirst.frc.team3042.robot.commands.DrivetrainAuton_Turn;
+import org.usfirst.frc.team3042.robot.commands.Elevator_HoldPosition;
 import org.usfirst.frc.team3042.robot.commands.Elevator_SetPosition;
+import org.usfirst.frc.team3042.robot.commands.Elevator_Stop;
 import org.usfirst.frc.team3042.robot.paths.RightToLeftScale;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
 import org.usfirst.frc.team3042.robot.subsystems.Elevator;
@@ -33,17 +35,19 @@ public class Right_LeftScale extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
+    addParallel(new Elevator_HoldPosition());
     	addParallel(new Arm_SetPosition(Arm.Position.MIDDLE));
-    	addParallel(new DrivetrainAuton_Drive(new RightToLeftScale().buildPath()));
-    	addParallel(new Auto_RunWhenDistanceLeft(new Elevator_SetPosition(Elevator.Position.MID_SCALE), 120.0));
-    	addSequential(new Auto_RunWhenDistanceLeft(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME), 15.0));
-    	addSequential(new Claw_StopAuton());
+    	addParallel(new Auto_RunWhenDistanceLeft(new Elevator_SetPosition(Elevator.Position.MID_SCALE), 150.0));
+    	addSequential(new DrivetrainAuton_Drive(new RightToLeftScale().buildPath()));
+    
+    	addSequential(new Claw_ReleaseTimed(RobotMap.AUTO_CLAW_RELEASE_TIME));
     	Path backUp = new Path();
-    	backUp.addStraight(-24, -24);
+    	backUp.addStraight(-40, -48);
     	addSequential(new DrivetrainAuton_Drive(backUp));
     	addParallel(new Elevator_SetPosition(Elevator.Position.INTAKE));
-    	addParallel(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(200.3042)));
+    	addParallel(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(-165)));
     	addSequential(new Arm_SetPosition(Arm.Position.BOTTOM));
+    	addSequential(new Elevator_Stop());
 
         // A command group will require all of the subsystems that each member
         // would require.
