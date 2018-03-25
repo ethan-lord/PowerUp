@@ -181,6 +181,10 @@ public class Robot extends IterativeRobot {
 		
 		poseTracker.outputToDashboard();
 		
+		//if(!RobotMap.IS_GEORGE) log.add("ElevatorZero = " + elevator.elevatorZero, Log.Level.DEBUG);
+		
+		//log.add("Ultra: " + Robot.claw.getDistance(), Log.Level.DEBUG);
+		
 //		SmartDashboard.putNumber("PDP Channel Left Drivetrain 0", pdp.getCurrent(0));
 //		SmartDashboard.putNumber("PDP Channel Left Drivetrain 1", pdp.getCurrent(1));
 //		SmartDashboard.putNumber("PDP Channel 2", pdp.getCurrent(2));

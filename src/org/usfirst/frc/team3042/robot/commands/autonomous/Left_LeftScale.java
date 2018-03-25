@@ -37,17 +37,16 @@ public class Left_LeftScale extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
-    addParallel(new Elevator_HoldPosition());
+    	addParallel(new Elevator_HoldPosition());
     	addParallel(new Arm_SetPosition(Arm.Position.MIDDLE));
     	addParallel(new Auto_RunWhenDistanceLeft(new Elevator_SetPosition(Elevator.Position.MID_SCALE), 150.0));
+    	addParallel(new Auto_RunWhenDistanceLeft(new Claw_ReleaseAuto(), 10.0));
     	addSequential(new DrivetrainAuton_Drive(new LeftToLeftScale().buildPath()));
-    	
-    	addSequential(new Claw_ReleaseAuto());
     	Path backUp = new Path();
     	backUp.addStraight(-40, -48);
+    	addParallel(new Auto_RunWhenDistanceLeft(new Elevator_SetPosition(Elevator.Position.INTAKE), 34));
     	addSequential(new DrivetrainAuton_Drive(backUp));
-    	addParallel(new Elevator_SetPosition(Elevator.Position.INTAKE));
-    	addParallel(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(-165)));
+    	addParallel(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(-167.5)));
     	addSequential(new Arm_SetPosition(Arm.Position.BOTTOM));
     	addSequential(new Elevator_Stop());
 

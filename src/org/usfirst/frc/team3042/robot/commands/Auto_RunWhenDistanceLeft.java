@@ -37,13 +37,15 @@ public class Auto_RunWhenDistanceLeft extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     		log.add("Initialize", Log.Level.TRACE);
+    		finished = false;
+    		
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		double distanceTraveled = 
-    				(Robot.drivetrain.getEncoders().getLeftTrajPos() + Robot.drivetrain.getEncoders().getRightTrajPos()) / 2;
-    		double distanceToTravel = Robot.drivetrain.getAuton().getDistanceToTravel();
+    		double distanceTraveled = Math.abs(
+    				(Robot.drivetrain.getEncoders().getLeftTrajPos() + Robot.drivetrain.getEncoders().getRightTrajPos()) / 2);
+    		double distanceToTravel = Math.abs(Robot.drivetrain.getAuton().getDistanceToTravel());
     		
     		if (distanceToTravel == 0) {
     			distanceToTravel = 1000;
@@ -60,7 +62,7 @@ public class Auto_RunWhenDistanceLeft extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return command.isCompleted();
+        return finished;
     }
 
     // Called once after isFinished returns true

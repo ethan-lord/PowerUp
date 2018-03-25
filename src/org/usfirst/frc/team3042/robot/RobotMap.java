@@ -91,15 +91,15 @@ public class RobotMap {
 												(IS_DABNEY) 	? 1.189 : 1.21;
 	public static final double kF_DRIVE_RIGHT = (IS_GEORGE) 		? 1.12 ://0.6492764661081493 :
 												(IS_DABNEY) 	? 1.278 : 1.24;
-	public static final double kF_HIGH_DRIVE_LEFT = (IS_DABNEY) ? 0.5778 : 0.5880;
-	public static final double kF_HIGH_DRIVE_RIGHT = (IS_DABNEY) ? 0.6210 : 0.6025;
+	public static final double kF_HIGH_DRIVE_LEFT = (IS_DABNEY) ? 0.5778 : 0.6045;
+	public static final double kF_HIGH_DRIVE_RIGHT = (IS_DABNEY) ? 0.6210 : 0.6406;
 	public static final int TALON_ERROR_TIMEOUT = 0;// measured in Ms
 	public static final int TRAJPERIOD = 10;
 	public static final int BASE_TRAJPERIOD = 0;
 	public static final int PIDIDX = 0; //pidIdx - 0 for Primary closed-loop. 1 for cascaded closed-loop. See Phoenix-Documentation for how to interpret.
 	public static final int SLOTIDX_1 = 0;
 
-	public static final boolean STARTS_HIGH_GEAR = (IS_DABNEY) ? false : false;
+	public static final boolean STARTS_HIGH_GEAR = (IS_DABNEY) ? false : true;
 	public static final int DRIVETRAIN_MOTION_MAGIC_ACCELERATION =  (IS_GEORGE)? 1000 :
 																	 (IS_DABNEY)? 1000 : 1000;
 	public static final int DRIVETRAIN_MOTION_MAGIC_CRUISE_VELOCITY = (IS_GEORGE)? 500 :
@@ -118,7 +118,7 @@ public class RobotMap {
 	public static final double CLAW_INTAKE_POWER = IS_DABNEY 	? 0.8 : 0.8;
 	public static final double CLAW_RELEASE_POWER_DEFAULT = IS_DABNEY 	? -0.5 : -0.5;
 	public static final double CLAW_RELEASE_POWER_EXCHANGE = IS_DABNEY   ? -0.53042 : -0.53042;
-	public static final double CLAW_GRAB_DISTANCE = 5;
+	public static final double CLAW_GRAB_DISTANCE = 6;
 	public static final double CLAW_GRAB_TIME = 1;
 	public static final boolean STARTS_ACTIVE = false;
 	public static final double CLAW_INTAKE_TIMEOUT = IS_DABNEY ? 0 : 0;
@@ -149,7 +149,7 @@ public class RobotMap {
 	
 	/** Arm Settings **********************************************************/
 	public static final boolean HAS_ARM = !IS_GEORGE;
-	public static final double ARM_KP = IS_DABNEY 	? 4.2 : 6.0;
+	public static final double ARM_KP = IS_DABNEY 	? 4.2 : 10.0;
 	public static final double ARM_KI = IS_DABNEY 	? 0.015 : 0.015;
 	public static final double ARM_KD = IS_DABNEY 	? 80.0 : 50.0;
 	public static final double ARM_KF = IS_DABNEY 	? 0 : 0;
@@ -165,6 +165,7 @@ public class RobotMap {
 	public static final int ARM_MAX_POSITION = IS_DABNEY    ? 810 : 0;
 	public static final int ARM_MIN_POSITION = IS_DABNEY    ? 480 : -190;
 	public static final int ARM_POSITION_CONTROL_RANGE = IS_DABNEY	? 30 : 20;
+	public static final int ARM_POSITION_WAIT_TOLLERANCE = IS_DABNEY ? 30 : 30;
 	
 	/** HookDeploy Settings **********************************************/
 	public static final boolean HAS_HOOKDEPLOY = !IS_GEORGE;
@@ -198,7 +199,7 @@ public class RobotMap {
 	public static final int AUTON_PROFILE = 0;
 
 	public static final double kP_AUTON = 		(IS_GEORGE) 		? 10.0 :
-												(IS_DABNEY) 	? 1.3 : 6.0;
+												(IS_DABNEY) 	? 1.3 : 1.3;
 	public static final double kI_AUTON = 		(IS_GEORGE) 		? 0.0 :
 												(IS_DABNEY) 	? 0.00 : 0.0;
 	public static final double kD_AUTON = 		(IS_GEORGE) 		? 2.0 :
@@ -272,7 +273,7 @@ public class RobotMap {
 	public static final Log.Level	LOG_MOTION_PROFILE				= Log.Level.DEBUG;
 	public static final Log.Level	LOG_GYROSCOPE				= Log.Level.DEBUG;
 	public static final Log.Level	LOG_WINCH					= Log.Level.TRACE;
-	public static final Log.Level	LOG_CLAW						= Log.Level.TRACE;
+	public static final Log.Level	LOG_CLAW						= Log.Level.DEBUG;
 	public static final Log.Level	LOG_ELEVATOR					= Log.Level.DEBUG;
 	public static final Log.Level 	LOG_ARM						= Log.Level.DEBUG;
 	public static final Log.Level	LOG_HOOK						= Log.Level.TRACE;

@@ -72,8 +72,8 @@ public class DrivetrainAuton extends Subsystem {
 		this.rightMotor = rightMotor;
 		this.encoders = encoders;
 		
-		initMotor(leftMotor, kF_LEFT);
-		initMotor(rightMotor, kF_RIGHT);
+		initMotor(leftMotor, kF_HIGH_LEFT);
+		initMotor(rightMotor, kF_HIGH_RIGHT);
 		
 		initMotionMagic(leftMotor);
 		initMotionMagic(rightMotor);
@@ -98,6 +98,7 @@ public class DrivetrainAuton extends Subsystem {
 	}
 	
 	public void setFgain(TalonSRX motor, double kF) {
+		log.add("Setting F Gain: " + kF, Log.Level.DEBUG);
 		motor.config_kF(SLOTIDX_1, kF, TIMEOUT);
 	}
 	

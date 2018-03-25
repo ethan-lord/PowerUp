@@ -29,6 +29,7 @@ public class DrivetrainAuton_Drive extends Command {
 	DrivetrainAuton auton = Robot.drivetrain.getAuton();
 	MotionProfile leftMotionProfile, rightMotionProfile;
 	boolean isLast;
+	boolean hasBeenNotLast;
 	double distance;
 	
 	
@@ -48,6 +49,9 @@ public class DrivetrainAuton_Drive extends Command {
 	 */
 	protected void initialize() {
 		log.add("Initialize", Log.Level.TRACE);
+		
+		isLast = false;
+		hasBeenNotLast = false;
 		
 		auton.setDistanceToTravel(distance);
 		
@@ -88,6 +92,8 @@ public class DrivetrainAuton_Drive extends Command {
 		}
 		
 		isLast = leftStatus.isLast || rightStatus.isLast;
+		
+		hasBeenNotLast = hasBeenNotLast || !isLast;
 	}
 	
 	
@@ -95,7 +101,7 @@ public class DrivetrainAuton_Drive extends Command {
 	 * Make this return true when this Command no longer needs to run execute()
 	 */
 	protected boolean isFinished() {
-		return isLast;
+		return isLast && hasBeenNotLast;
 	}
 
 	

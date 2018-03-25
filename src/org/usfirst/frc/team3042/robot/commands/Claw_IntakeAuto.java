@@ -30,6 +30,12 @@ public class Claw_IntakeAuto extends Command {
 
     protected void initialize() {
     	log.add("Initialize", Log.Level.TRACE);
+    	
+    	timer.stop();
+    	timer.reset();
+    	
+    	isCubeIn = false;
+    	timerStarted = false;
     	Robot.claw.unclamp();
     	Robot.claw.intake();
     }
