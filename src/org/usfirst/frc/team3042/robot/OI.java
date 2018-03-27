@@ -14,6 +14,7 @@ import org.usfirst.frc.team3042.robot.commands.Claw_Clamp;
 import org.usfirst.frc.team3042.robot.commands.Claw_ClampIntake;
 import org.usfirst.frc.team3042.robot.commands.Claw_Intake;
 import org.usfirst.frc.team3042.robot.commands.Claw_IntakeAuto;
+import org.usfirst.frc.team3042.robot.commands.Claw_IntakeUltra;
 import org.usfirst.frc.team3042.robot.commands.Claw_Release;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseAuto;
 import org.usfirst.frc.team3042.robot.commands.Claw_Toggle;
@@ -156,7 +157,7 @@ public class OI {
 			
 			Path drivetrainTesting = new Path();
 			drivetrainTesting.addStraight(300, 90);
-			gamepad.B.whenPressed(new DrivetrainAuton_Drive(drivetrainTesting));
+			//gamepad.B.whenPressed(new DrivetrainAuton_Drive(drivetrainTesting));
 			
 			joyRight.button1.whenPressed(new Drivetrain_Shift());
 			
@@ -164,8 +165,8 @@ public class OI {
 			
 			joyLeft.button9.whileActive(new Winch_Reverse());
 			joyRight.button7.whenPressed(new Claw_IntakeAuto());
-			joyRight.button8.whenPressed(new DrivetrainAuton_TurnCalibrate(20, 3));
-			joyRight.button9.whenPressed(new Right_RightScaleRightSwitch());
+			//joyRight.button8.whenPressed(new DrivetrainAuton_TurnCalibrate(20, 3));
+			//joyRight.button9.whenPressed(new Right_RightScaleRightSwitch());
 			joyRight.button3.whenPressed(new Arm_EmergencyMode());
 			joyRight.button5.whenPressed(new Arm_CrisisAverted());
 			joyLeft.button3.whenPressed(new Elevator_EmergencyMode());

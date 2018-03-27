@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Claw_IntakeAuto extends Command {
+public class Claw_IntakeUltra extends Command {
 	
 	/** Configuration Constants ***********************************************/
 	public static final Log.Level LOG_LEVEL = RobotMap.LOG_CLAW;
@@ -22,7 +22,7 @@ public class Claw_IntakeAuto extends Command {
 	private boolean timerStarted = false;
 	Timer timer = new Timer();
 	
-    public Claw_IntakeAuto() {
+    public Claw_IntakeUltra() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.claw);
@@ -54,7 +54,7 @@ public class Claw_IntakeAuto extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (timer.get() > GRAB_TIME);
+        return false;
     }
 
     // Called once after isFinished returns true

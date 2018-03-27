@@ -2,6 +2,7 @@ package org.usfirst.frc.team3042.robot.subsystems;
 
 import org.usfirst.frc.team3042.lib.ElevatorPath;
 import org.usfirst.frc.team3042.lib.Log;
+import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Elevator_CyclePositions;
 import org.usfirst.frc.team3042.robot.commands.Elevator_HoldPosition;
@@ -30,8 +31,8 @@ public class Elevator extends Subsystem {
 	private final int LOW_SCALE_POS = RobotMap.ELEVATOR_LOW_SCALE_POSITION;
 	private final int MID_SCALE_POS = RobotMap.ELEVATOR_MID_SCALE_POSITION;
 	private final int HIGH_SCALE_POS = RobotMap.ELEVATOR_HIGH_SCALE_POSITION;
-	private final int MAX_POS = RobotMap.ELEVATOR_MAX_POSITION;
-	private final int MIN_POS = RobotMap.ELEVATOR_MIN_POSITION;
+	private int MAX_POS = RobotMap.ELEVATOR_MAX_POSITION;
+	private int MIN_POS = RobotMap.ELEVATOR_MIN_POSITION;
 	private final int MANUAL_SPEED = RobotMap.ELEVATOR_MANUAL_SPEED;
 	private static final int SLOTIDX_1 = RobotMap.SLOTIDX_1;
 	private static final int TIMEOUT = RobotMap.TALON_ERROR_TIMEOUT;
@@ -65,6 +66,11 @@ public class Elevator extends Subsystem {
     public Elevator(){
     	initMotor(elevatorTalon);
     	initMotionMagic(elevatorTalon);
+    	setZero();
+    	
+    	currentGoalPos += elevatorZero;
+    	MAX_POS += elevatorZero;
+    	MIN_POS += elevatorZero;
     }
     
     private void initMotor(TalonSRX motor) {
@@ -105,6 +111,8 @@ public class Elevator extends Subsystem {
 	public void setTalonPositionMagic(int position) {
 		elevatorTalon.set(ControlMode.MotionMagic, safetyCheck(position));
 		currentGoalPos = position;
+
+		log.add("Setting Position: " + safetyCheck(position), Log.Level.DEBUG);
 	}
 	
 	public void setTalonPosition(int position) {
@@ -113,7 +121,8 @@ public class Elevator extends Subsystem {
 	}
 	
 	public void setZero(){
-		elevatorZero = elevatorTalon.getSelectedSensorPosition(PIDIDX);
+		log.add("Zeroing Elevator: " + getPosition(), Log.Level.TRACE);
+		elevatorZero = getPosition();
 	}
 
 	
@@ -129,22 +138,22 @@ public class Elevator extends Subsystem {
 		switch (position) {
 			case INTAKE:
 				log.add("Intake", Log.Level.DEBUG);
-				currentGoalPos = INT_POS - elevatorZero; //setTalonPositionMagic(INT_POS - elevatorZero);
+				currentGoalPos = INT_POS + elevatorZero; //setTalonPositionMagic(INT_POS - elevatorZero);
 				log.add("Intake position: " + INT_POS, Log.Level.DEBUG);
 				break;
 			case LOW_SCALE:
 				log.add("Low Scale", Log.Level.DEBUG);
-				currentGoalPos = LOW_SCALE_POS - elevatorZero; //setTalonPositionMagic(LOW_SCALE_POS - elevatorZero);
+				currentGoalPos = LOW_SCALE_POS + elevatorZero; //setTalonPositionMagic(LOW_SCALE_POS - elevatorZero);
 				log.add("Low scale position: " + LOW_SCALE_POS, Log.Level.DEBUG);
 				break;
 			case MID_SCALE:
 				log.add("Mid Scale", Log.Level.DEBUG);
-				currentGoalPos = MID_SCALE_POS - elevatorZero; //setTalonPositionMagic(MID_SCALE_POS - elevatorZero);
+				currentGoalPos = MID_SCALE_POS + elevatorZero; //setTalonPositionMagic(MID_SCALE_POS - elevatorZero);
 				log.add("Mid scale position: " + MID_SCALE_POS, Log.Level.DEBUG);
 				break;
 			case HIGH_SCALE:
 				log.add("High Scale", Log.Level.DEBUG);
-				currentGoalPos = HIGH_SCALE_POS - elevatorZero; //setTalonPositionMagic(HIGH_SCALE_POS - elevatorZero);
+				currentGoalPos = HIGH_SCALE_POS + elevatorZero; //setTalonPositionMagic(HIGH_SCALE_POS - elevatorZero);
 				log.add("High scale position: " + HIGH_SCALE_POS, Log.Level.DEBUG);
 				break;
 			default:

@@ -103,7 +103,7 @@ public class RobotMap {
 	public static final int DRIVETRAIN_MOTION_MAGIC_ACCELERATION =  (IS_GEORGE)? 1000 :
 																	 (IS_DABNEY)? 1000 : 1000;
 	public static final int DRIVETRAIN_MOTION_MAGIC_CRUISE_VELOCITY = (IS_GEORGE)? 500 :
-																	   (IS_DABNEY)? 500 : 500;
+																	   (IS_DABNEY)? 500 : 600;
 	
 	
 	/** Winch Settings ********************************************************/
@@ -116,7 +116,7 @@ public class RobotMap {
 	/** Claw Settings *********************************************************/
 	public static final boolean HAS_CLAW =!IS_GEORGE;
 	public static final double CLAW_INTAKE_POWER = IS_DABNEY 	? 0.8 : 0.8;
-	public static final double CLAW_RELEASE_POWER_DEFAULT = IS_DABNEY 	? -0.5 : -0.5;
+	public static final double CLAW_RELEASE_POWER_DEFAULT = IS_DABNEY 	? -0.5 : -0.3;
 	public static final double CLAW_RELEASE_POWER_EXCHANGE = IS_DABNEY   ? -0.53042 : -0.53042;
 	public static final double CLAW_GRAB_DISTANCE = 6;
 	public static final double CLAW_GRAB_TIME = 1;
@@ -199,7 +199,7 @@ public class RobotMap {
 	public static final int AUTON_PROFILE = 0;
 
 	public static final double kP_AUTON = 		(IS_GEORGE) 		? 10.0 :
-												(IS_DABNEY) 	? 1.3 : 1.3;
+												(IS_DABNEY) 	? 1.3 : 2.0;
 	public static final double kI_AUTON = 		(IS_GEORGE) 		? 0.0 :
 												(IS_DABNEY) 	? 0.00 : 0.0;
 	public static final double kD_AUTON = 		(IS_GEORGE) 		? 2.0 :
