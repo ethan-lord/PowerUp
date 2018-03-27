@@ -51,7 +51,7 @@ public class Auto_RunWhenDistanceLeft extends Command {
     			distanceToTravel = 1000;
     		}
     		
-    		log.add("DistanceToTravel: " + distanceToTravel + ", DistanceTraveled: " + distanceTraveled, Log.Level.DEBUG_PERIODIC);
+    		//log.add("DistanceToTravel: " + distanceToTravel + ", DistanceTraveled: " + distanceTraveled, Log.Level.DEBUG_PERIODIC);
     		
     		if ((distanceToTravel - distanceTraveled < distance) & !finished) {
     			log.add("Starting command", Log.Level.DEBUG);

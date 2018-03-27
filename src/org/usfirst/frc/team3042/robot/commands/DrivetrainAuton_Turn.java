@@ -48,7 +48,7 @@ public class DrivetrainAuton_Turn extends Command {
     protected void execute() {
     	Rotation2d remainingTurn = goal.rotateBy(drivetrain.getGyro().inverse());
     	
-    	log.add("Turn Remaining: " + remainingTurn, Log.Level.DEBUG_PERIODIC);
+    	//log.add("Turn Remaining: " + remainingTurn, Log.Level.DEBUG_PERIODIC);
     	
     	double distance = angleToDistance(remainingTurn);
     	

@@ -111,8 +111,6 @@ public class Elevator extends Subsystem {
 	public void setTalonPositionMagic(int position) {
 		elevatorTalon.set(ControlMode.MotionMagic, safetyCheck(position));
 		currentGoalPos = position;
-
-		log.add("Setting Position: " + safetyCheck(position), Log.Level.DEBUG);
 	}
 	
 	public void setTalonPosition(int position) {

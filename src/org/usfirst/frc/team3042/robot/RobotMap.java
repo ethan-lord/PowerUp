@@ -114,7 +114,7 @@ public class RobotMap {
 	public static final double WINCH_BASE_POWER = IS_DABNEY ? 1.0 : 1.0;// percent output
 	
 	/** Claw Settings *********************************************************/
-	public static final boolean HAS_CLAW =!IS_GEORGE;
+	public static final boolean HAS_CLAW = !IS_GEORGE;
 	public static final double CLAW_INTAKE_POWER = IS_DABNEY 	? 0.8 : 0.8;
 	public static final double CLAW_RELEASE_POWER_DEFAULT = IS_DABNEY 	? -0.5 : -0.3;
 	public static final double CLAW_RELEASE_POWER_EXCHANGE = IS_DABNEY   ? -0.53042 : -0.53042;
@@ -124,6 +124,8 @@ public class RobotMap {
 	public static final double CLAW_INTAKE_TIMEOUT = IS_DABNEY ? 0 : 0;
 	public static final boolean CLAW_RIGHT_REVERSE = (IS_DABNEY) ? false : true;
 	public static final boolean CLAW_LEFT_REVERSE = true;
+	public static final double CLAW_RELEASE_TIME = 0.2;
+	
 	
 	/** Elevator Settings *****************************************************/
 	public static final boolean HAS_ELEVATOR = !IS_GEORGE;
@@ -199,7 +201,7 @@ public class RobotMap {
 	public static final int AUTON_PROFILE = 0;
 
 	public static final double kP_AUTON = 		(IS_GEORGE) 		? 10.0 :
-												(IS_DABNEY) 	? 1.3 : 2.0;
+												(IS_DABNEY) 	? 1.3 : 6.0;
 	public static final double kI_AUTON = 		(IS_GEORGE) 		? 0.0 :
 												(IS_DABNEY) 	? 0.00 : 0.0;
 	public static final double kD_AUTON = 		(IS_GEORGE) 		? 2.0 :

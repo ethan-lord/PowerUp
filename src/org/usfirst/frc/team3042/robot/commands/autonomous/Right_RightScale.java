@@ -4,7 +4,9 @@ import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.lib.math.Rotation2d;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
+import org.usfirst.frc.team3042.robot.commands.Arm_WaitForNearPosition;
 import org.usfirst.frc.team3042.robot.commands.Auto_RunWhenDistanceLeft;
+import org.usfirst.frc.team3042.robot.commands.Claw_IntakeAuto;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseAuto;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
 import org.usfirst.frc.team3042.robot.commands.Claw_Stop;
@@ -40,15 +42,21 @@ public class Right_RightScale extends CommandGroup {
     	addParallel(new Elevator_HoldPosition());
     	addParallel(new Arm_SetPosition(Arm.Position.MIDDLE));
     	addParallel(new Auto_RunWhenDistanceLeft(new Elevator_SetPosition(Elevator.Position.MID_SCALE), 150.0));
-    	addParallel(new Auto_RunWhenDistanceLeft(new Claw_ReleaseAuto(), 10.0));
+    	addParallel(new Auto_RunWhenDistanceLeft(new Claw_ReleaseAuto(), 14.0));
     	addSequential(new DrivetrainAuton_Drive(new RightToRightScale().buildPath()));
     	Path backUp = new Path();
-    	backUp.addStraight(-40, -48);
+    	backUp.addStraight(-40, -60);
     	addParallel(new Auto_RunWhenDistanceLeft(new Elevator_SetPosition(Elevator.Position.INTAKE), 34));
     	addSequential(new DrivetrainAuton_Drive(backUp));
-    	addParallel(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(167.5)));
-    	addSequential(new Arm_SetPosition(Arm.Position.BOTTOM));
+    	addParallel(new Arm_SetPosition(Arm.Position.BOTTOM));
+    	addSequential(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(167.5)));
     	addSequential(new Elevator_Stop());
+    	addParallel(new Claw_IntakeAuto());
+    	Path driveToCube = new Path();
+    	driveToCube.addStraight(13, 24);
+    	addSequential(new DrivetrainAuton_Drive(driveToCube));
+    	addSequential(new Arm_SetPosition(Arm.Position.MIDDLE));
+    	addSequential(new Arm_WaitForNearPosition());
 
         // A command group will require all of the subsystems that each member
         // would require.

@@ -35,15 +35,9 @@ public class Right_RightScaleRightSwitch extends CommandGroup {
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
     	addSequential(new Right_RightScale());
-    	addParallel(new Claw_IntakeAuto());
-    	Path driveToCube = new Path();
-    	driveToCube.addStraight(13, 24);
-    	addSequential(new DrivetrainAuton_Drive(driveToCube));
-    	addSequential(new Arm_SetPosition(Arm.Position.MIDDLE));
-    	addSequential(new Arm_WaitForNearPosition());
     	addParallel(new Auto_RunWhenDistanceLeft(new Claw_ReleaseTimed(0.5), 10.0));
     	Path driveToSwitch = new Path();
-    	driveToSwitch.addStraight(16, 24);
+    	driveToSwitch.addStraight(20, 32);
     	addSequential(new DrivetrainAuton_Drive(driveToSwitch));
         // A command group will require all of the subsystems that each member
         // would require.

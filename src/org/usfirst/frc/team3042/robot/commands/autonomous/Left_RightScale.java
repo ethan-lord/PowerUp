@@ -4,7 +4,9 @@ import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.lib.math.Rotation2d;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
+import org.usfirst.frc.team3042.robot.commands.Arm_WaitForNearPosition;
 import org.usfirst.frc.team3042.robot.commands.Auto_RunWhenDistanceLeft;
+import org.usfirst.frc.team3042.robot.commands.Claw_IntakeAuto;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseAuto;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
 import org.usfirst.frc.team3042.robot.commands.Claw_Stop;
@@ -37,19 +39,24 @@ public class Left_RightScale extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
-    addParallel(new Elevator_HoldPosition());
+    	addParallel(new Elevator_HoldPosition());
     	addParallel(new Arm_SetPosition(Arm.Position.MIDDLE));
     	addParallel(new Auto_RunWhenDistanceLeft(new Elevator_SetPosition(Elevator.Position.MID_SCALE), 150.0));
     	addSequential(new DrivetrainAuton_Drive(new LeftToRightScale().buildPath()));
-    	
-    	addSequential(new Claw_ReleaseAuto());
+    	addParallel(new Claw_ReleaseAuto());
     	Path backUp = new Path();
-    	backUp.addStraight(-40, -48);
+    	backUp.addStraight(-40, -60);
+    	addParallel(new Auto_RunWhenDistanceLeft(new Elevator_SetPosition(Elevator.Position.INTAKE), 34));
     	addSequential(new DrivetrainAuton_Drive(backUp));
-    	addParallel(new Elevator_SetPosition(Elevator.Position.INTAKE));
-    	addParallel(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(165)));
-    	addSequential(new Arm_SetPosition(Arm.Position.BOTTOM));
+    	addParallel(new Arm_SetPosition(Arm.Position.BOTTOM));
+    	addSequential(new DrivetrainAuton_Turn(Rotation2d.fromDegrees(128)));
     	addSequential(new Elevator_Stop());
+    	addParallel(new Claw_IntakeAuto());
+    	Path driveToCube = new Path();
+    	driveToCube.addStraight(25, 36);
+    	addSequential(new DrivetrainAuton_Drive(driveToCube));
+    	addSequential(new Arm_SetPosition(Arm.Position.MIDDLE));
+    	addSequential(new Arm_WaitForNearPosition());
 
         // A command group will require all of the subsystems that each member
         // would require.
