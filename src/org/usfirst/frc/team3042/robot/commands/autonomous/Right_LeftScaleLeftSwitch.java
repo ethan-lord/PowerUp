@@ -3,6 +3,7 @@ package org.usfirst.frc.team3042.robot.commands.autonomous;
 import org.usfirst.frc.team3042.lib.Path;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
+import org.usfirst.frc.team3042.robot.commands.Auto_RunWhenDistanceLeft;
 import org.usfirst.frc.team3042.robot.commands.Claw_IntakeAuto;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseAuto;
 import org.usfirst.frc.team3042.robot.commands.Claw_ReleaseTimed;
@@ -29,13 +30,10 @@ public class Right_LeftScaleLeftSwitch extends CommandGroup {
         // Command1 and Command2 will run in parallel.
 
     	addSequential(new Right_LeftScale());
-    	addParallel(new Claw_IntakeAuto());
-    	Path driveForward = new Path();
-    	driveForward.addStraight(12, 12);
-    	addSequential(new DrivetrainAuton_Drive(driveForward));
-    	addSequential(new Arm_SetPosition(Arm.Position.MIDDLE));
-    	addParallel(new Claw_ReleaseAuto(), 6.0);
-    	addSequential(new DrivetrainAuton_Drive(driveForward));
+    	addParallel(new Auto_RunWhenDistanceLeft(new Claw_ReleaseTimed(0.5), 10.0));
+    	Path driveToSwitch = new Path();
+    	driveToSwitch.addStraight(20, 32);
+    	addSequential(new DrivetrainAuton_Drive(driveToSwitch));
     	
         // A command group will require all of the subsystems that each member
         // would require.
