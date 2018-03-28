@@ -166,7 +166,7 @@ public class OI {
 			joyLeft.button9.whileActive(new Winch_Reverse());
 			joyRight.button7.whenPressed(new Claw_IntakeAuto());
 			//joyRight.button8.whenPressed(new DrivetrainAuton_TurnCalibrate(20, 3));
-			joyRight.button9.whenPressed(new Right_RightScaleRightSwitch());
+			//joyRight.button9.whenPressed(new Right_RightScaleRightSwitch());
 			joyRight.button3.whenPressed(new Arm_EmergencyMode());
 			joyRight.button5.whenPressed(new Arm_CrisisAverted());
 			joyLeft.button3.whenPressed(new Elevator_EmergencyMode());
