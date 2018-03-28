@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Left_LeftOrRightScale extends Command {
+public class Right_LeftOrRightScaleThenSwitch extends Command {
 	/** Configuration Constants ***********************************************/
 	public static final Log.Level LOG_LEVEL = RobotMap.LOG_ROBOT;
 	
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, getName());
 
-    public Left_LeftOrRightScale() {
+    public Right_LeftOrRightScaleThenSwitch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
@@ -27,12 +27,20 @@ public class Left_LeftOrRightScale extends Command {
     	log.add("GameData: " + Robot.getGameData(), Log.Level.TRACE);
     	log.add("Robot.getGameData().substring(1, 2) = " + Robot.getGameData().substring(1, 2) + ".", Log.Level.DEBUG);
     	log.add("Robot.getScaleSide() = " + Robot.getScaleSide(), Log.Level.TRACE);
+    	log.add("Robot.getSwitchSide() = " + Robot.getSwitchSide(), Log.Level.TRACE);
     	
     	if (Robot.getScaleSide() == Robot.Side.LEFT) {
-    		new Left_LeftScale().start();
-    	}
-    	else {
-    		new Left_RightScale().start();
+    		if (Robot.getSwitchSide() == Robot.Side.LEFT) {
+    			new Right_LeftScaleLeftSwitch().start();
+    		} else {
+    			new Right_LeftScale().start();
+    		}
+    	} else {
+    		if (Robot.getSwitchSide() == Robot.Side.RIGHT) {
+    			new Right_RightScaleRightSwitch().start();
+    		} else {
+    			new Right_RightScale().start();
+    		}
     	}
     }
 
